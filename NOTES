@@ -1,0 +1,69 @@
+==Vew action==
+    New class in actionList.js based on action type (Order in list is order it will appear in game)
+    Add svg to img folder
+    Add data in game.xml
+    Most stuff is automatically generated and saved by town.js. Any extra data that needs persistance should either
+        be a new resource or a variable added to saving.js that is called in the save and load functions and reset
+        in actions.js restart()
+
+==New Skill==
+    New divs in index.html
+    add to skill list in saving.js
+    add to getSkillBonus() in stats.js if the skill uses the increase or reduce formulas
+    add description in game.xml
+    add code to update skill values in main.view.js
+
+==New Buff==
+    Add name translation in buffs.view.js
+    Add to buff list and buff caps in saving.js
+    Add to buffs section in game.xml files
+
+==New Resource==
+    Add to resources list in saving.js
+    Add resource section of game.xml files
+    Resources are automatically reset on new loops by the game code
+
+==New Trial==
+
+    Increase the length of trials[] at the end of index.hmtl
+    Add the number of floors to trialfloors in saving.js
+    Create a new action in the action list based on the template below
+    Other general new action stuff
+
+    Action.TestTrial = new TrialAction("Test Trial", testNum, {
+        type: "multipart",
+        expMult: 0.25,
+        townNum: 5,
+        stats: {
+            Cha: 0.25,
+            Int: 0.25,
+            Luck: 0.25,
+            Soul: 0.25
+        },
+        loopStats: ["Cha", "Int", "Luck", "Soul"],
+        affectedBy: ["RaiseZombie"],
+        floorScaling: 2, //Difficulty is raised to this exponent each floor
+        baseScaling: 1e9, //Difficulty is multiplied by this number each floor
+        manaCost() {
+            return 100000;
+        },
+        baseProgress() {
+            //Determines what skills give progress to the trial
+            return getSkillLevel("Dark") * resources.zombie / 2;
+        },
+        floorReward() {
+            //Rewards given per floor
+            addResource("zombie", 1);
+        },
+        canStart() {
+            return this.currentFloor() < trialFloors[this.trialNum];
+        },
+        visible() {
+            return towns[this.townNum].getLevel("Survey") >= 100;
+        },
+        unlocked() {
+            return towns[this.townNum].getLevel("Survey") >= 100;
+        },
+        finish() {
+        },
+    });
