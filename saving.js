@@ -83,6 +83,7 @@ let shouldRestart = true;
 // eslint-disable-next-line prefer-const
 let resources = {
     gold: 0,
+	stolenGoods: 0,
     reputation: 0,
     herbs: 0,
     hide: 0,
@@ -98,6 +99,7 @@ let resources = {
     zombie: 0,
     meat: 0,
     power: 0,
+	squirrel: false,
     glasses: false,
     supplies: false,
     pickaxe: false,
@@ -110,6 +112,7 @@ let resources = {
 const resourcesTemplate = copyObject(resources);
 // eslint-disable-next-line prefer-const
 let guild = "";
+let magicFight = false;
 let portalUsed = false;
 let stoneLoc = 0;
 let curLoadout = 0;

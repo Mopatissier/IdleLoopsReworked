@@ -461,15 +461,18 @@ Action.PickLocks = new Action("Pick Locks", {
     unlocked() {
         return towns[0].getLevel("Wander") >= 20;
     },
-    goldCost() {
+	stolenGoodsGain(){
+		return 1;
+	},
+	goldCost() {
         let base = 10;
         return Math.floor(base * getSkillMod("Practical",0,200,1) + base * getSkillBonus("Thievery") - base);
     },
     finish() {
         towns[0].finishRegular(this.varName, 10, () => {
-            const goldGain = this.goldCost();
-            addResource("gold", goldGain);
-            return goldGain;
+			const goodsGain = this.stolenGoodsGain();
+            addResource("stolenGoods", goodsGain);
+			return goodsGain;
         });
     }
 });
@@ -562,9 +565,42 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
     goldCost() {
         return Math.floor(50 * getSkillBonus("Mercantilism"));
     },
+	stolenGoodsValue(){
+		let base = 10;
+        return Math.floor(base * getSkillMod("Practical",0,200,1) + base * getSkillBonus("Thievery") - base);
+	},
     finish() {
+		addResource("gold", resources.stolenGoods * this.stolenGoodsValue());
         addMana(resources.gold * this.goldCost());
+		resetResource("stolenGoods");
         resetResource("gold");
+    },
+});
+
+Action.PetSquirrel = new Action("Pet Squirrel", {
+    type: "normal",
+    expMult: 1,
+    townNum: 0,
+    stats: {
+        Cha: 0.6,
+        Dex: 0.3,
+        Soul: 0.1
+    },
+    manaCost() {
+        return 100;
+    },
+	allowed() {
+        return 1;
+    },
+    visible() {
+        return towns[0].getLevel("Wander") >= 10;
+    },
+    unlocked() {
+        return towns[0].getLevel("Wander") >= 25;
+    },
+	
+    finish() {
+        addResource("squirrel", true);
     },
 });
 
@@ -602,7 +638,7 @@ Action.MeetPeople = new Action("Meet People", {
         return towns[0].getLevel("Wander") >= 10;
     },
     unlocked() {
-        return towns[0].getLevel("Wander") >= 22;
+        return towns[0].getLevel("Wander") >= 25;
     },
     finish() {
         towns[0].finishProgress(this.varName, 200);
@@ -731,8 +767,11 @@ Action.Investigate = new Action("Investigate", {
     unlocked() {
         return towns[0].getLevel("Met") >= 25;
     },
+	stolenGoodsMultiplication() {
+		return 1 + resources.stolenGoods * 0.2;
+	},
     finish() {
-        towns[0].finishProgress(this.varName, 500);
+        towns[0].finishProgress(this.varName, 500 * this.stolenGoodsMultiplication());
     },
 });
 function adjustLQuests() {
@@ -1050,6 +1089,58 @@ defineLazyGetter(Action.FightMonsters, "segmentModifiers",
     () => Array.from(_txtsObj("actions>fight_monsters>segment_modifiers>segment_modifier")).map(elt => elt.textContent)
 );
 
+Action.MagicFighter = new MultipartAction("Magic Fighter", {
+    type: "multipart",
+    expMult: 1,
+    townNum: 0,
+    varName: "MagFgt",
+    stats: {
+        Str: 0.3,
+        Spd: 0.3,
+        Con: 0.3,
+        Luck: 0.1
+    },
+	skills: {
+        Combat: 100,
+		Magic: 100
+    },
+    loopStats: ["Spd", "Spd", "Spd", "Str", "Str", "Str", "Con", "Con", "Con"],
+    manaCost() {
+        return 3000;
+    },
+    canStart() {
+        return resources.reputation >= 2 && magicFight == false;
+    },
+    loopCost(segment) {
+        return 10000;
+    },
+    tickProgress(offset) {
+        return 1;
+    },
+    loopsFinished() {
+        // empty
+    },
+    segmentFinished() {
+		handleSkillExp(this.skills);
+    },
+    getPartName() {
+		return "Magic fighter";
+
+    },
+    getSegmentName(segment) {
+        return "Moving only one finger.";
+    },
+    visible() {
+        return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 10;
+    },
+    unlocked() {
+        return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 25;
+    },
+    finish() {
+		magicFight = true;
+    },
+});
+
 Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
     type: "multipart",
     expMult: 1,
@@ -1262,7 +1353,7 @@ Action.StartJourney = new Action("Start Journey", {
         return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 35;
     },
     finish() {
-        unlockTown(1);
+        //unlockTown(1);
     },
 });
 

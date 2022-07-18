@@ -6,6 +6,13 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.0"><![CDATA[
+            <b> July 18th, 2022</b>
+            • Temporarily deactivated unlocking z2. Once z1 finished, it'll be reactivated.<br>
+			• Added a litte useless companion.<br>
+			• Reworked picking locks and investigations to make them both more interesting.<br>
+			• Added a magic fighter : he's too powerful for now, though.
+            ]]></version>
 			<version verNum="0.0.0"><![CDATA[
             <b> July 17th, 2022</b>
             This is Lloyd's v1.7 version of Idle Loop. <br>
@@ -117,15 +124,19 @@
     </menu>
     <tutorial><![CDATA[
       TUTORIAL:<br>
-      Click the Wander action and click Play to start.<br>
-      Wander for a bit, then smash pots.<br>
-      Watch the numbers change, read all the tooltips.<br>
-      Complete the town, go to the next one.<br><br>
-      Hey there, it looks like you're starting the game on omsi6.github.io.<br>
-      Before you start, you should know that this is a fanmade modification<br>
-      for the original game, located <a href="http://stopsign.github.io/idleLoops/">here</a>. You can import your save from the<br>
-      original, but if you import it back to the original, you'll lose any progress in features specific to this version.<br><br>
-      Thanks for playing, and have fun!<br><br>
+	  
+	  You are stuck in a time loop.<br>
+	  You have 250 mana until the loop restarts.<br>
+	  1 second = 50 mana.<br>
+	  Wander around to find pots : some will have mana inside.<br>
+	  Your character will remember which one have mana and which one don't, but you'll have to check them first.<br>
+	  Try to complete the town first!<br>
+	  And remember : read all the tooltips!<br><br>
+	  
+	  This game is a balance rework of the original Idle Loops.<br>
+	  To play the original game, check <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
+	  This is one of several versions of the game : for other versions, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
+	  Thanks for playing, and have fun!<br><br>
       ]]></tutorial>
     <tracked_resources>
         <reset_on_restart_txt>Resets when the loop restarts.</reset_on_restart_txt>
@@ -144,6 +155,11 @@
             <title>Gold:</title>
             <id>gold</id>
             <desc>Sell for mana, or use for actions.</desc>
+        </resource>
+		<resource initially_hidden="true">
+            <title>Stolen goods:</title>
+            <id>stolenGoods</id>
+            <desc>These might sell well. Alternatively, you could use them to investigate people's life.</desc>
         </resource>
         <resource initially_hidden="true">
             <title>Reputation:</title>
@@ -216,6 +232,11 @@
             <desc>Powers of the gods.</desc>
         </resource>
         <!--singular items with img icons rather than counts-->
+		<resource initially_hidden="true" no_count="true">
+            <title><![CDATA[<img src="img/petSquirrel.svg" class="smallIcon">]]></title>
+            <id>squirrel</id>
+            <desc>Your partner in crime. Stuck in the time loop with you.</desc>
+        </resource>
         <resource initially_hidden="true" no_count="true">
             <title><![CDATA[<img src="img/buyGlasses.svg" class="smallIcon">]]></title>
             <id>glasses</id>
@@ -891,14 +912,14 @@
             <info_text2>Houses with valuables total</info_text2>
             <info_text3>Houses to check for valuables</info_text3>
             <tooltip><![CDATA[
-            Don't worry; they won't remember.<br>Houses with valuables in them have 
+            Don't worry; they won't remember.<br>Valuables looted from houses are worth 
         ]]></tooltip>
             <tooltip2><![CDATA[
-            gold.<br>Every 10 houses have gold.<br>Unlocked at 20% Explored.
+            gold.<br>Every 10 houses have valuables.<br>Unlocked at 20% Explored.
         ]]></tooltip2>
             <story_1><![CDATA[<b>House checked:</b>⮀ You manage to pick a lock that was in disrepair and opened the door, only to walk into the home's inhabitant. Good thing the loop ended not soon after. You're gonna have to figure out which houses are worth hitting. Some money wouldn't go astray.]]></story_1>
             <story_2><![CDATA[<b>50 Houses known:</b>⮀ You really should look at hitting those locked houses around, who knows what goodies you'll manage to scrounge up.]]></story_2>
-            <story_3><![CDATA[<b>10 Houses with loot:</b>⮀ You've figured out which houses are uninhabited and have enough gold for it to be worth your time. As they say, time is mana!]]></story_3>
+            <story_3><![CDATA[<b>10 Houses with loot:</b>⮀ You've figured out which houses are uninhabited and have enough valuables for it to be worth your time. As they say, time is mana!]]></story_3>
         </pick_locks>
         <buy_glasses>
             <label>Buy Glasses</label>
@@ -924,11 +945,17 @@
         ]]></tooltip2>
             <!--TODO: give this action story-->
         </buy_mana_z1>
+		<pet_squirrel>
+            <label>Pet Squirrel</label>
+            <tooltip><![CDATA[
+            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop...<br>Pet it to make it a companion.<br>Unlocked at 25% explored.
+        ]]></tooltip>
+        </pet_squirrel>
         <meet_people>
             <label>Meet People</label>
             <label_done>People Met</label_done>
             <tooltip><![CDATA[
-            They won't let you get away with a simple chat.<br>Unlocked at 22% Explored.
+            They won't let you get away with a simple chat.<br>Unlocked at 25% Explored.
         ]]></tooltip>
             <story_1><![CDATA[<b>1% People Met:</b>⮀ You stand there, a little stumped at the situation you’ve gotten yourself into, when a young lass asks you about your day so far.]]></story_1>
             <story_2><![CDATA[<b>20% People Met:</b>⮀ The people here are generally nice enough, if a bit brusque at times. Some people have small tasks that they're happy to pay for.]]></story_2>
@@ -965,7 +992,7 @@
             <label>Investigate</label>
             <label_done>Investigated</label_done>
             <tooltip><![CDATA[
-            You've been hearing some rumors...<br>Unlocked at 25% People Met.
+            You've been hearing some rumors...<br>Your stolen valuable might have clues. Adds 20% efficiency for each one you have.<br>Unlocked at 25% People Met.
         ]]></tooltip>
             <story_1><![CDATA[<b>20% Investigated:</b>⮀ You catch some snippets of truly interesting gossip. Apparently a Mage and Warrior duo had stopped in and were sticking around for a little while.]]></story_1>
             <story_2><![CDATA[<b>40% Investigated:</b>⮀ People are really helpful when you help them, you're almost starting to get a reputation as a busybody around here, but it's offset in that you actually do help people.]]></story_2>
@@ -1125,6 +1152,14 @@
             <story_6><![CDATA[<b>10,000 Monsters killed:</b>⮀ You don't struggle or need to worry about anything they throw at you anymore, you know everything.]]></story_6>
             <story_7><![CDATA[<b>20,000 Monsters killed:</b>⮀ This is a joke, the only reason you're still doing this is the gold it rakes in. You need it.]]></story_7>
         </fight_monsters>
+		<magic_fighter>
+            <label>Magic Fighter</label>
+            <label_done>fights observed</label_done>
+            <tooltip><![CDATA[
+            Fighting that powerful magic fighter might be worth it. He only has time to spare once before leaving the town, though.<br>Watching him fight gives you a lot of combat and magic exp, so try to fight longer.<br>Requires a reputation of 2 or above.<br>Unlocked at a combined Combat and Magic skill of 25<br>Gives 100 combat exp and 100 fight exp per fight segment completion.
+        ]]></tooltip>
+        </magic_fighter>
+
         <small_dungeon>
             <label>Small Dungeon</label>
             <label_done>Looted</label_done>
