@@ -2,7 +2,9 @@
 
 // eslint-disable-next-line prefer-const
 let gameSpeed = 1;
-const baseManaPerSecond = 50;
+const baseManaPerSecond = 100;
+
+const halfDayMs = 1000*60*60*12;
 
 let curTime = new Date();
 let gameTicksLeft = 0;
@@ -10,6 +12,8 @@ let refund = false;
 let radarUpdateTime = 0;
 let timeCounter = 0;
 let effectiveTime = 0;
+
+let bonusMultString = "1x";
 
 function getSpeedMult(zone = curTown) {
     let speedMult = 1;
@@ -50,6 +54,7 @@ function tick() {
         gameTicksLeft = 0;
         return;
     }
+	
 
     while (gameTicksLeft > (1000 / baseManaPerSecond)) {
         if (gameTicksLeft > 2000) {
@@ -85,6 +90,7 @@ function tick() {
 
     if (bonusSpeed > 1) {
         addOffline(-Math.abs(delta * (bonusSpeed - 1)));
+		setActivatedBonusSpeed();
     }
 
     if (refund) {
@@ -573,18 +579,49 @@ function addOffline(num) {
         if (totalOfflineMs < 0) {
             totalOfflineMs = 0;
         }
-        document.getElementById("bonusSeconds").textContent = intToString(totalOfflineMs / 1000, 2);
+		
+        document.getElementById("bonusSeconds").textContent = convertOfflineMsToString();
+		document.getElementById("bonusMult").textContent = bonusMultString;
     }
+}
+
+function convertOfflineMsToString(){
+
+	let second = Math.floor((totalOfflineMs/1000)%60);
+	let minute = Math.floor((totalOfflineMs/(1000*60))%60);
+	let hour = Math.floor((totalOfflineMs/(1000*60*60))%24);
+	let day = Math.floor((totalOfflineMs/(1000*60*60*24)));
+	
+	let timeString = "";
+	if(day > 0) timeString += (day + "d ");
+	if(day > 0 || hour > 0) timeString += (hour + "h ");
+	if(day > 0 || hour > 0 || minute > 0) timeString += (minute + "m ");
+	timeString += (second + "s");
+	
+	return timeString;
+
 }
 
 function toggleOffline() {
     if (totalOfflineMs === 0) return;
     if (bonusSpeed === 1) {
-        bonusSpeed = 5;
+        setActivatedBonusSpeed();
         document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>on");
     } else {
         bonusSpeed = 1;
         document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>off");
+		bonusMultString = ("1x");
     }
     view.updateTime();
+}
+
+function setActivatedBonusSpeed() {
+	
+	const numberHalfDayOffline = Math.floor(totalOfflineMs/halfDayMs);
+	
+	bonusSpeed = numberHalfDayOffline * 0.5 + 2;
+	if(bonusSpeed > 5){
+		bonusSpeed = 5;
+	}
+	bonusMultString = (bonusSpeed+"x");
 }

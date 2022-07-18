@@ -61,7 +61,7 @@ const saveName = "idleLoops1";
 // this is to hide the cheat button if you aren't supposed to cheat
 if (window.location.href.includes("http://localhost:8080/")) document.getElementById("cheat").style.display = "inline-block";
 
-const timeNeededInitial = 5 * 50;
+const timeNeededInitial = 5 * baseManaPerSecond;
 // eslint-disable-next-line prefer-const
 let timer = timeNeededInitial;
 // eslint-disable-next-line prefer-const
@@ -167,7 +167,7 @@ const storyReqs = {
     haggle: false,
     haggle15TimesInALoop: false,
     haggle16TimesInALoop: false,
-    glassesBought: false,
+    glassesTaken: false,
     partyThrown: false,
     strengthTrained: false,
     suppliesBought: false,

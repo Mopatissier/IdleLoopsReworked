@@ -6,6 +6,12 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.1"><![CDATA[
+            <b> July 19th, 2022</b>
+            • The value of mana has been reworked : now 1 second is worth 100 mana, not 50.<br>
+			• The offline bonus system has been completely reworked.<br>
+			• Various little fixes.
+            ]]></version>
 			<version verNum="0.1.0"><![CDATA[
             <b> July 18th, 2022</b>
             • Temporarily deactivated unlocking z2. Once z1 finished, it'll be reactivated.<br>
@@ -126,8 +132,8 @@
       TUTORIAL:<br>
 	  
 	  You are stuck in a time loop.<br>
-	  You have 250 mana until the loop restarts.<br>
-	  1 second = 50 mana.<br>
+	  You have 500 mana until the loop restarts.<br>
+	  1 second = 100 mana.<br>
 	  Wander around to find pots : some will have mana inside.<br>
 	  Your character will remember which one have mana and which one don't, but you'll have to check them first.<br>
 	  Try to complete the town first!<br>
@@ -238,7 +244,7 @@
             <desc>Your partner in crime. Stuck in the time loop with you.</desc>
         </resource>
         <resource initially_hidden="true" no_count="true">
-            <title><![CDATA[<img src="img/buyGlasses.svg" class="smallIcon">]]></title>
+            <title><![CDATA[<img src="img/takeGlasses.svg" class="smallIcon">]]></title>
             <id>glasses</id>
             <desc>Woah, trees have so many leaves on them.</desc>
         </resource>
@@ -327,16 +333,18 @@
         </stories>
         <bonus_seconds>
             <title>Bonus Seconds</title>
-            <main_text><![CDATA[
-          When bonus is on, you get 4 extra seconds per second (5x faster).<br>
-          Accrue 1 bonus second per second when paused or offline. (capped at 1 month per offline period)<br>
-          Bonus is
-        ]]></main_text>
+			<main_text><![CDATA[
+				Activate to use bonus time to speed up the game.<br>
+				Accrue 1 bonus second per second when paused or offline. (capped at 1 month per offline period)<br>
+				Every half day stored makes the bonus time faster, from 2x to 5x.<br>
+				Bonus is
+			]]></main_text>
             <state>
                 <on>ON</on>
                 <off>OFF</off>
             </state>
-            <counter_text>Total Bonus Seconds</counter_text>
+			<bonus_mult>Current Bonus Mult</bonus_mult>
+            <counter_text>Total Bonus Time</counter_text>
         </bonus_seconds>
     </time_controls>
     <stats>
@@ -884,7 +892,9 @@
         <wander>
             <label>Wander</label>
             <label_done>Explored</label_done>
-            <tooltip>Explore the town, look for hidden areas and treasures.</tooltip>
+			<tooltip><![CDATA[
+            Explore the town, look for hidden areas and treasures.<br>4x progress with glasses.
+			]]></tooltip>
             <story_1><![CDATA[<b>20% Explored:</b>⮀ You know the general layout of the small village now, you don't get lost walking from one side to another!]]></story_1>
             <story_2><![CDATA[<b>40% Explored:</b>⮀ You're starting to really know your way around, you can almost figure your way around without following a set path!]]></story_2>
             <story_3><![CDATA[<b>60% Explored:</b>⮀ You've tread all the main roads and you avail yourself to the unkempt side paths and well worn paths. If you let yourself into some houses, well, no one needs to know, do they?]]></story_3>
@@ -912,22 +922,22 @@
             <info_text2>Houses with valuables total</info_text2>
             <info_text3>Houses to check for valuables</info_text3>
             <tooltip><![CDATA[
-            Don't worry; they won't remember.<br>Valuables looted from houses are worth 
+            Don't worry; they won't remember.<br>Valuables looted from houses can be sold to gain  
         ]]></tooltip>
             <tooltip2><![CDATA[
-            gold.<br>Every 10 houses have valuables.<br>Unlocked at 20% Explored.
+            mana.<br>Every 10 houses have valuables.<br>Unlocked at 20% Explored.
         ]]></tooltip2>
             <story_1><![CDATA[<b>House checked:</b>⮀ You manage to pick a lock that was in disrepair and opened the door, only to walk into the home's inhabitant. Good thing the loop ended not soon after. You're gonna have to figure out which houses are worth hitting. Some money wouldn't go astray.]]></story_1>
             <story_2><![CDATA[<b>50 Houses known:</b>⮀ You really should look at hitting those locked houses around, who knows what goodies you'll manage to scrounge up.]]></story_2>
             <story_3><![CDATA[<b>10 Houses with loot:</b>⮀ You've figured out which houses are uninhabited and have enough valuables for it to be worth your time. As they say, time is mana!]]></story_3>
         </pick_locks>
-        <buy_glasses>
-            <label>Buy Glasses</label>
+        <take_glasses>
+            <label>Take Glasses</label>
             <tooltip><![CDATA[
-            That's not fair. There was time now. There was all the time I needed.<br>Now you have to get new glasses again for 10 gold!<br>Causes Wander to be 4x as effective for the rest of the loop.<br>Affects any action with the glasses icon<br>Can only have 1 Buy Glasses action.<br>Unlocked at 20% explored.
+            You already miss seeing clearly. And there's nowhere to buy new glasses here!<br>You do remember finding a pair of your prescription during one of your 'house excursions'...<br>It's alright, you're sure it's a spare one. Probably. Maybe.<br>Costs one pile of stolen goods.<br>Affects any action with the glasses icon<br>Can only have 1 Take Glasses action.<br>Unlocked at 20% explored.
         ]]></tooltip>
-            <story_1><![CDATA[<b>Glasses bought:</b>⮀ The world snaps into sharp focus as you put them on and you gawk a little as details that had slipped your eyes previously stood out in sharp contrast. You're a little gobsmacked at how much of a difference they make.]]></story_1>
-        </buy_glasses>
+            <story_1><![CDATA[<b>Glasses taken:</b>⮀ The world snaps into sharp focus as you put them on and you gawk a little as details that had slipped your eyes previously stood out in sharp contrast. You're a little gobsmacked at how much of a difference they make.]]></story_1>
+        </take_glasses>
         <found_glasses>
             <label>Found Glasses</label>
             <tooltip><![CDATA[
@@ -1154,9 +1164,9 @@
         </fight_monsters>
 		<magic_fighter>
             <label>Magic Fighter</label>
-            <label_done>fights observed</label_done>
+            <label_done>Injuries inflicted</label_done>
             <tooltip><![CDATA[
-            Fighting that powerful magic fighter might be worth it. He only has time to spare once before leaving the town, though.<br>Watching him fight gives you a lot of combat and magic exp, so try to fight longer.<br>Requires a reputation of 2 or above.<br>Unlocked at a combined Combat and Magic skill of 25<br>Gives 100 combat exp and 100 fight exp per fight segment completion.
+            Fighting that powerful magic fighter might be worth it. He only has time to spare once before leaving the town, though.<br>Watching him fight gives you a lot of combat and magic exp, so try to fight longer.<br>Can only be donce once par loop.<br>Requires a reputation of 2 or above.<br>Unlocked at a combined Combat and Magic skill of 25<br>Gives 100 combat exp and 100 fight exp per fight segment completion.
         ]]></tooltip>
         </magic_fighter>
 

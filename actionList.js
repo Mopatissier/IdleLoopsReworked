@@ -366,9 +366,9 @@ Action.Wander = new Action("Wander", {
         Spd: 0.3,
         Luck: 0.1
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     manaCost() {
-        return 250;
+        return 500;
     },
     visible() {
         return true;
@@ -409,7 +409,7 @@ Action.SmashPots = new Action("Smash Pots", {
         Spd: 0.6
     },
     manaCost() {
-        return Math.ceil(50 * getSkillBonus("Practical"));
+        return Math.ceil(100 * getSkillBonus("Practical"));
     },
     visible() {
         return true;
@@ -419,7 +419,7 @@ Action.SmashPots = new Action("Smash Pots", {
     },
     // note this name is misleading: it is used for mana and gold gain.
     goldCost() {
-        return Math.floor(100 * getSkillBonus("Dark"));
+        return Math.floor(200 * getSkillBonus("Dark"));
     },
     finish() {
         towns[0].finishRegular(this.varName, 10, () => {
@@ -453,7 +453,7 @@ Action.PickLocks = new Action("Pick Locks", {
         Luck: 0.1
     },
     manaCost() {
-        return 400;
+        return 800;
     },
     visible() {
         return towns[0].getLevel("Wander") >= 3;
@@ -465,9 +465,12 @@ Action.PickLocks = new Action("Pick Locks", {
 		return 1;
 	},
 	goldCost() {
-        let base = 10;
-        return Math.floor(base * getSkillMod("Practical",0,200,1) + base * getSkillBonus("Thievery") - base);
+        const base = 10;
+		const goldCostBase = Math.floor(base * getSkillMod("Practical",0,200,1) + base * getSkillBonus("Thievery") - base);
+		const manaCost = Math.floor(100 * getSkillBonus("Mercantilism")) * goldCostBase;
+        return manaCost;
     },
+	
     finish() {
         towns[0].finishRegular(this.varName, 10, () => {
 			const goodsGain = this.stolenGoodsGain();
@@ -477,32 +480,32 @@ Action.PickLocks = new Action("Pick Locks", {
     }
 });
 
-Action.BuyGlasses = new Action("Buy Glasses", {
+Action.TakeGlasses = new Action("Take Glasses", {
     type: "normal",
     expMult: 1,
     townNum: 0,
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return storyReqs.glassesBought;
+                return storyReqs.glassesTaken;
         }
         return false;
     },
     stats: {
-        Cha: 0.7,
-        Spd: 0.3
+        Per: 0.7,
+        Luck: 0.3
     },
     allowed() {
         return 1;
     },
     canStart() {
-        return resources.gold >= 10;
+        return resources.stolenGoods >= 1;
     },
     cost() {
-        addResource("gold", -10);
+        addResource("stolenGoods", -1);
     },
     manaCost() {
-        return 50;
+        return 100;
     },
     visible() {
         return towns[0].getLevel("Wander") >= 3 && getExploreProgress() < 100;
@@ -512,7 +515,7 @@ Action.BuyGlasses = new Action("Buy Glasses", {
     },
     finish() {
         addResource("glasses", true);
-        unlockStory("glassesBought");
+        unlockStory("glassesTaken");
     }
 });
 
@@ -554,7 +557,7 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
         Luck: 0.1
     },
     manaCost() {
-        return 100;
+        return 200;
     },
     visible() {
         return towns[0].getLevel("Wander") >= 3;
@@ -563,7 +566,7 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
         return towns[0].getLevel("Wander") >= 20;
     },
     goldCost() {
-        return Math.floor(50 * getSkillBonus("Mercantilism"));
+        return Math.floor(100 * getSkillBonus("Mercantilism"));
     },
 	stolenGoodsValue(){
 		let base = 10;
@@ -587,7 +590,7 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
         Soul: 0.1
     },
     manaCost() {
-        return 100;
+        return 200;
     },
 	allowed() {
         return 1;
@@ -632,7 +635,7 @@ Action.MeetPeople = new Action("Meet People", {
         Soul: 0.1
     },
     manaCost() {
-        return 800;
+        return 1600;
     },
     visible() {
         return towns[0].getLevel("Wander") >= 10;
@@ -673,7 +676,7 @@ Action.TrainStrength = new Action("Train Strength", {
         return trainingLimits;
     },
     manaCost() {
-        return 2000;
+        return 4000;
     },
     visible() {
         return towns[0].getLevel("Met") >= 1;
@@ -710,7 +713,7 @@ Action.ShortQuest = new Action("Short Quest", {
         Soul: 0.1
     },
     manaCost() {
-        return 600;
+        return 1200;
     },
     visible() {
         return towns[0].getLevel("Met") >= 1;
@@ -759,7 +762,7 @@ Action.Investigate = new Action("Investigate", {
         Luck: 0.1
     },
     manaCost() {
-        return 1000;
+        return 2000;
     },
     visible() {
         return towns[0].getLevel("Met") >= 5;
@@ -802,7 +805,7 @@ Action.LongQuest = new Action("Long Quest", {
         Spd: 0.2
     },
     manaCost() {
-        return 1500;
+        return 3000;
     },
     visible() {
         return towns[0].getLevel("Secrets") >= 1;
@@ -841,7 +844,7 @@ Action.ThrowParty = new Action("Throw Party", {
         Soul: 0.2
     },
     manaCost() {
-        return 1600;
+        return 3200;
     },
     canStart() {
         return resources.reputation >= 2;
@@ -887,7 +890,7 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
         Combat: 100
     },
     manaCost() {
-        return 1000;
+        return 2000;
     },
     canStart() {
         return resources.reputation >= 2;
@@ -937,7 +940,7 @@ Action.MageLessons = new Action("Mage Lessons", {
         }
     },
     manaCost() {
-        return 1000;
+        return 2000;
     },
     canStart() {
         return resources.reputation >= 2;
@@ -982,7 +985,7 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
     },
     loopStats: ["Per", "Int", "Cha"],
     manaCost() {
-        return 2500;
+        return 5000;
     },
     canStart() {
         return resources.reputation >= 1;
@@ -1046,7 +1049,7 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
     },
     loopStats: ["Spd", "Spd", "Spd", "Str", "Str", "Str", "Con", "Con", "Con"],
     manaCost() {
-        return 2000;
+        return 4000;
     },
     canStart() {
         return resources.reputation >= 2;
@@ -1106,7 +1109,7 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
     },
     loopStats: ["Spd", "Spd", "Spd", "Str", "Str", "Str", "Con", "Con", "Con"],
     manaCost() {
-        return 3000;
+        return 6000;
     },
     canStart() {
         return resources.reputation >= 2 && magicFight == false;
@@ -1174,7 +1177,7 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
     },
     loopStats: ["Dex", "Con", "Dex", "Cha", "Dex", "Str", "Luck"],
     manaCost() {
-        return 2000;
+        return 4000;
     },
     canStart() {
         const curFloor = Math.floor((towns[this.townNum].SDungeonLoopCounter) / this.segments + 0.0000001);
@@ -1250,7 +1253,7 @@ Action.BuySupplies = new Action("Buy Supplies", {
         return 1;
     },
     manaCost() {
-        return 200;
+        return 400;
     },
     canStart() {
         return resources.gold >= towns[0].suppliesCost && !resources.supplies;
@@ -1292,7 +1295,7 @@ Action.Haggle = new Action("Haggle", {
         Soul: 0.1
     },
     manaCost() {
-        return 100;
+        return 200;
     },
     canStart() {
         return resources.reputation >= 1;
@@ -1338,7 +1341,7 @@ Action.StartJourney = new Action("Start Journey", {
         return 1;
     },
     manaCost() {
-        return 1000;
+        return 2000;
     },
     canStart() {
         return resources.supplies;
@@ -1407,7 +1410,7 @@ Action.OpenRift = new Action("Open Rift", {
         return 1;
     },
     manaCost() {
-        return 50000;
+        return 100000;
     },
     visible() {
         return towns[5].getLevel("Meander") >= 1;
@@ -1457,7 +1460,7 @@ Action.ExploreForest = new Action("Explore Forest", {
         Spd: 0.2,
         Luck: 0.2
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     manaCost() {
         return 400;
     },
@@ -1939,7 +1942,7 @@ Action.FollowFlowers = new Action("Follow Flowers", {
         Con: 0.1,
         Spd: 0.2
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     manaCost() {
         return 300;
     },
@@ -1969,7 +1972,7 @@ Action.BirdWatching = new Action("Bird Watching", {
         Per: 0.8,
         Int: 0.2
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     allowed() {
         return trainingLimits;
     },
@@ -2287,7 +2290,7 @@ Action.ExploreCity = new Action("Explore City", {
         Spd: 0.3,
         Luck: 0.1
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     manaCost() {
         return 750;
     },
@@ -3016,7 +3019,7 @@ Action.ReadBooks = new Action("Read Books", {
         Int: 0.8,
         Soul: 0.2
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     allowed() {
         return trainingLimits;
     },
@@ -3334,7 +3337,7 @@ Action.DecipherRunes = new Action("Decipher Runes", {
         Per: 0.3,
         Int: 0.7
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     manaCost() {
         return 1200;
     },
@@ -5402,7 +5405,7 @@ Action.Excursion = new Action("Excursion", {
         Spd: 0.3,
         Luck: 0.1
     },
-    affectedBy: ["Buy Glasses"],
+    affectedBy: ["Take Glasses"],
     manaCost() {
         return 25000;
     },

@@ -156,6 +156,7 @@ function Actions() {
             }
         }
         guild = "";
+		magicFight = false;
         portalUsed = false;
         stoneLoc = 0;
         if (options.keepCurrentList) {

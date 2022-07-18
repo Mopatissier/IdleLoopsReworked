@@ -21,6 +21,7 @@ Views.registerView("timeControls", {
         <div class='button showthatO control' onclick='toggleOffline()'>${_txt("time_controls>bonus_seconds>title")}
             <div class='showthis' style='width:230px;color:black;'>${_txt("time_controls>bonus_seconds>main_text")}
                 <div class='bold' id='isBonusOn'>${_txt("time_controls>bonus_seconds>state>off")}</div><br>
+				<div class='bold'>${_txt("time_controls>bonus_seconds>bonus_mult")}</div> <div id='bonusMult'></div>
                 <div class='bold'>${_txt("time_controls>bonus_seconds>counter_text")}</div> <div id='bonusSeconds'></div>
             </div>
         </div>
