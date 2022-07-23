@@ -370,6 +370,10 @@ Action.Wander = new Action("Wander", {
     manaCost() {
         return 500;
     },
+	canStart() {
+        if(this.squirrelAction) return resources.squirrel;
+		return true;
+    },
     visible() {
         return true;
     },
@@ -377,9 +381,32 @@ Action.Wander = new Action("Wander", {
         return true;
     },
     finish() {
-        towns[0].finishProgress(this.varName, 200 * (resources.glasses ? 4 : 1));
+		if(this.squirrelAction){
+			
+			switch(squirrelLevel.wander){
+				
+				case 0: levelUpSquirrelAction("Wander");
+					break;
+					
+				case 1: if(getSkillSquirrelLevel("Trust") >= 10) levelUpSquirrelAction("Wander");
+					break;
+			}
+			
+			switch(squirrelLevel.wander){
+						
+				case 1: addResource("squirrel", false);
+						break;
+						
+				case 2: break;
+				
+			}
+		} else {	
+			towns[0].finishProgress(this.varName, 200 * (resources.glasses ? 4 : 1));
+		}
+		
     }
 });
+
 function adjustPots() {
     let town = towns[0];
     let basePots = town.getLevel("Wander") * 5;
@@ -589,6 +616,9 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
         Dex: 0.3,
         Soul: 0.1
     },
+	skillsSquirel: {
+		Trust : 100
+	},
     manaCost() {
         return 200;
     },
@@ -602,9 +632,11 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
         return towns[0].getLevel("Wander") >= 25;
     },
 	
-    finish() {
-        addResource("squirrel", true);
+    finish() {	
+		addResource("squirrel", true);
+		handleSkillSquirrelExp(this.skillsSquirel);
     },
+	
 });
 
 Action.MeetPeople = new Action("Meet People", {
@@ -2192,30 +2224,26 @@ Action.DarkRitual = new MultipartAction("Dark Ritual", {
 });
 
 function checkSoulstoneSac(amount) {
-    let check = true;
-    for (const stat in stats) {
-        if (stats[stat].soulstone < amount / 9) check = false;
-    }
-    return check;
+    let sum = 0;
+    for (const stat in stats) 
+        sum += stats[stat].soulstone;
+    return sum >= amount ? true : false;
 }
 
 function sacrificeSoulstones(amount) {
-    let batch;
-    amount > 9000 ? batch = 1000 : amount > 900 ? batch = 100 : amount > 90 ? batch = 10 : batch = 1;
     while (amount > 0)
     {
         let highestSoulstoneStat = "";
         let highestSoulstone = -1;
-        if (batch > amount) batch = amount;
         for (const stat in stats) {
             if (stats[stat].soulstone > highestSoulstone) {
                 highestSoulstoneStat = stat;
                 highestSoulstone = stats[stat].soulstone;
             }
         }
-        //console.log("Subtracting " + batch + " soulstones from " + highestSoulstoneStat + ". Old total: " + stats[highestSoulstoneStat].soulstone + ". New Total: " + (stats[highestSoulstoneStat].soulstone - batch));
-        stats[highestSoulstoneStat].soulstone -= batch;
-        amount -= batch;
+        //console.log("Subtracting " + Math.ceil(amount/9) + " soulstones from " + highestSoulstoneStat + ". Old total: " + stats[highestSoulstoneStat].soulstone + ". New Total: " + (stats[highestSoulstoneStat].soulstone - Math.ceil(amount/9)));
+        stats[highestSoulstoneStat].soulstone -= Math.ceil(amount/9);
+        amount -= Math.ceil(amount/9);
     }
 }
 

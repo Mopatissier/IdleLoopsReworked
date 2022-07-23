@@ -6,6 +6,13 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.2"><![CDATA[
+            <b> July 23th, 2022</b>
+            • Added the squirrel mode! Right now, only "Wander" is compatible with it, but the rest will be added soon.<br>
+			• Various little fixes, included some from more recent version of Lloyd's Idle Loops.<br>
+			• Added the zone quick acces menu from Lloyd's latest version.<br>
+			• Slightly changed the changelog : it didn't like having version names too long.
+            ]]></version>
 			<version verNum="0.1.1"><![CDATA[
             <b> July 19th, 2022</b>
             • The value of mana has been reworked : now 1 second is worth 100 mana, not 50.<br>
@@ -140,8 +147,8 @@
 	  And remember : read all the tooltips!<br><br>
 	  
 	  This game is a balance rework of the original Idle Loops.<br>
-	  To play the original game, check <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
-	  This is one of several versions of the game : for other versions, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
+	  To play the latest version of the original game, check <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
+	  This is one of several versions of the game : for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
 	  Thanks for playing, and have fun!<br><br>
       ]]></tutorial>
     <tracked_resources>
@@ -547,6 +554,30 @@
             <no_reset_on_restart>Skills last through resets.</no_reset_on_restart>
         </tooltip>
     </skills>
+	<skillsSquirrel>
+        <title>Squirrel Skills</title>
+		<trust>
+			<label>Trust</label>
+			<desc>Shows the strength of the bond between you and the squirrel</desc>
+		</trust>
+        <combat>
+            <label>Combat</label>
+            <desc>Look at it moving its little paws ferociously!</desc>
+        </combat>
+        <magic>
+            <label>Magic</label>
+            <desc>Magic is far from being only for humans.</desc>
+        </magic>
+        <craftiness>
+            <label>Craftiness</label>
+            <desc>How can it be so crafty without opposable thumbs?!</desc>
+        </craftiness>
+        <tooltip>
+            <level>Level:</level>
+            <level_exp>Level Exp:</level_exp>
+            <no_reset_on_restart><![CDATA[Squirrel skills last through resets.<br>Small skills for a small critter]]>.</no_reset_on_restart>
+        </tooltip>
+    </skillsSquirrel>
     <buffs>
         <title>Buffs</title>
         <dark_ritual>
@@ -664,6 +695,7 @@
     <actions>
         <title>Action Options</title>
         <title_stories>Action Stories</title_stories>
+		<title_squirrel_mode>Squirrel Mode</title_squirrel_mode>
         <title_list>Action List</title_list>
         <title_loadout>Loadouts</title_loadout>
         <tooltip>
@@ -710,6 +742,12 @@
       Minimum 1 tick per action.<br>
       Restarts automatically upon no actions left.]]></list_explanation>
         </tooltip>
+		<tooltip_squirrel_mode>
+		<![CDATA[
+          Ask your squirrel to do the actions for you.<br>
+		  You're not sure it's gonna be useful, but you have infinite time under your hand.<br>
+		  So why not try?]]>
+		</tooltip_squirrel_mode>
         <current_action>
             <mana_original>Mana Original:</mana_original>
             <mana_used>Mana Used:</mana_used>
@@ -720,6 +758,9 @@
             <failed_attempts>Failed Attempts:</failed_attempts>
             <error>Error:</error>
         </current_action>
+		
+		<squirrel_default><![CDATA[Ask the squirrel to do this action for you.<br>You have to do it at least once to discover its effect.<br>You need the squirrel to do all squirrel actions.]]></squirrel_default>
+
         <!--survey-->
             <surveyZ0>
             <label>Survey</label>
@@ -895,6 +936,8 @@
 			<tooltip><![CDATA[
             Explore the town, look for hidden areas and treasures.<br>4x progress with glasses.
 			]]></tooltip>
+			<squirrel_1><![CDATA[You told the squirrel to wander around for you!<br>It didn't come back...<br><b>Effect: </b>Lost the squirrel for the rest of the loop.<br><b>Next: </b>trust >= 10 ]]></squirrel_1>
+			<squirrel_2><![CDATA[You told the squirrel to wander around for you!<br>It came back after a while with a nut in its paws.<br>...Well, you don't know what you expected.<br><b>Effect: </b>None.]]></squirrel_2>
             <story_1><![CDATA[<b>20% Explored:</b>⮀ You know the general layout of the small village now, you don't get lost walking from one side to another!]]></story_1>
             <story_2><![CDATA[<b>40% Explored:</b>⮀ You're starting to really know your way around, you can almost figure your way around without following a set path!]]></story_2>
             <story_3><![CDATA[<b>60% Explored:</b>⮀ You've tread all the main roads and you avail yourself to the unkempt side paths and well worn paths. If you let yourself into some houses, well, no one needs to know, do they?]]></story_3>

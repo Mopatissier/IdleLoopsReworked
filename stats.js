@@ -23,6 +23,17 @@ function addNewSkill(name) {
     skills[name].exp = 0;
 }
 
+function initializeSkillsSquirrel(){
+	for(let i = 0; i < skillSquirrelList.length; i++) {
+		addNewSkillSquirrel(skillSquirrelList[i]);
+	}
+}
+
+function addNewSkillSquirrel(name){
+	skillsSquirrel[name] = {};
+	skillsSquirrel[name].exp = 0;
+}
+
 function initializeBuffs() {
     for (let i = 0; i < buffList.length; i++) {
         addNewBuff(buffList[i]);
@@ -108,6 +119,18 @@ function getSkillMod(name, min, max, percentChange) {
     else return 1 + Math.min(getSkillLevel(name) - min, max-min) * percentChange / 100;
 }
 
+function getSkillSquirrelLevelFromExp(exp) {
+    return Math.floor((Math.sqrt(8 * exp / 100 + 1) - 1) / 2);
+}
+
+function getExpOfSkillSquirrelLevel(level) {
+    return level * (level + 1) * 50;
+}
+
+function getSkillSquirrelLevel(skillSquirrel) {
+    return getSkillSquirrelLevelFromExp(skillsSquirrel[skillSquirrel].exp);
+}
+
 function getBuffLevel(buff) {
     return buffs[buff].amt;
 }
@@ -135,10 +158,18 @@ function getTeamCombat() {
     return getSelfCombat() + (getSkillLevel("Dark") * resources.zombie / 2) + (getSkillLevel("Combat") + getSkillLevel("Restoration") * 2) * (resources.teamMembers / 2) * getAdvGuildRank().bonus;
 }
 
+
 function getPrcToNextSkillLevel(skill) {
     const expOfCurLevel = getExpOfSkillLevel(getSkillLevel(skill));
     const curLevelProgress = skills[skill].exp - expOfCurLevel;
     const nextLevelNeeds = getExpOfSkillLevel(getSkillLevel(skill) + 1) - expOfCurLevel;
+    return Math.floor(curLevelProgress / nextLevelNeeds * 100 * 10) / 10;
+}
+
+function getPrcToNextSkillSquirrelLevel(skillSquirrel) {
+    const expOfCurLevel = getExpOfSkillSquirrelLevel(getSkillSquirrelLevel(skillSquirrel));
+    const curLevelProgress = skillsSquirrel[skillSquirrel].exp - expOfCurLevel;
+    const nextLevelNeeds = getExpOfSkillSquirrelLevel(getSkillSquirrelLevel(skillSquirrel) + 1) - expOfCurLevel;
     return Math.floor(curLevelProgress / nextLevelNeeds * 100 * 10) / 10;
 }
 
@@ -148,10 +179,22 @@ function addSkillExp(name, amount) {
     view.requestUpdate("updateSkill", name);
 }
 
+function addSkillSquirrelExp(name, amount) {
+    skillsSquirrel[name].exp += amount;
+    view.requestUpdate("updateSkillSquirrel", name);
+}
+
 function handleSkillExp(list) {
     for (const skill in list) {
         if (Number.isInteger(list[skill])) addSkillExp(skill, list[skill]);
         else addSkillExp(skill, list[skill]());
+    }
+}
+
+function handleSkillSquirrelExp(list) {
+    for (const skillSquirrel in list) {
+        if (Number.isInteger(list[skillSquirrel])) addSkillSquirrelExp(skillSquirrel, list[skillSquirrel]);
+        else addSkillSquirrelExp(skillSquirrel, list[skillSquirrel]());
     }
 }
 

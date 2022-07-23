@@ -12,9 +12,9 @@ Views.registerView("menu", {
         let html = "";
         const versions = _txtsObj("menu>changelog>version");
         $(versions).each((_index, version) => {
-            html += `<div class='showthat2'>
+            html += `<div class='showthat2'style='display:inline-block;width:90px'>
                         ${`${_txt("menu>changelog>meta>version_prefix")} ${$(version).attr("verNum")}`}
-                        <div class='showthis2'>
+                        <div class='showthis2' style='margin-left: 95px;'>
                             ${$(version).text()}
                         </div>
                     </div>
@@ -26,7 +26,7 @@ Views.registerView("menu", {
         const html =
         `<div style='display:inline-block;height:30px;margin-left:10px;' class='showthatH'>
             ${_txt("menu>changelog>meta>title")}
-            <div style='max-width: 71px;' class='showthisH' id='changelog'>
+            <div style='max-width: 90px;' class='showthisH' id='changelog'>
                 ${this.versions()}
             </div>
         </div>`;

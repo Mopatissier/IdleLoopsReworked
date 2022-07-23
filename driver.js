@@ -173,6 +173,7 @@ function restart() {
         towns[i].restart();
     }
     view.updateSkills();
+	view.updateSkillsSquirrel();
     actions.restart();
     view.updateCurrentActionsDivs();
     view.updateTrials();
@@ -193,9 +194,9 @@ function addActionToList(name, townNum, isTravelAction, insertAtIndex) {
                 }
                 if (isTravelAction) {
                     actionTownNum = townNum + 1;
-                    actions.addAction(name, 1, insertAtIndex);
+                    actions.addAction(name, 1, insertAtIndex, squirrelMode);
                 } else {
-                    actions.addAction(name, addAmount, insertAtIndex);
+                    actions.addAction(name, addAmount, insertAtIndex, squirrelMode);
                     if (shiftDown && hasLimit(name)) {
                         capAmount((insertAtIndex) ? insertAtIndex : actions.next.length - 1, townNum);
                     } else if (shiftDown && isTraining(name)) {
@@ -423,7 +424,7 @@ function split(index) {
     actions.nextLast = copyObject(actions.next);
     const toSplit = actions.next[index];
     const isDisabled = toSplit.disabled;
-    actions.addAction(toSplit.name, Math.ceil(toSplit.loops / 2), index, isDisabled);
+    actions.addAction(toSplit.name, Math.ceil(toSplit.loops / 2), index, toSplit.squirrelAction, isDisabled);
     toSplit.loops = Math.floor(toSplit.loops / 2);
     view.updateNextActions();
 }
@@ -624,4 +625,23 @@ function setActivatedBonusSpeed() {
 		bonusSpeed = 5;
 	}
 	bonusMultString = (bonusSpeed+"x");
+}
+
+function setSquirrelMode(value) {
+	squirrelMode = value;
+	if(value) {
+		document.getElementById("iconSquirrelMode").src = "img/petSquirrel.svg";
+	} else {
+		document.getElementById("iconSquirrelMode").src = "img/human.svg";
+	}
+	
+	view.updateSquirrelMode();
+}
+
+function levelUpSquirrelAction(actionName) {
+	
+	const action = translateClassNames(actionName);
+	squirrelLevel[camelize(action.varName)] ++;
+	
+	if(squirrelMode) view.updateSquirrelTooltip(action);
 }

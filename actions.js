@@ -193,6 +193,7 @@ function Actions() {
                 toAdd.manaRemaining = 0;
                 toAdd.goldRemaining = 0;
                 toAdd.timeSpent = 0;
+				toAdd.squirrelAction = action.squirrelAction;
 
                 this.current.push(toAdd);
             }
@@ -221,9 +222,10 @@ function Actions() {
     };
 
 
-    this.addAction = function(action, loops, initialOrder, disabled) {
+    this.addAction = function(action, loops, initialOrder, squirrelAction, disabled) {
         const toAdd = {};
         toAdd.name = action;
+		toAdd.squirrelAction = squirrelAction;
         if (disabled) toAdd.disabled = true;
         else toAdd.disabled = false;
 

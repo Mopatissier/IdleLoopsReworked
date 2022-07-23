@@ -120,7 +120,9 @@ let loadouts;
 let loadoutnames;
 //let loadoutnames = ["1", "2", "3", "4", "5"];
 const skillList = ["Combat", "Magic", "Practical", "Alchemy", "Crafting", "Dark", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy", "Mercantilism", "Divine", "Commune", "Wunderkind", "Gluttony", "Thievery"];
+const skillSquirrelList = ["Trust", "Magic", "Combat", "Craftiness"];
 const skills = {};
+const skillsSquirrel = {};
 const buffList = ["Ritual", "Imbuement", "Imbuement2", "Feast", "Aspirant", "Heroism", "Imbuement3"];
 const dungeonFloors = [6, 9, 20];
 const trialFloors = [50, 100, 7, 1000, 25];
@@ -149,9 +151,11 @@ let stonesUsed;
 let townShowing = 0;
 // eslint-disable-next-line prefer-const
 let actionStoriesShowing = false;
+let squirrelMode = false;
 let townsUnlocked = [];
 let statShowing;
 let skillShowing;
+let skillSquirrelShowing;
 let curActionShowing;
 let dungeonShowing;
 let actionTownNum;
@@ -222,6 +226,9 @@ const storyReqs = {
     castIntoShadowRealm: false,
     fellFromGrace: false
 };
+const squirrelLevel = {
+	wander: 0
+};
 
 const curDate = new Date();
 let totalOfflineMs = 0;
@@ -276,7 +283,8 @@ function clearSave() {
 function loadDefaults() {
     initializeStats();
     initializeSkills();
-    initializeBuffs();
+	initializeSkillsSquirrel();
+	initializeBuffs();
 }
 
 function loadUISettings() {
@@ -315,6 +323,12 @@ function load() {
             skills[property].exp = toLoad.skills[property].exp;
         }
     }
+	
+	for (const property in toLoad.skillsSquirrel) {
+        if (toLoad.skillsSquirrel.hasOwnProperty(property)) {
+            skillsSquirrel[property].exp = toLoad.skillsSquirrel[property].exp;
+        }
+    }
 
     for (const property in toLoad.buffs) {
         if (toLoad.buffs.hasOwnProperty(property)) {
@@ -333,9 +347,17 @@ function load() {
     }*/
 
     if (toLoad.storyReqs !== undefined) {
-        for (const property in storyReqs) {
+        for (const property in toLoad.storyReqs) {
             if (toLoad.storyReqs.hasOwnProperty(property)) {
                 storyReqs[property] = toLoad.storyReqs[property];
+            }
+        }
+    }
+	
+	if (toLoad.squirrelLevel !== undefined) {
+        for (const property in toLoad.squirrelLevel) {
+            if (toLoad.squirrelLevel.hasOwnProperty(property)) {
+                squirrelLevel[property] = toLoad.squirrelLevel[property];
             }
         }
     }
@@ -549,6 +571,7 @@ function load() {
     view.update();
     recalcInterval(options.updateRate);
     pauseGame();
+	
 
 }
 
@@ -563,6 +586,7 @@ function save() {
     toSave.stats = stats;
     toSave.totalTalent = totalTalent;
     toSave.skills = skills;
+	toSave.skillsSquirrel = skillsSquirrel;
     toSave.buffs = buffs;
     toSave.goldInvested = goldInvested;
     toSave.stonesUsed = stonesUsed;
@@ -593,6 +617,7 @@ function save() {
     toSave.storyShowing = storyShowing;
     toSave.storyMax = storyMax;
     toSave.storyReqs = storyReqs;
+	toSave.squirrelLevel = squirrelLevel;
     //toSave.buffCaps = buffCaps;
 
     toSave.date = new Date();

@@ -311,6 +311,12 @@ input[type="number"] {
     text-align:left;
 }
 
+.skillSquirrelContainer{
+    width:55%;
+    position:relative;
+    text-align:left;
+}
+
 .buffContainer {
     display: none;
     width:100%;
@@ -419,6 +425,11 @@ input[type="number"] {
 
 .actionOptions {
     text-align:center;
+    min-height:470px;
+}
+
+.actionSquirrelOptions {
+	text-align:center;
     min-height:470px;
 }
 

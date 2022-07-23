@@ -1,12 +1,15 @@
 "use strict";
 
 let screenSize;
+let storeTextStories = [];
+let storeCompletedStories = [];
 
 function View() {
     this.initalize = function() {
         this.createStats();
         this.updateStats();
         this.updateSkills();
+		this.updateSkillsSquirrel();
         this.updateBuffs();
         this.updateTime();
         this.updateNextActions();
@@ -22,6 +25,7 @@ function View() {
         this.updateTrainingLimits();
         this.changeStatView();
         this.changeTheme(true);
+		this.createTravelMenu();
         this.adjustGoldCosts();
         this.adjustExpGains();
         this.updateTeamCombat();
@@ -29,7 +33,7 @@ function View() {
         this.updateResources();
         this.updateTrials();
         setInterval(() => {
-            view.updateStories();
+            if(!squirrelMode) view.updateStories();
             view.updateLockedHidden();
         }, 2000);
         adjustAll();
@@ -103,6 +107,7 @@ function View() {
     this.requests = {
         updateStat: [],
         updateSkill: [],
+		updateSkillSquirrel : [],
         updateMultiPartSegments: [],
         updateMultiPart: [],
         updateMultiPartActions: [],
@@ -175,6 +180,7 @@ function View() {
     };
 
     this.showSkill = function(skill) {
+		//console.log("Show Skill : " + skill);
         skillShowing = skill;
         if (skill !== undefined) this.updateSkill(skill);
     };
@@ -228,6 +234,37 @@ function View() {
             this.updateSkill(skill);
         }
     };
+	
+	this.showSkillSquirrel = function(skillSquirrel) {
+        skillSquirrelShowing = skillSquirrel;
+        if (skillSquirrel !== undefined) this.updateSkillSquirrel(skillSquirrel);
+    };
+	
+	this.updateSkillSquirrel = function(skillSquirrel) {
+        if (skillsSquirrel[skillSquirrel].exp === 0) {
+            document.getElementById(`skillSquirrel${skillSquirrel}Container`).style.display = "none";
+            return;
+        }
+		document.getElementById(`skillSquirrel${skillSquirrel}Container`).style.display = "inline-block";
+		
+        const levelPrc = getPrcToNextSkillSquirrelLevel(skillSquirrel);
+        document.getElementById(`skillSquirrel${skillSquirrel}Level`).textContent = (getSkillSquirrelLevel(skillSquirrel) > 9999) ? toSuffix(getSkillSquirrelLevel(skillSquirrel)) : formatNumber(getSkillSquirrelLevel(skillSquirrel));
+        document.getElementById(`skillSquirrel${skillSquirrel}LevelBar`).style.width = `${levelPrc}%`;
+
+        if (skillSquirrelShowing === skillSquirrel) {
+            const expOfLevel = getExpOfSkillSquirrelLevel(getSkillSquirrelLevel(skillSquirrel));
+            document.getElementById(`skillSquirrel${skillSquirrel}LevelExp`).textContent = intToString(skillsSquirrel[skillSquirrel].exp - expOfLevel, 1);
+            document.getElementById(`skillSquirrel${skillSquirrel}LevelExpNeeded`).textContent = intToString(`${getExpOfSkillSquirrelLevel(getSkillSquirrelLevel(skillSquirrel) + 1) - expOfLevel}`, 1);
+            document.getElementById(`skillSquirrel${skillSquirrel}LevelProgress`).textContent = intToString(levelPrc, 2);
+       }
+	   
+    };
+	
+	this.updateSkillsSquirrel = function() {
+        for (const skillSquirrel of skillSquirrelList) {
+            this.updateSkillSquirrel(skillSquirrel);
+        }
+    };
 
     this.updateBuff = function(buff) {
         if (buffs[buff].amt === 0) {
@@ -258,14 +295,16 @@ function View() {
     this.updateResource = function(resource) {
         if (resource !== "gold") document.getElementById(`${resource}Div`).style.display = resources[resource] ? "inline-block" : "none";
 
-        if (resource === "supplies") document.getElementById("suppliesCost").textContent = towns[0].suppliesCost;
-        if (resource === "teamMembers") document.getElementById("teamCost").textContent = (resources.teamMembers + 1) * 100;
+		if(!squirrelMode){
+			if (resource === "supplies") document.getElementById("suppliesCost").textContent = towns[0].suppliesCost;
+			if (resource === "teamMembers") document.getElementById("teamCost").textContent = (resources.teamMembers + 1) * 100;
+		}
 
         if (Number.isFinite(resources[resource])) document.getElementById(resource).textContent = resources[resource];
     };
     this.updateResources = function() {
         for (const resource in resources) this.updateResource(resource);
-        this.updateActionTooltips();
+		if(!squirrelMode) this.updateActionTooltips();
     };
     this.updateActionTooltips = function() {
         document.getElementById("goldInvested").textContent = intToStringRound(goldInvested);
@@ -380,7 +419,9 @@ function View() {
             } else {
                 color = (travelNum > 0 || travelNum == -5) ? `linear-gradient(${this.zoneTints[townNum]} 49%, ${this.zoneTints[townNum + travelNum]} 51%)` : this.zoneTints[townNum];
             }
-            totalDivText +=
+			let squirrelModeIcon = "<img src='img/human.svg' class='smallIcon imageDragFix'>";
+			if(action.squirrelAction) squirrelModeIcon = "<img src='img/petSquirrel.svg' class='smallIcon imageDragFix'>";
+            totalDivText +=(
                 `<div
                     id='nextActionContainer${i}'
                     class='nextActionContainer small'
@@ -393,7 +434,8 @@ function View() {
                     draggable='true' data-index='${i}'
                     style='background: ${color}; ${opacity}; ${display};'
                 >
-                    <div><img src='img/${camelize(action.name)}.svg' class='smallIcon imageDragFix'> x 
+                    <div><img src='img/${camelize(action.name)}.svg' class='smallIcon imageDragFix'>
+					${squirrelModeIcon}	x 
                     <div class='bold'>${actionLoops}</div></div>
                     <div style='float:right; margin-top: 1px; margin-right: 3px;'>
                         ${capButton}
@@ -406,8 +448,10 @@ function View() {
                         <i id='skipButton${i}' onclick='disableAction(${i})' class='actionIcon far fa-${action.disabled ? "check" : "times"}-circle'></i>
                         <i id='removeButton${i}' onclick='removeAction(${i})' class='actionIcon fas fa-times'></i>
                     </div>
-                </div>`;
+                </div>`);
         }
+		
+			
         nextActionsDiv.innerHTML = totalDivText;
     };
 
@@ -419,11 +463,14 @@ function View() {
             const action = actions.current[i];
             const actionLoops = action.loops > 99999 ? toSuffix(action.loops) : formatNumber(action.loops);
             const actionLoopsDone = (action.loops - action.loopsLeft) > 99999 ? toSuffix(action.loops - action.loopsLeft) : formatNumber(action.loops - action.loopsLeft);
+			let squirrelModeIcon = "<img src='img/human.svg' class='smallIcon imageDragFix' style='margin-left:4px'>";
+			if(action.squirrelAction) squirrelModeIcon = "<img src='img/petSquirrel.svg' class='smallIcon imageDragFix' style='margin-left:4px'>";
             totalDivText +=
                 `<div class='curActionContainer small' onmouseover='view.mouseoverAction(${i}, true)' onmouseleave='view.mouseoverAction(${i}, false)'>
                     <div class='curActionBar' id='action${i}Bar'></div>
                     <div class='actionSelectedIndicator' id='action${i}Selected'></div>
                     <img src='img/${camelize(action.name)}.svg' class='smallIcon'>
+					${squirrelModeIcon}
                     <div id='action${i}LoopsDone' style='margin-left:3px; border-left: 1px solid #b9b9b9;padding-left: 3px;'>${actionLoopsDone}</div>
                     /<div id='action${i}Loops'>${actionLoops}</div>
                 </div>`;
@@ -455,7 +502,7 @@ function View() {
         document.getElementById("actionTooltipContainer").innerHTML = totalDivText;
         this.mouseoverAction(0, false);
     };
-
+	
     this.updateCurrentActionBar = function(index) {
         const div = document.getElementById(`action${index}Bar`);
         if (!div) {
@@ -590,6 +637,11 @@ function View() {
         } else {
             document.getElementById("skillList").style.display = "none";
         }
+		 if (totalActionList.filter(action => action.finish.toString().includes("handleSkillSquirrelExp")).filter(action => action.unlocked()).length > 0) {
+            document.getElementById("skillSquirrelList").style.display = "inline-block";
+        } else {
+            document.getElementById("skillSquirrelList").style.display = "none";
+        }
         if (totalActionList.filter(action => action.finish.toString().includes("updateBuff")).filter(action => action.unlocked()).length > 0) {
             document.getElementById("buffList").style.display = "flex";
         } else {
@@ -613,7 +665,7 @@ function View() {
                     for (let i = 1; i <= storyAmt; i++) {
                         const storyText = _txt(`actions>${name}>story_${i}`, "fallback").split("⮀");
                         if (action.storyReqs(i)) {
-                            storyTooltipText += storyText[0] + storyText[1];
+                            storyTooltipText += storyText[0] + storyText[1] + "<br>";
                             lastInBranch = false;
                             storiesUnlocked++;
                         } else if (lastInBranch) {
@@ -622,7 +674,7 @@ function View() {
                             storyTooltipText += `${storyText[0]} ???`;
                             lastInBranch = true;
                         }
-                        storyTooltipText += "<br>";
+						if(storiesUnlocked !== storyAmt) storyTooltipText += "<br>";
                     }
                     if (document.getElementById(divName).children[2].innerHTML !== storyTooltipText) {
                         document.getElementById(divName).children[2].innerHTML = storyTooltipText;
@@ -785,6 +837,7 @@ function View() {
                 extraImage += `<img src='img/${camelize(action.affectedBy[i])}.svg' class='smallIcon' draggable='false' style='position:absolute;${extraImagePositions[i]}'>`;
             }
         }
+
         const isTravel = getTravelNum(action.name) > 0;
         const divClass = isTravel ? "travelContainer showthat" : "actionContainer showthat";
         const totalDivText =
@@ -802,8 +855,10 @@ function View() {
                     <img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage}
                 </div>
                 <div class='showthis' draggable='false'>
+					<span id="actionTooltipMode${action.varName}">
                     ${action.tooltip}<span id='goldCost${action.varName}'></span>
                     ${(action.goldCost === undefined) ? "" : action.tooltip2}
+					</span>
                     <br>
                     ${actionSkills}
                     ${actionStats}
@@ -811,7 +866,7 @@ function View() {
                     <div class='bold'>${_txt("actions>tooltip>exp_multiplier")}:</div> ${action.expMult * 100}%<br>
                 </div>
             </div>`;
-
+		
         const actionsDiv = document.createElement("div");
         actionsDiv.innerHTML = totalDivText;
         if (isTravel) actionsDiv.style.width = "100%";
@@ -825,7 +880,7 @@ function View() {
                 if (_txt(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`) === undefined) console.log(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`);
                 const storyText = _txt(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`, "fallback").split("⮀");
                 if (action.storyReqs(i)) {
-                    storyTooltipText += storyText[0] + storyText[1];
+                    storyTooltipText += storyText[0] + storyText[1] + "<br>";
                     lastInBranch = false;
                 } else if (lastInBranch) {
                     storyTooltipText += "<b>???:</b> ???";
@@ -836,6 +891,7 @@ function View() {
                 storyTooltipText += "<br>";
             }
     
+	
             const storyDivText =
                 `<div id='storyContainer${action.varName}' class='storyContainer showthat' draggable='false' onmouseover='hideNotification("storyContainer${action.varName}")'>${action.label}
                     <br>
@@ -853,6 +909,109 @@ function View() {
             actionStoriesTown[action.townNum].appendChild(storyDiv);
         }
     };
+	
+	this.updateSquirrelMode = function(){
+				
+		for (const prop in Action) {
+            const action = Action[prop];
+			let newActionTooltip = "";
+			const divName = `storyContainer${action.varName}`;
+			
+			if(squirrelMode){
+
+				const tooltipLevel = squirrelLevel[camelize(action.varName)]
+				if(tooltipLevel === undefined || tooltipLevel === 0){	
+					newActionTooltip =  _txt("actions>squirrel_default"); 
+				} else {
+					newActionTooltip =  _txt("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
+				}
+					
+				if(action.storyReqs !== undefined){
+					
+					let newStoryTooltip = "";
+					
+					storeTextStories[action.varName] = document.getElementById(divName).children[2].innerHTML;
+					storeCompletedStories[action.varName] = document.getElementById(divName).classList.value.includes("storyContainerCompleted");
+					
+					document.getElementById(divName).classList.remove("storyContainerCompleted");
+					
+					if(tooltipLevel === undefined || tooltipLevel === 0){	
+						newStoryTooltip =  "<b>???</b>"; 
+					} else {
+						for(let i= 1; i <= tooltipLevel; i++){
+							newStoryTooltip += ("<b>Effect n°"+i+" : </b>");
+							newStoryTooltip += ( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>");
+							if(i !== tooltipLevel) newStoryTooltip += "<br>";
+							if(!(_txt("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
+						}
+					}			
+
+                    document.getElementById(divName).children[2].innerHTML = newStoryTooltip;
+					
+				}
+
+					
+			} else {	
+				newActionTooltip = action.tooltip+`<span id='goldCost`+action.varName+`'></span>`+((action.goldCost === undefined) ? "" : action.tooltip2)	
+
+				if(action.storyReqs !== undefined){
+					document.getElementById(divName).children[2].innerHTML = storeTextStories[action.varName];
+					
+					if (storeCompletedStories[action.varName]) {
+                            document.getElementById(divName).classList.add("storyContainerCompleted");
+                        } else {
+                            document.getElementById(divName).classList.remove("storyContainerCompleted");
+                        }
+				}					
+				
+			}
+						
+			document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
+			
+			
+        }
+		this.updateResources();
+		this.adjustGoldCosts();
+		
+	};
+	
+	this.updateSquirrelTooltip = function(action) {
+		
+		let newActionTooltip = "";
+		const divName = `storyContainer${action.varName}`;
+		
+		const tooltipLevel = squirrelLevel[camelize(action.varName)]
+		if(tooltipLevel === undefined || tooltipLevel === 0){	
+			newActionTooltip =  _txt("actions>squirrel_default"); 
+		} else {
+			newActionTooltip =  _txt("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
+		}
+		
+		document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
+		
+		if(action.storyReqs !== undefined){
+					
+			let newStoryTooltip = "";
+						
+			document.getElementById(divName).classList.remove("storyContainerCompleted");
+			
+			if(tooltipLevel === undefined || tooltipLevel === 0){	
+				newStoryTooltip =  "<b>???</b>"; 
+			} else {
+				for(let i= 1; i <= tooltipLevel; i++){
+					newStoryTooltip += ("<b>Effect n°"+i+" : </b>");
+					newStoryTooltip += ( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>");
+					if(i !== tooltipLevel) newStoryTooltip += "<br>";
+					if(!(_txt("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
+				}
+			}			
+
+			document.getElementById(divName).children[2].innerHTML = newStoryTooltip;
+			
+		}
+		
+	};
+
 
     this.adjustManaCost = function(actionName) {
         const action = translateClassNames(actionName);
@@ -860,6 +1019,7 @@ function View() {
     };
 
     this.adjustGoldCost = function(varName, amount) {
+		if(squirrelMode) return;
         document.getElementById(`goldCost${varName}`).textContent = formatNumber(amount);
     };
     this.adjustGoldCosts = function() {
@@ -1116,6 +1276,15 @@ function View() {
         options.theme = document.getElementById("themeInput").value;
         document.getElementById("theBody").className = `t-${options.theme}`;
     };
+	
+	 this.createTravelMenu = function() {
+        let travelMenu = document.getElementById("travelMenu");
+        travelMenu.innerHTML = "";
+        townNames.forEach((town, index) => {
+            if (townsUnlocked.includes(index))
+                travelMenu.innerHTML += `<div id='travelButton`+index+`' class='button showthat control' onClick='view.showTown(`+index+`)'>`+town+`</div><br>`;
+        });
+    }
 }
 
 function unlockGlobalStory(num) {

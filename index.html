@@ -245,6 +245,51 @@
                     </div>
                 </div>
             </div>
+			<div id="skillSquirrelList" style="width:100%;margin-top:25px;display:none">
+                <div class="showthat">
+                    <div class="large bold localized" data-lockey="skillsSquirrel>title"></div>
+                    <div class="showthis localized" data-lockey="skillsSquirrel>tooltip>no_reset_on_restart"></div>
+                </div><br>
+				
+				<div class="skillSquirrelContainer showthat" id="skillSquirrelTrustContainer" onmouseover="view.showSkillSquirrel('Trust')" onmouseout="view.showSkillSquirrel(undefined)">
+                    <div class="skillLabel medium bold localized" data-lockey="skillsSquirrel>trust>label"></div>
+                    <div class="statNum medium"><div id="skillSquirrelTrustLevel">0</div></div>
+                    <div style="margin-top:18px;"></div>
+                    <div class="thinProgressBarUpper"><div class="statBar skillExpBar townExpBar" id="skillSquirrelTrustLevelBar"></div></div>
+                    <div class="showthis" style="width:300px">
+                        <span class="localized" data-lockey="skillsSquirrel>trust>desc"></span><br>
+                        <div class="medium bold localized" data-lockey="skillsSquirrel>tooltip>level_exp"></div> <div id="skillSquirrelTrustLevelExp"></div>/<div id="skillSquirrelTrustLevelExpNeeded"></div> <div class="statTooltipPerc">(<div id="skillSquirrelTrustLevelProgress"></div>%)</div><br>
+                    </div>
+                </div>
+				<div class="skillSquirrelContainer showthat" id="skillSquirrelCombatContainer" onmouseover="view.showSkillSquirrel('Combat')" onmouseout="view.showSkillSquirrel(undefined)">
+                    <div class="skillLabel medium bold localized" data-lockey="skillsSquirrel>combat>label"></div>
+                    <div class="statNum medium"><div id="skillSquirrelCombatLevel">0</div></div>
+                    <div style="margin-top:18px;"></div>
+                    <div class="thinProgressBarUpper"><div class="statBar skillExpBar townExpBar" id="skillSquirrelCombatLevelBar"></div></div>
+                    <div class="showthis" style="width:300px">
+                        <span class="localized" data-lockey="skillsSquirrel>combat>desc"></span><br>
+                        <div class="medium bold localized" data-lockey="skillsSquirrel>tooltip>level_exp"></div> <div id="skillSquirrelCombatLevelExp"></div>/<div id="skillSquirrelCombatLevelExpNeeded"></div> <div class="statTooltipPerc">(<div id="skillSquirrelCombatLevelProgress"></div>%)</div><br>
+                    </div>
+                </div><div class="skillSquirrelContainer showthat" id="skillSquirrelMagicContainer" onmouseover="view.showSkillSquirrel('Magic')" onmouseout="view.showSkillSquirrel(undefined)">
+                    <div class="skillLabel medium bold localized" data-lockey="skillsSquirrel>magic>label"></div>
+                    <div class="statNum medium"><div id="skillSquirrelMagicLevel">0</div></div>
+                    <div style="margin-top:18px;"></div>
+                    <div class="thinProgressBarUpper"><div class="statBar skillExpBar townExpBar" id="skillSquirrelMagicLevelBar"></div></div>
+                    <div class="showthis" style="width:300px">
+                        <span class="localized" data-lockey="skillsSquirrel>magic>desc"></span><br>
+                        <div class="medium bold localized" data-lockey="skillsSquirrel>tooltip>level_exp"></div> <div id="skillSquirrelMagicLevelExp"></div>/<div id="skillSquirrelMagicLevelExpNeeded"></div> <div class="statTooltipPerc">(<div id="skillSquirrelMagicLevelProgress"></div>%)</div><br>
+                    </div>
+                </div><div class="skillSquirrelContainer showthat" id="skillSquirrelCraftinessContainer" onmouseover="view.showSkillSquirrel('Craftiness')" onmouseout="view.showSkillSquirrel(undefined)">
+                    <div class="skillLabel medium bold localized" data-lockey="skillsSquirrel>craftiness>label"></div>
+                    <div class="statNum medium"><div id="skillSquirrelCraftinessLevel">0</div></div>
+                    <div style="margin-top:18px;"></div>
+                    <div class="thinProgressBarUpper"><div class="statBar skillExpBar townExpBar" id="skillSquirrelCraftinessLevelBar"></div></div>
+                    <div class="showthis" style="width:300px">
+                        <span class="localized" data-lockey="skillsSquirrel>craftiness>desc"></span><br>
+                        <div class="medium bold localized" data-lockey="skillsSquirrel>tooltip>level_exp"></div> <div id="skillSquirrelCraftinessLevelExp"></div>/<div id="skillSquirrelCraftinessLevelExpNeeded"></div> <div class="statTooltipPerc">(<div id="skillSquirrelCraftinessLevelProgress"></div>%)</div><br>
+                    </div>
+                </div>	
+            </div>
             <div id="buffList" style="width:100%;margin-top:25px;flex-direction: column;display:none;">
                 <div class="showthat">
                     <div class="large bold localized" data-lockey="buffs>title"></div>
@@ -372,7 +417,9 @@
                 <div class="large bold"><div class="bold" id="townName"></div></div>
                 <div id='townDesc' class='showthis'></div>
             </div>
-            <div style="float:right;margin-right:150px;" class="actionIcon fa fa-arrow-right" id="townViewRight" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)+1])"></div>
+			<div style="float:right;margin-right:100px;margin-bottom:20px;" class="actionIcon fa fa-arrow-down showthatH">
+                <div id="travelMenu" class="showthisH" style="margin-top:-5px;"></div></div>
+            <div style="float:right;margin-right:50px;" class="actionIcon fa fa-arrow-right" id="townViewRight" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)+1])"></div>
         </div><br>
         <div id="townInfo0" class='townInfo'></div>
         <div id="townInfo1" class='townInfo' style="display:none;"></div>
@@ -388,8 +435,15 @@
             <div style="float:left;margin-left:150px;" class="actionIcon fa fa-arrow-left" id="actionsViewLeft" onclick="view.showActions(false)"></div>
             <span class='large bold' id="actionsTitle"></span>
             <div class='showthis localized' data-lockey="actions>tooltip>desc"></div>
-            <div style="float:right;margin-right:150px;" class="actionIcon fa fa-arrow-right" id="actionsViewRight" onclick="view.showActions(true)"></div>
+            <div style="float:right;margin-right:150px;" class="actionIcon fa fa-arrow-right" id="actionsViewRight" onclick="view.showActions(true)"></div>			
         </div>
+		<div class="showthat" style="display:block;margin:5px auto 5px auto;text-align:center;">
+			<img src='img/human.svg' class='smallIcon' draggable='false' style="float:left;margin-left:150px" id="iconSquirrelMode">`;
+            <span class='large bold' id="squirrelModeTitle">Squirrel Mode</span>
+			<div class='showthis localized' data-lockey="actions>tooltip_squirrel_mode"></div>
+			<input style="float:right;margin-right:150px;margin-top:-1px" type="checkbox" id="squirrelModeCheck" onchange="setSquirrelMode(this.checked)">
+        </div>
+		
         <div id="actionOptionsTown0" class='actionOptions'></div>
         <div id="actionOptionsTown1" class='actionOptions' style="display:none;"></div>
         <div id="actionOptionsTown2" class='actionOptions' style="display:none;"></div>
