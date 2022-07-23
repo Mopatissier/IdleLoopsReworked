@@ -59,47 +59,68 @@ function View() {
         }
         let totalStatDiv = "";
         for (let i = 0; i < statList.length; i++) {
-            const stat = statList[i];
-            const loc = this.statLocs[i];
-            totalStatDiv +=
-            `<div class='statRadarContainer showthat' style='left:${loc.x}px;top:${loc.y}px;' onmouseover='view.showStat("${stat}")' onmouseout='view.showStat(undefined)'>
-                <div class='statLabelContainer'>
-                    <div class='medium bold' style='margin-left:18px;margin-top:5px;'>${_txt(`stats>${stat}>long_form`)}</div>
-                    <div style='color:#737373;' class='statNum'><div class='medium' id='stat${stat}ss'></div></div>
-                    <div class='statNum'><div class='medium' id='stat${stat}Talent'>0</div></div> 
-                    <div class='medium statNum bold' id='stat${stat}Level'>0</div> 
-                </div>
-                <div class='thinProgressBarUpper'><div class='statBar statLevelBar' id='stat${stat}LevelBar'></div></div>
-                <div class='thinProgressBarLower'><div class='statBar statTalentBar' id='stat${stat}TalentBar'></div></div>
-                <div class='showthis' id='stat${stat}Tooltip' style='width:225px;'>
-                    <div class='medium bold'>${_txt(`stats>${stat}>long_form`)}</div><br>${_txt(`stats>${stat}>blurb`)}
+			const stat = statList[i];
+			const row = Math.floor(i / 3);
+			const col = i % 3;
+			let border = '';
+			const borderColor = 'rgba(46,96,48,0.6)';
+			border += `border-left: ${borderColor} solid 1px;`;
+			border += `border-bottom: ${borderColor} solid 1px;`;
+			if (col === 2) border += `border-right: ${borderColor} solid 1px;`
+			if (row === 0) border += `border-top: ${borderColor} solid 1px;`
+			totalStatDiv +=
+				`<div class="statRadarContainer showthat" style="width: 30%;height:3.25rem; padding: 0 0.1rem; ${border}" onmouseover='view.showStat("${stat}")' onmouseout="view.showStat(undefined)">
+					<div class="statLabelContainer" style="display: flex; flex-direction: column;">
+						<div style="display: flex; justify-content: space-between;">
+							<div class="medium bold" style="padding-top: 2px;">${_txt(`stats>${stat}>short_form`)}</div>
+							<div style="position: absolute; top: -0.2rem; right:0; color:#737373;" class="statNum">
+								<div class="medium" id="stat${stat}ss"></div>
+								<i class="fa fa-gem statIcon"></i>
+							</div>
+						</div>
+						<div style="display: flex; justify-content: space-between;padding-bottom:0.1rem;">
+							<div class="medium statNumL bold" id="stat${stat}Level">0</div>
+							<div class="statNum">
+								<div class="medium" id="stat${stat}Talent">0</div>
+								<i class="fa fa-book statIcon"></i>
+							</div>
+						</div>
+					</div>
+					<div class="thinProgressBarUpper"><div class="statBar statLevelBar" id="stat${stat}LevelBar"></div></div>
+					<div class="thinProgressBarLower"><div class="statBar statTalentBar" id="stat${stat}TalentBar"></div></div>
+					<div class="showthis" id="stat${stat}Tooltip" style="width:225px;">
+                    <div class="medium bold">${_txt(`stats>${stat}>long_form`)}</div><br>${_txt(`stats>${stat}>blurb`)}
                     <br>
-                    <div class='medium bold'>${_txt("stats>tooltip>level")}:</div> <div id='stat${stat}Level2'></div>
+                    <div class="medium bold">${_txt("stats>tooltip>level")}:</div> <div id="stat${stat}Level2"></div>
                     <br>
-                    <div class='medium bold'>${_txt("stats>tooltip>level_exp")}:</div>
-                    <div id='stat${stat}LevelExp'></div>/<div id='stat${stat}LevelExpNeeded'></div>
-                    <div class='statTooltipPerc'>(<div id='stat${stat}LevelProgress'></div>%)</div>
+                    <div class="medium bold">${_txt("stats>tooltip>level_exp")}:</div>
+                    <div id="stat${stat}LevelExp"></div>/<div id="stat${stat}LevelExpNeeded"></div>
+                    <div class="statTooltipPerc">(<div id="stat${stat}LevelProgress"></div>%)</div>
                     <br>
-                    <div class='medium bold'>${_txt("stats>tooltip>talent")}:</div>
-                    <div id='stat${stat}Talent2'></div>
+                    <div class="medium bold">${_txt("stats>tooltip>talent")}:</div>
+                    <div id="stat${stat}Talent2"></div>
                     <br>
-                    <div class='medium bold'>${_txt("stats>tooltip>talent_exp")}:</div>
-                    <div id='stat${stat}TalentExp'></div>/<div id='stat${stat}TalentExpNeeded'></div>
-                    <div class='statTooltipPerc'>(<div id='stat${stat}TalentProgress'></div>%)</div>
+                    <div class="medium bold">${_txt("stats>tooltip>talent_exp")}:</div>
+                    <div id="stat${stat}TalentExp"></div>/<div id="stat${stat}TalentExpNeeded"></div>
+                    <div class="statTooltipPerc">(<div id="stat${stat}TalentProgress"></div>%)</div>
                     <br>
-                    <div class='medium bold'>${_txt("stats>tooltip>talent_multiplier")}:</div>
-                    x<div id='stat${stat}TalentMult'></div>
+                    <div class="medium bold">${_txt("stats>tooltip>talent_multiplier")}:</div>
+                    x<div id="stat${stat}TalentMult"></div>
                     <br>
-                    <div id='ss${stat}Container' class='ssContainer'>
-                        <div class='bold'>${_txt("stats>tooltip>soulstone")}:</div> <div id='ss${stat}'></div><br>
-                        <div class='medium bold'>${_txt("stats>tooltip>soulstone_multiplier")}:</div> x<div id='stat${stat}SSBonus'></div>
+                    <div id="ss${stat}Container" class="ssContainer">
+                        <div class="bold">${_txt("stats>tooltip>soulstone")}:</div> <div id="ss${stat}"></div><br>
+                        <div class="medium bold">${_txt("stats>tooltip>soulstone_multiplier")}:</div> x<div id="stat${stat}SSBonus"></div>
                     </div><br>
-                    <div class='medium bold'>${_txt("stats>tooltip>total_multiplier")}:</div> x<div id='stat${stat}TotalMult'></div>
+                    <div class="medium bold">${_txt("stats>tooltip>total_multiplier")}:</div> x<div id="stat${stat}TotalMult"></div>
                 </div>
-            </div>`;
-        }
+                </div>`;
+		}
 
         statContainer.innerHTML = totalStatDiv;
+		
+		Array.from(document.getElementsByClassName("statLevelBar")).forEach((div, index) => {
+				addStatColors(div, statList[index]);
+			});
     };
 
     // requests are properties, where the key is the function name,
@@ -180,7 +201,6 @@ function View() {
     };
 
     this.showSkill = function(skill) {
-		//console.log("Show Skill : " + skill);
         skillShowing = skill;
         if (skill !== undefined) this.updateSkill(skill);
     };
@@ -791,8 +811,8 @@ function View() {
         const totalDivText =
         `<div class='townStatContainer showthat'>
             <div class='bold townLabel'>${action.labelDone} </div> <div id='prc${action.varName}'>5</div>%
-            <div class='thinProgressBarUpper'><div id='expBar${action.varName}' class='statBar townExpBar'></div></div>
-            <div class='thinProgressBarLower'><div id='bar${action.varName}' class='statBar townBar'></div></div>
+            <div class='thinActionProgressBarUpper'><div id='expBar${action.varName}' class='statBar townExpBar'></div></div>
+            <div class='thinActionProgressBarLower'><div id='bar${action.varName}' class='statBar townBar'></div></div>
 
             <div class='showthis'>
                 ${_txt("actions>tooltip>higher_done_percent_benefic")}<br>
@@ -1251,6 +1271,7 @@ function View() {
         const statContainer = document.getElementById("statContainer");
         if (document.getElementById("regularStats").checked) {
             document.getElementById("radarChart").style.display = "none";
+			statContainer.style.display = "inline-block";
             statContainer.style.position = "relative";
             for (const node of statContainer.childNodes) {
                 removeClassFromDiv(node, "statRadarContainer");
@@ -1260,6 +1281,7 @@ function View() {
             document.getElementById("statsColumn").style.width = "316px";
         } else {
             document.getElementById("radarChart").style.display = "inline-block";
+			statContainer.style.display = "none";
             statContainer.style.position = "absolute";
             for (const node of statContainer.childNodes) {
                 addClassToDiv(node, "statRadarContainer");
