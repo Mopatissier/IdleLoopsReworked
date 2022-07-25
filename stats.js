@@ -49,13 +49,13 @@ function getLevel(stat) {
     return getLevelFromExp(stats[stat].exp);
 }
 
-function getTotalTalentLevel() {
+/*function getTotalTalentLevel() {
     return Math.floor(Math.pow(totalTalent, 0.2));
 }
 
 function getTotalTalentPrc() {
     return (Math.pow(totalTalent, 0.2) - Math.floor(Math.pow(totalTalent, 0.2))) * 100;
-}
+}*/
 
 function getLevelFromExp(exp) {
     return Math.floor((Math.sqrt(8 * exp / 100 + 1) - 1) / 2);

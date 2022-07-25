@@ -6,6 +6,12 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.4"><![CDATA[
+            <b> July 25th, 2022</b>
+            • Buffed the exp system. Talents are now more powerful, and soulstones are similar, but stronger at the start. Additionally, you get twice more exp from the start.<br>
+			• Reworked a bit the squirrel and the magic fighter. They'll soon be complete!<br>
+			• Fixes a few UI glitches that slipped in the last update.
+            ]]></version>
 			<version verNum="0.1.3"><![CDATA[
             <b> July 24th, 2022</b>
             With the help of Reterino, reworked the UI for the stats and skills. It is now more compact and can allow everything to be seen wihtout needing to scroll down.
@@ -420,14 +426,14 @@
             <explanation><![CDATA[
           Each stat level reduces the relevant part of an action's mana cost by 1%.<br>
           Talent exp gain is equal to 1% of stat exp gain, and persists through loops.<br>
-          Talent multiplies xp gain by (1+(talentLevel)^0.4/3).<br>
+          Talent multiplies xp gain by (1+sqrt(talentLevel)/2).<br>
           XP gain towards a stat per action is (original mana / actual mana) * (talent bonus) per tick.<br>
           Total Mult is a combination of your talent and soulstone bonuses.<br><br>
           e.g. Meet People costs 800 mana and has a breakdown of <div class="bold">Int</div> 10% <div class="bold">Cha</div> 80% <div class="bold">Soul</div> 10%.<br>
           This effectively means 80 of the mana is controlled by <div class="bold">Int</div>, another 80 by <div class="bold">Soul</div>, and the remaining 640 by <div class="bold">Cha</div>.<br>
           If your <div class="bold">Cha</div> is level 20 when the action is started, the bonus would be x1.2 so it'd be 640 / 1.2 = 533.33<br>
           Adding back the 160 from <div class="bold">Soul</div> and <div class="bold">Int</div>, the total mana the action takes (rounded up) is now 694, so ~87% of the original mana cost.<br>
-          The action would give (800/694)*(1+(talent)^0.4/3) level exp per mana for the 694 mana.]]></explanation>
+          The action would give (800/694)*(1+sqrt(talent)/2) level exp per mana for the 694 mana.]]></explanation>
             <graph_legend><![CDATA[
           Click the legend to show/hide each.<br>
           Upon freshly starting, Levels and Talent won't change much.<br>
@@ -940,8 +946,9 @@
 			<tooltip><![CDATA[
             Explore the town, look for hidden areas and treasures.<br>4x progress with glasses.
 			]]></tooltip>
-			<squirrel_1><![CDATA[You told the squirrel to wander around for you!<br>It didn't come back...<br><b>Effect: </b>Lost the squirrel for the rest of the loop.<br><b>Next: </b>trust >= 10 ]]></squirrel_1>
-			<squirrel_2><![CDATA[You told the squirrel to wander around for you!<br>It came back after a while with a nut in its paws.<br>...Well, you don't know what you expected.<br><b>Effect: </b>None.]]></squirrel_2>
+			<squirrel_1><![CDATA[You told the squirrel to wander around for you!<br>It didn't come back...<br><b>Effect: </b>Lost the squirrel.<br><b>Next: </b>trust >= 10 ]]></squirrel_1>
+			<squirrel_2><![CDATA[You told the squirrel to wander around for you!<br>It came back after a while with a nut in its paws.<br>...Well, you don't know what you expected.<br><b>Effect: </b>None.<br>Next: </br>tust >= 40]]></squirrel_2>
+			<squirrel_3><![CDATA[The squirrel wanders around and come back with pots you haven't seen before.<b>Where did it find those?<br><b>Effect: </b>Adds 100 new pots to smash. Happens only once.]]></squirrel_3>
             <story_1><![CDATA[<b>20% Explored:</b>⮀ You know the general layout of the small village now, you don't get lost walking from one side to another!]]></story_1>
             <story_2><![CDATA[<b>40% Explored:</b>⮀ You're starting to really know your way around, you can almost figure your way around without following a set path!]]></story_2>
             <story_3><![CDATA[<b>60% Explored:</b>⮀ You've tread all the main roads and you avail yourself to the unkempt side paths and well worn paths. If you let yourself into some houses, well, no one needs to know, do they?]]></story_3>
@@ -962,6 +969,12 @@
         ]]></tooltip2>
             <story_1><![CDATA[<b>50 Pots with mana:</b>⮀ You've smashed every single pot in this village, and have figured out all the pots that contain any trace of mana. Having to break them all physically was time consuming, and your skills at absorbing the mana weren't the best. There must be more efficient ways of doing it.]]></story_1>
         </smash_pots>
+		<pet_squirrel>
+            <label>Pet Squirrel</label>
+            <tooltip><![CDATA[
+            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<br>Spend some time with it to increase its trust by 100 exp and take it with you.<br>Every level of trust the squirrel have increases the mana cost of this action by 100.<br>Unlocked at 5% explored.
+        ]]></tooltip>
+        </pet_squirrel>
         <pick_locks>
             <label>Pick Locks</label>
             <label_done>Locks Picked</label_done>
@@ -1002,12 +1015,6 @@
         ]]></tooltip2>
             <!--TODO: give this action story-->
         </buy_mana_z1>
-		<pet_squirrel>
-            <label>Pet Squirrel</label>
-            <tooltip><![CDATA[
-            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop...<br>Pet it to make it a companion.<br>Unlocked at 25% explored.
-        ]]></tooltip>
-        </pet_squirrel>
         <meet_people>
             <label>Meet People</label>
             <label_done>People Met</label_done>
@@ -1211,10 +1218,21 @@
         </fight_monsters>
 		<magic_fighter>
             <label>Magic Fighter</label>
-            <label_done>Injuries inflicted</label_done>
+            <label_done>Attacks Landed</label_done>
             <tooltip><![CDATA[
-            Fighting that powerful magic fighter might be worth it. He only has time to spare once before leaving the town, though.<br>Watching him fight gives you a lot of combat and magic exp, so try to fight longer.<br>Can only be donce once par loop.<br>Requires a reputation of 2 or above.<br>Unlocked at a combined Combat and Magic skill of 25<br>Gives 100 combat exp and 100 fight exp per fight segment completion.
+			You might learn a lot from fighting this insanely strong looking magic fighter. Looks like he's about to leave, though, so you only have the time do it once.<br>Every completed segment gives 50 magic and combat exp. Managing to land a hit will give you an extra 50 exp.<br>Can only be done once par loop.<br>Requires a reputation of 2 or above.<br>Unlocked at a combined Combat and Magic skill of 25.
         ]]></tooltip>
+			<segment_names>
+				<name>Resisting intimidation</name>
+				<name>Preparing an attack plan</name>
+				<name>Observing movements</name>
+				<name>Dodging attacks</name>
+				<name>Parrying attacks</name>
+				<name>Getting out of the spell's area of effect</name>
+				<name>Making a distraction</name>
+				<name>Waiting for an opening</name>
+				<name>Striking with all might</name>
+			</segment_names>
         </magic_fighter>
 
         <small_dungeon>
@@ -1226,7 +1244,7 @@
             There are small changes each time; it's harder to get used to. The soulstones at the end last through loops, but they're not always in the dungeon... Strange.<br>The dungeon requires different skills at different points.<br>One action can clear multiple floors if your stats are high enough.<br>Gives (magic + self combat) * (1 + main stat / 100) * sqrt(1 + times floor completed / 200) * (original mana cost / actual mana cost) progress points per mana.<br>Unlocked at a combined Combat and Magic skill of 35.<br>Requires a reputation of 2 or above.<br>Gives 1 soulstone per completion - hover over Looted for info.
         ]]></tooltip>
             <completed_tooltip><![CDATA[
-            Each soulstone improves a random stat's exp gain by (1+(soulstones)^.8/30).<br>Each floor has a soulstone that, when received, reduces the chance you'll get the next one by 2%.<br>Chance to receive a soulstone recovers per floor at 0.00001% per mana.<br>
+            Each soulstone improves a random stat's exp gain by (1+(soulstones)^.7/10).<br>Each floor has a soulstone that, when received, reduces the chance you'll get the next one by 2%.<br>Chance to receive a soulstone recovers per floor at 0.00001% per mana.<br>
         ]]></completed_tooltip>
             <chance_label>Chance</chance_label>
             <last_stat_label>Last</last_stat_label>
@@ -1265,7 +1283,7 @@
         <start_journey>
             <label>Start Journey</label>
             <tooltip><![CDATA[
-            Follow the trail to end up at the next town. You need to keep moving until you can learn how to shut these loops off.<br>Costs 1 supplies. Finish once to unlock Forest Path's actions, then finish this in order to use Forest Path's actions.<br>Unlocked at a combined Combat and Magic skill of 35.
+            Follow the trail to end up at the next town. You need to keep moving until you can learn how to shut these loops off.<br>Costs 1 supplies. Finish once to unlock Forest Path's actions, then finish this in order to use Forest Path's actions.<br>Unlocked at a combined Combat and Magic skill of 35.<br><b>Warning : this is locked and won't have any effect until z1 is finished.</b>
         ]]></tooltip>
             <story_1><![CDATA[<b>Traveled to the second zone:</b>⮀ You leave town, heading towards the forest that stood between the village and Merchanton. You had exhausted every option in Beginnersville and there was nothing here that would stop the loops, it was time to look for other areas and solutions.]]></story_1>
         </start_journey>

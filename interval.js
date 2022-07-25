@@ -6,6 +6,7 @@ onmessage = function(event) {
         }, event.data.ms || 0);
     }
     if (event.data.stop && intervalId !== null) {
+		
         clearInterval(intervalId);
     }
 };

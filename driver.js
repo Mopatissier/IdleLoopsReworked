@@ -55,7 +55,6 @@ function tick() {
         return;
     }
 	
-
     while (gameTicksLeft > (1000 / baseManaPerSecond)) {
         if (gameTicksLeft > 2000) {
             console.warn(`too fast! (${gameTicksLeft})`);
@@ -69,7 +68,7 @@ function tick() {
         timer++;
         timeCounter += 1 / baseManaPerSecond / getActualGameSpeed();
         effectiveTime += 1 / baseManaPerSecond / getSpeedMult();
-
+		
         actions.tick();
         for (const dungeon of dungeons) {
             for (const level of dungeon) {
@@ -87,6 +86,7 @@ function tick() {
         }
         gameTicksLeft -= ((1000 / baseManaPerSecond) / getActualGameSpeed());
     }
+	
 
     if (bonusSpeed > 1) {
         addOffline(-Math.abs(delta * (bonusSpeed - 1)));

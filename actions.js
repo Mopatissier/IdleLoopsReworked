@@ -17,7 +17,7 @@ function Actions() {
             shouldRestart = true;
             return;
         }
-        addExpFromAction(curAction);
+		addExpFromAction(curAction);
         curAction.ticks++;
         curAction.manaUsed++;
         curAction.timeSpent += 1 / baseManaPerSecond / getActualGameSpeed();
@@ -257,11 +257,11 @@ function setAdjustedTicks(action) {
 }
 
 function calcSoulstoneMult(soulstones) {
-    return 1 + Math.pow(soulstones, 0.8) / 30;
+    return 1 + Math.pow(soulstones, 0.7) / 10;
 }
 
 function calcTalentMult(talent) {
-    return 1 + Math.pow(talent, 0.4) / 3;
+    return 1 + Math.sqrt(talent) / 2;
 }
 
 function addExpFromAction(action) {

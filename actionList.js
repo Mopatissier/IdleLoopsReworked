@@ -390,6 +390,11 @@ Action.Wander = new Action("Wander", {
 					
 				case 1: if(getSkillSquirrelLevel("Trust") >= 10) levelUpSquirrelAction("Wander");
 					break;
+					
+				case 2: if(getSkillSquirrelLevel("Trust") >= 40){levelUpSquirrelAction("Wander");
+						adjustPots();
+					}
+					break;
 			}
 			
 			switch(squirrelLevel.wander){
@@ -398,6 +403,8 @@ Action.Wander = new Action("Wander", {
 						break;
 						
 				case 2: break;
+				
+				case 3: break;
 				
 			}
 		} else {	
@@ -409,7 +416,7 @@ Action.Wander = new Action("Wander", {
 
 function adjustPots() {
     let town = towns[0];
-    let basePots = town.getLevel("Wander") * 5;
+    let basePots = town.getLevel("Wander") * 5 + (squirrelLevel.wander >= 3 ? 100 : 0);
     town.totalPots = Math.floor(basePots + basePots * getSurveyBonus(town));
 }
 function adjustLocks() {
@@ -455,6 +462,36 @@ Action.SmashPots = new Action("Smash Pots", {
             return manaGain;
         });
     }
+});
+
+Action.PetSquirrel = new Action("Pet Squirrel", {
+    type: "normal",
+    expMult: 1,
+    townNum: 0,
+    stats: {
+        Cha: 0.6,
+        Dex: 0.3,
+        Soul: 0.1
+    },
+	skillsSquirel: {
+		Trust : 100
+	},
+    manaCost() {
+        return 100 + getSkillSquirrelLevel("Trust") * 100;
+    },
+    visible() {
+        return true;
+    },
+    unlocked() {
+        return towns[0].getLevel("Wander") >= 5;
+    },
+	
+    finish() {	
+		addResource("squirrel", true);
+		handleSkillSquirrelExp(this.skillsSquirel);
+		view.adjustManaCost("Pet Squirrel");
+    },
+	
 });
 
 Action.PickLocks = new Action("Pick Locks", {
@@ -605,38 +642,6 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
 		resetResource("stolenGoods");
         resetResource("gold");
     },
-});
-
-Action.PetSquirrel = new Action("Pet Squirrel", {
-    type: "normal",
-    expMult: 1,
-    townNum: 0,
-    stats: {
-        Cha: 0.6,
-        Dex: 0.3,
-        Soul: 0.1
-    },
-	skillsSquirel: {
-		Trust : 100
-	},
-    manaCost() {
-        return 200;
-    },
-	allowed() {
-        return 1;
-    },
-    visible() {
-        return towns[0].getLevel("Wander") >= 10;
-    },
-    unlocked() {
-        return towns[0].getLevel("Wander") >= 25;
-    },
-	
-    finish() {	
-		addResource("squirrel", true);
-		handleSkillSquirrelExp(this.skillsSquirel);
-    },
-	
 });
 
 Action.MeetPeople = new Action("Meet People", {
@@ -1126,20 +1131,25 @@ defineLazyGetter(Action.FightMonsters, "segmentModifiers",
 
 Action.MagicFighter = new MultipartAction("Magic Fighter", {
     type: "multipart",
-    expMult: 1,
+    expMult: 10,
     townNum: 0,
     varName: "MagFgt",
     stats: {
-        Str: 0.3,
-        Spd: 0.3,
-        Con: 0.3,
-        Luck: 0.1
+		Dex: 0.1,
+        Str: 0.1,
+        Con: 0.1,
+		Spd: 0.1,
+		Per: 0.1,
+		Cha: 0.1,
+		Int: 0.1,
+        Luck: 0.1,
+		Soul: 0.2,
     },
 	skills: {
-        Combat: 100,
-		Magic: 100
+        Combat: 50,
+		Magic: 50
     },
-    loopStats: ["Spd", "Spd", "Spd", "Str", "Str", "Str", "Con", "Con", "Con"],
+    loopStats: ["Soul", "Int", "Per", "Dex", "Con", "Spd", "Cha", "Luck", "Str"],
     manaCost() {
         return 6000;
     },
@@ -1153,7 +1163,7 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
         return 1;
     },
     loopsFinished() {
-        // empty
+        handleSkillExp(this.skills);
     },
     segmentFinished() {
 		handleSkillExp(this.skills);
@@ -1161,9 +1171,6 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
     getPartName() {
 		return "Magic fighter";
 
-    },
-    getSegmentName(segment) {
-        return "Moving only one finger.";
     },
     visible() {
         return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 10;

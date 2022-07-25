@@ -337,6 +337,7 @@ function View() {
             div.textContent = getExploreSkill();
         });
     }
+	
     this.updateTeamCombat = function() {
         if (towns[2].unlocked) {
             document.getElementById("skillSCombatContainer").style.display = "inline-block";
@@ -822,6 +823,7 @@ function View() {
         const progressDiv = document.createElement("div");
         progressDiv.id = `infoContainer${action.varName}`;
         progressDiv.style.display = "block";
+		progressDiv.style.height = "32px";
         progressDiv.innerHTML = totalDivText;
         townInfos[action.townNum].appendChild(progressDiv);
     };
@@ -987,7 +989,7 @@ function View() {
 			}
 						
 			document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
-			
+			this.adjustManaCost(action.name);
 			
         }
 		this.updateResources();
