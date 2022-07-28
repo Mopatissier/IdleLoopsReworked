@@ -1320,9 +1320,7 @@ function unlockGlobalStory(num) {
 }
 
 function unlockStory(name) {
-	console.log("before : " + name + " = " + storyReqs[name]);
     if (!storyReqs[name]) storyReqs[name] = true;
-	console.log("after : " + name + " = " + storyReqs[name]);
 }
 
 const curActionsDiv = document.getElementById("curActionsList");

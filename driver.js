@@ -13,6 +13,9 @@ let radarUpdateTime = 0;
 let timeCounter = 0;
 let effectiveTime = 0;
 
+let endLoopWithNoValidAction = true;
+let squirrelAlreadyPickedUp = false;
+
 let bonusMultString = "1x";
 
 function getSpeedMult(zone = curTown) {
@@ -76,7 +79,7 @@ function tick() {
                 if (chance < 1) level.ssChance = Math.min(chance + 0.0000001, 1);
             }
         }
-
+		
         if (shouldRestart || timer >= timeNeeded) {
             prepareRestart();
         }
@@ -140,7 +143,7 @@ function pauseGame(ping) {
 
 function prepareRestart() {
     const curAction = actions.getNextValidAction();
-    if (options.pauseBeforeRestart ||
+    if (options.pauseBeforeRestart || endLoopWithNoValidAction ||
         (options.pauseOnFailedLoop && 
          (actions.current.filter(action => action.loopsLeft - action.extraLoops > 0).length > 0))) {
         if (options.pingOnPause) {

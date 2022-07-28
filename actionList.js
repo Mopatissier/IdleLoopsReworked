@@ -388,7 +388,7 @@ Action.Wander = new Action("Wander", {
 				case 0: levelUpSquirrelAction("Wander");
 					break;
 					
-				case 1: if(getSkillSquirrelLevel("Trust") >= 10) levelUpSquirrelAction("Wander");
+				case 1: if(getSkillSquirrelLevel("Trust") >= 5) levelUpSquirrelAction("Wander");
 					break;
 					
 				case 2: if(getSkillSquirrelLevel("Trust") >= 20) levelUpSquirrelAction("Wander");
@@ -534,6 +534,8 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
 			if(getLevelSquirrelAction("Pet Squirrel") >= 3) return (resources.squirrel && resources.reputation >= 2)
 			return resources.squirrel;
 		}
+		if(getLevelSquirrelAction("Pet Squirrel") >= 2 && !resources.squirrel ) return false;
+		if(getLevelSquirrelAction("Pet Squirrel") < 2 && !resources.squirrel && squirrelAlreadyPickedUp) return false;
 		return true;
     },
     visible() {
@@ -572,10 +574,11 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
 						break;
 				
 			}
-		} else {	
+		} else {
 			addResource("squirrel", true);
 			handleSkillSquirrelExp(this.skillsSquirrel);
 			view.adjustManaCost("Pet Squirrel", squirrelMode);
+			squirrelAlreadyPickedUp = true;
 		}	
     },
 	

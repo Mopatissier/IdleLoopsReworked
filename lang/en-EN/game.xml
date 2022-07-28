@@ -6,6 +6,13 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.6"><![CDATA[
+            <b> July 29th, 2022</b>
+            • Fixed some glitch  found by the alpha testers. Thank you!<br>
+            • Fixed a lot of typos.<br>
+			• From now on, once you lose your squirrel, you can't pet it anymore in that same loop.<br>
+			• Added an hotkey for squirrel mode : shift + space toggles it on and off.
+            ]]></version>
 			<version verNum="0.1.5"><![CDATA[
             <b> July 28th, 2022</b>
 			Finally, here's the first version that's complete enough to be played! Have fun, everyone!<br>
@@ -953,9 +960,9 @@
 			<tooltip><![CDATA[
             Explore the town, look for hidden areas and treasures.<br>4x progress with glasses.
 			]]></tooltip>
-			<squirrel_1><![CDATA[You told the squirrel to wander around for you!<br>It didn't come back...<br><b>Effect: </b>Lost the squirrel.<br><b>Next: </b>trust >= 5 ]]></squirrel_1>
+			<squirrel_1><![CDATA[You told the squirrel to wander around for you!<br>It didn't come back...<br><b>Effect: </b>Lose the squirrel.<br><b>Next: </b>trust >= 5 ]]></squirrel_1>
 			<squirrel_2><![CDATA[You told the squirrel to wander around for you!<br>It came back after a while with a nut in its paws.<br>...Well, you don't know what you expected.<br><b>Effect: </b>None.<b><br>Next: </b>trust >= 20]]></squirrel_2>
-			<squirrel_3><![CDATA[The squirrel wanders around and come back with pots you haven't seen before.<br>Where did it find those?<br><b>Effect: </b>Adds 100 new pots to smash. Happens only once.]]></squirrel_3>
+			<squirrel_3><![CDATA[The squirrel wanders around and comes back with pots you haven't seen before.<br>Where did it find those?<br><b>Effect: </b>Adds 100 new pots to smash. Happens only once.]]></squirrel_3>
             <story_1><![CDATA[<b>20% Explored:</b>⮀ You know the general layout of the small village now, you don't get lost walking from one side to another!]]></story_1>
             <story_2><![CDATA[<b>40% Explored:</b>⮀ You're starting to really know your way around, you can almost figure your way around without following a set path!]]></story_2>
             <story_3><![CDATA[<b>60% Explored:</b>⮀ You've tread all the main roads and you avail yourself to the unkempt side paths and well worn paths. If you let yourself into some houses, well, no one needs to know, do they?]]></story_3>
@@ -975,7 +982,7 @@
             mana.<br>Every 10 pots have mana.
         ]]></tooltip2>
 			<squirrel_1><![CDATA[The squirrel tries to break a pot! And another!<br>You watch in amazement as it fails to break any...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 10 ]]></squirrel_1>
-			<squirrel_2><![CDATA[Wait a second, you just realized the squirrel is small enough to go in those pots!<br>You ask it to go in one. The squirrel goes in it. And doesn't come out.<br>Upon looking inside, you realize it's trying to grab the mana crystal, it's too smooth for its paws. Oh well...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 15 ]]></squirrel_2>
+			<squirrel_2><![CDATA[Wait a second, you just realized the squirrel is small enough to go in those pots!<br>You ask it to go in one. The squirrel goes in it. And doesn't come out.<br>Upon looking inside, you realize it's trying to grab the mana crystal, but it's too smooth for its paws. Oh well...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 15 ]]></squirrel_2>
 			<squirrel_3><![CDATA[Did you just see the squirrel eat a crystal?! And your mana reserve just got bigger too. So that means...<br>With a grin, you ask the squirrel to go eat all the crystals it can find. It looks like it is faster to gather mana this way than by smashing the pots.<br><b>Effect: </b>Smashing pots in squirrel mode takes 20% less mana.]]></squirrel_3>
             <story_1><![CDATA[<b>50 Pots with mana:</b>⮀ You've smashed every single pot in this village, and have figured out all the pots that contain any trace of mana. Having to break them all physically was time consuming, and your skills at absorbing the mana weren't the best. There must be more efficient ways of doing it.]]></story_1>
         </smash_pots>
@@ -985,7 +992,7 @@
             Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<br>Spend some time with it to increase its trust by 100 exp and take it with you.<br>Every level of trust the squirrel have increases the mana cost of this action by 100.<br>Unlocked at 5% explored.
         ]]></tooltip>
 			<squirrel_1><![CDATA[The squirrel glares at you with daggers in its eyes, but still lets you pet it.<br>Amazingly, it follows your orders, but it doesn't trust you enough yet to be of any use.<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 5 ]]></squirrel_1>
-			<squirrel_2><![CDATA[It looks like the squirrel is finally warming up to you.<br>That was quick, but seeing how friendly you were and how you're stuck together in the time loop with it, it's maybe not that surprising.<br>At the start of the next loop, it directly jumps on your shoulders.<br><b>Effect: </b>From now on, you will start each loop with the squirrel in your inventory.<br><b>Next: </b>trust >= 20 ]]></squirrel_2>
+			<squirrel_2><![CDATA[It looks like the squirrel is finally warming up to you.<br>That was quick, but seeing how friendly you were and how you're both stuck together in the time loop, it's maybe not that surprising.<br>At the start of the next loop, it directly jumps on your shoulders.<br><b>Effect: </b>From now on, you will start each loop with the squirrel in your inventory.<br><b>Next: </b>trust >= 20 ]]></squirrel_2>
 			<squirrel_3><![CDATA[The squirrel isn't satisfied anymore with pets. It takes you to a special restaurant for animals and humans... Does he want to spend quality time eating with you?<br><b>Effect: </b>Gain 200 trust exp for the fixed cost of 2500 mana. Needs 2 reputation.]]></squirrel_3>
 			<story_1><![CDATA[<b>Pet the squirrel:</b>⮀ The squirrel hesitantly approaches you... It looks ready to bite you. It also looks all angry and confused. Probably from you tripping on it and the time rewinding every few minutes.]]></story_1>
 			<story_2><![CDATA[<b>50 trust:</b>⮀ That's it. You've done it. Now you and the squirrel are the best friends there have ever been. He's ready to sacrifice his life for you and vice-versa.]]></story_2>
@@ -1002,8 +1009,8 @@
             <tooltip2><![CDATA[
             mana.<br>Every 10 houses have valuables.<br>Unlocked at 20% Explored.
         ]]></tooltip2>
-			<squirrel_1><![CDATA[You just thought of a master plan! The squirrel can go in the houses through open windows instead of you needing to pick a loc!<br>The squirrel follows your direction : after throwing it in an open windows, it put small jewelry in the little bag you gave it.<br>However, it can't find a way out of the house. Oops. Maybe that wasn't such a master plan...<br><b>Effect: </b>Lose the squirrel.<br><b>Next: </b>trust >= 7 ]]></squirrel_1>
-			<squirrel_2><![CDATA[Well, if it can't rob houses, maybe it can use the bag you made differently.<br>You prepare a small bag with jewelry with a letter glued on it that reads "please buy this for mana"<br>After sending the squirrel to the merchant, it comes back later with a bunch of mana. Now that's better!<br><b>Effect: </b>The valuable you borrow are immediatly sold for mana.]]></squirrel_2>
+			<squirrel_1><![CDATA[You just thought of a master plan! The squirrel can go in the houses through open windows instead of you needing to pick a lock!<br>The squirrel follows your direction : after throwing it in an open windows, it put small jewelry in the little bag you gave it.<br>However, it can't find a way out of the house. Oops. Maybe that wasn't such a master plan...<br><b>Effect: </b>Lose the squirrel.<br><b>Next: </b>trust >= 7 ]]></squirrel_1>
+			<squirrel_2><![CDATA[Well, if it can't rob houses, maybe it can use the bag you made differently.<br>You prepare a small bag with jewelry with a letter glued on it that reads "please buy this for mana"<br>After sending the squirrel to the merchant, it comes back later with a bunch of mana. Now that's better!<br><b>Effect: </b>The valuable you borrow are immediately sold for mana.]]></squirrel_2>
             <story_1><![CDATA[<b>House checked:</b>⮀ You manage to pick a lock that was in disrepair and opened the door, only to walk into the home's inhabitant. Good thing the loop ended not soon after. You're gonna have to figure out which houses are worth hitting. Some money wouldn't go astray.]]></story_1>
             <story_2><![CDATA[<b>50 Houses known:</b>⮀ You really should look at hitting those locked houses around, who knows what goodies you'll manage to scrounge up.]]></story_2>
             <story_3><![CDATA[<b>10 Houses with loot:</b>⮀ You've figured out which houses are uninhabited and have enough valuables for it to be worth your time. As they say, time is mana!]]></story_3>
@@ -1056,7 +1063,7 @@
             <tooltip><![CDATA[
             Build up those muscles. Again.<br>Has 4x exp/talent gain, and can only be done <div id='trainingLimitStr'></div> times per reset.<br>Unlocked at 5% People Met.
         ]]></tooltip>
-			<squirrel_1><![CDATA[You've never seen a squirrel train its strenght so hard!<br>Too bad it doesn't have any strength stat...<br><b>Effect: </b>None.]]></squirrel_1>
+			<squirrel_1><![CDATA[You've never seen a squirrel train its strength so hard!<br>Too bad it doesn't have any strength stat...<br><b>Effect: </b>None.]]></squirrel_1>
             <story_1><![CDATA[<b>Strength trained:</b>⮀ You lift the oak barrel filled with water, holding it while you squat again and again. The barrel rests upon your back as you do push up after push up. It's a trusty companion in your quest to regain your muscle.]]></story_1>
             <story_2><![CDATA[<b>100 Strength talent:</b>⮀ Your body adapts faster and faster to the strains you put upon it. You know exactly how far to push it and can tell almost instinctively when to stop.]]></story_2>
             <story_3><![CDATA[<b>1,000 Strength talent:</b>⮀ Your body seems to build itself up faster and faster each time you break it down. You can practically feel your mana purr in satisfaction as it rebuilds your body to be stronger and stronger.]]></story_3>
@@ -1107,7 +1114,7 @@
         ]]></tooltip2>
 		<squirrel_1><![CDATA[You've seen how badly the squirrel performed for the small quests and you doubt it'd be any better with long quests, but its's worth a try.<br>Unsurprisingly, it fails. Pretty hard too. Oh well...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 22 ]]></squirrel_1>
 		<squirrel_2><![CDATA[Charming the quest-givers seems to have worked for the small quests. Let's try it here too!<br>Well, it only resulted in the quest-giver not paying attention to you, so you didn't gain any reputation. At least you got more gold.<br><b>Effect: </b>Quests give +10%, but no reputation.<br><b>Next: </b>trust >= 26 ]]></squirrel_2>
-		<squirrel_3><![CDATA[Let's be more tactical about this. You hatch a plan so the squirrel only distract the quest-giver when it counts.<br>The plan works, and you get your reputation, this time! You even got a bigger tip! Sweet victory.<br><b>Effect: </b>Quests give +20% gold.]]></squirrel_3>
+		<squirrel_3><![CDATA[Let's be more tactical about this. You hatch a plan so the squirrel only distracts the quest-giver when it counts.<br>The plan works, and you get your reputation, this time! You even got a bigger tip! Sweet victory.<br><b>Effect: </b>Quests give +20% gold.]]></squirrel_3>
             <story_1><![CDATA[<b>Long Quest finished:</b>⮀ You cleared out a cellar of rats; there were at least sixty of the blighters. You were rewarded handsomely, and you got a small reputation boost to boot.]]></story_1>
             <story_2><![CDATA[<b>10 Long Quests with loot in a loop:</b>⮀ You’ve cleared out cellars, helped build a house, collected flowers for dyes, worked in the bakery, taken out trash, and helped a seamstress finish a gift for her husband. Your reputation is spreading as the helpful courier. Everyone is at the very least willing to listen to you.]]></story_2>
         </long_quest>
@@ -1137,7 +1144,7 @@
             <tooltip><![CDATA[
             The mystic got you into this mess, maybe it can help you get out of it.<br>Requires a reputation of 2 or above.<br>Unlocked at 20% Investigated.
         ]]></tooltip>
-			<squirrel_1><![CDATA[You present your squirrel to the mage! He immediatly falls in love with it and plays with it for the rest of the lesson.<br>You learned nothing because of this.<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 24 ]]></squirrel_1>
+			<squirrel_1><![CDATA[You present your squirrel to the mage! He immediately falls in love with it and plays with it for the rest of the lesson.<br>You learned nothing because of this.<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 24 ]]></squirrel_1>
 			<squirrel_2><![CDATA[You promise to lend your squirrel to the mage if he does his best during this lesson. The mage happily agrees.<br>You learned so much more during this lesson!<br><b>Effect: </b>Gives 300 magic exp, but lose the squirrel.]]></squirrel_2>
             <story_1><![CDATA[<b>1 Magic:</b>⮀ You approach a burly man dressed in flowing robes, and ask if he would be willing to teach you some magic. The man agrees to teach you some basic cantrips if you help him out with menial tasks. He introduces himself as Warrick.]]></story_1>
             <story_2><![CDATA[<b>100 Magic:</b>⮀ Warrick compliments you on your ability to wield mana, and is happy to share some more dangerous cantrips with your promise to not use it for ill. He refuses to teach you about alchemy.]]></story_2>

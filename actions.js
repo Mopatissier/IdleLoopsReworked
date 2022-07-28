@@ -103,6 +103,7 @@ function Actions() {
 
     this.getNextValidAction = function() {
         let curAction = this.current[this.currentPos];
+		let actionIsValid = true;
         if (!curAction) {
             return curAction;
         }
@@ -113,6 +114,7 @@ function Actions() {
             return undefined;
         }
         while ((curAction.canStart && !curAction.canStart() && curAction.townNum === curTown) || curAction.townNum !== curTown) {
+			actionIsValid = false;
             curAction.errorMessage = this.getErrorMessage(curAction);
             view.updateCurrentActionBar(this.currentPos);
             this.currentPos++;
@@ -122,6 +124,7 @@ function Actions() {
             }
             curAction = this.current[this.currentPos];
         }
+		if(actionIsValid) endLoopWithNoValidAction = false;
         return curAction;
     };
 
@@ -138,6 +141,8 @@ function Actions() {
     this.restart = function() {
         this.currentPos = 0;
         this.completedTicks = 0;
+		endLoopWithNoValidAction = true;
+		squirrelAlreadyPickedUp = false;
         curTown = 0;
         towns[0].suppliesCost = 300;
         view.updateResource("supplies");
