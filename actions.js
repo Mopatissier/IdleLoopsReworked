@@ -157,6 +157,7 @@ function Actions() {
         }
         guild = "";
 		magicFight = false;
+		squirrelHaggle = false;
         portalUsed = false;
         stoneLoc = 0;
         if (options.keepCurrentList) {

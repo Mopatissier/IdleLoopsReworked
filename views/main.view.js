@@ -316,7 +316,6 @@ function View() {
         if (resource !== "gold") document.getElementById(`${resource}Div`).style.display = resources[resource] ? "inline-block" : "none";
 
 		if(!squirrelMode){
-			if (resource === "supplies") document.getElementById("suppliesCost").textContent = towns[0].suppliesCost;
 			if (resource === "teamMembers") document.getElementById("teamCost").textContent = (resources.teamMembers + 1) * 100;
 		}
 
@@ -929,7 +928,9 @@ function View() {
             const storyDiv = document.createElement("div");
             storyDiv.innerHTML = storyDivText;
             actionStoriesTown[action.townNum].appendChild(storyDiv);
+			
         }
+		
     };
 	
 	this.updateSquirrelMode = function(){
@@ -989,7 +990,7 @@ function View() {
 			}
 						
 			document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
-			this.adjustManaCost(action.name);
+			this.adjustManaCost(action.name, squirrelMode);
 			
         }
 		this.updateResources();
@@ -1035,9 +1036,9 @@ function View() {
 	};
 
 
-    this.adjustManaCost = function(actionName) {
+    this.adjustManaCost = function(actionName, squirrelTooltip) {
         const action = translateClassNames(actionName);
-        document.getElementById(`manaCost${action.varName}`).textContent = formatNumber(action.manaCost());
+        document.getElementById(`manaCost${action.varName}`).textContent = formatNumber(action.manaCost(squirrelTooltip));
     };
 
     this.adjustGoldCost = function(varName, amount) {
@@ -1319,7 +1320,9 @@ function unlockGlobalStory(num) {
 }
 
 function unlockStory(name) {
+	console.log("before : " + name + " = " + storyReqs[name]);
     if (!storyReqs[name]) storyReqs[name] = true;
+	console.log("after : " + name + " = " + storyReqs[name]);
 }
 
 const curActionsDiv = document.getElementById("curActionsList");

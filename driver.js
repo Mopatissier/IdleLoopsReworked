@@ -232,6 +232,7 @@ function resetResource(resource) {
 function resetResources() {
     resources = copyObject(resourcesTemplate);
     if(getExploreProgress() >= 100) addResource("glasses", true);
+	if(getLevelSquirrelAction("Pet Squirrel") >= 2) addResource("squirrel", true);
     view.updateResources();
 }
 
@@ -638,10 +639,21 @@ function setSquirrelMode(value) {
 	view.updateSquirrelMode();
 }
 
+function getLevelSquirrelAction(actionName) {
+	const action = translateClassNames(actionName);
+	const level = squirrelLevel[camelize(action.varName)];
+	
+	if(level === undefined)	return 0;
+	else return level;
+}
+
 function levelUpSquirrelAction(actionName) {
 	
 	const action = translateClassNames(actionName);
-	squirrelLevel[camelize(action.varName)] ++;
+	const level = squirrelLevel[camelize(action.varName)];
+	
+	if(level === undefined) squirrelLevel[camelize(action.varName)] = 1;
+	else squirrelLevel[camelize(action.varName)] ++;
 	
 	if(squirrelMode) view.updateSquirrelTooltip(action);
 }

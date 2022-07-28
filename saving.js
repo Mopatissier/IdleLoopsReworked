@@ -113,6 +113,7 @@ const resourcesTemplate = copyObject(resources);
 // eslint-disable-next-line prefer-const
 let guild = "";
 let magicFight = false;
+let squirrelHaggle = false;
 let portalUsed = false;
 let stoneLoc = 0;
 let curLoadout = 0;
@@ -163,6 +164,7 @@ let trainingLimits = 10;
 let storyShowing = 0;
 let storyMax = 0;
 const storyReqs = {
+	manaBoughtZ1: false,
     maxSQuestsInALoop: false,
     maxLQuestsInALoop: false,
     heal10PatientsInALoop: false,
@@ -174,6 +176,7 @@ const storyReqs = {
     glassesTaken: false,
     partyThrown: false,
     strengthTrained: false,
+	foughtMagicFighter: false,
     suppliesBought: false,
     suppliesBoughtWithoutHaggling: false,
     smallDungeonAttempted: false,
@@ -226,9 +229,7 @@ const storyReqs = {
     castIntoShadowRealm: false,
     fellFromGrace: false
 };
-const squirrelLevel = {
-	wander: 0
-};
+const squirrelLevel = {};
 
 const curDate = new Date();
 let totalOfflineMs = 0;
@@ -284,6 +285,7 @@ function loadDefaults() {
     initializeStats();
     initializeSkills();
 	initializeSkillsSquirrel();
+	initializeSquirrelLevels();
 	initializeBuffs();
 }
 
@@ -305,6 +307,7 @@ function load() {
     loadouts = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
     loadoutnames = [[], [], [], [], [], [], [], [], [], [], [], [], [], [], []];
 
+	
     let toLoad = {};
     // has a save file
     if (window.localStorage[saveName] && window.localStorage[saveName] !== "null") {
@@ -354,13 +357,13 @@ function load() {
         }
     }
 	
-	if (toLoad.squirrelLevel !== undefined) {
-        for (const property in toLoad.squirrelLevel) {
-            if (toLoad.squirrelLevel.hasOwnProperty(property)) {
-                squirrelLevel[property] = toLoad.squirrelLevel[property];
-            }
-        }
-    }
+	if(toLoad.squirrelLevel !== undefined) {
+		for (const property in toLoad.squirrelLevel) {
+			if (toLoad.squirrelLevel.hasOwnProperty(property)) {
+				squirrelLevel[property] = toLoad.squirrelLevel[property];
+			}
+		}
+	}
 
     if (toLoad.totalTalent === undefined) {
         let temptotalTalent = 0;
@@ -560,6 +563,7 @@ function load() {
     }
 
     if(getExploreProgress() >= 100) addResource("glasses", true);
+	if(getLevelSquirrelAction("Pet Squirrel") >= 2) addResource("squirrel", true);
 
     adjustAll();
 

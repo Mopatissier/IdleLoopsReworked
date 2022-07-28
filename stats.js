@@ -198,6 +198,18 @@ function handleSkillSquirrelExp(list) {
     }
 }
 
+function initializeSquirrelLevels() {
+	
+	for(const action of totalActionList){
+		addSquirrelLevel(action);
+	}
+
+}
+
+function addSquirrelLevel(action) {
+	squirrelLevel[camelize(action.varName)] = 0;
+}
+
 function addBuffAmt(name, amount) {
     if (getBuffLevel(name) === buffHardCaps[name]) return;
     buffs[name].amt += amount;
