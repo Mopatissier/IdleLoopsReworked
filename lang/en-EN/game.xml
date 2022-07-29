@@ -6,6 +6,12 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.7"><![CDATA[
+            <b> July 29th, 2022</b>
+            • Fixed some more glitches  found by the alpha testers. Thank you again!<br>
+            • The hitbox for the little checkbox for switching mode is now way bigger.<br>
+			• When clicking on the icon/human icon in the action list, you can now change the mode for that specific action! Now it's less awkward to set up your loop.
+            ]]></version>
 			<version verNum="0.1.6"><![CDATA[
             <b> July 29th, 2022</b>
             • Fixed some glitch  found by the alpha testers. Thank you!<br>
@@ -17,13 +23,13 @@
             <b> July 28th, 2022</b>
 			Finally, here's the first version that's complete enough to be played! Have fun, everyone!<br>
             • Added all the squirrel actions.<br>
-			• The magic fighter is now finished.<br>
+			• The magic figther is now finished.<br>
 			• Fixed a variety of small glitches.
             ]]></version>
 			<version verNum="0.1.4"><![CDATA[
             <b> July 25th, 2022</b>
             • Buffed the exp system. Talents are now more powerful, and soulstones are similar, but stronger at the start. Additionally, you get twice more exp from the start.<br>
-			• Reworked a bit the squirrel and the magic fighter. They'll soon be complete!<br>
+			• Reworked a bit the squirrel and the magic figther. They'll soon be complete!<br>
 			• Fixes a few UI glitches that slipped in the last update.
             ]]></version>
 			<version verNum="0.1.3"><![CDATA[
@@ -770,7 +776,9 @@
 		<![CDATA[
           Ask your squirrel to do the actions for you.<br>
 		  You're not sure it's gonna be useful, but you have infinite time under your hand.<br>
-		  So why not try?]]>
+		  So why not try?<br>
+		  <b>Note:</b> in the action list, if you click on the human/squirrel icon, you can also switch the mode for that specific action.<br>
+		  How convenient!]]>
 		</tooltip_squirrel_mode>
         <current_action>
             <mana_original>Mana Original:</mana_original>
@@ -1020,7 +1028,7 @@
             <tooltip><![CDATA[
             You already miss seeing clearly. And there's nowhere to buy new glasses here!<br>You do remember finding a pair of your prescription during one of your 'house excursions'...<br>It's alright, you're sure it's a spare one. Probably. Maybe.<br>Costs one pile of stolen goods.<br>Affects any action with the glasses icon<br>Can only have 1 Take Glasses action.<br>Unlocked at 20% explored.
         ]]></tooltip>
-			<squirrel_1><![CDATA[You put the little toy glasses you found on the squirrel's head.<rb>This is the cutest thing ever!<br><b>Effect: </b>None.]]></squirrel_1>
+			<squirrel_1><![CDATA[You put the little toy glasses you found on the squirrel's head.<br>This is the cutest thing ever!<br><b>Effect: </b>None.]]></squirrel_1>
             <story_1><![CDATA[<b>Glasses taken:</b>⮀ The world snaps into sharp focus as you put them on and you gawk a little as details that had slipped your eyes previously stood out in sharp contrast. You're a little gobsmacked at how much of a difference they make.]]></story_1>
         </take_glasses>
         <found_glasses>

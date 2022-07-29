@@ -439,8 +439,8 @@ function View() {
             } else {
                 color = (travelNum > 0 || travelNum == -5) ? `linear-gradient(${this.zoneTints[townNum]} 49%, ${this.zoneTints[townNum + travelNum]} 51%)` : this.zoneTints[townNum];
             }
-			let squirrelModeIcon = "<img src='img/human.svg' class='smallIcon imageDragFix'>";
-			if(action.squirrelAction) squirrelModeIcon = "<img src='img/petSquirrel.svg' class='smallIcon imageDragFix'>";
+			let squirrelModeIcon = `<img id='modeIcon${i}' src='img/human.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+			if(action.squirrelAction) squirrelModeIcon = `<img id='modeIcon${i}' src='img/petSquirrel.svg' class='modeIcon' onclick='changeMode(${i})'>`;
             totalDivText +=(
                 `<div
                     id='nextActionContainer${i}'
@@ -454,8 +454,9 @@ function View() {
                     draggable='true' data-index='${i}'
                     style='background: ${color}; ${opacity}; ${display};'
                 >
+					
                     <div><img src='img/${camelize(action.name)}.svg' class='smallIcon imageDragFix'>
-					${squirrelModeIcon}	x 
+					${squirrelModeIcon} x
                     <div class='bold'>${actionLoops}</div></div>
                     <div style='float:right; margin-top: 1px; margin-right: 3px;'>
                         ${capButton}

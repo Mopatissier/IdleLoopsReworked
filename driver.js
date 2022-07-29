@@ -397,6 +397,19 @@ function capAllTraining() {
 
 }
 
+function changeMode(index) {
+	actions.nextLast = copyObject(actions.next);
+    const action = actions.next[index];
+	if(action.squirrelAction){
+		document.getElementById(`modeIcon${index}`).src = "img/human.svg";
+		action.squirrelAction = false;
+	} else {
+		document.getElementById(`modeIcon${index}`).src = 'img/petSquirrel.svg';
+		action.squirrelAction = true;
+	}
+	view.updateNextActions();
+}
+
 function addLoop(index) {
     actions.nextLast = copyObject(actions.next);
     const action = actions.next[index];
@@ -659,4 +672,10 @@ function levelUpSquirrelAction(actionName) {
 	else squirrelLevel[camelize(action.varName)] ++;
 	
 	if(squirrelMode) view.updateSquirrelTooltip(action);
+}
+
+function checkSquirrelMode() {
+	let squirrelCheck = document.getElementById("squirrelModeCheck");
+	squirrelCheck.checked = !squirrelCheck.checked;
+	setSquirrelMode(squirrelCheck.checked);
 }

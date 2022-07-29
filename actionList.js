@@ -683,7 +683,7 @@ Action.TakeGlasses = new Action("Take Glasses", {
         Luck: 0.3
     },
     canStart() {
-		if(this.squirrelAction) return resources.squirrel;
+		if(this.squirrelAction) return resources.squirrel && resources.stolenGoods >= 1;
         return resources.stolenGoods >= 1;
     },
     cost() {
@@ -1096,7 +1096,7 @@ Action.Investigate = new Action("Investigate", {
         return towns[0].getLevel("Met") >= 25;
     },
 	stolenGoodsMultiplication() {
-		const bonusMulti = ( getSkillSquirrelLevel("Trust") >= 17 ? 0.25 : 0.2);
+		const bonusMulti = ((getLevelSquirrelAction("Investigate") >= 2 && this.squirrelAction) ? 0.25 : 0.2);
 		return 1 + resources.stolenGoods * bonusMulti;
 	},
     finish() {
@@ -1623,7 +1623,7 @@ defineLazyGetter(Action.FightMonsters, "segmentModifiers",
 
 Action.MagicFighter = new MultipartAction("Magic Fighter", {
     type: "multipart",
-    expMult: 10,
+    expMult: 5,
     townNum: 0,
     varName: "MagFgt",
 	storyReqs(storyNum) {

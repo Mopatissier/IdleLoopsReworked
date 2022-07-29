@@ -1005,6 +1005,21 @@ input[type="number"] {
 
 
 
+.modeIcon {
+	text-align : center;
+	width	   : 16px;
+	height	   : 16px;
+}
+
+
+
+
+.modeIcon:hover {
+	color            : red;
+	cursor           : pointer;
+	background-color : rgba(0, 0, 0, 0.2);
+}
+
 
 .curActionBar {
 	height           : 100%;

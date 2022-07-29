@@ -1,6 +1,6 @@
 window.Views = {
     // activates verbose mode
-    debug: true,
+    debug: false,
     // a vue can be registered if it implements an html function, that returns the html
     // once a view VIEWNAME is registered, it can be called using Views.VIEWNAME
     registerView(viewName, view) {

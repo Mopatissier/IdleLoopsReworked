@@ -153,10 +153,6 @@ GameKeyboard.bindHotkey("shift+a", () => view.showActions(false));
 
 GameKeyboard.bindHotkey("shift+z", () => undo());
 
-GameKeyboard.bindHotkey("shift+space", () => {
-	let squirrelCheck = document.getElementById("squirrelModeCheck");
-	squirrelCheck.checked = !squirrelCheck.checked;
-	setSquirrelMode(squirrelCheck.checked);
-});
+GameKeyboard.bindHotkey("shift+space", () => checkSquirrelMode());
 
 
