@@ -646,6 +646,7 @@ function setActivatedBonusSpeed() {
 
 function setSquirrelMode(value) {
 	squirrelMode = value;
+	console.log("Squirrel mode actived : " + squirrelMode);
 	if(value) {
 		document.getElementById("iconSquirrelMode").src = "img/petSquirrel.svg";
 	} else {
@@ -676,6 +677,8 @@ function levelUpSquirrelAction(actionName) {
 
 function checkSquirrelMode() {
 	let squirrelCheck = document.getElementById("squirrelModeCheck");
-	squirrelCheck.checked = !squirrelCheck.checked;
+	if(squirrelMode == squirrelCheck.checked){
+		squirrelCheck.checked = !squirrelCheck.checked;
+	}
 	setSquirrelMode(squirrelCheck.checked);
 }
