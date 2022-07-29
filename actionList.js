@@ -1281,11 +1281,12 @@ Action.ThrowParty = new Action("Throw Party", {
 
 				case 2: adjustSQuests();
 						adjustLQuests();
+						towns[0].finishProgress("Met", 3600);
 					break;
 					
 			}
 		} else {	
-			towns[0].finishProgress("Met", 3200);
+			towns[0].finishProgress("Met", 2800);
 			unlockStory("partyThrown");
 		}
         
@@ -1660,7 +1661,7 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
         return resources.reputation >= 2 && magicFight == false && curPowerLevel < 4;
     },
     loopCost(segment) {
-        return precision3((Math.floor(Math.pow(4, towns[0].MagFgtLoopCounter/this.segments)+ 0.0000001)) * 50000);
+        return precision3((Math.floor(Math.pow(4, towns[0].MagFgtLoopCounter/this.segments)+ 0.0000001)) * 200000);
 		
     },
     tickProgress(offset) {
@@ -1852,7 +1853,7 @@ Action.BuySupplies = new Action("Buy Supplies", {
         addResource("gold", -towns[0].suppliesCost);
     },
 	goldCost() {
-		if(towns[0].suppliesCost === undefined) return 300;
+		if(towns[0].suppliesCost === undefined) return 450;
         return towns[0].suppliesCost;
     },
     visible() {
@@ -1879,7 +1880,7 @@ Action.BuySupplies = new Action("Buy Supplies", {
 			}
 		} else {
 			addResource("supplies", true);
-			if (towns[0].suppliesCost === 300) unlockStory("suppliesBoughtWithoutHaggling");
+			if (towns[0].suppliesCost === 450) unlockStory("suppliesBoughtWithoutHaggling");
 			unlockStory("suppliesBought");
 		}
     },
@@ -1939,7 +1940,7 @@ Action.Haggle = new Action("Haggle", {
 						
 				case 1: break;
 				
-				case 2: towns[0].suppliesCost -= 20;
+				case 2: towns[0].suppliesCost -= 30;
 						if (towns[0].suppliesCost < 0) {
 							towns[0].suppliesCost = 0;
 						}
@@ -1950,9 +1951,9 @@ Action.Haggle = new Action("Haggle", {
 					
 			}
 		} else {
-			if (towns[0].suppliesCost === 20) unlockStory("haggle15TimesInALoop");
+			if (towns[0].suppliesCost === 30) unlockStory("haggle15TimesInALoop");
 			else if (towns[0].suppliesCost === 0) unlockStory("haggle16TimesInALoop");
-			towns[0].suppliesCost -= 20;
+			towns[0].suppliesCost -= 30;
 			if (towns[0].suppliesCost < 0) {
 				towns[0].suppliesCost = 0;
 			}

@@ -598,17 +598,17 @@ function addOffline(num) {
             totalOfflineMs = 0;
         }
 		
-        document.getElementById("bonusSeconds").textContent = convertOfflineMsToString();
+        document.getElementById("bonusSeconds").textContent = convertMsToString(totalOfflineMs);
 		document.getElementById("bonusMult").textContent = bonusMultString;
     }
 }
 
-function convertOfflineMsToString(){
+function convertMsToString(totalMs){
 
-	let second = Math.floor((totalOfflineMs/1000)%60);
-	let minute = Math.floor((totalOfflineMs/(1000*60))%60);
-	let hour = Math.floor((totalOfflineMs/(1000*60*60))%24);
-	let day = Math.floor((totalOfflineMs/(1000*60*60*24)));
+	let second = Math.floor((totalMs/1000)%60);
+	let minute = Math.floor((totalMs/(1000*60))%60);
+	let hour = Math.floor((totalMs/(1000*60*60))%24);
+	let day = Math.floor((totalMs/(1000*60*60*24)));
 	
 	let timeString = "";
 	if(day > 0) timeString += (day + "d ");

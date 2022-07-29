@@ -36,12 +36,15 @@ function formatNumber(num) {
 
 function formatTime(seconds) {
     if (Number.isInteger(seconds)) {
-        return (formatNumber(seconds) + _txt("time_controls>seconds")).replace(/\B(?=(\d{3})+(?!\d))/gu, ",");
+		return convertMsToString(seconds*1000);
+        //return (formatNumber(seconds) + _txt("time_controls>seconds")).replace(/\B(?=(\d{3})+(?!\d))/gu, ",");
     }
     if (seconds < 10) {
-        return seconds.toFixed(2) + _txt("time_controls>seconds");
+		return convertMsToString(seconds.toFixed(2)*1000);
+        //return seconds.toFixed(2) + _txt("time_controls>seconds");
     }
-    return (seconds.toFixed(1) + _txt("time_controls>seconds")).replace(/\B(?=(\d{3})+(?!\d))/gu, ",");
+	return convertMsToString(seconds.toFixed(1)*1000);
+    //return (seconds.toFixed(1) + _txt("time_controls>seconds")).replace(/\B(?=(\d{3})+(?!\d))/gu, ",");
 }
 
 function copyArray(arr) {

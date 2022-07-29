@@ -6,15 +6,24 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.8"><![CDATA[
+            <b> July 30th, 2022</b>
+            • Fixed even more glitches and typos found by the alpha testers. My endless thanks!<br>
+            • The party action and its squirrel actions have been slightly reworked.<br>
+            • No more tooltips out of the screen!<br>
+            • The magic fighter is no longer an action you should have access to... But I'll leave it for now, just as an optional challenge.<br>
+            • Reputation is now more valuable! Supplies are now 450 gold, and haggle removes 30 gold.<br>
+			• Every timer should now show minutes, hours and days too, instead of just seconds.
+            ]]></version>
 			<version verNum="0.1.7"><![CDATA[
             <b> July 29th, 2022</b>
-            • Fixed some more glitches  found by the alpha testers. Thank you again!<br>
+            • Fixed some more glitches found by the alpha testers. Thank you again!<br>
             • The hitbox for the little checkbox for switching mode is now way bigger.<br>
 			• When clicking on the icon/human icon in the action list, you can now change the mode for that specific action! Now it's less awkward to set up your loop.
             ]]></version>
 			<version verNum="0.1.6"><![CDATA[
             <b> July 29th, 2022</b>
-            • Fixed some glitch  found by the alpha testers. Thank you!<br>
+            • Fixed some glitch found by the alpha testers. Thank you!<br>
             • Fixed a lot of typos.<br>
 			• From now on, once you lose your squirrel, you can't pet it anymore in that same loop.<br>
 			• Added an hotkey for squirrel mode : shift + space toggles it on and off.
@@ -1129,10 +1138,10 @@
         <throw_party>
             <label>Throw Party</label>
             <tooltip><![CDATA[
-            Take a break and socialize.<br>Gives people met progress equivalent to 16 Meet People actions.<br>Costs 2 reputation.<br>Unlocked at 30% Investigated.
+            Take a break and socialize.<br>Gives people met progress equivalent to 14 Meet People actions.<br>Costs 2 reputation.<br>Unlocked at 30% Investigated.
         ]]></tooltip>
-			<squirrel_1><![CDATA[It looks like words about you having a cute squirrel have reached more ears than you thought.<br>There's a bit more people in the party than usual, sweet!<br><b>Effect: </b>Gives people met progress equivalent to 18 Meet People actions.<br><b>Next: </b>trust >= 27 ]]></squirrel_1>
-			<squirrel_2><![CDATA[Your squirrel finally trusts you enough to chase itself that wild squirrel that was causing problems at the parties without any hint of hesitation.<br>People seems relieved, and they start talking to you about their squirrel-related problems, and how they couldn't dare tell you about them because you had a pet one.<br>You never knew you could learn about so many new quests at once!<br><b>Effect: </b>Gain 20 more small quests and 10 more long quests. Can only be done once.]]></squirrel_2>
+			<squirrel_1><![CDATA[It looks like words about you having a cute squirrel have reached more ears than you thought.<br>There's more people in the party than usual, sweet!<br><b>Effect: </b>Gives people met progress equivalent to 18 Meet People actions.<br><b>Next: </b>trust >= 27 ]]></squirrel_1>
+			<squirrel_2><![CDATA[Your squirrel finally trusts you enough to chase itself that wild squirrel that was causing problems at the parties without any hint of hesitation.<br>People seems relieved, and they start talking to you about their squirrel-related problems, and how they couldn't dare tell you about them because you had a pet one.<br>You never knew you could learn about so many new quests at once!<br><b>Effect: </b>Gain 20 more small quests and 10 more long quests. This effect can only be done once. Still gives 18 Meet People action.]]></squirrel_2>
             <story_1><![CDATA[<b>Party thrown:</b>⮀ You announce that its your birthday and you want to throw a party. You commandeer the village square and the people necessary to make it happen. You don't have the gold but people aren't quite able to say no. You promise you'll pay it off with the money from this current job.]]></story_1>
         </throw_party>
         <warrior_lessons>
@@ -1167,7 +1176,7 @@
             <label_done>Healed</label_done>
             <label_part>Patient</label_part>
             <tooltip><![CDATA[
-            You won't be able to heal them all, but they'll be thankful for doing what you can.<br>Healing is always 3 parts, each with a main stat - Diagnose (Per), Treat (Int), Inform (Cha).<br>Gives (magic skill) * (restoration skill / 50) * (1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>Gives 3 reputation and 50 magic exp upon patient completion.<br>Requires a reputation of 1 or above.<br>Unlocked at 12 Magic skill.<br>
+            You won't be able to heal them all, but they'll be thankful for doing what you can.<br>Healing is always 3 parts, each with a main stat - Diagnose (Per), Treat (Int), Inform (Cha).<br>Gives (magic skill) * (restoration skill / 50) * (1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>Gives 3 reputation and 50 magic exp upon patient completion.<br>Requires a reputation of 1 or above.<br>Unlocked at 12 Magic skill.
         ]]></tooltip>
 			<squirrel_1><![CDATA[The squirrel wants to heal people too! He tries and... looks completely at a loss over what to do.<br>At least he tried, right?<br><b>Effect: </b>None.]]></squirrel_1>
             <story_1><![CDATA[<b>Patient healed:</b>⮀ You're allowed in to see the patients and begin healing. It's excellent practice and everyone you heal, be it from broken bones to small scrapes is extraordinarily thankful for your help.]]></story_1>
@@ -1275,7 +1284,7 @@
             <label>Magic Fighter</label>
             <label_done>Attacks Landed</label_done>
             <tooltip><![CDATA[
-			You might learn a lot from fighting this very strong looking magic fighter. Looks like he's about to leave, though, so you only have the time do it once.<br>Every completed segment gives 50 magic and combat exp. Managing to land a hit will give you an extra 50 exp.<br>Gives (magic + self combat) * (1 + main stat / 100) * sqrt(1 + attacks landed / 100) progress points per mana.<br>Can only be done once par loop.<br>To beat him, you have to hit him four times!<br>Requires a reputation of 2 or above.<br>Unlocked at a combined Combat and Magic skill of 25.
+			You might learn a lot from fighting this insanely strong looking magic fighter. Looks like he's about to leave, though, so you only have the time do it once.<br>You have the feeling you're not supposed to meet him so early...<br><b>(This should be available later in the run, but you're free to fight him right now for a challenge.)</b><br>Every completed segment gives 50 magic and combat exp. Managing to land a hit will give you an extra 50 exp.<br>Gives (magic + self combat) * (1 + main stat / 100) * sqrt(1 + attacks landed / 100) progress points per mana.<br>Can only be done once per loop.<br>To beat him, you have to hit him four times!<br>Requires a reputation of 2 or above.<br>Unlocked at a combined Combat and Magic skill of 25.
         ]]></tooltip>
 			<part_names>
 				<name_1>Magic Fighter : Barely Moving A Muscle</name_1>
@@ -1339,10 +1348,10 @@
         <haggle>
             <label>Haggle</label>
             <tooltip><![CDATA[
-            They won't like you as much, but hey - you're leaving.<br>Costs 1 reputation to reduce the price of supplies by 20. <br>Unlocked at a combined Combat and Magic skill of 35.
+            They won't like you as much, but hey - you're leaving.<br>Costs 1 reputation to reduce the price of supplies by 30. <br>Unlocked at a combined Combat and Magic skill of 35.
         ]]></tooltip>
 			<squirrel_1><![CDATA[Until now, the squirrel acting cute worked pretty much every time. Time to get a discount with it!<br>... Well, you just learned the merchant dislikes squirrels. Oops?<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 30 ]]></squirrel_1>
-			<squirrel_2><![CDATA[You devise a plan with the squirrel to maximise its cuteness in the hope it would still soften the shopkeep.<br>After a lot of work and tries, it works! But with how difficult that was, you're sure it won't work again...<br><b>Effect: </b>Reduce the price of supplies by 20 without losing any reputation. Can only be done once par loop.]]></squirrel_2>
+			<squirrel_2><![CDATA[You devise a plan with the squirrel to maximise its cuteness in the hope it would still soften the shopkeep.<br>After a lot of work and tries, it works! But with how difficult that was, you're sure it won't work again...<br><b>Effect: </b>Reduce the price of supplies by 30 without losing any reputation. Can only be done once par loop.]]></squirrel_2>
             <story_1><![CDATA[<b>Haggle:</b>⮀ The shopkeep has some of the supplies you need, but they are of inferior quality and you're not paying his asking price for them, at least that's what you tell him. You argue, grumble, make sharp comments and are just in general unpleasant to one another.]]></story_1>
             <story_2><![CDATA[<b>15 Haggles in a loop:</b>⮀ The shopkeep basically throws you out the store shouting and cursing vociferously at you. You ears ring slightly at the barrage.]]></story_2>
             <story_3><![CDATA[<b>16 Haggles in a loop:</b>⮀ At this point, it served no purpose, you were doing this solely for the fun of it. No matter how much you haggled, the merchant wasn't going to pay you to take the supplies. That was just wishful thinking. Although, losing the reputation you had accrued could be useful in the long run...]]></story_3>

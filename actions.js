@@ -144,7 +144,7 @@ function Actions() {
 		endLoopWithNoValidAction = true;
 		squirrelAlreadyPickedUp = false;
         curTown = 0;
-        towns[0].suppliesCost = 300;
+        towns[0].suppliesCost = 450;
         view.updateResource("supplies");
         curAdvGuildSegment = 0;
         curCraftGuildSegment = 0;

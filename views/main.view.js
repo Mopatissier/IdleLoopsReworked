@@ -164,6 +164,19 @@ function View() {
         statShowing = stat;
         if (stat !== undefined) this.updateStat(stat);
     };
+	
+	this.adjustTooltipPosition = function(tooltipDiv) {
+        let parent = tooltipDiv.parentNode;
+        let y = parent.getBoundingClientRect().y;
+        let windowHeight = window.innerHeight;
+        let windowScrollY = window.scrollY;
+        let border = (windowHeight / 2) + windowScrollY;
+        if (y > border) {
+            tooltipDiv.classList.add("showthisOver");
+        } else {
+            tooltipDiv.classList.remove("showthisOver");
+        }
+    }
 
     this.updateStatGraphNeeded = false;
 
@@ -871,6 +884,8 @@ function View() {
                 ondragstart='handleDirectActionDragStart(event, "${action.name}", ${action.townNum}, "${action.varName}", false)'
                 ondragend='handleDirectActionDragEnd("${action.varName}")'
                 onclick='addActionToList("${action.name}", ${action.townNum})'
+				onmouseover='view.updateAction("${action.varName}")'
+                onmouseout='view.updateAction(undefined)'
             >
                 ${action.label}<br>
                 <div style='position:relative'>
@@ -992,6 +1007,7 @@ function View() {
 						
 			document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
 			this.adjustManaCost(action.name, squirrelMode);
+			this.updateTrainingLimits();
 			
         }
 		this.updateResources();
@@ -1036,6 +1052,11 @@ function View() {
 		
 	};
 
+	this.updateAction = function(action) {
+        if (action === undefined) return
+        let container = document.getElementById(`container${action}`);
+        this.adjustTooltipPosition(container.querySelector("div.showthis"));
+    }
 
     this.adjustManaCost = function(actionName, squirrelTooltip) {
         const action = translateClassNames(actionName);
