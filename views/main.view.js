@@ -850,7 +850,7 @@ function View() {
         const progressDiv = document.createElement("div");
         progressDiv.id = `infoContainer${action.varName}`;
         progressDiv.style.display = "block";
-		progressDiv.style.height = "32px";
+		progressDiv.style.height = "38px";
         progressDiv.innerHTML = totalDivText;
         townInfos[action.townNum].appendChild(progressDiv);
     };

@@ -1,3 +1,15 @@
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+
+
 div {
 	display : inline-block;
 }
@@ -627,7 +639,7 @@ input[type="number"] {
 }
 
 
-.thinActionProgressBarUpper, .thinActionLongProgressBarLower {
+.thinActionProgressBarUpper, .thinActionProgressBarLower {
 	width            : 90%;
 	background-color : white;
 	display          : block;
@@ -1255,14 +1267,14 @@ input[type="number"] {
 
 
 
-.t-cubic .thinProgressBarUpper, .t-cubic .thinProgressBarLower {
+.t-cubic .thinProgressBarUpper, .t-cubic .thinProgressBarLower, .t-cubic .thinActionProgressBarUpper, .t-cubic .thinActionProgressBarLower {
 	border : 1px solid black;
 }
 
 
 
 
-.t-cubic .thinProgressBarLower {
+.t-cubic .thinProgressBarLower, .t-cubic .thinActionProgressBarLower {
 	margin-top : -3px;
 }
 
