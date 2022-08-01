@@ -134,7 +134,8 @@ function View() {
         updateMultiPartActions: [],
         updateNextActions: [],
         updateTime: [],
-        updateCurrentActionBar: []
+        updateCurrentActionBar: [],
+		updateTravelMenu: [],
     };
 
     // requesting an update will call that update on the next view.update tick (based off player set UPS)
@@ -175,6 +176,19 @@ function View() {
             tooltipDiv.classList.add("showthisOver");
         } else {
             tooltipDiv.classList.remove("showthisOver");
+        }
+    }
+	
+	this.adjustStoryTooltipPosition = function(tooltipDiv) {
+        let parent = tooltipDiv.parentNode;
+        let y = parent.getBoundingClientRect().y;
+        let windowHeight = window.innerHeight;
+        let windowScrollY = window.scrollY;
+        let border = (windowHeight / 2) + windowScrollY;
+        if (y > border) {
+            tooltipDiv.classList.add("showthisOverStory");
+        } else {
+            tooltipDiv.classList.remove("showthisOverStory");
         }
     }
 
@@ -747,7 +761,7 @@ function View() {
         if (actionStoriesShowing) actionStoriesTown[townNum].style.display = "block";
         else actionOptionsTown[townNum].style.display = "block";
         townInfos[townNum].style.display = "block";
-        document.getElementById("townName").textContent = _txt(`towns>town${townNum}>name`);
+         $("#TownSelect").val(townNum);
         document.getElementById("townDesc").textContent = _txt(`towns>town${townNum}>desc`);
         townShowing = townNum;
     };
@@ -885,7 +899,7 @@ function View() {
                 ondragend='handleDirectActionDragEnd("${action.varName}")'
                 onclick='addActionToList("${action.name}", ${action.townNum})'
 				onmouseover='view.updateAction("${action.varName}")'
-                onmouseout='view.updateAction(undefined)'
+				onmouseout='view.updateAction(undefined)'
             >
                 ${action.label}<br>
                 <div style='position:relative'>
@@ -927,10 +941,9 @@ function View() {
                 }
                 storyTooltipText += "<br>";
             }
-    
-	
+    	
             const storyDivText =
-                `<div id='storyContainer${action.varName}' class='storyContainer showthat' draggable='false' onmouseover='hideNotification("storyContainer${action.varName}")'>${action.label}
+                `<div id='storyContainer${action.varName}' class='storyContainer showthat' draggable='false' onmouseover='hideNotification("storyContainer${action.varName}"), view.updateActionStory("${action.varName}")'>${action.label}
                     <br>
                     <div style='position:relative'>
                         <img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>
@@ -1054,8 +1067,15 @@ function View() {
 
 	this.updateAction = function(action) {
         if (action === undefined) return
-        let container = document.getElementById(`container${action}`);
-        this.adjustTooltipPosition(container.querySelector("div.showthis"));
+		let container = document.getElementById(`container${action}`);
+		this.adjustTooltipPosition(container.querySelector("div.showthis"));        
+    }
+	
+	this.updateActionStory = function(action) {
+        if (action === undefined) return		
+		let container = document.getElementById(`storyContainer${action}`)
+		this.adjustStoryTooltipPosition(container.querySelector("div.showthisstory"));
+        
     }
 
     this.adjustManaCost = function(actionName, squirrelTooltip) {
@@ -1324,13 +1344,24 @@ function View() {
         document.getElementById("theBody").className = `t-${options.theme}`;
     };
 	
+	
 	 this.createTravelMenu = function() {
-        let travelMenu = document.getElementById("travelMenu");
-        travelMenu.innerHTML = "";
-        townNames.forEach((town, index) => {
-            if (townsUnlocked.includes(index))
-                travelMenu.innerHTML += `<div id='travelButton`+index+`' class='button showthat control' onClick='view.showTown(`+index+`)'>`+town+`</div><br>`;
+        let travelMenu = $("#TownSelect");
+        travelMenu.empty()
+        townNames.forEach((town, index) => {           
+            travelMenu.append("<option value="+index+" hidden=''>"+town+"</option>");
         });
+        travelMenu.change(function() {
+            view.showTown(Number($(this).val()));
+        });
+        this.updateTravelMenu()
+    }
+
+    this.updateTravelMenu = function() {
+        let travelOptions = $("#TownSelect").children();
+        for (let i=0;i<travelOptions.length;i++) {
+            travelOptions[i].hidden=(!townsUnlocked.includes(i));
+        }
     }
 }
 

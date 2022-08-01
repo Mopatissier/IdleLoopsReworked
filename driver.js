@@ -131,7 +131,7 @@ function pauseGame(ping) {
     stop = !stop;
     view.updateTime();
     view.updateCurrentActionBar(actions.currentPos);
-    document.title = stop ? "*PAUSED* Idle Loops" : "Idle Loops";
+    document.title = stop ? "*PAUSED* Idle Loops Reworked" : "Idle Loops Reworked";
     document.getElementById("pausePlay").textContent = _txt(`time_controls>${stop ? "play_button" : "pause_button"}`);
     if (!stop && (shouldRestart || timer >= timeNeeded)) {
         restart();
@@ -333,6 +333,7 @@ function unlockTown(townNum) {
         townsUnlocked.sort();
         // refresh current
         view.showTown(townNum);
+		view.requestUpdate("updateTravelMenu",null);
     }
     curTown = townNum;
 }
@@ -646,7 +647,6 @@ function setActivatedBonusSpeed() {
 
 function setSquirrelMode(value) {
 	squirrelMode = value;
-	console.log("Squirrel mode actived : " + squirrelMode);
 	if(value) {
 		document.getElementById("iconSquirrelMode").src = "img/petSquirrel.svg";
 	} else {

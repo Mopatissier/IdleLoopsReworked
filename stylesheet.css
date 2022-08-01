@@ -51,7 +51,7 @@ body {
 
 
 
-.showthat:hover .showthis, .showthat:hover .showthisOver, .showthatO:hover .showthis, .showthatO:hover .showthisH, .showthat:hover .showthisname, .showthat:hover .showthisstory {
+.showthat:hover .showthis, .showthat:hover .showthisOver, .showthat:hover .showthisOverStory, .showthatO:hover .showthis, .showthatO:hover .showthisH, .showthat:hover .showthisname, .showthat:hover .showthisstory {
 	display : block;
 }
 
@@ -99,6 +99,13 @@ body {
 }
 
 
+
+
+
+.showthisOverStory {
+	transform: translateY(-100%);
+	bottom : 100%;
+}
 
 
 .showthisR {
@@ -213,11 +220,9 @@ body {
 }
 
 
-
-
 .showthisstory {
 	display     : none;
-	position    : absolute;
+	position    : relative;
 	color       : black;
 	background  : url(img/misc/textureDesaturated.png);
 	border      : 1px solid #b89651;
@@ -226,6 +231,8 @@ body {
 	margin-left : -1px;
 	z-index     : 999999;
 	text-align  : left;
+	width		: max-content;
+	max-width	: 790px;
 }
 
 

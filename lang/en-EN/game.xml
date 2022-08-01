@@ -6,6 +6,14 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.1.9"><![CDATA[
+            <b> August 1st, 2022</b>
+            • Even more typos and glitched fixed! When will it stop?!<br>
+            • The tab name is now "Idle Loops Reworked".<br>
+            • Reworked the story bit tooltips! It is now more comfortable to read them.<br>
+            • Rewrote the squirrel mode bits for petting the squirrel.<br>
+            • The fast travel menu has been reworked. Thank you Tomnar!
+            ]]></version>
 			<version verNum="0.1.8"><![CDATA[
             <b> July 30th, 2022</b>
             • Fixed even more glitches and typos found by the alpha testers. My endless thanks!<br>
@@ -1006,11 +1014,11 @@
 		<pet_squirrel>
             <label>Pet Squirrel</label>
             <tooltip><![CDATA[
-            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<br>Spend some time with it to increase its trust by 100 exp and take it with you.<br>Every level of trust the squirrel have increases the mana cost of this action by 100.<br>Unlocked at 5% explored.
+            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<br>Spend some time with it to increase its trust by 100 exp and take it with you.<br>Every level of trust the squirrel have increases the mana cost of this action by 100.<br>You have the feeling that taking the squirrel with you and then doing this action in squirrel mode will be valuable...<br>Unlocked at 5% explored.
         ]]></tooltip>
-			<squirrel_1><![CDATA[The squirrel glares at you with daggers in its eyes, but still lets you pet it.<br>Amazingly, it follows your orders, but it doesn't trust you enough yet to be of any use.<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 5 ]]></squirrel_1>
-			<squirrel_2><![CDATA[It looks like the squirrel is finally warming up to you.<br>That was quick, but seeing how friendly you were and how you're both stuck together in the time loop, it's maybe not that surprising.<br>At the start of the next loop, it directly jumps on your shoulders.<br><b>Effect: </b>From now on, you will start each loop with the squirrel in your inventory.<br><b>Next: </b>trust >= 20 ]]></squirrel_2>
-			<squirrel_3><![CDATA[The squirrel isn't satisfied anymore with pets. It takes you to a special restaurant for animals and humans... Does he want to spend quality time eating with you?<br><b>Effect: </b>Gain 200 trust exp for the fixed cost of 2500 mana. Needs 2 reputation.]]></squirrel_3>
+			<squirrel_1><![CDATA[You ask the squirrel to pet itself. It looks at you with extreme confusion.<br>Maybe increasing your trust will change the outcome of this action...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 5 ]]></squirrel_1>
+			<squirrel_2><![CDATA[You ask again the squirrel to pet itself. It still looks confused, but does it. Why is this so cute?!<br>Surprisingly, at the start of the next loop, it directly jumps on your shoulders. And does it again at the next one.<br>Neat, it looks like it'll automatically follow you from now on!<br><b>Effect: </b>From now on, you will start each loop with the squirrel in your inventory.<br><b>Next: </b>trust >= 20 ]]></squirrel_2>
+			<squirrel_3><![CDATA[The squirrel looks definitely fed up with pets right about now!<br>When you ask it to pet itself, it instead leads you to some sort of playground for pets. What an excellent idea!<br>Oh uh... Looks like they don't let any random animal here. You're sure with enough reputation, you can convince them to let the squirrel pass.<br><b>Effect: </b>Gain 200 trust exp for the fixed cost of 2500 mana. Needs 2 reputation.]]></squirrel_3>
 			<story_1><![CDATA[<b>Pet the squirrel:</b>⮀ The squirrel hesitantly approaches you... It looks ready to bite you. It also looks all angry and confused. Probably from you tripping on it and the time rewinding every few minutes.]]></story_1>
 			<story_2><![CDATA[<b>50 trust:</b>⮀ That's it. You've done it. Now you and the squirrel are the best friends there have ever been. He's ready to sacrifice his life for you and vice-versa.]]></story_2>
         </pet_squirrel>
@@ -1058,7 +1066,7 @@
 			<squirrel_1><![CDATA[You gave the squirrel a little bag with a word attached to it asking to buy mana with the gold inside.<br>A while later, the squirrel comes back with the mana potions.<br>You're surprised that it worked. Too bad the outcome is the same as you doing it.<br><b>Effect: </b>Normal effect.<br><b>Next: </b>trust >= 8 ]]></squirrel_1>
 			<squirrel_2><![CDATA[The mana merchant looks at your squirrel and wants to buy it.<br>You don't know what to say, so she snatch it out and give you a small mana potion in exchange.<br>You just get out of the stand a little stunned... At least the squirrel will be back next loop.<br><b>Effect: </b>Gain 100 extra mana and lose the squirrel.<br><b>Next: </b>trust >= 15 ]]></squirrel_2>
 			<squirrel_3><![CDATA[This time you are prepared, and so is the squirrel.<br>The squirrel tries its best to seem cute and you bargain with the merchant.<br>She begrudgingly gives you a lot more mana this time! You and the squirrel both feel proud.<br><b>Effect: </b>Gain 1500 extra mana and lose the squirrel.]]></squirrel_3>
-            <story_1><![CDATA[<b>Bought Z1 Mana :</b>⮀ Looks like there is a stand selling potions, now that's useful! It just opened right now. That seems a bit too convenient, you can't help but feel a little suspicious...]]></story_1>
+            <story_1><![CDATA[<b>Bought Z1 Mana :</b>⮀ Looks like there is a stand selling mana potions. How convenient! It just opened right now. Like, right at the exact time the loop started. You can't help but feel a little uneasy...]]></story_1>
         </buy_mana_z1>
         <meet_people>
             <label>Meet People</label>
@@ -1129,8 +1137,8 @@
             <tooltip2><![CDATA[
             gold and 1 reputation as a reward.<br>Every 5 Long Quests have loot.<br>Unlocked at 10% Investigated.
         ]]></tooltip2>
-		<squirrel_1><![CDATA[You've seen how badly the squirrel performed for the small quests and you doubt it'd be any better with long quests, but its's worth a try.<br>Unsurprisingly, it fails. Pretty hard too. Oh well...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 22 ]]></squirrel_1>
-		<squirrel_2><![CDATA[Charming the quest-givers seems to have worked for the small quests. Let's try it here too!<br>Well, it only resulted in the quest-giver not paying attention to you, so you didn't gain any reputation. At least you got more gold.<br><b>Effect: </b>Quests give +10%, but no reputation.<br><b>Next: </b>trust >= 26 ]]></squirrel_2>
+		<squirrel_1><![CDATA[You've seen how badly the squirrel performed for the short quests and you doubt it'd be any better with long quests, but its's worth a try.<br>Unsurprisingly, it fails. Pretty hard too. Oh well...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 22 ]]></squirrel_1>
+		<squirrel_2><![CDATA[Charming the quest-givers seems to have worked for the short quests. Let's try it here too!<br>Well, it only resulted in the quest-giver not paying attention to you, so you didn't gain any reputation. At least you got more gold.<br><b>Effect: </b>Quests give +10%, but no reputation.<br><b>Next: </b>trust >= 26 ]]></squirrel_2>
 		<squirrel_3><![CDATA[Let's be more tactical about this. You hatch a plan so the squirrel only distracts the quest-giver when it counts.<br>The plan works, and you get your reputation, this time! You even got a bigger tip! Sweet victory.<br><b>Effect: </b>Quests give +20% gold.]]></squirrel_3>
             <story_1><![CDATA[<b>Long Quest finished:</b>⮀ You cleared out a cellar of rats; there were at least sixty of the blighters. You were rewarded handsomely, and you got a small reputation boost to boot.]]></story_1>
             <story_2><![CDATA[<b>10 Long Quests with loot in a loop:</b>⮀ You’ve cleared out cellars, helped build a house, collected flowers for dyes, worked in the bakery, taken out trash, and helped a seamstress finish a gift for her husband. Your reputation is spreading as the helpful courier. Everyone is at the very least willing to listen to you.]]></story_2>
@@ -1141,7 +1149,7 @@
             Take a break and socialize.<br>Gives people met progress equivalent to 14 Meet People actions.<br>Costs 2 reputation.<br>Unlocked at 30% Investigated.
         ]]></tooltip>
 			<squirrel_1><![CDATA[It looks like words about you having a cute squirrel have reached more ears than you thought.<br>There's more people in the party than usual, sweet!<br><b>Effect: </b>Gives people met progress equivalent to 18 Meet People actions.<br><b>Next: </b>trust >= 27 ]]></squirrel_1>
-			<squirrel_2><![CDATA[Your squirrel finally trusts you enough to chase itself that wild squirrel that was causing problems at the parties without any hint of hesitation.<br>People seems relieved, and they start talking to you about their squirrel-related problems, and how they couldn't dare tell you about them because you had a pet one.<br>You never knew you could learn about so many new quests at once!<br><b>Effect: </b>Gain 20 more small quests and 10 more long quests. This effect can only be done once. Still gives 18 Meet People action.]]></squirrel_2>
+			<squirrel_2><![CDATA[Your squirrel finally trusts you enough to chase itself that wild squirrel that was causing problems at the parties without any hint of hesitation.<br>People seems relieved, and they start talking to you about their squirrel-related problems, and how they couldn't dare tell you about them because you had a pet one.<br>You never knew you could learn about so many new quests at once!<br><b>Effect: </b>Gain 20 more short quests and 10 more long quests. This effect can only be done once. Still gives 18 Meet People action.]]></squirrel_2>
             <story_1><![CDATA[<b>Party thrown:</b>⮀ You announce that its your birthday and you want to throw a party. You commandeer the village square and the people necessary to make it happen. You don't have the gold but people aren't quite able to say no. You promise you'll pay it off with the money from this current job.]]></story_1>
         </throw_party>
         <warrior_lessons>
@@ -1342,7 +1350,7 @@
 			<squirrel_1><![CDATA[Maybe you could use the squirrel for a discount? You ask it to act cute in front of the shopkeep.<br>Both the squirrel and the shopkeep look at you with a grave look.<br>Oh, right, you need to use the haggle action if you want a discount.<br><b>Effect: </b>None.]]></squirrel_1>
             <tooltip><![CDATA[Prepare to move on.<br>Costs ]]></tooltip>
 			<tooltip2><![CDATA[ gold.<br>You only need one set of supplies.]]></tooltip2>
-            <story_1><![CDATA[<b>Supplies bought:</b>⮀ A tent, enough rations to last for a month, portable cooking equipment and other assorted paraphernalia for your trip. The tent is durable and the rations don't taste bland and lifeless. It was probably worth the 300 gold asking price. Good thing you knew how to haggle.]]></story_1>
+            <story_1><![CDATA[<b>Supplies bought:</b>⮀ A tent, enough rations to last for a month, portable cooking equipment and other assorted paraphernalia for your trip. The tent is durable and the rations don't taste bland and lifeless. It was probably worth the 450 gold asking price. Good thing you knew how to haggle.]]></story_1>
             <story_2><![CDATA[<b>Supplies bought without haggling:</b>⮀ How luxurious! You had the gold to just throw it away now, even though the mana would've been more beneficial in the long run, not having to haggle once in awhile was surprisingly nice. Truly, you have grown luxuriant.]]></story_2>
         </buy_supplies>
         <haggle>

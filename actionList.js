@@ -760,6 +760,13 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
     type: "normal",
     expMult: 1,
     townNum: 0,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return storyReqs.manaBoughtZ1;
+        }
+        return false;
+    },
     stats: {
         Cha: 0.7,
         Int: 0.2,
@@ -808,14 +815,14 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
 						addMana(resources.gold * this.goldCost());
 						resetResource("stolenGoods");
 						resetResource("gold");
-						unlockStory("BoughtZ1Mana");
+						unlockStory("manaBoughtZ1");
 					break;
 						
 				case 2: addResource("gold", resources.stolenGoods * this.stolenGoodsValue());
 						addMana(resources.gold * this.goldCost());
 						resetResource("stolenGoods");
 						resetResource("gold");
-						unlockStory("BoughtZ1Mana");
+						unlockStory("manaBoughtZ1");
 						addMana(100);
 						addResource("squirrel", false);						
 					break;
@@ -824,7 +831,7 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
 						addMana(resources.gold * this.goldCost());
 						resetResource("stolenGoods");
 						resetResource("gold");
-						unlockStory("BoughtZ1Mana");
+						unlockStory("manaBoughtZ1");
 						addMana(1500);
 						addResource("squirrel", false);
 					break;
@@ -835,7 +842,7 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
 			addMana(resources.gold * this.goldCost());
 			resetResource("stolenGoods");
 			resetResource("gold");
-			unlockStory("BoughtZ1Mana");
+			unlockStory("manaBoughtZ1");
 		
 		}
     },
