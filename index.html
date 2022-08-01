@@ -597,14 +597,16 @@
     </div>
 
     <div id="townColumn" style="width:535px;vertical-align:top;">
-            <div id="townWindow" style="width:100%;text-align:center;height:34px">
-            <div style="float:left;margin-left:150px;margin-top:5px;" class="actionIcon fa fa-arrow-left" id="townViewLeft" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)-1])"></div>
+        <div id="townWindow" style="width:100%;text-align:center;">
+            <div style="float:left;margin-left:150px;" class="actionIcon fa fa-arrow-left" id="townViewLeft" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)-1])"></div>
             <div class="showthat">
-                <div class="large bold"><select class="title" style="text-align:center;width:175px;background-color:#e4ece5;"  id="TownSelect"></select></div>
+                <div class="large bold"><div class="bold" id="townName"></div></div>
                 <div id='townDesc' class='showthis'></div>
             </div>
-            <div style="float:right;margin-right:150px;margin-top:5px;" class="actionIcon fa fa-arrow-right" id="townViewRight" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)+1])"></div>
-        </div><br>
+			<div style="float:right;margin-right:100px;margin-bottom:20px;" class="actionIcon fa fa-arrow-down showthatH">
+                <div id="travelMenu" class="showthisH" style="margin-top:-5px;"></div></div>
+            <div style="float:right;margin-right:50px;" class="actionIcon fa fa-arrow-right" id="townViewRight" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)+1])"></div>
+		</div><br>
         <div id="townInfo0" class='townInfo'></div>
         <div id="townInfo1" class='townInfo' style="display:none;"></div>
         <div id="townInfo2" class='townInfo' style="display:none;"></div>

@@ -761,7 +761,7 @@ function View() {
         if (actionStoriesShowing) actionStoriesTown[townNum].style.display = "block";
         else actionOptionsTown[townNum].style.display = "block";
         townInfos[townNum].style.display = "block";
-         $("#TownSelect").val(townNum);
+        document.getElementById("townName").textContent = _txt(`towns>town${townNum}>name`);
         document.getElementById("townDesc").textContent = _txt(`towns>town${townNum}>desc`);
         townShowing = townNum;
     };
@@ -1346,23 +1346,14 @@ function View() {
 	
 	
 	 this.createTravelMenu = function() {
-        let travelMenu = $("#TownSelect");
-        travelMenu.empty()
-        townNames.forEach((town, index) => {           
-            travelMenu.append("<option value="+index+" hidden=''>"+town+"</option>");
+       let travelMenu = document.getElementById("travelMenu");
+        travelMenu.innerHTML = "";
+        townNames.forEach((town, index) => {
+            if (townsUnlocked.includes(index))
+                travelMenu.innerHTML += `<div id='travelButton`+index+`' class='button showthat control' onClick='view.showTown(`+index+`)'>`+town+`</div><br>`;
         });
-        travelMenu.change(function() {
-            view.showTown(Number($(this).val()));
-        });
-        this.updateTravelMenu()
     }
 
-    this.updateTravelMenu = function() {
-        let travelOptions = $("#TownSelect").children();
-        for (let i=0;i<travelOptions.length;i++) {
-            travelOptions[i].hidden=(!townsUnlocked.includes(i));
-        }
-    }
 }
 
 function unlockGlobalStory(num) {
