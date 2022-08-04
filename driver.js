@@ -622,16 +622,16 @@ function convertMsToString(totalMs){
 }
 
 function toggleOffline() {
-    if (totalOfflineMs === 0) return;
-    if (bonusSpeed === 1) {
-        setActivatedBonusSpeed();
-        document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>on");
-    } else {
-        bonusSpeed = 1;
-        document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>off");
-		bonusMultString = ("1x");
-    }
-    view.updateTime();
+	
+	if(totalOfflineMs === 0) return;
+	
+	if(bonusSpeed === 1){
+		document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>on");
+	} else {
+        document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>off");	
+	}
+	
+	setActivatedBonusSpeed();
 }
 
 function setActivatedBonusSpeed() {
@@ -642,7 +642,12 @@ function setActivatedBonusSpeed() {
 	if(bonusSpeed > 5){
 		bonusSpeed = 5;
 	}
+	if (document.getElementById("isBonusOn").textContent == _txt("time_controls>bonus_seconds>state>off")) {
+		bonusSpeed = 1;
+	}
 	bonusMultString = (bonusSpeed+"x");
+	document.getElementById("bonusMult").textContent = bonusMultString;
+	
 }
 
 function setSquirrelMode(value) {

@@ -6,6 +6,12 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.0"><![CDATA[
+            <b> August 4st, 2022</b>
+            Alright, it's time to work on the second zone! It has been unlocked, but is right now identical to the original forest, so I don't recommend trying it. You can still do it if you're bored, though. Also please do a backup before going in there!<br>
+            • Fixed a few glitches, including one where the squirrel would eat your gold in your back.<br>
+            • Made the small dungeon a bit harder. The first floor's difficulty haven't changed, so don't worry too much about it.
+            ]]></version>
 			<version verNum="0.1.9"><![CDATA[
             <b> August 1st, 2022</b>
             • Even more typos and glitched fixed! When will it stop?!<br>
@@ -807,7 +813,7 @@
             <error>Error:</error>
         </current_action>
 		
-		<squirrel_default><![CDATA[Ask the squirrel to do this action for you.<br>You have to do it at least once to discover its effect.<br><b>You need the squirrel to do all actions in squirrel mode, make sure to get it by your side before doing any!</b>]]></squirrel_default>
+		<squirrel_default><![CDATA[Ask the squirrel to do this action for you.<br>You have to do it at least once to discover its effect.<br><b>You need the squirrel to do actions in squirrel mode, make sure to get it by your side before doing any!</b>]]></squirrel_default>
 
         <!--survey-->
             <surveyZ0>
@@ -1366,10 +1372,10 @@
         <start_journey>
             <label>Start Journey</label>
             <tooltip><![CDATA[
-            Follow the trail to end up at the next town. You need to keep moving until you can learn how to shut these loops off.<br>Costs 1 supplies. Finish once to unlock Forest Path's actions, then finish this in order to use Forest Path's actions.<br>Unlocked at a combined Combat and Magic skill of 35.<br><b>Warning : this is locked and won't have any effect until z1 is finished.</b>
+            Follow the trail to end up at the next town. You need to keep moving until you can learn how to shut these loops off.<br>Costs 1 supplies. Finish once to unlock Forest Path's actions, then finish this in order to use Forest Path's actions.<br>Unlocked at a combined Combat and Magic skill of 35.<br><b>Warning : the next zone isn't finished. Like at all. Getting further will only give you an extremely unbalanced gameplay that will give you a taste of what's to come.<br>Please, please back up your save before going further! There's even the risk your savefile could be corrupted if you go further.<br>If you want to see how far in development the next zone is, look at the changelog!</b>
         ]]></tooltip>
 			<squirrel_1><![CDATA[The squirrel asks you to follow it, then stops. It looks extremely torn. Looks like it doesn't trust you enough yet for it to reveal where it wanted to go...<br>Seeing how it's reacting, you're sure it's something extremely valuable. You have to gain more trust!<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 28 ]]></squirrel_1>
-			<squirrel_2><![CDATA[The squirrel asks you to follow it. It's leading you out of the village, in the opposite direction from the forest.<br>Just where is it leading you?<br><b>Note : this is locked and won't have any effect until z1 is finished for real.</b><br><b>Effect: </b>Go to a new zone.]]></squirrel_2>
+			<squirrel_2><![CDATA[The squirrel asks you to follow it. It's leading you out of the village, in the opposite direction from the forest.<br>Just where is it leading you?<br><b>Note : this action is not finished yet and won't do anything for the time being.</b><br><b>Effect: </b>Go to a new zone.]]></squirrel_2>
             <story_1><![CDATA[<b>Traveled to the second zone:</b>⮀ You leave town, heading towards the forest that stood between the village and Merchanton. You had exhausted every option in Beginnersville and there was nothing here that would stop the loops, it was time to look for other areas and solutions.]]></story_1>
         </start_journey>
         <hitch_ride>
@@ -1593,7 +1599,7 @@
         <continue_on>
             <label>Continue On</label>
             <tooltip><![CDATA[
-            Keep walking to the next town, Merchanton.<br>Mana cost reduced by 60 per Old Shortcut %.
+            Keep walking to the next town, Merchanton.<br>Mana cost reduced by 60 per Old Shortcut %.<br><b>Warning : this action has been deactivated for the time being. It will reactivate once the development this zone is finished.</b>
         ]]></tooltip>
             <story_1><![CDATA[<b>Traveled to the third zone:</b>⮀ You sigh gustily to yourself, you've done all you cared to do here and there was nothing left to do really, time to move on and out of the boonies and into civilized territory. Laws, taxes and bribes. You were almost looking forward to it, given how long you had been out in the country for at this point.]]></story_1>
         </continue_on>

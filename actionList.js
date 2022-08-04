@@ -1656,6 +1656,9 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
         Combat: 50,
 		Magic: 50
     },
+	allowed() {
+        return 1;
+    },
     loopStats: ["Soul", "Int", "Per", "Dex", "Con", "Spd", "Cha", "Luck", "Str"],
     manaCost() {
         return 6000;
@@ -1663,9 +1666,9 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
     canStart() {
 		const curPowerLevel = Math.floor((towns[0].MagFgtLoopCounter) / 9 + 0.0000001);
 		if(this.squirrelAction){
-			return resources.squirrel && resources.reputation >= 2 && magicFight == false && curPowerLevel < 4;
+			return resources.squirrel && resources.reputation >= 2 && curPowerLevel < 4;
 		}
-        return resources.reputation >= 2 && magicFight == false && curPowerLevel < 4;
+        return resources.reputation >= 2 && curPowerLevel < 4;
     },
     loopCost(segment) {
         return precision3((Math.floor(Math.pow(4, towns[0].MagFgtLoopCounter/this.segments)+ 0.0000001)) * 200000);
@@ -1709,12 +1712,10 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 			
 			switch(getLevelSquirrelAction("Magic Fighter")){
 						
-				case 1: magicFight = true;
-					break;
+				case 1: break;
 					
 			}
 		} else {
-			magicFight = true;
 			unlockStory("foughtMagicFighter");
 		}
     },
@@ -1763,7 +1764,7 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
         return resources.reputation >= 2 && curFloor < dungeons[this.dungeonNum].length;
     },
     loopCost(segment) {
-        return precision3(Math.pow(2, Math.floor((towns[this.townNum].SDungeonLoopCounter + segment) / this.segments + 0.0000001)) * 30000);
+        return precision3(Math.pow(3, Math.floor((towns[this.townNum].SDungeonLoopCounter + segment) / this.segments + 0.0000001)) * 30000);
     },
     tickProgress(offset) {
 		if(this.squirrelAction) return 0;
@@ -1854,7 +1855,7 @@ Action.BuySupplies = new Action("Buy Supplies", {
     },
     canStart() {
 		if(this.squirrelAction) return resources.squirrel;
-        return resources.gold >= towns[0].suppliesCost && !resources.supplies;
+        return resources.gold >= towns[0].suppliesCost;
     },
     cost() {
         addResource("gold", -towns[0].suppliesCost);
@@ -1882,7 +1883,8 @@ Action.BuySupplies = new Action("Buy Supplies", {
 			
 			switch(getLevelSquirrelAction("Buy Supplies")){
 						
-				case 1: break;
+				case 1: addResource("gold", towns[0].suppliesCost);
+					break;
 					
 			}
 		} else {
@@ -2028,7 +2030,7 @@ Action.StartJourney = new Action("Start Journey", {
 					
 			}
 		} else {
-			//unlockTown(1);
+			unlockTown(1);
 		}
     },
 });
