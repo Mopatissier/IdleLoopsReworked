@@ -6,11 +6,18 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.1"><![CDATA[
+            <b> August 6st, 2022</b>
+            • Discovered a massive flaw in the level system, so it was reworked. Now levels are less efficient, but are still quite powerful. Talents and soulstones are untouched.<br>
+            • Fixed a few glitches, as per usual.<br>
+            • Made the dungeon too strong in the last update, nerfed it a bit.<br>
+            • Changed the mana cost of all actions in the forest.
+            ]]></version>
 			<version verNum="0.2.0"><![CDATA[
             <b> August 4st, 2022</b>
             Alright, it's time to work on the second zone! It has been unlocked, but is right now identical to the original forest, so I don't recommend trying it. You can still do it if you're bored, though. Also please do a backup before going in there!<br>
             • Fixed a few glitches, including one where the squirrel would eat your gold in your back.<br>
-            • Made the small dungeon a bit harder. The first floor's difficulty haven't changed, so don't worry too much about it.
+            • Made the small dungeon a bit harder.
             ]]></version>
 			<version verNum="0.1.9"><![CDATA[
             <b> August 1st, 2022</b>
@@ -465,17 +472,17 @@
             <total_multiplier>Total Mult</total_multiplier>
             <bonus_xp>Bonus XP</bonus_xp>
             <mana_cost_reduction>Mana Cost Reduction</mana_cost_reduction>
-            <explanation><![CDATA[
-          Each stat level reduces the relevant part of an action's mana cost by 1%.<br>
+			<explanation><![CDATA[
+          Each stat level reduces the relevant part of an action's mana cost by sqrt(1 + level/100).<br>
           Talent exp gain is equal to 1% of stat exp gain, and persists through loops.<br>
-          Talent multiplies xp gain by (1+sqrt(talentLevel)/2).<br>
-          XP gain towards a stat per action is (original mana / actual mana) * (talent bonus) per tick.<br>
-          Total Mult is a combination of your talent and soulstone bonuses.<br><br>
-          e.g. Meet People costs 800 mana and has a breakdown of <div class="bold">Int</div> 10% <div class="bold">Cha</div> 80% <div class="bold">Soul</div> 10%.<br>
-          This effectively means 80 of the mana is controlled by <div class="bold">Int</div>, another 80 by <div class="bold">Soul</div>, and the remaining 640 by <div class="bold">Cha</div>.<br>
-          If your <div class="bold">Cha</div> is level 20 when the action is started, the bonus would be x1.2 so it'd be 640 / 1.2 = 533.33<br>
-          Adding back the 160 from <div class="bold">Soul</div> and <div class="bold">Int</div>, the total mana the action takes (rounded up) is now 694, so ~87% of the original mana cost.<br>
-          The action would give (800/694)*(1+sqrt(talent)/2) level exp per mana for the 694 mana.]]></explanation>
+          Talent multiplies xp gain by (1 + sqrt(talentLevel)/2).<br>
+          XP gain towards a stat per action is (original mana / actual mana) * (talent bonus) * (soulstone bonus) per tick.<br><br>
+     
+          e.g. Meet People costs 1600 mana and has a breakdown of <b>Int</b> 10% <b>Cha</b> 80% <b>Soul</b> 10%.<br>
+          This effectively means 160 of the mana is controlled by <b>Int</b>, another 160 by <b>Soul</b>, and the remaining 1280 by <b>Cha</b>.<br>
+          If your <b>Cha</b> is level 125 when the action is started, the bonus would be sqrt(2.25) = x1.5 so it'd be 1280 / 1.5 = 853.33.<br>
+          Adding back the 160 from <b>Soul</b> and <b>Int</b>, the total mana the action takes (rounded up) is now 1174, so ~73% of the original mana cost.<br>
+          The action would give (1600/1174)*(1+sqrt(talent)/2) level exp per mana for the 1174 mana.<br>]]></explanation>
             <graph_legend><![CDATA[
           Click the legend to show/hide each.<br>
           Upon freshly starting, Levels and Talent won't change much.<br>

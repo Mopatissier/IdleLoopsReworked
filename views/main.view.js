@@ -1323,7 +1323,7 @@ function View() {
                 addClassToDiv(node, "statRegularContainer");
                 node.children[0].style.display = "inline-block";
             }
-            document.getElementById("statsColumn").style.width = "316px";
+            document.getElementById("statsColumn").style.width = "352px";
         } else {
             document.getElementById("radarChart").style.display = "inline-block";
 			statContainer.style.display = "none";

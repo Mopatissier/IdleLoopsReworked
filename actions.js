@@ -256,7 +256,7 @@ function setAdjustedTicks(action) {
     for (let i = 0; i < statList.length; i++) {
         const statName = statList[i];
         if (action.stats[statName]) {
-            newCost += action.stats[statName] / (1 + getLevel(statName) / 100);
+            newCost += action.stats[statName] / Math.sqrt((1 + getLevel(statName) / 100));
         }
     }
     action.rawTicks = action.manaCost() * newCost - 0.000001;

@@ -1691,7 +1691,7 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 
     },
 	getSegmentName(segment) {
-		return this.segmentNames[segment];
+		return this.segmentNames[segment%9];
 	},
     visible() {
         return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 10;
@@ -1764,7 +1764,7 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
         return resources.reputation >= 2 && curFloor < dungeons[this.dungeonNum].length;
     },
     loopCost(segment) {
-        return precision3(Math.pow(3, Math.floor((towns[this.townNum].SDungeonLoopCounter + segment) / this.segments + 0.0000001)) * 30000);
+        return precision3(Math.pow(2.5, Math.floor((towns[this.townNum].SDungeonLoopCounter + segment) / this.segments + 0.0000001)) * 30000);
     },
     tickProgress(offset) {
 		if(this.squirrelAction) return 0;
@@ -2182,7 +2182,7 @@ Action.WildMana = new Action("Wild Mana", {
         Soul: 0.2
     },
     manaCost() {
-        return Math.ceil(150 * getSkillBonus("Practical"));
+        return Math.ceil(300 * getSkillBonus("Practical"));
     },
     visible() {
         return true;
@@ -2191,7 +2191,7 @@ Action.WildMana = new Action("Wild Mana", {
         return towns[1].getLevel("Forest") >= 2;
     },
     goldCost() {
-        return Math.floor(250 * getSkillBonus("Dark"));
+        return Math.floor(500 * getSkillBonus("Dark"));
     },
     finish() {
         towns[1].finishRegular(this.varName, 10, () => {
@@ -2220,7 +2220,7 @@ Action.GatherHerbs = new Action("Gather Herbs", {
         Int: 0.3
     },
     manaCost() {
-        return Math.ceil(200 * (1 - towns[1].getLevel("Hermit") * 0.005));
+        return Math.ceil(400 * (1 - towns[1].getLevel("Hermit") * 0.005));
     },
     visible() {
         return towns[1].getLevel("Forest") >= 2;
@@ -2258,7 +2258,7 @@ Action.Hunt = new Action("Hunt", {
         Spd: 0.4
     },
     manaCost() {
-        return 800;
+        return 1600;
     },
     visible() {
         return towns[1].getLevel("Forest") >= 10;
@@ -2293,7 +2293,7 @@ Action.SitByWaterfall = new Action("Sit By Waterfall", {
         return trainingLimits;
     },
     manaCost() {
-        return 2000;
+        return 4000;
     },
     visible() {
         return towns[1].getLevel("Forest") >= 10;
@@ -2337,7 +2337,7 @@ Action.OldShortcut = new Action("Old Shortcut", {
         Luck: 0.1
     },
     manaCost() {
-        return 800;
+        return 1600;
     },
     visible() {
         return true;
@@ -2381,7 +2381,7 @@ Action.TalkToHermit = new Action("Talk To Hermit", {
         Soul: 0.2
     },
     manaCost() {
-        return 1200;
+        return 2400;
     },
     visible() {
         return true;
@@ -2417,7 +2417,7 @@ Action.PracticalMagic = new Action("Practical Magic", {
         Practical: 100
     },
     manaCost() {
-        return Math.ceil(4000 * (1 - towns[1].getLevel("Hermit") * 0.005));
+        return Math.ceil(8000 * (1 - towns[1].getLevel("Hermit") * 0.005));
     },
     visible() {
         return towns[1].getLevel("Hermit") >= 10;
@@ -2464,7 +2464,7 @@ Action.LearnAlchemy = new Action("Learn Alchemy", {
         addResource("herbs", -10);
     },
     manaCost() {
-        return Math.ceil(5000 * (1 - towns[1].getLevel("Hermit") * 0.005));
+        return Math.ceil(10000 * (1 - towns[1].getLevel("Hermit") * 0.005));
     },
     visible() {
         return towns[1].getLevel("Hermit") >= 10;
@@ -2509,7 +2509,7 @@ Action.BrewPotions = new Action("Brew Potions", {
         addResource("herbs", -10);
     },
     manaCost() {
-        return Math.ceil(4000);
+        return Math.ceil(8000);
     },
     visible() {
         return getSkillLevel("Alchemy") >= 1;
@@ -2543,7 +2543,7 @@ Action.TrainDexterity = new Action("Train Dexterity", {
         return trainingLimits;
     },
     manaCost() {
-        return 2000;
+        return 4000;
     },
     visible() {
         return towns[1].getLevel("Forest") >= 20;
@@ -2575,7 +2575,7 @@ Action.TrainSpeed = new Action("Train Speed", {
         return trainingLimits;
     },
     manaCost() {
-        return 2000;
+        return 4000;
     },
     visible() {
         return towns[1].getLevel("Forest") >= 20;
@@ -2619,7 +2619,7 @@ Action.FollowFlowers = new Action("Follow Flowers", {
     },
     affectedBy: ["Take Glasses"],
     manaCost() {
-        return 300;
+        return 600;
     },
     visible() {
         return towns[1].getLevel("Forest") >= 30;
@@ -2652,7 +2652,7 @@ Action.BirdWatching = new Action("Bird Watching", {
         return trainingLimits;
     },
     manaCost() {
-        return 2000;
+        return 4000;
     },
     canStart() {
         return resources.glasses;
@@ -2700,7 +2700,7 @@ Action.ClearThicket = new Action("Clear Thicket", {
         Spd: 0.2
     },
     manaCost() {
-        return 500;
+        return 1000;
     },
     visible() {
         return towns[1].getLevel("Flowers") >= 10;
@@ -2745,7 +2745,7 @@ Action.TalkToWitch = new Action("Talk To Witch", {
         Soul: 0.5
     },
     manaCost() {
-        return 1500;
+        return 3000;
     },
     visible() {
         return towns[1].getLevel("Thicket") >= 20;
@@ -2786,7 +2786,7 @@ Action.DarkMagic = new Action("Dark Magic", {
         }
     },
     manaCost() {
-        return Math.ceil(6000 * (1 - towns[1].getLevel("Witch") * 0.005));
+        return Math.ceil(12000 * (1 - towns[1].getLevel("Witch") * 0.005));
     },
     canStart() {
         return resources.reputation <= 0;
@@ -2827,7 +2827,7 @@ Action.DarkRitual = new MultipartAction("Dark Ritual", {
     },
     loopStats: ["Spd", "Int", "Soul"],
     manaCost() {
-        return Math.ceil(50000 * (1 - towns[1].getLevel("Witch") * 0.005));
+        return Math.ceil(100000 * (1 - towns[1].getLevel("Witch") * 0.005));
     },
     allowed() {
         return 1;
@@ -2910,7 +2910,7 @@ Action.ContinueOn = new Action("Continue On", {
         return getNumOnList("Open Portal") > 0 ? 2 : 1;
     },
     manaCost() {
-        return Math.ceil(8000 - (60 * towns[1].getLevel("Shortcut")));
+        return Math.ceil(16000 - (60 * towns[1].getLevel("Shortcut")));
     },
     visible() {
         return true;
@@ -2919,7 +2919,7 @@ Action.ContinueOn = new Action("Continue On", {
         return true;
     },
     finish() {
-        unlockTown(2);
+        //unlockTown(2);
     },
 });
 
