@@ -2692,7 +2692,7 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
     },
     loopsFinished() {
 		addMana(4000);
-        addResource("darkEssences", towns[1].getLevel("DarkForest")%10);
+        addResource("darkEssences", Math.floor(towns[1].getLevel("DarkForest")/10 + 0.000001));
 		addResource("herbs", -10);
     },
     getPartName() {
@@ -2906,7 +2906,7 @@ Action.LearnBrewing = new Action("Learn Brewing", {
 		}
 	},
 	canStart() {
-        return resources.reputation < 0;
+        return resources.darkEssences >= 10;
     },
     manaCost() {
         return Math.ceil(12000 * (1 - towns[1].getLevel("Witch") * 0.005));
@@ -2919,6 +2919,7 @@ Action.LearnBrewing = new Action("Learn Brewing", {
     },
     finish() {
 		handleSkillExp(this.skills);
+		addResource("darkEssences", -10);
     },
 });
 
@@ -2940,7 +2941,7 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
         Per: 0.1,
     },
 	canStart() {
-        return resources.darkEssences >= 10;
+        return resources.darkEssences >= 10 && resources.reputation <= -10;
     },
 	loopStats: ["Soul", "Per", "Str"],
     manaCost() {
@@ -2960,9 +2961,6 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
     getPartName() {
         return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[1].ConcoctLoopCounter + 0.0001) / this.segments + 1))}`;
     }, 
-    canStart() {
-        return resources.darkEssences >= 10 && resources.reputation <= -10;
-    },
     visible() {
         return getSkillLevel("Brewing") >= 1;
     },
