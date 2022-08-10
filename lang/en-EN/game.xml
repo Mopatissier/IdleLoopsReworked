@@ -1580,7 +1580,7 @@
 				<name>Setting it on fire using a stick</name>
 			</segment_names>
             <tooltip><![CDATA[
-            It's good to let loose, sometimes! Don't worry, only a small part of the forest will be set aflame. So it's fine, right?<br>Requires negative reputation.<br>Gives herbs * (1 + main stat / 100) * sqrt(1 + acres burnt / 300) progress points per mana.<br>Every acre burnt uses up 10 magical herbs in fuel, releasing 4000 mana for you to absorb.<br>For every 10% of the dark side of the forest explored, you will also gain 1 dark essence per acre burnt.<br>For some reason, burning 2 acres of forest will reduce your reputation by 1.<br>Unlocked at 20% Animals Fed.
+            It's good to let loose, sometimes! Don't worry, only a small part of the forest will be set aflame. So it's fine, right?<br>Requires negative reputation.<br>Gives herbs * (1 + main stat / 1000) * sqrt(1 + acres burnt / 1000) progress points per mana.<br>Every acre burnt uses up 10 magical herbs in fuel, releasing 4000 mana for you to absorb.<br>For every 10% of the dark side of the forest explored, you will also gain 1 dark essence per acre burnt.<br>For some reason, burning 2 acres of forest will reduce your reputation by 1.<br>Unlocked at 20% Animals Fed.
         ]]></tooltip>
             <story_1><![CDATA[<b>forest burned:</b>⮀ Placeholder.]]></story_1>
         </burn_forest>

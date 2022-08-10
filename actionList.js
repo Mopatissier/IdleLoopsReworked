@@ -2679,17 +2679,21 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
     },
 	loopStats: ["Luck", "Dex"],
     manaCost() {
-        return 4000;
+        return 5000;
+    },
+	canStart() {
+        return resources.herbs >= 10 && resources.reputation < 0;
     },
     loopCost(segment) {
-        return 25000;
+        return 60000;
     },
     tickProgress(offset) {
-        return resources.herbs * (1 + getLevel(this.loopStats[(towns[1].BurnLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[0].totalBurn / 300);
+        return resources.herbs * (1 + getLevel(this.loopStats[(towns[1].BurnLoopCounter + offset) % this.loopStats.length]) / 1000) * Math.sqrt(1 + towns[1].totalBurn / 1000);
     },
     loopsFinished() {
 		addMana(4000);
-        addResource("darkEssences", town.getLevel("DarkForest")%10);
+        addResource("darkEssences", towns[1].getLevel("DarkForest")%10);
+		addResource("herbs", -10);
     },
     getPartName() {
         return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[1].BurnLoopCounter + 0.0001) / this.segments + 1))}`;
@@ -2849,7 +2853,7 @@ Action.PracticeYin = new Action("Practice Yin", {
     },
     skills: {
          Yin() {
-            const additionalExp = (resources.reputation <= 0 ? resources.reputation * 25 : 0);
+            const additionalExp = (resources.reputation <= 0 ? resources.reputation * (-25) : 0);
             return 100 + additionalExp;
         }
     },
