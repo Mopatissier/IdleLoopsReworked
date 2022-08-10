@@ -251,13 +251,12 @@ function View() {
             document.getElementById(`skill${skill}LevelExp`).textContent = intToString(skills[skill].exp - expOfLevel, 1);
             document.getElementById(`skill${skill}LevelExpNeeded`).textContent = intToString(`${getExpOfSkillLevel(getSkillLevel(skill) + 1) - expOfLevel}`, 1);
             document.getElementById(`skill${skill}LevelProgress`).textContent = intToString(levelPrc, 2);
-
-            if (skill === "Dark") {
-                document.getElementById("skillBonusDark").textContent = intToString(getSkillBonus("Dark"), 4);
-            } else if (skill === "Chronomancy") {
+			if(skill === "Yin"){
+				document.getElementById("skillBonusYin").textContent = intToString(getYinYangBonus("Yin"), 4);
+			} else if (skill === "Yang"){
+				document.getElementById("skillBonusYang").textContent = intToString(getYinYangBonus("Yang"), 4);
+			} else if (skill === "Chronomancy") {
                 document.getElementById("skillBonusChronomancy").textContent = intToString(getSkillBonus("Chronomancy"), 4);
-            } else if (skill === "Practical") {
-                document.getElementById("skillBonusPractical").textContent = getSkillBonus("Practical").toFixed(3).replace(/(\.\d*?[1-9])0+$/gu, "$1");
             } else if (skill === "Mercantilism") {
                 document.getElementById("skillBonusMercantilism").textContent = intToString(getSkillBonus("Mercantilism"), 4);
             } else if (skill === "Spatiomancy") {
@@ -322,7 +321,9 @@ function View() {
         document.getElementById(`buff${buff}Level`).textContent = `${getBuffLevel(buff)}/`;
         if (buff === "Imbuement") {
             this.updateTrainingLimits();
-        }
+        } else if (buff == "YinYang"){
+			document.getElementById("skillBuffYinYang").textContent = intToString(getYinYangBonus("YinYang"), 4);
+		}
     };
 
     this.updateBuffs = function() {
@@ -1323,7 +1324,7 @@ function View() {
                 addClassToDiv(node, "statRegularContainer");
                 node.children[0].style.display = "inline-block";
             }
-            document.getElementById("statsColumn").style.width = "352px";
+            document.getElementById("statsColumn").style.width = "360px";
         } else {
             document.getElementById("radarChart").style.display = "inline-block";
 			statContainer.style.display = "none";

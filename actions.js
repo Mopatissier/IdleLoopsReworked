@@ -40,7 +40,6 @@ function Actions() {
                 // segment finished
                 if (segment === curAction.segments - 1) {
                     // part finished
-                    if (curAction.name === "Dark Ritual" && towns[curAction.townNum][curAction.varName] >= 4000000) unlockStory("darkRitualThirdSegmentReached");
                     if (curAction.name === "Imbue Mind" && towns[curAction.townNum][curAction.varName] >= 700000000) unlockStory("imbueMindThirdSegmentReached");
                     towns[curAction.townNum][curAction.varName] = 0;
                     towns[curAction.townNum][`${curAction.varName}LoopCounter`] += curAction.segments;

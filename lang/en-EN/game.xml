@@ -6,6 +6,11 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.2"><![CDATA[
+            <b> August 10st, 2022</b>
+            • Implemented all actions in the forest. There's no action stories nor squirrel actions yet, and numbers are prone to change, though!<br>
+            • Fixed a visual glitch for firefox if you got high talent numbers.
+            ]]></version>
 			<version verNum="0.2.1"><![CDATA[
             <b> August 6st, 2022</b>
             • Discovered a massive flaw in the level system, so it was reworked. Now levels are less efficient, but are still quite powerful. Talents and soulstones are untouched.<br>
@@ -248,10 +253,20 @@
             <id>hide</id>
             <desc>Results of successful hunting.</desc>
         </resource>
+		<resource initially_hidden="true">
+            <title>Dark Essences:</title>
+            <id>darkEssences</id>
+            <desc>You're not sure what it is, and you're afraid to know.</desc>
+        </resource>
         <resource initially_hidden="true">
             <title>Potions:</title>
             <id>potions</id>
             <desc>Rare, but not complex. Worth some money.</desc>
+        </resource>
+		<resource initially_hidden="true">
+            <title>Dark Potions:</title>
+            <id>darkPotions</id>
+            <desc>More twisted than regular potions.</desc>
         </resource>
         <resource initially_hidden="true">
             <title>Team Members:</title>
@@ -511,25 +526,38 @@
             <label>Magic</label>
             <desc>Control the aether to cast and conjure.</desc>
         </magic>
-        <practical>
-            <label>Practical Magic</label>
-            <desc>Mage Hand, Prestidigitation, Detect Magic, and other useful tricks to help out.</desc>
-            <desc2><![CDATA[Smash Pots and Wild Mana costs are reduced to the original / (1 + level / 100) (rounded up).<br>
-      Pick Locks get 1% more gold per level from 1-200 (rounded down).<br>
-      Short Quests get 1% more gold per level from 101-300 (rounded down).<br>
-      Long Quests get 1% more gold per level from 201-400 (rounded down).<br>
-      Currently multiplying costs by <div id='skillBonusPractical'></div>x.]]></desc2>
-        </practical>
+		<yang>
+			<label>Yang Magic</label>
+			<desc>Harness the positive energy around you. Feels incomplete.</desc>
+			<desc2><![CDATA[Speeds up time depending to the positive reputation you have.<br>
+					Every level increases your speed by 0.5%.<br>
+					This speed increase is capped at (2x your positive reputation)%.<br>
+					Capped at 50 reputation.<br>
+					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br>
+					Currently gives a <div id='skillBonusYang'></div>x speed increase.
+					]]>
+			</desc2>
+		</yang>
+		<yin>
+			<label>Yin Magic</label>
+			<desc>Harness the negative energy around you. Feels incomplete.</desc>
+			<desc2><![CDATA[Speeds up time depending to the negative reputation you have.<br>
+					Every level increases your speed by 0.5%.<br>
+					This speed increase is capped at (2x your negative reputation)%.<br>
+					Capped at -50 reputation.<br>
+					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br>
+					Currently gives a <div id='skillBonusYin'></div>x speed increase.
+					]]>
+			</desc2>
+		</yin>
         <alchemy>
             <label>Alchemy</label>
-            <desc>Brewing potions is hard work! It's a good thing you found a teacher.</desc>
-            <desc2>The Magic teacher in Beginnersville adores alchemists. +1% Magic exp gain from the Mage Lessons action (rounded down) per level.</desc2>
+            <desc>Distilling potions is hard work! It's a good thing you found a teacher.</desc>
         </alchemy>
-        <dark>
-            <label>Dark Magic</label>
-            <desc>Use various dark arts to help you harvest mana.</desc>
-            <desc2><![CDATA[Multiply the mana gain from Smash Pots and Wild Mana by (1 + level / 60) ^ 0.25 (rounded down).<br> Currently granting <div id='skillBonusDark'></div>x mana gains.]]></desc2>
-        </dark>
+        <brewing>
+            <label>Brewing</label>
+            <desc>It feels like a more archaic way to make potions. Nonetheless, it still works.</desc>
+        </brewing>
         <crafting>
             <label>Crafting</label>
             <desc>The skill of using your hands and creativity when doing physical work.</desc>
@@ -639,21 +667,22 @@
     </skillsSquirrel>
     <buffs>
         <title>Buffs</title>
-        <dark_ritual>
-            <label>Dark Ritual</label>
-            <desc>The witch appreciates your dedication to the dark arts. +1% to Dark Magic exp gain from the Dark Magic action (rounded down) per ritual.</desc>
-            <desc2><![CDATA[<br>Actions are 10% faster in Beginnersville per ritual from 1-20.<br>
-            Actions are 5% faster in the Forest Path per ritual from 21-40.<br>
-            Actions are 2.5% faster in Merchanton per ritual from 41-60.<br>
-            Actions are 1.5% faster in Mt. Olympus per ritual from 61-80.<br>
-            Actions are 1.0% faster in Valhalla per ritual from 81-100.<br>
-            Actions are 0.5% faster in Startington per ritual from 101-150.<br>
-            Actions are 0.5% faster in Jungle Path per ritual from 151-200.<br>
-            Actions are 0.5% faster in Commerceville per ritual from 201-250.<br>
-            Actions are 0.5% faster in Valley of Olympus per ritual from 251-300.<br>
-            Actions are 0.1% faster globally per ritual from 301-666.<br>
-            ]]></desc2>
-        </dark_ritual>
+        <yin_yang_magic>
+            <label>Yin Yang Magic</label>
+            <desc><![CDATA[Now it finally feels complete!<br><br>
+			
+			Acts if you have have (buff level) minimum reputation on you, for both yin and yang magic.<br>
+			For example, if you have this buff at level 3 with 0 reputation:<br>
+			The yin magic will be activated as if you have -3 reputations.<br>
+			The yang magic will be activated as if you have 3 reputations.<br><br>
+			
+			On the other hand, if you have this buff at level 3 with 10 reputations:<br>
+			The yin magic will be activated as if you have -3 reputations.<br>
+			The yang magic will be activated as if you have 10 reputations.<br><br>
+			
+			Currently, yin and yang magic together give a bonus speed of <div id='skillBuffYinYang'></div>x.
+            ]]></desc>
+        </yin_yang_magic>
         <imbue_mind>
             <label>Imbue Mind</label>
             <desc><![CDATA[Using power from soulstones, you can increase your mental prowess.<br>
@@ -1324,8 +1353,8 @@
 				<name>Waiting for an opening</name>
 				<name>Striking with all might</name>
 			</segment_names>
-				<squirrel_1><![CDATA[The magic fighter looks at you with incredulity. Did you just ask him to fight a squirrel?<br>Seeing how he ignores you for the rest of the loop, you think he didn't take it well.<br><b>Effect: </b>None.]]></squirrel_1>
-				<story_1><![CDATA[<b>Attempted to fight:</b>⮀ The magic fighter sighs and asks you try your best. It looks like this isn't the first time someone asked him this. Before you take your first step, you're already on the ground, defeated. This isn't going to be easy...]]></story_1>
+			<squirrel_1><![CDATA[The magic fighter looks at you with incredulity. Did you just ask him to fight a squirrel?<br>Seeing how he ignores you for the rest of the loop, you think he didn't take it well.<br><b>Effect: </b>None.]]></squirrel_1>
+			<story_1><![CDATA[<b>Attempted to fight:</b>⮀ The magic fighter sighs and asks you try your best. It looks like this isn't the first time someone asked him this. Before you take your first step, you're already on the ground, defeated. This isn't going to be easy...]]></story_1>
         </magic_fighter>
 
         <small_dungeon>
@@ -1371,7 +1400,7 @@
             They won't like you as much, but hey - you're leaving.<br>Costs 1 reputation to reduce the price of supplies by 30. <br>Unlocked at a combined Combat and Magic skill of 35.
         ]]></tooltip>
 			<squirrel_1><![CDATA[Until now, the squirrel acting cute worked pretty much every time. Time to get a discount with it!<br>... Well, you just learned the merchant dislikes squirrels. Oops?<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 30 ]]></squirrel_1>
-			<squirrel_2><![CDATA[You devise a plan with the squirrel to maximise its cuteness in the hope it would still soften the shopkeep.<br>After a lot of work and tries, it works! But with how difficult that was, you're sure it won't work again...<br><b>Effect: </b>Reduce the price of supplies by 30 without losing any reputation. Can only be done once par loop.]]></squirrel_2>
+			<squirrel_2><![CDATA[You devise a plan with the squirrel to maximise its cuteness in the hope it would still soften the shopkeep.<br>After a lot of work and tries, it works! But with how difficult that was, you're sure it won't work again...<br><b>Effect: </b>Reduce the price of supplies by 30 without losing any reputation. Can only be done once per loop.]]></squirrel_2>
             <story_1><![CDATA[<b>Haggle:</b>⮀ The shopkeep has some of the supplies you need, but they are of inferior quality and you're not paying his asking price for them, at least that's what you tell him. You argue, grumble, make sharp comments and are just in general unpleasant to one another.]]></story_1>
             <story_2><![CDATA[<b>15 Haggles in a loop:</b>⮀ The shopkeep basically throws you out the store shouting and cursing vociferously at you. You ears ring slightly at the barrage.]]></story_2>
             <story_3><![CDATA[<b>16 Haggles in a loop:</b>⮀ At this point, it served no purpose, you were doing this solely for the fun of it. No matter how much you haggled, the merchant wasn't going to pay you to take the supplies. That was just wishful thinking. Although, losing the reputation you had accrued could be useful in the long run...]]></story_3>
@@ -1404,7 +1433,7 @@
             <label>Explore Forest</label>
             <label_done>Forest Explored</label_done>
             <tooltip><![CDATA[
-            What a pleasant area.<br>2x progress with glasses.
+            What a pleasant area.<br>4x progress with glasses.
         ]]></tooltip>
             <story_1><![CDATA[<b>1% Forest explored:</b>⮀ You look at the side of the path from your little campsite, and are struck with a sense of wanderlust. You leave your camp to explore. Not too far from your campsite you find a tiny glade practically overflowing with mana.]]></story_1>
             <story_2><![CDATA[<b>10% Forest explored:</b>⮀ The sense of wanderlust hasn't faded but you've definitely discovered the darker side of this forest. You continue to find tiny glades filled with mana throughout the forest.]]></story_2>
@@ -1447,7 +1476,7 @@
             <info_text2>Animals with hides total</info_text2>
             <info_text3>Animals to check for hides</info_text3>
             <tooltip><![CDATA[
-            The forest provides.<br>Every 10 animals have good hides.<br>Unlocked at 40% Forest Explored.
+            The forest provides.<br>Every 10 animals have good hides.<br>Unlocked at 40% Animals Feed.
         ]]></tooltip>
             <story_1><![CDATA[<b>Animal checked for hide:</b>⮀ You manage to track down a relatively harmless animal, but in the time it took you to bring the critter down you had ruined its pelt beyond all use. You needed practice.]]></story_1>
             <story_2><![CDATA[<b>10 Animals with hide:</b>⮀ You ghost through the forest, targeting packs that you know graze or are moving through locations easily reached and ambushed. You're starting to get good at this tracking thing, but you suppose you only really have to do it once.]]></story_2>
@@ -1464,7 +1493,7 @@
             <label>Old Shortcut</label>
             <label_done>Shortcut Explored</label_done>
             <tooltip><![CDATA[
-            No one has come down this way in quite some time.<br>Gives some additional herbs.<br>Old men are a pain unless you know something they care about. Talk to Hermit gives 1% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>Unlocked at 20% Forest Explored.
+            No one has come down this way in quite some time.<br>Gives some additional herbs.<br>Old men are a pain unless you know something they care about. Talk to Hermit gives 4% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>Unlocked at 20% Forest Explored.
         ]]></tooltip>
             <story_1><![CDATA[<b>1% Shortcut explored:</b>⮀ You continued on with your trip and discovered a small and worn path leading off the main thoroughfare. You wondered what it was and decided to explore.]]></story_1>
             <story_2><![CDATA[<b>10% Shortcut explored:</b>⮀ You're mildly surprised to discover a seemingly sprawling network of interconnected paths that seem to get almost everywhere within the forest.]]></story_2>
@@ -1478,7 +1507,7 @@
             <label>Talk To Hermit</label>
             <label_done>Hermit Knowledge Learned</label_done>
             <tooltip><![CDATA[
-            This old man is happy to have a listening ear, surely he has some useful knowledge. You hope. He's initially confrontational, but opens up once you start talking about the road.<br>Reduces mana cost of Gather Herbs, Practical Magic, and Learn Alchemy by 0.5% per 1% of Hermit Knowledge.<br>Unlocked with both 20% Shortcut Explored and 40 Magic.
+            This old man is happy to have a listening ear, surely he has some useful knowledge. You hope. He's initially confrontational, but opens up once you start talking about the road.<br>Reduces mana cost of Gather Herbs, Practice Yang, and Learn Alchemy by 0.5% per 1% of Hermit Knowledge.<br>His knowledge about shortcuts also gives 4% more Old Shortcut speed per 1% Hermit Knowledge Learned.<br>Unlocked with both 20% Shortcut Explored and 40 Magic.
         ]]></tooltip>
             <story_1><![CDATA[<b>1% Hermit knowledge learned:</b>⮀ The Hermit is old, scraggly and surprisingly, not bald. Looks old as dirt. He doesn't know the name of the surrounding provinces, but knows the names of the provinces before the current ones.]]></story_1>
             <story_2><![CDATA[<b>10% Hermit knowledge learned:</b>⮀ The old hermit is an absolute genius at using magic to speed things up and just in general make things quicker and easier. You have much information to wring from him. He doesn't tell you his name and insists you call him 'Old man', or 'Hermit'.]]></story_2>
@@ -1488,85 +1517,93 @@
             <story_6><![CDATA[<b>80% Hermit knowledge learned:</b>⮀ You've spent more time learning about this one man than you have most other things, you've come to see him almost as a familiar figure. With how much time you've spent with him, it's hard not to. You still don't know his name. One thing you do know is that he's been around a long time and has forgotten more about magic than you've learned.]]></story_6>
             <story_7><![CDATA[<b>100% Hermit knowledge learned:</b>⮀ He finally told you his name. Gelt. He seemed almost knowing as he told you.]]></story_7>
         </talk_to_hermit>
-        <practical_magic>
-            <label>Practical Magic</label>
+		<practice_yang>
+            <label>Practice Yang</label>
             <tooltip><![CDATA[
-            Such simple uses to help out with everyday tasks. Genius, really. It's like pulling teeth getting this knowledge from the Hermit though.<br>Unlocked with both 20% Hermit Knowledge and 50 Magic.
+			It looks like being alone for so long made the hermit practice some kind of weird but useful magic. It's like pulling teeth getting this knowledge from the Hermit, though.<br>Gives 25 more yang exp per reputation you have.<br>Unlocked with both 20% Hermit Knowledge and 45 magic.
         ]]></tooltip>
-            <story_1><![CDATA[<b>1 Practical magic:</b>⮀ You pester the hermit about magic and how to use it to make things easier on yourself. It's surprisingly handy to be able to move things around without havin to be there, rather than smashing pots you can instead lift them or knock them off edges. Why open a lock when you can unlock a latch with Mage Hand, why walk over to the wardrobe if you can just fling it open and ransack it? Magic, but practical. You're a little astonished that not everyone does this.]]></story_1>
-        </practical_magic>
+            <story_1><![CDATA[<b>1 Yan:</b>⮀ Placeholder.]]></story_1>
+        </practice_yang>
         <learn_alchemy>
             <label>Learn Alchemy</label>
             <tooltip><![CDATA[
-            You can listen to him yammer while making light healing and remedy potions.<br>You're starting to think the potion that caused you to loop time was a complex one.<br>You provide the ingredients; costs 10 herbs.<br>Gives alchemy and magic skill.<br>Unlocked with both 40% Hermit Knowledge and 60 Magic.
+            You can listen to him yammer while making light healing and remedy potions.<br>You're starting to think the potion that caused you to loop time was a complex one.<br>You provide the ingredients; costs 10 herbs.<br>Use what you learned from brewing to make this action more efficient.<br> Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>Unlocked with both 40% Hermit Knowledge and 50 Magic.
         ]]></tooltip>
             <story_1><![CDATA[<b>Alchemy learned:</b>⮀ You ask the hermit about potion's and are regaled of tales from his time as an apprentice, the mistakes he made and how one time, he managed to douse his masters beard with potion that would wildly change the color of it every minute, for a full year his master had to deal with a beard that was either glowing white like pure fallen snow or was more fit to be in the sky after rain. You take notes as the hermit speaks.]]></story_1>
             <story_2><![CDATA[<b>25 Alchemy:</b>⮀ You sit by the fire inside the hermits clearing, fire dancing merrily away as he feeds magical herbs to the fire while throwing precise amounts into the large pot boiling above it. The stories he tells of his youth and learning alchemy under his master make you howl with laughter and provoke deep thoughtful silences.]]></story_2>
             <story_3><![CDATA[<b>50 Alchemy:</b>⮀ As you learn more and more about alchemy, the potion that caused you to start looping begins to seem more and more hideously complex. Something as simple as your reputation can effect the outcome of a potion. It's more of an art than a science, or anything even easily conveyed really.]]></story_3>
         </learn_alchemy>
-        <brew_potions>
-            <label>Brew Potions</label>
+        <distill_potions>
+            <label>Distill Potions</label>
+			<label_done>Potions Distilled</label_done>
+            <label_part>Potion</label_part>
+			<segment_names>
+				<name>Writing a formula</name>
+				<name>Using the right dosage</name>
+				<name>Waiting and hoping it doesn't explode</name>
+			</segment_names>
             <tooltip><![CDATA[
-            Bubbles and Flasks. Potions and Magic.<br>Requires a reputation of 5 or above, or he won't let you near his stuff.<br>Creates a potion from 10 herbs to sell at the next town.<br>Gives alchemy and magic skill.<br>Unlocked with 10 Alchemy.
+            Bubbles and Flasks. Potions and Magic.<br>Requires a reputation of 10 or above, or he won't let you near his stuff.<br>Gives (alchemy + brewing/2) * (1 + main stat / 100) * sqrt(1 + potions distilled / 100) progress points per mana.<br>Creates a potion from 10 herbs to sell at the next town.<br>Gives alchemy and magic skill.<br>Unlocked with 10 Alchemy.
         ]]></tooltip>
             <story_1><![CDATA[<b>Potion brewed:</b>⮀ The old man happily lets you use his apparatus to brew your own potions after much haranguing about your technique and the fact that you're not buying ingredients off him, he leaves you to it. His workstations are old, well used and obviously well looked after. The only fault you can lay at their feet is that the measuring system used is older than dirt. Fits you suppose.]]></story_1>
             <story_2><![CDATA[<b>Action failed with low reputation:</b>⮀ The hermit refuses to allow you near his workstations and potion brewing equipment no matter how much you ask and offer to pay. He tells you that you don't have a good enough karma for him to even be willing to risk you using his workstations and potion benches.]]></story_2>
             <story_3><![CDATA[<b>Action failed with negative reputation:</b>⮀ The hermit shoos you away from his clearing when you even make a mention of using his potion supplies, something about not wanting you to taint his equipment with your karma.]]></story_3>
-        </brew_potions>
-        <train_dexterity>
-            <label>Train Dexterity</label>
+        </distill_potions>
+        <train_squirrel>
+            <label>Train Squirrel</label>
             <tooltip><![CDATA[
-            There's a nice array of rocks to hop between. It's a lot of fun.<br>Has 4x exp/talent gain, and can only be done <div id='trainingLimitDex'></div> times per reset.<br>Unlocked at 60% Forest Explored.
-        ]]></tooltip>
-            <story_1><![CDATA[<b>Dexterity trained:</b>⮀ You find rocks spaced intermittently in an open clearing. Your best guess is that they were set up as a training field for some mercenary group that had passed by. Either way, it's fun to bounce from one rock to another parrying invisible enemies and fighting the air.]]></story_1>
-        </train_dexterity>
-        <train_speed>
-            <label>Train Speed</label>
+            This is the perfect place to train your squirrel! You prepare a little training arena with branches, and a nut to punch.<br>Gives Self Combat x 4 = ]]></tooltip>
+			<tooltip2> <![CDATA[ squirrel combat exp per action.<br>Unlocked at 30% Forest Explored.]]></tooltip2>
+            <story_1><![CDATA[<b>Squirrel trained:</b>⮀ Placeholder.]]></story_1>
+        </train_squirrel>
+		<feed_animals>
+            <label>Feed Animals</label>
+			<label_done>Animals Fed</label_done>
             <tooltip><![CDATA[
-            A forest run is fantastic. You feel like you're learning a lot as you push your limits.<br>Has 4x exp/talent gain, and can only be done <div id='trainingLimitSpd'></div> times per reset.<br>Unlocked at 80% Forest Explored.
+            Feed wild animals and they will show you ressources scattered around the forest. They sure do like magical herbs!<br>The more herbs you have, the easier they will approach you :<br>every herb you have gives a +2% efficiency.<br>Consumes 10 herbs per action.<br>Unlocked at 40% Forest Explored.
         ]]></tooltip>
-            <story_1><![CDATA[<b>Speed trained:</b>⮀ Sprinting through the forest is an exhilarating experience. The vines whip past your head, the roots beneath your feet. The leaves whip past your face and the breeze blows hard enough against your ears that you hear nothing but. You feel at one with the forest as you chase a finch around, up and down and even under trees at times. Through dilapidated trunks and wooden labyrinths.]]></story_1>
-        </train_speed>
-        <follow_flowers>
-            <label>Follow Flowers</label>
-            <label_done>Flower Trail Followed</label_done>
+            <story_1><![CDATA[<b>Animal fed:</b>⮀ Placeholder]]></story_1>
+        </feed_animals>
+		<pot_fairy>
+            <label>Mana Pot Fairy</label>
             <tooltip><![CDATA[
-            You've located an oddly out of place trail of flowers, why not see where it leads. You can find more herbs along the path.<br>2x progress with glasses.<br>Unlocked at 50% Forest Explored.
+            Deep in the forest, you discover an old shrine...<br>If you broke any pots or took a mana crystal from them this loop, she will curse you and render your reputation negative.<br>If you didn't break any pots, she will bless you and give you 2000 mana and 1 reputation per 10 mana pots discovered.<br>Unlocked at 10% Animals Fed.
         ]]></tooltip>
-            <story_1><![CDATA[<b>1% Flower trail followed:</b>⮀ You stumble across a small lane of flowers that are obviously planted by hand. You decide to follow it.]]></story_1>
-            <story_2><![CDATA[<b>10% Flower trail followed:</b>⮀ The planted flowers seem almost sprawling, threading to and fro across the forest.]]></story_2>
-            <story_3><![CDATA[<b>20% Flower trail followed:</b>⮀ The flowers led you to places in the forest that you hadn't been, you discovered a thicket that was overflowing with mana, but you would need to experiment to figure out how to draw the mana out.]]></story_3>
-            <story_4><![CDATA[<b>40% Flower trail followed:</b>⮀ The flowers continued to follow their unseen path, but you were starting to notice a pattern.]]></story_4>
-            <story_5><![CDATA[<b>60% Flower trail followed:</b>⮀ There were strange plants aplenty to be found along the flower path, and you had noticed that some had medicinal properties, you remembered from when you were young, the smell unmistakable.]]></story_5>
-            <story_6><![CDATA[<b>80% Flower trail followed:</b>⮀ The flower path was circuitous, circling around the darker side of the forest in patterns that you were starting to map out mentally.]]></story_6>
-            <story_7><![CDATA[<b>100% Flower trail followed:</b>⮀ The patterns were strangely geometric, and you had an inkling that the flower path had some sinister beginnings. Regardless, you'd explored the entire path. You were right too, it never did stray from the darker side of the forest.]]></story_7>
-        </follow_flowers>
+            <story_1><![CDATA[<b>Pot fairied:</b>⮀ Placeholder.]]></story_1>
+        </pot_fairy>
+		<burn_forest>
+            <label>Burn Forest</label>
+			<label_done>Acres Burnt</label_done>
+            <label_part>Acre</label_part>
+			<segment_names>
+				<name>Searching for dry wood</name>
+				<name>Setting it on fire using a stick</name>
+			</segment_names>
+            <tooltip><![CDATA[
+            It's good to let loose, sometimes! Don't worry, only a small part of the forest will be set aflame. So it's fine, right?<br>Requires negative reputation.<br>Gives herbs * (1 + main stat / 100) * sqrt(1 + acres burnt / 300) progress points per mana.<br>Every acre burnt uses up 10 magical herbs in fuel, releasing 4000 mana for you to absorb.<br>For every 10% of the dark side of the forest explored, you will also gain 1 dark essence per acre burnt.<br>For some reason, burning 2 acres of forest will reduce your reputation by 1.<br>Unlocked at 20% Animals Fed.
+        ]]></tooltip>
+            <story_1><![CDATA[<b>forest burned:</b>⮀ Placeholder.]]></story_1>
+        </burn_forest>
         <bird_watching>
             <label>Bird Watching</label>
             <tooltip><![CDATA[
-            Far along the flower trail, there seems to be a large variety of birds flying about. Perhaps you could take up a new hobby.<br>Requires glasses.<br>Has 4x exp/talent gain, and can only be done <div id='trainingLimitPer'></div> times per reset.<br>Unlocked at 80% Flower Trail Followed.
+            Far along the flower trail, there seems to be a large variety of birds flying about. Perhaps you could take up a new hobby.<br>Requires glasses.<br>Has 4x exp/talent gain, and can only be done <div id='trainingLimitPer'></div> times per reset.<br>Unlocked at 70% Animals Fed.
         ]]></tooltip>
             <story_1><![CDATA[<b>Birds watched:</b>⮀ You spot a colorful bird and attempt to follow it with your eyes, you fail. You try again and again until you can reliable pick out fast moving birds and animals with pinpoint precision. It's also strangely relaxing to watch birds congregate together, listening to the bird-call and watching them interact. Its fast, frenetic and savage at times, but that's nature.]]></story_1>
         </bird_watching>
-        <clear_thicket>
-            <label>Clear Thicket</label>
-            <label_done>Thicket Explored</label_done>
+		<dark_forest>
+            <label>Dark Forest</label>
+			<label_done>Dark Forest Explored</label_done>
             <tooltip><![CDATA[
-            The path of flowers has lead you to a thicket, seemingly in the middle of nowhere. Perhaps it's some strange magic. You can clear out the thicket to find some more wild mana.<br>Unlocked at 20% Flower Trail Followed.
+            There's a lot of useful paths in here. You have avoided them for too long.<br>Gives some additional herbs.<br>Requires negative reputation.<br>The witch loves this place, knowing about it will help talking to her. Talk to Witch gives 4% more Witch Knowledge Learned per 1% Dark Forest Explored.<br>Unlocked at 30% Animals Fed.
         ]]></tooltip>
-            <story_1><![CDATA[<b>1% Thicket explored:</b>⮀ You trek to a thicket you found while following the flower path and decide to explore it. Maybe you'll find some more mana. It's not like it belongs to anyone.]]></story_1>
-            <story_2><![CDATA[<b>10% Thicket explored:</b>⮀ You've found more of these secluded thickets off the flower path than you thought you would, and you have a sense that there are many more that you haven't found yet.]]></story_2>
-            <story_3><![CDATA[<b>20% Thicket explored:</b>⮀ The mana in these thickets is rich and helpful, extending your time in the loop to let you search for more and more. The break from people is a nice break from normal too.]]></story_3>
-            <story_4><![CDATA[<b>40% Thicket explored:</b>⮀ You've thoroughly explored the darker side of the forest, and while resting close to the path that cut the forest in half, you stumbled across another thicket in the lighter side of the forest.]]></story_4>
-            <story_5><![CDATA[<b>60% Thicket explored:</b>⮀ You continued to stroll around to all the thickets you had found. They were innumerable at this point, just endless tangled tiny clearings and glades.]]></story_5>
-            <story_6><![CDATA[<b>80% Thicket explored:</b>⮀ Surely by now you're getting close to finding them all? Every time you think you're getting close you find another section of the forest that had clearings. How did you not find these earlier?]]></story_6>
-            <story_7><![CDATA[<b>100% Thicket explored:</b>⮀ You stumbled across another thicket and throw your hands up. You would question how you missed all these extra thickets but you don't really care at this point. You've gotten disturbingly good at ripping nature to pieces in search of more mana.]]></story_7>
-        </clear_thicket>
+            <story_1><![CDATA[<b>Dark forested:</b>⮀ Placeholder.]]></story_1>
+        </dark_forest>
         <talk_to_witch>
             <label>Talk To Witch</label>
             <label_done>Witch Knowledge Learned</label_done>
             <tooltip><![CDATA[
-            Talk to the witch to learn her secrets of the dark arts.<br>Unlocked with both 60% Thicket Explored and 80 Magic.<br>Reduces mana cost of Dark Magic and Dark Ritual by 0.5% per 1% of Witch Knowledge.
+            Talk to the witch to learn her secrets of the dark arts.<br>Requires negative reputation.<br>Reduces mana cost of Practice Yang and Learn Brewing by 0.5% per 1% of Witch Knowledge.<br>Her love for the dark forest also gives 4% more Dark Forest speed per 1% Witch Knowledge Learned.<br>Unlocked with both 20% Dark Forest Explored and 50 Magic.
         ]]></tooltip>
             <story_1><![CDATA[<b>1% Witch knowledge learned:</b>⮀ You stumble across a small crooked hut and as you approach the boundary, a small slip of a woman step outs. She's stunning and you're immediately on guard. The area pulses with a heady hum of magic that sends shivers down your spine. She introduces herself as Evis.]]></story_1>
             <story_2><![CDATA[<b>10% Witch knowledge learned:</b>⮀ The Witch as you taken to referring to her as, seeing as she changes her name every time she introduces herself to you, is a veritable font of magical knowledge, of how to dominate the mana itself and make more from less.]]></story_2>
@@ -1577,36 +1614,38 @@
             <story_7><![CDATA[<b>80% Witch knowledge learned:</b>⮀ The witch is struck with a strange sense of melancholy one loop and you have no idea why, but the witch is strangely open with information and you manage to pry out more of the relationship between her and the Hermit. They were lovers once, and to your surprise, she used to be the one whom nature adores. She shuts up quickly after letting that slip. You're all the more determined to pry it out of her though.]]></story_7>
             <story_8><![CDATA[<b>100% Witch knowledge learned:</b>⮀ Somehow she seems to sense something about you this loop, and she tells you her name, and its the name she gives for every loop after. Trisha. You manage to pry most of her relationship with the hermit from her. They were lovers once, this you knew, but what you didn't was that she was of nobility and he a common vagabond. She fell for him and him for her, it was a love for the ages she tells you while drunk from the wine you brought along with you. He wanted to run away with her and she agreed, too love struck to question why. He was running from deals he had made and bargains he had forsaken, his glib tounge landing him in trouble of the otherworldly nature. Trisha seems frustrated with her youth's naivety as she tells you how she was made a scapegoat for his failings and forfeits in his deals and bargains. How she was essentially sold to the dark gods as his forfeit. When you ask what she did in return, all Trisha does is smile with dark satisfaction, the fire flaring briefly.]]></story_8>
         </talk_to_witch>
-        <dark_magic>
-            <label>Dark Magic</label>
+		<practice_yin>
+            <label>Practice Yin</label>
             <tooltip><![CDATA[
-            Embrace the dark arts to more efficiently harvest mana. But at what cost?<br>Adds 1 negative reputation.<br>Requires a reputation of 0 or below.<br>Unlocked with both 20% Witch Knowledge and 100 Magic.
+			Embrace the dark arts and practice the Yin Magic the Witch created!<br>Gives 25 more yin exp per negative reputation you have.<br>Unlocked with both 20% Witch Knowledge and 55 Magic.
         ]]></tooltip>
-            <story_1><![CDATA[<b>1 Dark magic:</b>⮀ You ask the witch for more information on dark magic and then during the conversation slowly reveal your interest in the subject and float the offer that you would be willing to trade if she would teach you the beginning steps. She smirks deviously and agrees to the deal.]]></story_1>
-            <story_2><![CDATA[<b>25 Dark magic:</b>⮀ The witch demands more and more of you and you slowly figure out ways of broaching the subject with her that doesn't startle her enough that she stops talking to you or just flat out shuts you down. The magic she begins to teach is brutal, ominous and forceful. You do not work with or help, you take and dominate.]]></story_2>
-            <story_3><![CDATA[<b>50 Dark magic:</b>⮀ The dark magic she teaches seems to veer more to the side of ritualistic sacrifice and communion with the dark gods, she tells you when you ask that its because she can't really teach you too much more unless you have a darker being backing you as her mana isn't inherent but a gift from the darker divine powers. She teaches you of a ritual that you can use to summon the dark gods and strike a bargain. She warns that you'll need souls as payment.]]></story_3>
-        </dark_magic>
-        <dark_ritual>
-            <label>Dark Ritual</label>
-            <label_done>Completed</label_done>
+            <story_1><![CDATA[<b>1 Yin:</b>⮀ Placeholder.]]></story_1>
+        </practice_yin>
+		<learn_brewing>
+            <label>Learn Brewing</label>
             <tooltip><![CDATA[
-            Sacrifice an increasing amount of soulstones to the dark gods, granting a permanent speed 10% boost to all actions in Beginnersville.<br>Gives (dark magic skill) * (1 + witch knowledge / 100) * (1 + main stat / 100) * (original mana cost / actual mana cost) progress points per mana.<br>Requires a reputation of -5 or below.<br>Can only have 1 Dark Ritual action.<br>Unlocked with both 50% Witch Knowledge and 50 Dark Magic.<br>Sacrifices (50 * (rituals completed+1)) soulstones. Currently sacrificing 
+			The witch has interesting ideas about how to make some pretty evil potions. You feel the need to learn about it.<br>Doing this action costs 10 dark essences.<br>Use what you learned from alchemy to make this action more efficient.<br> Gain 10 more exp per Alchemy level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>Unlocked with both 40% Witch Knowledge and 60 Magic.
         ]]></tooltip>
-            <tooltip2><![CDATA[
-             soulstones.
-        ]]></tooltip2>
-            <segment_names>
-                <name>Clear the Area</name>
-                <name>Prepare the Altar</name>
-                <name>Summon the Dark Gods</name>
-            </segment_names>
-            <story_1><![CDATA[<b>3rd ritual segment reached:</b>⮀ Knowing what the ritual was and how large a space you would need, you were mildly surprised to find a clearing large enough in the forest. Well, the clearing itself wasn't really large enough on its own. It was a dense cluster of clearings that you've taken mana from that you could easily clear out to make a ritual space. Preparing the altar is surprisingly tame, all said and done. Stone and wood comprise most of the altar and the rest you brought with you when you made this plan. In the end the altar you build is only small, a communion point instead of a summoning. Holding a heart from nearby deer, you pierce it and begin to chant ritualistic words of power. The clearing grows dark and the forest quietens, nary a sound is heard apart from the drip drip drip of the blood from the pierced heart in your hand. The blood you've spilled on the altar begins to blacken and swirl without outside force and eventually forms into a small face, disgusting to look at but enough to communicate through.]]></story_1>
-            <story_2><![CDATA[<b>Ritual completed:</b>⮀ You commune with the dark gods long past the point that the blood has faded. The deal is struck thusly: time itself will move faster for you only in select areas, and you will pay a cost in souls. The dark god you commune with seems almost surprised as you immediately offer up some of the soulstones that you have.]]></story_2>
-        </dark_ritual>
+            <story_1><![CDATA[<b>1 Yin:</b>⮀ Placeholder.]]></story_1>
+        </learn_brewing>
+		<concoct_potions>
+            <label>Concoct Potions</label>
+			<label_done>Dark Potions Concocted</label_done>
+            <label_part>Dark Potion</label_part>
+			<segment_names>
+				<name>Gathering the dark spirits around</name>
+				<name>Picking the right ingredients</name>
+				<name>Stiring the cauldron</name>
+			</segment_names>
+            <tooltip><![CDATA[
+			That cauldron is brimming with dark energy! That's perfect to make some dark potions.<br>The cauldron's negative energy is so strong you have to have a reputation of -10 or below to even get close to it.<br>Gives (brewing + alchemy/2) * (1 + main stat / 100) * sqrt(1 + dark potions concocted / 100) progress points per mana.<br>Creates a potion from 10 dark essence to sell at the next town.<br>Unlocked with 10 Brewing.
+        ]]></tooltip>
+           <story_1><![CDATA[<b>1 Yin:</b>⮀ Placeholder.]]></story_1>
+        </concoct_potions>
         <continue_on>
             <label>Continue On</label>
             <tooltip><![CDATA[
-            Keep walking to the next town, Merchanton.<br>Mana cost reduced by 60 per Old Shortcut %.<br><b>Warning : this action has been deactivated for the time being. It will reactivate once the development this zone is finished.</b>
+            Keep walking to the next town, Merchanton.<br>Mana cost reduced by 600 per Old Shortcut % for the first 50%, and 60 for the next 50%.<br>Mana cost also reduced by 600 per Dark Forest % for the first 50%, and 60 for the next 50%.<br><b>Warning : this action has been deactivated for the time being. It will reactivate once the development this zone is finished.</b>
         ]]></tooltip>
             <story_1><![CDATA[<b>Traveled to the third zone:</b>⮀ You sigh gustily to yourself, you've done all you cared to do here and there was nothing left to do really, time to move on and out of the boonies and into civilized territory. Laws, taxes and bribes. You were almost looking forward to it, given how long you had been out in the country for at this point.]]></story_1>
         </continue_on>

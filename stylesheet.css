@@ -541,6 +541,9 @@ input[type="number"] {
 }
 
 
+.buffLabel {
+    margin-left: 18px;
+}
 
 
 .buffNumContainer {

@@ -40,9 +40,7 @@ const limitedActions = [
     "Destroy Pylons"
 ];
 const trainingActions = [
-    "Train Speed",
     "Train Strength",
-    "Train Dexterity",
     "Sit By Waterfall",
     "Read Books",
     "Bird Watching",
@@ -443,7 +441,7 @@ Action.SmashPots = new Action("Smash Pots", {
     },
     manaCost(squirrelTooltip) {
 		const squirrelManaMult = (((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Smash Pots") >= 3) ? 0.8 : 1);
-        return Math.ceil(100 * getSkillBonus("Practical") * squirrelManaMult);
+        return Math.ceil(100 * squirrelManaMult);
     },
 	canStart() {
         if(this.squirrelAction) return resources.squirrel;
@@ -457,7 +455,7 @@ Action.SmashPots = new Action("Smash Pots", {
     },
     // note this name is misleading: it is used for mana and gold gain.
     goldCost() {
-        return Math.floor(200 * getSkillBonus("Dark"));
+        return 200;
     },
     finish() {
         	
@@ -623,8 +621,8 @@ Action.PickLocks = new Action("Pick Locks", {
 		return 1;
 	},
 	goldCost() {
-        const base = 10;
-		const goldCostBase = Math.floor(base * getSkillMod("Practical",0,200,1) + base * getSkillBonus("Thievery") - base);
+        const goldCostBase = 10;
+		//const goldCostBase = Math.floor(base * getSkillMod("Practical",0,200,1) + base * getSkillBonus("Thievery") - base);
 		const manaCost = Math.floor(100 * getSkillBonus("Mercantilism")) * goldCostBase;
         return manaCost;
     },
@@ -790,7 +788,7 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
     },
 	stolenGoodsValue(){
 		let base = 10;
-        return Math.floor(base * getSkillMod("Practical",0,200,1) + base * getSkillBonus("Thievery") - base);
+        return 10 + (base * getSkillBonus("Thievery") - base);
 	},
     finish() {
 		
@@ -1013,8 +1011,7 @@ Action.ShortQuest = new Action("Short Quest", {
         return towns[0].getLevel("Met") >= 5;
     },
     goldCost() {
-        let base = 20;
-        return Math.floor(base * getSkillMod("Practical",100,300,1));
+        return 20;
     },
     finish() {
         
@@ -1174,8 +1171,7 @@ Action.LongQuest = new Action("Long Quest", {
         return towns[0].getLevel("Secrets") >= 10;
     },
     goldCost() {
-        let base = 30;
-        return Math.floor(base * getSkillMod("Practical",200,400,1));
+        return 30;
     },
     finish() {
 		
@@ -1351,7 +1347,6 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 
 				case 1: if(getSkillSquirrelLevel("Trust") >= 24) levelUpSquirrelAction("Warrior Lessons");
 					break;
-					
 
 			}
 			
@@ -2078,9 +2073,6 @@ Action.OpenRift = new Action("Open Rift", {
         Luck: 0.1,
         Soul: 0.7
     },
-    skills: {
-        Dark: 1000
-    },
     allowed() {
         return 1;
     },
@@ -2091,7 +2083,7 @@ Action.OpenRift = new Action("Open Rift", {
         return towns[5].getLevel("Meander") >= 1;
     },
     unlocked() {
-        return getSkillLevel("Dark") >= 300 && getSkillLevel("Spatiomancy") >= 100;
+        return getSkillLevel("Spatiomancy") >= 100;
     },
     finish() {
         handleSkillExp(this.skills);
@@ -2137,7 +2129,7 @@ Action.ExploreForest = new Action("Explore Forest", {
     },
     affectedBy: ["Take Glasses"],
     manaCost() {
-        return 400;
+        return 800;
     },
     visible() {
         return true;
@@ -2146,23 +2138,23 @@ Action.ExploreForest = new Action("Explore Forest", {
         return true;
     },
     finish() {
-        towns[1].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1));
+        towns[1].finishProgress(this.varName, 100 * (resources.glasses ? 4 : 1));
     },
 });
 function adjustWildMana() {
     let town = towns[1];
-    let baseWildMana = town.getLevel("Forest") * 5 + town.getLevel("Thicket") * 5;
-    town.totalWildMana = Math.floor(baseWildMana + baseWildMana * getSurveyBonus(town));
+    let baseWildMana = town.getLevel("Forest") * 5 + town.getLevel("Feed") * 5;
+    town.totalWildMana = baseWildMana;;
 }
 function adjustHunt() {
     let town = towns[1];
-    let baseHunt = town.getLevel("Forest") * 2;
-    town.totalHunt = Math.floor(baseHunt * getSkillMod("Spatiomancy", 400, 600, .5) + baseHunt * getSurveyBonus(town));
+    let baseHunt = town.getLevel("Forest") * 1 + town.getLevel("Feed") * 1;
+    town.totalHunt = baseHunt;
 }
 function adjustHerbs() {
     let town = towns[1];
-    let baseHerbs = (town.getLevel("Forest") * 5 + town.getLevel("Shortcut") * 2 + town.getLevel("Flowers") * 13);
-    town.totalHerbs = Math.floor(baseHerbs * getSkillMod("Spatiomancy", 500, 700, .5) + baseHerbs * getSurveyBonus(town));
+    let baseHerbs = town.getLevel("Forest") * 5 + town.getLevel("Shortcut") * 3 + town.getLevel("Feed") * 9 + town.getLevel("DarkForest") * 3;
+    town.totalHerbs = Math.floor(baseHerbs);
 }
 
 Action.WildMana = new Action("Wild Mana", {
@@ -2182,16 +2174,16 @@ Action.WildMana = new Action("Wild Mana", {
         Soul: 0.2
     },
     manaCost() {
-        return Math.ceil(300 * getSkillBonus("Practical"));
+        return 300;
     },
     visible() {
         return true;
     },
     unlocked() {
-        return towns[1].getLevel("Forest") >= 2;
+		return true;
     },
     goldCost() {
-        return Math.floor(500 * getSkillBonus("Dark"));
+        return 500;
     },
     finish() {
         towns[1].finishRegular(this.varName, 10, () => {
@@ -2261,10 +2253,10 @@ Action.Hunt = new Action("Hunt", {
         return 1600;
     },
     visible() {
-        return towns[1].getLevel("Forest") >= 10;
+        return towns[1].getLevel("Feed") >= 20;
     },
     unlocked() {
-        return towns[1].getLevel("Forest") >= 40;
+        return towns[1].getLevel("Feed") >= 40;
     },
     finish() {
         towns[1].finishRegular(this.varName, 10, () => {
@@ -2296,7 +2288,7 @@ Action.SitByWaterfall = new Action("Sit By Waterfall", {
         return 4000;
     },
     visible() {
-        return towns[1].getLevel("Forest") >= 10;
+		return towns[1].getLevel("Forest") >= 30;
     },
     unlocked() {
         return towns[1].getLevel("Forest") >= 70;
@@ -2346,8 +2338,9 @@ Action.OldShortcut = new Action("Old Shortcut", {
         return towns[1].getLevel("Forest") >= 20;
     },
     finish() {
-        towns[1].finishProgress(this.varName, 100);
+        towns[1].finishProgress(this.varName, 100 * (1 + towns[1].getLevel("Hermit") / 20));
         view.adjustManaCost("Continue On");
+		view.adjustManaCost("Talk To Hermit");
     },
 });
 
@@ -2390,46 +2383,47 @@ Action.TalkToHermit = new Action("Talk To Hermit", {
         return towns[1].getLevel("Shortcut") >= 20 && getSkillLevel("Magic") >= 40;
     },
     finish() {
-        towns[1].finishProgress(this.varName, 50 * (1 + towns[1].getLevel("Shortcut") / 100));
+        towns[1].finishProgress(this.varName, 50 * (1 + towns[1].getLevel("Shortcut") / 20));
+		view.adjustManaCost("Old Shortcut");
+		view.adjustManaCost("Practice Yang");
         view.adjustManaCost("Learn Alchemy");
         view.adjustManaCost("Gather Herbs");
-        view.adjustManaCost("Practical Magic");
     },
 });
 
-Action.PracticalMagic = new Action("Practical Magic", {
+Action.PracticeYang = new Action("Practice Yang", {
     type: "normal",
     expMult: 1.5,
     townNum: 1,
-    storyReqs(storyNum) {
+	storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return getSkillLevel("Practical") >= 1;
+                return getSkillLevel("Yin") >= 1;
         }
         return false;
     },
     stats: {
-        Per: 0.3,
-        Con: 0.2,
-        Int: 0.5
+        Int: 0.6,
+		Soul: 0.3,
+		Per: 0.1
     },
-    skills: {
-        Practical: 100
+	skills: {
+        Yang() {
+			const additionalExp = (resources.reputation >= 0 ? resources.reputation * 25 : 0);
+            return 100 + additionalExp;
+        }
     },
     manaCost() {
         return Math.ceil(8000 * (1 - towns[1].getLevel("Hermit") * 0.005));
     },
     visible() {
-        return towns[1].getLevel("Hermit") >= 10;
+        return towns[1].getLevel("Hermit") >= 1;
     },
     unlocked() {
-        return towns[1].getLevel("Hermit") >= 20 && getSkillLevel("Magic") >= 50;
+        return towns[1].getLevel("Hermit") >= 20 && getSkillLevel("Magic") >= 45;
     },
     finish() {
         handleSkillExp(this.skills);
-        view.adjustManaCost("Wild Mana");
-        view.adjustManaCost("Smash Pots");
-        view.adjustGoldCosts();
     },
 });
 
@@ -2454,8 +2448,21 @@ Action.LearnAlchemy = new Action("Learn Alchemy", {
         Int: 0.6
     },
     skills: {
-        Magic: 50,
-        Alchemy: 50
+        Alchemy() {
+			let brewingLevel = getSkillLevel("Brewing");
+			let brewingMultiplier = 0;
+			
+			for(let levelsNeededForBoost = 1; brewingLevel > 0; levelsNeededForBoost++) {
+				for (let i = 0; i < 10 && brewingLevel > 0; i++){
+				
+					brewingMultiplier += 1;
+					brewingLevel -= levelsNeededForBoost;
+				
+				}
+			}
+			
+			return 100 + brewingMultiplier * 10;
+		}
     },
     canStart() {
         return resources.herbs >= 10;
@@ -2464,24 +2471,25 @@ Action.LearnAlchemy = new Action("Learn Alchemy", {
         addResource("herbs", -10);
     },
     manaCost() {
-        return Math.ceil(10000 * (1 - towns[1].getLevel("Hermit") * 0.005));
+        return Math.ceil(9600 * (1 - towns[1].getLevel("Hermit") * 0.005));
     },
     visible() {
-        return towns[1].getLevel("Hermit") >= 10;
+        return towns[1].getLevel("Hermit") >= 15;
     },
     unlocked() {
-        return towns[1].getLevel("Hermit") >= 40 && getSkillLevel("Magic") >= 60;
+        return towns[1].getLevel("Hermit") >= 40 && getSkillLevel("Magic") >= 50;
     },
     finish() {
         handleSkillExp(this.skills);
-        view.adjustExpGain(Action.MageLessons);
+		view.adjustExpGain(Action.LearnBrewing);
     },
 });
 
-Action.BrewPotions = new Action("Brew Potions", {
-    type: "normal",
+Action.DistillPotions = new MultipartAction("Distill Potions", {
+    type: "multipart",
     expMult: 1.5,
     townNum: 1,
+	varName: "Distill",
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
@@ -2498,18 +2506,26 @@ Action.BrewPotions = new Action("Brew Potions", {
         Int: 0.6,
         Luck: 0.1,
     },
-    skills: {
-        Magic: 50,
-        Alchemy: 25
-    },
-    canStart() {
-        return resources.herbs >= 10 && resources.reputation >= 5;
-    },
-    cost() {
-        addResource("herbs", -10);
-    },
+	loopStats: ["Int", "Dex", "Luck"],
     manaCost() {
-        return Math.ceil(8000);
+        return 8000;
+    },
+    loopCost(segment) {
+		const numberLoops = towns[1].DistillLoopCounter / 3;
+        return Math.floor(Math.pow(1.4, numberLoops)+ 0.0000001) * 40000;
+    },
+    tickProgress(offset) {
+        return (getSkillLevel("Alchemy") + getSkillLevel("Brewing")/2) * (1 + getLevel(this.loopStats[(towns[1].DistillLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[0].totalDistill / 100);
+    },
+    loopsFinished() {
+		addResource("herbs", -10);
+        addResource("potions", 1);
+    },
+    getPartName() {
+        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[1].DistillLoopCounter + 0.0001) / this.segments + 1))}`;
+    }, 
+    canStart() {
+        return resources.herbs >= 10 && resources.reputation >= 10;
     },
     visible() {
         return getSkillLevel("Alchemy") >= 1;
@@ -2518,117 +2534,174 @@ Action.BrewPotions = new Action("Brew Potions", {
         return getSkillLevel("Alchemy") >= 10;
     },
     finish() {
-        addResource("potions", 1);
-        handleSkillExp(this.skills);
-        unlockStory("potionBrewed");
     },
 });
 
-Action.TrainDexterity = new Action("Train Dexterity", {
+Action.TrainSquirrel = new Action("Train Squirrel", {
     type: "normal",
-    expMult: 4,
+    expMult: 1,
     townNum: 1,
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return storyReqs.dexterityTrained;
+                return getSkillLevel("Yin") >= 1;
         }
         return false;
     },
     stats: {
-        Dex: 0.8,
-        Con: 0.2
+        Str: 0.5,
+        Dex: 0.2,
+        Con: 0.3
     },
-    allowed() {
-        return trainingLimits;
+    skillsSquirrel: {
+        Combat() {
+			return getSelfCombat() * 4;
+		}
     },
     manaCost() {
-        return 4000;
+        return 2500;
     },
     visible() {
-        return towns[1].getLevel("Forest") >= 20;
+        return towns[1].getLevel("Forest") >= 10;
     },
     unlocked() {
-        return towns[1].getLevel("Forest") >= 60;
+        return towns[1].getLevel("Forest") >= 30;
+    },
+	goldCost() {
+        return getSelfCombat() * 4;
     },
     finish() {
-        unlockStory("dexterityTrained");
+		handleSkillSquirrelExp(this.skillsSquirrel);
     },
 });
 
-Action.TrainSpeed = new Action("Train Speed", {
-    type: "normal",
-    expMult: 4,
-    townNum: 1,
-    storyReqs(storyNum) {
-        switch (storyNum) {
-            case 1:
-                return storyReqs.speedTrained;
-        }
-        return false;
-    },
-    stats: {
-        Spd: 0.8,
-        Con: 0.2
-    },
-    allowed() {
-        return trainingLimits;
-    },
-    manaCost() {
-        return 4000;
-    },
-    visible() {
-        return towns[1].getLevel("Forest") >= 20;
-    },
-    unlocked() {
-        return towns[1].getLevel("Forest") >= 80;
-    },
-    finish() {
-        unlockStory("speedTrained");
-    },
-});
-
-Action.FollowFlowers = new Action("Follow Flowers", {
+Action.FeedAnimals = new Action("Feed Animals", {
     type: "progress",
     expMult: 1,
     townNum: 1,
-    varName: "Flowers",
+	varName: "Feed",
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return towns[1].getLevel(this.varName) >= 1;
-            case 2:
-                return towns[1].getLevel(this.varName) >= 10;
-            case 3:
-                return towns[1].getLevel(this.varName) >= 20;
-            case 4:
-                return towns[1].getLevel(this.varName) >= 40;
-            case 5:
-                return towns[1].getLevel(this.varName) >= 60;
-            case 6:
-                return towns[1].getLevel(this.varName) >= 80;
-            case 7:
-                return towns[1].getLevel(this.varName) >= 100;
+                return getSkillLevel("Yin") >= 1;
         }
         return false;
     },
     stats: {
-        Per: 0.7,
-        Con: 0.1,
-        Spd: 0.2
-    },
-    affectedBy: ["Take Glasses"],
+        Cha: 0.4,
+		Luck: 0.2,
+		Con: 0.1,
+		Soul: 0.1
+    },	
     manaCost() {
-        return 600;
+        return 1000;
+    },
+	canStart() {
+        return resources.herbs >= 10;
+    },
+	cost() {
+        addResource("herbs", -10);
     },
     visible() {
-        return towns[1].getLevel("Forest") >= 30;
+		return towns[1].getLevel("Forest") >= 20;
     },
     unlocked() {
-        return towns[1].getLevel("Forest") >= 50;
+		return towns[1].getLevel("Forest") >= 40;
     },
     finish() {
-        towns[1].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1));
+       towns[1].finishProgress(this.varName, 100 * (1 + resources.herbs * 0.02));
+    },
+});
+
+Action.PotFairy = new Action("Pot Fairy", {
+    type: "normal",
+    expMult: 1,
+    townNum: 1,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return getSkillLevel("Yin") >= 1;
+        }
+        return false;
+    },
+    stats: {
+        Cha: 0.4,
+		Soul: 0.3,
+		Luck : 0.1,
+		Per : 0.2
+    },
+    manaCost() {
+        return 2000;
+    },
+	allowed() {
+		return 1;
+	},
+    visible() {
+		return towns[1].getLevel("Feed") >= 1;
+    },
+    unlocked() {
+		return towns[1].getLevel("Feed") >= 10;
+    },
+    finish() {		
+		if(towns[0].goodTempPots == towns[0].goodPots){
+			const multPots = towns[0].goodPots/10;
+			addResource("reputation", multPots);
+			addMana(multPots * 2000);
+		} else {
+			if(resources.reputation >= 0) {
+				const reputToRemove = resources.reputation * (-2);
+				addResource("reputation", reputToRemove);
+			}
+		}
+    },
+});
+
+Action.BurnForest = new MultipartAction("Burn Forest", {
+    type: "multipart",
+    expMult: 1,
+    townNum: 1,
+	varName: "Burn",
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return getSkillLevel("Yin") >= 1;
+        }
+        return false;
+    },
+    stats: {
+        Luck: 0.5,
+		Dex : 0.3,
+		Spd : 0.1,
+		Con : 0.1
+    },
+	canStart() {
+        return resources.reputation < 0;
+    },
+	loopStats: ["Luck", "Dex"],
+    manaCost() {
+        return 4000;
+    },
+    loopCost(segment) {
+        return 25000;
+    },
+    tickProgress(offset) {
+        return resources.herbs * (1 + getLevel(this.loopStats[(towns[1].BurnLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[0].totalBurn / 300);
+    },
+    loopsFinished() {
+		addMana(4000);
+        addResource("darkEssences", town.getLevel("DarkForest")%10);
+    },
+    getPartName() {
+        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[1].BurnLoopCounter + 0.0001) / this.segments + 1))}`;
+    },  
+    visible() {
+		return towns[1].getLevel("Feed") >= 5;
+    },
+    unlocked() {
+		return towns[1].getLevel("Feed") >= 20;
+    },
+    finish() {
+
     },
 });
 
@@ -2658,58 +2731,52 @@ Action.BirdWatching = new Action("Bird Watching", {
         return resources.glasses;
     },
     visible() {
-        return towns[1].getLevel("Flowers") >= 30;
+        return towns[1].getLevel("Feed") >= 30;
     },
     unlocked() {
-        return towns[1].getLevel("Flowers") >= 80;
+        return towns[1].getLevel("Feed") >= 70;
     },
     finish() {
         unlockStory("birdsWatched");
     },
 });
 
-Action.ClearThicket = new Action("Clear Thicket", {
+Action.DarkForest = new Action("Dark Forest", {
     type: "progress",
     expMult: 1,
     townNum: 1,
-    varName: "Thicket",
+	varName: "DarkForest",
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return towns[1].getLevel(this.varName) >= 1;
-            case 2:
-                return towns[1].getLevel(this.varName) >= 10;
-            case 3:
-                return towns[1].getLevel(this.varName) >= 20;
-            case 4:
-                return towns[1].getLevel(this.varName) >= 40;
-            case 5:
-                return towns[1].getLevel(this.varName) >= 60;
-            case 6:
-                return towns[1].getLevel(this.varName) >= 80;
-            case 7:
-                return towns[1].getLevel(this.varName) >= 100;
+                return getSkillLevel("Yin") >= 1;
         }
         return false;
     },
     stats: {
-        Dex: 0.1,
-        Str: 0.2,
-        Per: 0.3,
-        Con: 0.2,
-        Spd: 0.2
+        Con: 0.4,
+		Spd: 0.2,
+		Per: 0.2,
+		Soul: 0.1,
+		Luck: 0.1
+		
+    },
+	canStart() {
+        return resources.reputation < 0;
     },
     manaCost() {
-        return 1000;
+        return 2000;
     },
     visible() {
-        return towns[1].getLevel("Flowers") >= 10;
+		return towns[1].getLevel("Feed") >= 10;
     },
     unlocked() {
-        return towns[1].getLevel("Flowers") >= 20;
+		return towns[1].getLevel("Feed") >= 30;
     },
     finish() {
-        towns[1].finishProgress(this.varName, 100);
+		towns[1].finishProgress(this.varName, 100 * (1 + towns[1].getLevel("Witch") / 20));
+        view.adjustManaCost("Continue On");
+		view.adjustManaCost("Talk To Witch");
     },
 });
 
@@ -2744,125 +2811,161 @@ Action.TalkToWitch = new Action("Talk To Witch", {
         Int: 0.2,
         Soul: 0.5
     },
+	canStart() {
+        return resources.reputation < 0;
+    },
     manaCost() {
         return 3000;
     },
     visible() {
-        return towns[1].getLevel("Thicket") >= 20;
+        return towns[1].getLevel("DarkForest") >= 1;
     },
     unlocked() {
-        return towns[1].getLevel("Thicket") >= 60 && getSkillLevel("Magic") >= 80;
+        return towns[1].getLevel("DarkForest") >= 20 && getSkillLevel("Magic") >= 50;
     },
     finish() {
-        towns[1].finishProgress(this.varName, 100);
-        view.adjustManaCost("Dark Magic");
-        view.adjustManaCost("Dark Ritual");
+        towns[1].finishProgress(this.varName, 50 * (1 + towns[1].getLevel("DarkForest") / 20));
+		view.adjustManaCost("Dark Forest");
+		view.adjustManaCost("Practice Yin");
+        view.adjustManaCost("Learn Brewing");
     },
 });
 
-Action.DarkMagic = new Action("Dark Magic", {
+Action.PracticeYin = new Action("Practice Yin", {
     type: "normal",
     expMult: 1.5,
     townNum: 1,
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return getSkillLevel("Dark") >= 1;
-            case 2:
-                return getSkillLevel("Dark") >= 25;
-            case 3:
-                return getSkillLevel("Dark") >= 50;
+                return getSkillLevel("Yin") >= 1;
         }
         return false;
     },
     stats: {
-        Con: 0.2,
-        Int: 0.5,
-        Soul: 0.3
+        Int: 0.3,
+		Soul: 0.6,
+		Per: 0.1
     },
     skills: {
-        Dark() {
-            return Math.floor(100 * (1 + getBuffLevel("Ritual") / 100));
+         Yin() {
+            const additionalExp = (resources.reputation <= 0 ? resources.reputation * 25 : 0);
+            return 100 + additionalExp;
         }
     },
     manaCost() {
-        return Math.ceil(12000 * (1 - towns[1].getLevel("Witch") * 0.005));
-    },
-    canStart() {
-        return resources.reputation <= 0;
-    },
-    cost() {
-        addResource("reputation", -1);
+        return Math.ceil(10000 * (1 - towns[1].getLevel("Witch") * 0.005));
     },
     visible() {
-        return towns[1].getLevel("Witch") >= 10;
+		return towns[1].getLevel("Witch") >= 1;
     },
     unlocked() {
-        return towns[1].getLevel("Witch") >= 20 && getSkillLevel("Magic") >= 100;
+		return towns[1].getLevel("Witch") >= 20 && getSkillLevel("Magic") >= 55;
     },
     finish() {
-        handleSkillExp(this.skills);
-        view.adjustGoldCost("Pots", Action.SmashPots.goldCost());
-        view.adjustGoldCost("WildMana", Action.WildMana.goldCost());
+		handleSkillExp(this.skills);
     },
 });
 
-Action.DarkRitual = new MultipartAction("Dark Ritual", {
-    type: "multipart",
-    expMult: 10,
+Action.LearnBrewing = new Action("Learn Brewing", {
+    type: "normal",
+    expMult: 1.5,
     townNum: 1,
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return storyReqs.darkRitualThirdSegmentReached;
-            case 2:
-                return getBuffLevel("Ritual") >= 1;
+                return getSkillLevel("Yin") >= 1;
         }
         return false;
     },
     stats: {
-        Spd: 0.1,
-        Int: 0.1,
-        Soul: 0.8
+        Con: 0.1,
+		Str: 0.1,
+        Per: 0.2,
+        Soul: 0.6
     },
-    loopStats: ["Spd", "Int", "Soul"],
+	skills: {
+		Brewing() {
+			let alchemyLevel = getSkillLevel("Alchemy");
+			let alchemyMultiplier = 0;
+			
+			for(let levelsNeededForBoost = 1; alchemyLevel > 0; levelsNeededForBoost++) {
+				for (let i = 0; i < 10 && alchemyLevel > 0; i++){
+				
+					alchemyMultiplier += 1;
+					alchemyLevel -= levelsNeededForBoost;
+				
+				}
+			}
+			
+			return 100 + alchemyMultiplier * 10;
+		}
+	},
+	canStart() {
+        return resources.reputation < 0;
+    },
     manaCost() {
-        return Math.ceil(100000 * (1 - towns[1].getLevel("Witch") * 0.005));
-    },
-    allowed() {
-        return 1;
-    },
-    canStart() {
-        return resources.reputation <= -5 && towns[this.townNum].DarkRitualLoopCounter === 0 && checkSoulstoneSac(this.goldCost()) && getBuffLevel("Ritual") < parseInt(document.getElementById("buffRitualCap").value);
-    },
-    loopCost(segment) {
-        return 1000000 * (segment * 2 + 1);
-    },
-    tickProgress(offset) {
-        return getSkillLevel("Dark") * (1 + getLevel(this.loopStats[(towns[1].DarkRitualLoopCounter + offset) % this.loopStats.length]) / 100) / (1 - towns[1].getLevel("Witch") * 0.005);
-    },
-    loopsFinished() {
-        sacrificeSoulstones(this.goldCost());
-        addBuffAmt("Ritual", 1);
-        view.updateSoulstones();
-        view.adjustGoldCost("DarkRitual", this.goldCost());
-    },
-    getPartName() {
-        return "Perform Dark Ritual";
+        return Math.ceil(12000 * (1 - towns[1].getLevel("Witch") * 0.005));
     },
     visible() {
-        return towns[1].getLevel("Witch") >= 20;
-    },
+		return towns[1].getLevel("Witch") >= 15;
+	},
     unlocked() {
-        return towns[1].getLevel("Witch") >= 50 && getSkillLevel("Dark") >= 50;
-    },
-    goldCost() {
-        return Math.ceil(50 * (getBuffLevel("Ritual") + 1) * getSkillBonus("Commune"));
+		return towns[1].getLevel("Witch") >= 40 && getSkillLevel("Magic") >= 60;
     },
     finish() {
-        view.updateBuff("Ritual");
-        view.adjustExpGain(Action.DarkMagic);
-        if (towns[1].DarkRitualLoopCounter >= 0) unlockStory("darkRitualThirdSegmentReached");
+		handleSkillExp(this.skills);
+    },
+});
+
+Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
+    type: "multipart",
+    expMult: 1.5,
+    townNum: 1,
+	varName: "Concoct",
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return getSkillLevel("Yin") >= 1;
+        }
+        return false;
+    },
+    stats: {
+        Str: 0.3,
+        Soul: 0.6,
+        Per: 0.1,
+    },
+	canStart() {
+        return resources.darkEssences >= 10;
+    },
+	loopStats: ["Soul", "Per", "Str"],
+    manaCost() {
+        return 10000;
+    },
+    loopCost(segment) {
+		const numberLoops = towns[1].ConcoctLoopCounter / 3;
+        return Math.floor(Math.pow(1.4, numberLoops)+ 0.0000001) * 50000;
+    },
+    tickProgress(offset) {
+        return (getSkillLevel("Brewing") + getSkillLevel("Alchemy")/2) * (1 + getLevel(this.loopStats[(towns[1].ConcoctLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[0].totalConcoct / 100);
+    },
+    loopsFinished() {
+		addResource("darkEssences", -10);
+        addResource("darkPotions", 1);
+    },
+    getPartName() {
+        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[1].ConcoctLoopCounter + 0.0001) / this.segments + 1))}`;
+    }, 
+    canStart() {
+        return resources.darkEssences >= 10 && resources.reputation <= -10;
+    },
+    visible() {
+        return getSkillLevel("Brewing") >= 1;
+    },
+    unlocked() {
+        return getSkillLevel("Brewing") >= 10;
+    },
+    finish() {
     },
 });
 
@@ -2910,7 +3013,21 @@ Action.ContinueOn = new Action("Continue On", {
         return getNumOnList("Open Portal") > 0 ? 2 : 1;
     },
     manaCost() {
-        return Math.ceil(16000 - (60 * towns[1].getLevel("Shortcut")));
+		let shortcutReduce = towns[1].getLevel("Shortcut");
+		if(shortcutReduce <= 50){
+			shortcutReduce *= 600;
+		} else {
+			shortcutReduce = 600 * 50 + (shortcutReduce - 50) * 60;
+		}
+		
+		let darkForestReduce = towns[1].getLevel("DarkForest");
+		if(darkForestReduce <= 50){
+			darkForestReduce *= 600;
+		} else {
+			darkForestReduce = 600 * 50 + (darkForestReduce - 50) * 60;
+		}
+		
+        return Math.ceil(70000 - shortcutReduce - darkForestReduce);
     },
     visible() {
         return true;
@@ -4713,7 +4830,7 @@ Action.TidyUp = new MultipartAction("Tidy Up", {
         return fibonacci(Math.floor((towns[4].TidyLoopCounter + segment) - towns[4].TidyLoopCounter / 3 + 0.0000001)) * 1000000; // Temp.
     },
     tickProgress(offset) {
-        return getSkillLevel("Practical") * (1 + getLevel(this.loopStats[(towns[4].TidyLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[4].totalTidy / 100);
+        return (1 + getLevel(this.loopStats[(towns[4].TidyLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[4].totalTidy / 100);
     },
     loopsFinished() {
         addResource("reputation", 1);
@@ -4973,7 +5090,7 @@ Action.WizardCollege = new MultipartAction("Wizard College", {
     },
     tickProgress(offset) {
         return (
-            getSkillLevel("Magic") + getSkillLevel("Practical") + getSkillLevel("Dark") +
+            getSkillLevel("Magic") +
             getSkillLevel("Chronomancy") + getSkillLevel("Pyromancy") + getSkillLevel("Restoration") + getSkillLevel("Spatiomancy")) * 
             (1 + getLevel(this.loopStats[(towns[4][`${this.varName}LoopCounter`] + offset) % this.loopStats.length]) / 100) * 
             Math.sqrt(1 + towns[4][`total${this.varName}`] / 1000);
@@ -5251,7 +5368,7 @@ Action.GreatFeast = new MultipartAction("Great Feast", {
         return 1000000000 * (segment * 5 + 1);
     },
     tickProgress(offset) {
-        return getSkillLevel("Practical") * (1 + getLevel(this.loopStats[(towns[4].GreatFeastLoopCounter + offset) % this.loopStats.length]) / 100);
+        return (1 + getLevel(this.loopStats[(towns[4].GreatFeastLoopCounter + offset) % this.loopStats.length]) / 100);
     },
     loopsFinished() {
         sacrificeSoulstones(this.goldCost());
@@ -5545,9 +5662,6 @@ Action.RaiseZombie = new Action("Raise Zombie", {
         Int: 0.3,
         Soul: 0.3
     },
-    skills: {
-        Dark: 100
-    },
     canStart() {
         return resources.blood >= 1;
     },
@@ -5561,7 +5675,7 @@ Action.RaiseZombie = new Action("Raise Zombie", {
         return towns[5].getLevel("Meander") >= 15;
     },
     unlocked() {
-        return getSkillLevel("Dark") >= 1000;
+        return false;
     },
     finish() {
         handleSkillExp(this.skills);
@@ -5593,11 +5707,11 @@ Action.DarkSacrifice = new Action("Dark Sacrifice", {
         return towns[5].getLevel("Meander") >= 25;
     },
     unlocked() {
-        return getBuffLevel("Ritual") >= 60;
+        return false;
     },
     finish() {
         handleSkillExp(this.skills);
-        view.adjustGoldCost("DarkRitual", Action.DarkRitual.goldCost());
+        //view.adjustGoldCost("DarkRitual", Action.DarkRitual.goldCost());
     },
 });
 
@@ -5704,7 +5818,8 @@ Action.DeadTrial = new TrialAction("Dead Trial", 4, {
     },
     baseProgress() {
         //Determines what skills give progress to the trial
-        return getSkillLevel("Dark") * resources.zombie / 2;
+		return 1;
+        //return getSkillLevel("Dark") * resources.zombie / 2;
     },
     floorReward() {
         //Rewards given per floor
@@ -6168,7 +6283,6 @@ Action.ThievesGuild = new MultipartAction("Thieves Guild", {
     },
     skills: {
         Thievery: 50,
-        Practical: 50
     },
     loopStats: ["Per", "Dex", "Spd"],
     manaCost() {
@@ -6184,8 +6298,8 @@ Action.ThievesGuild = new MultipartAction("Thieves Guild", {
         return precision3(Math.pow(1.2, towns[7][`${this.varName}LoopCounter`] + segment)) * 5e8;
     },
     tickProgress(offset) {
-        return (getSkillLevel("Practical") +
-                getSkillLevel("Thievery")) *
+        return (
+				getSkillLevel("Thievery")) *
                 (1 + getLevel(this.loopStats[(towns[7][`${this.varName}LoopCounter`] + offset) % this.loopStats.length]) / 100) *
                 Math.sqrt(1 + towns[7][`total${this.varName}`] / 1000);
     },

@@ -21,17 +21,8 @@ let bonusMultString = "1x";
 function getSpeedMult(zone = curTown) {
     let speedMult = 1;
 
-    // dark ritual
-    if (zone === 0) speedMult *= getRitualBonus(0, 20, 10);
-    else if (zone === 1) speedMult *= getRitualBonus(20, 40, 5);
-    else if (zone === 2) speedMult *= getRitualBonus(40, 60, 2.5);
-    else if (zone === 3) speedMult *= getRitualBonus(60, 80, 1.5);
-    else if (zone === 4) speedMult *= getRitualBonus(80, 100, 1);
-    else if (zone === 5) speedMult *= getRitualBonus(100, 150, .5);
-    else if (zone === 6) speedMult *= getRitualBonus(150, 200, .5);
-    else if (zone === 7) speedMult *= getRitualBonus(200, 250, .5);
-    else if (zone === 8) speedMult *= getRitualBonus(250, 300, .5);
-    speedMult *= getRitualBonus(300, 666, .1);
+    // Yin and Yang
+	speedMult *= getYinYangBonus("YinYang");
     
     // chronomancy
     speedMult *= getSkillBonus("Chronomancy");
@@ -223,6 +214,16 @@ function addResource(resource, amount) {
     if (Number.isFinite(amount)) resources[resource] += amount;
     else resources[resource] = amount;
     view.updateResource(resource);
+	
+	if(resource === "reputation"){
+		view.adjustExpGain(Action.PracticeYin);
+		view.adjustExpGain(Action.PracticeYang);
+		
+		view.updateSkill("Yin");		
+		view.updateSkill("Yang");
+
+		view.updateBuff("YinYang");
+	}
 
     if (resource === "teamMembers" || resource === "armor" || resource === "zombie") view.updateTeamCombat();
 }
@@ -686,4 +687,15 @@ function checkSquirrelMode() {
 		squirrelCheck.checked = !squirrelCheck.checked;
 	}
 	setSquirrelMode(squirrelCheck.checked);
+}
+
+function updateYinYanBuff(){
+	
+	const levelYinYang = Math.floor(Math.min(getSkillLevel("Yin"), getSkillLevel("Yang"))/10);
+	
+	if(getBuffLevel("YinYang") != levelYinYang){
+		setBuffAmt("YinYang", levelYinYang);
+		view.updateBuff("YinYang");
+	}	
+	
 }

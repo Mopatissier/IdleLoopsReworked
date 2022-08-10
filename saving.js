@@ -87,7 +87,9 @@ let resources = {
     reputation: 0,
     herbs: 0,
     hide: 0,
+	darkEssences: 0,
     potions: 0,
+	darkPotions: 0,
     teamMembers: 0,
     armor: 0,
     blood: 0,
@@ -120,15 +122,15 @@ let curLoadout = 0;
 let loadouts;
 let loadoutnames;
 //let loadoutnames = ["1", "2", "3", "4", "5"];
-const skillList = ["Combat", "Magic", "Practical", "Alchemy", "Crafting", "Dark", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy", "Mercantilism", "Divine", "Commune", "Wunderkind", "Gluttony", "Thievery"];
+const skillList = ["Combat", "Magic", "Yang", "Yin", "Alchemy", "Brewing", "Crafting", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy", "Mercantilism", "Divine", "Commune", "Wunderkind", "Gluttony", "Thievery"];
 const skillSquirrelList = ["Trust", "Magic", "Combat", "Craftiness"];
 const skills = {};
 const skillsSquirrel = {};
-const buffList = ["Ritual", "Imbuement", "Imbuement2", "Feast", "Aspirant", "Heroism", "Imbuement3"];
+const buffList = ["YinYang", "Imbuement", "Imbuement2", "Feast", "Aspirant", "Heroism", "Imbuement3"];
 const dungeonFloors = [6, 9, 20];
 const trialFloors = [50, 100, 7, 1000, 25];
 const buffHardCaps = {
-    Ritual: 666,
+    YinYang: 50,
     Imbuement: 500,
     Imbuement2: 500,
     Imbuement3: 7,
@@ -137,7 +139,7 @@ const buffHardCaps = {
     Heroism: 50
 };
 const buffCaps = {
-    Ritual: 666,
+    YinYang: 50,
     Imbuement: 500,
     Imbuement2: 500,
     Imbuement3: 7,
@@ -184,7 +186,6 @@ const storyReqs = {
     dexterityTrained: false,
     speedTrained: false,
     birdsWatched: false,
-    darkRitualThirdSegmentReached: false,
     failedBrewPotions: false,
     failedBrewPotionsNegativeRep: false,
     potionBrewed: false,
@@ -323,7 +324,8 @@ function load() {
     }
     for (const property in toLoad.skills) {
         if (toLoad.skills.hasOwnProperty(property)) {
-            skills[property].exp = toLoad.skills[property].exp;
+			if(skills[property] !== undefined)
+				skills[property].exp = toLoad.skills[property].exp;
         }
     }
 	
@@ -335,8 +337,10 @@ function load() {
 
     for (const property in toLoad.buffs) {
         if (toLoad.buffs.hasOwnProperty(property)) {
-            // need the min for people with broken buff amts from pre 0.93
-            buffs[property].amt = Math.min(toLoad.buffs[property].amt, buffHardCaps[property]);
+			if(buffs[property] !== undefined){
+				// need the min for people with broken buff amts from pre 0.93
+				buffs[property].amt = Math.min(toLoad.buffs[property].amt, buffHardCaps[property]);
+			}
         }
     }
 

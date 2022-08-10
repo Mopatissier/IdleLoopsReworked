@@ -105,13 +105,45 @@ function getSkillLevel(skill) {
 
 function getSkillBonus(skill) {
     let change;
-    if (skill === "Dark" || skill === "Chronomancy" || skill === "Mercantilism" || skill === "Divine" || skill === "Wunderkind" || skill === "Thievery") change = "increase";
-    else if (skill === "Practical" || skill === "Spatiomancy" || skill === "Commune" || skill === "Gluttony") change = "decrease";
+    if (skill === "Chronomancy" || skill === "Mercantilism" || skill === "Divine" || skill === "Wunderkind" || skill === "Thievery") change = "increase";
+    else if (skill === "Spatiomancy" || skill === "Commune" || skill === "Gluttony") change = "decrease";
     else console.log("Skill not found:" + skill);
 
     if(change == "increase") return Math.pow(1 + getSkillLevel(skill) / 60, 0.25);
     else if (change == "decrease") return 1 / (1 + getSkillLevel(skill) / 100);
     else return 0;
+}
+
+function getYinYangBonus(skill){
+	if(skill === "Yin"){
+		
+		let bonusYin = getSkillLevel("Yin") * 0.5;
+		const minReputation = Math.max(getBuffLevel("YinYang"), resources.reputation);
+		bonusYin = Math.min(minReputation * 2, bonusYin);
+		return (1 + bonusYin/100);
+		
+	} else if (skill === "Yang"){
+		
+		let bonusYang = getSkillLevel("Yang") * 0.5;
+		const minReputation = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1));
+		bonusYang = Math.min(minReputation * 2, bonusYang);
+		return (1 + bonusYang/100);
+		
+	} else if (skill === "YinYang"){
+		
+		let bonusYin = getSkillLevel("Yin") * 0.5;
+		const minYinReputation = Math.max(getBuffLevel("YinYang"), resources.reputation);
+		bonusYin = Math.min(minYinReputation * 2, bonusYin);
+		
+		let bonusYang = getSkillLevel("Yang") * 0.5;
+		const minYangReputation = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1));
+		bonusYang = Math.min(minYangReputation * 2, bonusYang);
+		
+		return (1 + bonusYin/100) * (1 + bonusYang/100);
+		
+	} else {
+		return 0;
+	}
 }
 
 function getSkillMod(name, min, max, percentChange) {
@@ -155,7 +187,7 @@ function getSelfCombat() {
 }
 
 function getTeamCombat() {
-    return getSelfCombat() + (getSkillLevel("Dark") * resources.zombie / 2) + (getSkillLevel("Combat") + getSkillLevel("Restoration") * 2) * (resources.teamMembers / 2) * getAdvGuildRank().bonus;
+    return getSelfCombat() + (getSkillLevel("Combat") + getSkillLevel("Restoration") * 2) * (resources.teamMembers / 2) * getAdvGuildRank().bonus;
 }
 
 
@@ -176,6 +208,7 @@ function getPrcToNextSkillSquirrelLevel(skillSquirrel) {
 function addSkillExp(name, amount) {
     if (name === "Combat" || name === "Pyromancy" || name === "Restoration") amount *= 1 + getBuffLevel("Heroism") * 0.02;
     skills[name].exp += amount;
+	if(name === "Yin" || name === "Yang") updateYinYanBuff();
     view.requestUpdate("updateSkill", name);
 }
 
@@ -214,6 +247,12 @@ function addBuffAmt(name, amount) {
     if (getBuffLevel(name) === buffHardCaps[name]) return;
     buffs[name].amt += amount;
     view.updateBuff(name);
+}
+
+function setBuffAmt(name, amount) {
+	if (amount > buffHardCaps[name]) amount = buffHardCaps[name];
+	buffs[name].amt = amount;
+	view.updateBuff(name);
 }
 
 function addExp(name, amount) {
