@@ -117,27 +117,28 @@ function getSkillBonus(skill) {
 function getYinYangBonus(skill){
 	if(skill === "Yin"){
 		
-		let bonusYin = getSkillLevel("Yin") * 0.5;
-		const minReputation = Math.max(getBuffLevel("YinYang"), resources.reputation);
-		bonusYin = Math.min(minReputation * 2, bonusYin);
+		let bonusYin = Math.min(100, getSkillLevel("Yin") * 0.5);
+		const capReputation = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1)) * 2;
+		bonusYin = Math.min(capReputation, bonusYin);
+		
 		return (1 + bonusYin/100);
 		
 	} else if (skill === "Yang"){
 		
-		let bonusYang = getSkillLevel("Yang") * 0.5;
-		const minReputation = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1));
-		bonusYang = Math.min(minReputation * 2, bonusYang);
+		let bonusYang = Math.min(100, getSkillLevel("Yang") * 0.5);
+		const capReputation = Math.max(getBuffLevel("YinYang"), resources.reputation) * 2;
+		bonusYang = Math.min(capReputation, bonusYang);
 		return (1 + bonusYang/100);
 		
 	} else if (skill === "YinYang"){
 		
-		let bonusYin = getSkillLevel("Yin") * 0.5;
-		const minYinReputation = Math.max(getBuffLevel("YinYang"), resources.reputation);
-		bonusYin = Math.min(minYinReputation * 2, bonusYin);
+		let bonusYin = Math.min(100, getSkillLevel("Yin") * 0.5);
+		const capYinReputation = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1)) * 2;
+		bonusYin = Math.min(capYinReputation, bonusYin);
 		
-		let bonusYang = getSkillLevel("Yang") * 0.5;
-		const minYangReputation = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1));
-		bonusYang = Math.min(minYangReputation * 2, bonusYang);
+		let bonusYang = Math.min(100, getSkillLevel("Yang") * 0.5);
+		const capYangReputation = Math.max(getBuffLevel("YinYang"), resources.reputation) * 2;
+		bonusYang = Math.min(capYangReputation, bonusYang);
 		
 		return (1 + bonusYin/100) * (1 + bonusYang/100);
 		

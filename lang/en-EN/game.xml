@@ -529,11 +529,11 @@
 		<yang>
 			<label>Yang Magic</label>
 			<desc>Harness the positive energy around you. Feels incomplete.</desc>
-			<desc2><![CDATA[Speeds up time depending to the positive reputation you have.<br>
+			<desc2><![CDATA[Speeds up time depending to the positive reputation you have.<br><br>
 					Every level increases your speed by 0.5%.<br>
-					This speed increase is capped at (2x your positive reputation)%.<br>
-					Capped at 50 reputation.<br>
-					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br>
+					It cannot go higher than (2x your positive reputation)%.<br>
+					Capped at speed increase of +100%.<br>
+					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br><br>
 					Currently gives a <div id='skillBonusYang'></div>x speed increase.
 					]]>
 			</desc2>
@@ -541,11 +541,11 @@
 		<yin>
 			<label>Yin Magic</label>
 			<desc>Harness the negative energy around you. Feels incomplete.</desc>
-			<desc2><![CDATA[Speeds up time depending to the negative reputation you have.<br>
+			<desc2><![CDATA[Speeds up time depending to the negative reputation you have.<br><br>
 					Every level increases your speed by 0.5%.<br>
-					This speed increase is capped at (2x your negative reputation)%.<br>
-					Capped at -50 reputation.<br>
-					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br>
+					It cannot go higher than (2x your negative reputation)%.<br>
+					Capped at a speed increase of +100%.<br>
+					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br><br>
 					Currently gives a <div id='skillBonusYin'></div>x speed increase.
 					]]>
 			</desc2>
@@ -1055,7 +1055,7 @@
 		<pet_squirrel>
             <label>Pet Squirrel</label>
             <tooltip><![CDATA[
-            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<br>Spend some time with it to increase its trust by 100 exp.<br>You will also recruit the squirrel, it'll fit snuggly in your inventory.<br>Every level of trust the squirrel has increases the mana cost of this action by 100.<br>Unlocked at 5% explored.<br><b>Try petting the squirrel to get it by your side and then doing the squirrel mode version of this action to test its trust, it will eventually be worth it!</b>
+            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<br>Spend some time with it to increase its trust by 100 exp.<br>You will also recruit the squirrel, it'll fit snuggly in your inventory.<br>Every level of trust the squirrel has increases the mana cost of this action by 100.<br>Unlocked at 5% explored.<br><b>Try petting the squirrel to get it by your side, then doing the squirrel mode version of this action in the same loop, to test its trust, it will eventually be worth it!</b>
         ]]></tooltip>
 			<squirrel_1><![CDATA[You ask the squirrel to pet itself. It looks at you with extreme confusion.<br>Maybe increasing your trust will change the outcome of this action...<br><b>Effect: </b>None.<br><b>Next: </b>trust >= 5 ]]></squirrel_1>
 			<squirrel_2><![CDATA[You ask again the squirrel to pet itself. It still looks confused, but does it. Why is this so cute?!<br>Surprisingly, at the start of the next loop, it directly jumps on your shoulders. And does it again at the next one.<br>Neat, it looks like it'll automatically follow you from now on!<br><b>Effect: </b>From now on, you will start each loop with the squirrel in your inventory.<br><b>Next: </b>trust >= 20 ]]></squirrel_2>
