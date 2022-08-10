@@ -81,7 +81,7 @@ body {
 .showthis, .showthis2, .showthisH {
 	display          : none;
 	width            : max-content;
-	max-width        : 400px;
+	max-width        : 600px;
 	position         : absolute;
 	color            : black;
 	background-color : #c0e4c7;
@@ -251,7 +251,12 @@ body {
 	margin-top : 15px;
 }
 
-
+.divider {
+	border-top-color:		#C0D9C5;
+    border-right-color: 	#C0D9C5;
+    border-bottom-color: 	#C0D9C5;
+    border-left-color: 		#C0D9C5;
+}
 
 
 .title {

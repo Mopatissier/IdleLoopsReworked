@@ -911,7 +911,6 @@ function View() {
                     ${action.tooltip}<span id='goldCost${action.varName}'></span>
                     ${(action.goldCost === undefined) ? "" : action.tooltip2}
 					</span>
-                    <br>
                     ${actionSkills}
                     ${actionStats}
                     <div class='bold'>${_txt("actions>tooltip>mana_cost")}:</div> <div id='manaCost${action.varName}'>${formatNumber(action.manaCost())}</div><br>
@@ -993,8 +992,8 @@ function View() {
 					} else {
 						for(let i= 1; i <= tooltipLevel; i++){
 							newStoryTooltip += ("<b>Effect n°"+i+" : </b>");
-							newStoryTooltip += ( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>");
-							if(i !== tooltipLevel) newStoryTooltip += "<br>";
+							if(i !== tooltipLevel) newStoryTooltip += 	(( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "<br>");
+							else newStoryTooltip += 					(( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "");
 							if(!(_txt("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
 						}
 					}			
