@@ -6,6 +6,13 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.4"><![CDATA[
+            <b> August 16th, 2022</b>
+            • Added a new zone! Like the forest, it lacks squirrel actions and story bits for now. Wait, which zone? Well... That's up tp you to discover. Just one hint : it's not after the forest.<br>
+            • Changed the way travelling works : now, there can be alternative zones.<br>
+            • Fixed a ton of glitches and typos.<br>
+            • Reworked the yin yang magic tooltip.
+            ]]></version>
 			<version verNum="0.2.3"><![CDATA[
             <b> August 11st, 2022</b>
             • Massive rework for all the action tooltips! Now they should all be more readable, and be way more easy on the eyes. No more missing effects by misreading!<br>
@@ -672,18 +679,34 @@
     </skillsSquirrel>
     <buffs>
         <title>Buffs</title>
+		<spirit_blessing>
+			<label>Spirit Blessing</label>
+			<desc><![CDATA[You have been blessed by a mysterious being.<br><br>
+			
+			Every level of Spirit Blessing unlocks a new action in the Squirrel Sanctuary.<br>
+			You also consume each level 4x more mana per tick in the Sanctuary, quadrupling speed.<br>
+			Additionally, every action there becomes stronger.
+			]]></desc>	
+		</spirit_blessing>
+		<soulstones_imbued>
+			<label>Soulstones Imbued</label>
+			<desc><![CDATA[Overcharge up your soulstones with mana.<br>
+			Every level gives you +50 starting mana. Neat!<br><br>
+			Right now, you start every loop with <div id='buffImbueSoulstonesStartingMana'></div> mana.
+			]]></desc>	
+		</soulstones_imbued>
         <yin_yang_magic>
             <label>Yin Yang Magic</label>
             <desc><![CDATA[Now it finally feels complete!<br><br>
 			
 			Acts if you have have (buff level) minimum reputation on you, for both yin and yang magic.<br>
-			For example, if you have this buff at level 3 with 0 reputation:<br>
-			The yin magic will be activated as if you have -3 reputations.<br>
-			The yang magic will be activated as if you have 3 reputations.<br><br>
-			
-			On the other hand, if you have this buff at level 3 with 10 reputations:<br>
+			For example, if you have this buff at level 3 with 10 reputation:<br>
 			The yin magic will be activated as if you have -3 reputations.<br>
 			The yang magic will be activated as if you have 10 reputations.<br><br>
+			
+			Right now, you have this buff at level <div id='skillBuffYinYangLevel'></div> with <div id='skillBuffYinYangReputation'></div> reputations:<br>
+			The yin magic is activated as if you have -<div id='skillBuffYinYangYangReputation'></div> reputations.<br>
+			The yang magic is activated as if you have <div id='skillBuffYinYangYinReputation'></div> reputations.<br><br>
 			
 			Currently, yin and yang magic together give a bonus speed of <div id='skillBuffYinYang'></div>x.
             ]]></desc>
@@ -770,21 +793,11 @@
             <name>Valley of Olympus</name>
             <desc>A mountain shaped hole in the groud.</desc>
         </town8>
+		<town9>
+			<name>Squirrel Sanctuary</name>
+			<desc>What is this place? You can't really describe what is happening here, except that time and space feel distorded. You might be the first human to ever set foot here...</desc>
+		</town9>
     </towns>
-    <talents>
-        <calculated_shattering>
-            <name>Calculated Shattering</name>
-            <desc><![CDATA[
-            Practicing your shattering technique to get through all these pots as quickly as possible seems rather productive.<br>Reduces the mana cost of <span class="localized" data-lockey="actions>smash_pots>name"></span> by 1 per level.
-        ]]></desc>
-        </calculated_shattering>
-        <no_frill_frames>
-            <name>No-frill Frames</name>
-            <desc><![CDATA[
-            If you dedicate a bit of time to perusing for glasses, you can find some cheaper frames. And considering you won't be using them for too long until everything starts over again, you figure it's a good idea to skimp.<br>Reduces the gold cost of <span class="localized" data-lockey="actions>buy_glasses>name"></span> by 1 per level.
-        ]]></desc>
-        </no_frill_frames>
-    </talents>
     <actions>
         <title>Action Options</title>
         <title_stories>Action Stories</title_stories>
@@ -1028,6 +1041,100 @@
             One in every thousand Stones is temporal.
         ]]></tooltip>
         </haulZ6>
+		<!--town 0-->
+		<look_around>
+			<label>Look Around</label>
+			<label_done>Looked at</label_done>
+			<tooltip><![CDATA[
+			It's quite confusing. This place is very small at first, but every time you look around, it becomes bigger.<br>
+			It's not just space that feels weird, time too : your body feels frozen in time, despite being capable of moving.<hr class='divider'>
+			• Every % looked at doubles the mana cost of this action.<br>
+			• For every level of Spirit Blessing, divide the mana cost by 6.<br>
+			• You need glasses for this action.<br>
+			• <b>Be careful, you can't gain any exp for the rest of the loop once you set foot in the Squirrel Sanctuary!</b><hr class='divider'>
+			]]></tooltip>
+			<story_1><![CDATA[<b>0% Explored:</b>⮀ Placeholder.]]></story_1>
+		</look_around>
+		<absorb_mana>
+            <label>Absorb Mana</label>
+            <label_done>Mana Spots Absorbed</label_done>
+            <info_text1>Mana spots with mana left</info_text1>
+            <info_text2>Mana spots with mana total</info_text2>
+            <info_text3>Mana spots to check if you can absorb them</info_text3>
+            <tooltip><![CDATA[
+			As soon as you get the permission to absorb mana, glowing spots appear around you.<br>
+			You just have to stand in them and you'll absorb an incredible amount of mana. Neat!<br>
+			You're quite stunned by how much mana there is. Is this place actually made of mana?<hr class='divider'>
+			• You can only absord 1 out of 10 mana spots.<br>
+			• Every mana spot absorbed gives <div id='manaSpotBonus'></div>% more mana than the last.<br>
+			• This % gets bigger by +0.02 for each level of Spirit Blessing.<br>
+			• If you absorb a mana spot right now, it'd give			
+        ]]></tooltip>
+            <tooltip2><![CDATA[
+            mana.<hr class='divider'>
+        ]]></tooltip2>
+            <story_1><![CDATA[<b>Didn't even absorbed a mana spot :</b>⮀ Placeholder.]]></story_1>
+		</absorb_mana>
+		<imbue_squirrel>
+			<label>Imbue Squirrel</label>
+			<tooltip><![CDATA[
+			It looks like the squirrel have a better affinity with magic than you!<br>
+			Imbuing the squirrel with all the mana you have is quite efficient.<br>
+			It needs a crazy amount of mana for it, though... Thankfully, that's not a problem here.<hr class='divider'>
+			• Doing this action will give
+        ]]></tooltip>
+            <tooltip2><![CDATA[
+            magic exp for the squirrel.<br>
+			• Every level of Spirit Blessing will make this action 3x more expensive.<br>
+			• It will also make this action give 4x more magic exp. <hr class='divider'>
+        ]]></tooltip2>
+			<story_1><![CDATA[<b>Didn't even made the squirrel imbue anything :</b>⮀ Placeholder.]]></story_1>
+		</imbue_squirrel>
+		<imbue_soulstones>
+			<label>Imbue Stones</label>
+			<tooltip><![CDATA[
+			You just realized by overcharging your soulstones with mana, they can give off a very small amount of it when needed, once per loop.<br>
+			This seems like a perfect opportunity to start with more mana!<hr class='divider'>
+			• You need at least		
+        ]]></tooltip>
+            <tooltip2><![CDATA[
+            soulstones in each stat for this action to work.<br>
+			• Every level of Spirit Blessing will increase the Soulstones Imbued buff cap by 10.<br>
+			• The soulstone price of this action gets bigger by 1 for the first 10 times, then 2 for the next 10, then 3,...<hr class='divider'>
+        ]]></tooltip2>
+		<story_1><![CDATA[<b>You know this is a placeholder, right? :</b>⮀ Placeholder.]]></story_1>
+		</imbue_soulstones>
+		<balance_soulstones>
+			<label>Balance Stones</label>
+			<tooltip><![CDATA[
+			It can be annoying to get too many soulstones in one stat, and none in another.<br>
+			So let's rebalance this!<hr class='divider'>
+			• Takes one soulstone from the stat with the most soulstones and converts it to the stat with the less.<br>
+			• You can do this action  
+        ]]></tooltip>
+            <tooltip2><![CDATA[
+			times per loop.<br>
+			• Every level of Spirit Blessing will multiply that limit by 3.<hr class='divider'>
+        ]]></tooltip2>
+		<story_1><![CDATA[<b>Are you even reading this? :</b>⮀ Placeholder.]]></story_1>
+		</balance_soulstones>
+		<mysterious_voice>
+			<label>Mysterious Voice</label>
+			<requirement_1><![CDATA[First, you need to show yourself. (Just do this action as normal.)]]></requirement_1>
+			<requirement_2><![CDATA[Now, show the squirrel. (Do this action in squirrel mode.)]]></requirement_2>
+			<requirement_3><![CDATA[Showing 10 stolen goods will probably do the trick for Beginnersville.]]></requirement_3>
+			<requirement_4><![CDATA[The forest is filled with magical herbs. Show 100 of them.]]></requirement_4>
+			<requirement_5><![CDATA[This is the limit for now, it doesn't go further. Wait for further updates.]]></requirement_5>
+			<tooltip><![CDATA[
+			You faintly hear a mysterious voice that speaks to you...<br>
+			It says "Show me the world and I will reward you.".<br>
+			Maybe it'd be worth it to show it a few trinkets from your adventure?<hr class='divider'>
+			• Every time this action is done, increase the Spirit Blessing buff by one.<br>
+			• <div id='mysteriousVoiceNextRequirement'></div><br>
+			• Unlocked at 1% looked around.</b><hr class='divider'>
+			]]></tooltip>
+			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
+		</mysterious_voice>
         <!--town 1-->
         <wander>
             <label>Wander</label>
@@ -1115,8 +1222,8 @@
 			<b>Effect: </b>From now on, you will start each loop with the squirrel in your inventory.<br>
 			<b>Next: </b>trust >= 20 <hr class='divider'>
 			]]></squirrel_2>
-			<squirrel_3><![CDATA[T
-			he squirrel looks definitely fed up with pets right about now!<br>
+			<squirrel_3><![CDATA[
+			The squirrel looks definitely fed up with pets right about now!<br>
 			When you ask it to pet itself, it instead leads you to some sort of playground for pets. What an excellent idea!<br>
 			Oh uh... Looks like they don't let any random animal here. You're sure with enough reputation, you can convince them to let the squirrel pass.<hr class='divider'>
 			<b>Effect: </b>Gain 200 trust exp for the fixed cost of 2500 mana. Needs 2 reputation.<hr class='divider'>
@@ -1200,7 +1307,7 @@
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			The mana merchant looks at your squirrel and wants to buy it.<br>
-			You don't know what to say, so she snatch it out and give you a small mana potion in exchange.<br>
+			You don't know what to say, so she snatches it out and give you a small mana potion in exchange.<br>
 			You just get out of the stand a little stunned... At least the squirrel will be back next loop<hr class='divider'>
 			<b>Effect: </b>Gain 100 extra mana and lose the squirrel.<br>
 			<b>Next: </b>trust >= 15 <hr class='divider'>
@@ -1684,7 +1791,7 @@
 			<squirrel_2><![CDATA[
 			The squirrel asks you to follow it. It's leading you out of the village, in the opposite direction from the forest.<br>
 			Just where is it leading you?<br>
-			<b>Note : this action is not finished yet and won't do anything for the time being.</b><hr class='divider'>
+			<b>Note : The new zone unlocked isn't finished yet. Look at the warning in human mode to know what to do!</b><hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>Traveled to the second zone:</b>⮀ You leave town, heading towards the forest that stood between the village and Merchanton. You had exhausted every option in Beginnersville and there was nothing here that would stop the loops, it was time to look for other areas and solutions.]]></story_1>
@@ -1822,8 +1929,8 @@
             <tooltip><![CDATA[
             You can listen to him yammer while making light healing and remedy potions.<hr class='divider'>
 			• You're starting to think the potion that caused you to loop time was a complex one.<br>You provide the ingredients; costs 10 herbs.<br>
-			• Use what you learned from brewing to make this action more efficient.
-			• <br> Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
+			• Use what you learned from brewing to make this action more efficient.<br>
+			• Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
 			• Unlocked with both 40% Hermit Knowledge and 50 Magic.<hr class='divider'>
         ]]></tooltip>
             <story_1><![CDATA[<b>Alchemy learned:</b>⮀ You ask the hermit about potion's and are regaled of tales from his time as an apprentice, the mistakes he made and how one time, he managed to douse his masters beard with potion that would wildly change the color of it every minute, for a full year his master had to deal with a beard that was either glowing white like pure fallen snow or was more fit to be in the sky after rain. You take notes as the hermit speaks.]]></story_1>
@@ -1958,7 +2065,8 @@
             <tooltip><![CDATA[
 			The witch has interesting ideas about how to make some pretty evil potions. You feel the need to learn about it.<hr class='divider'>
 			• Doing this action costs 10 dark essences.<br>
-			• Use what you learned from alchemy to make this action more efficient.<br> Gain 10 more exp per Alchemy level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
+			• Use what you learned from alchemy to make this action more efficient.<br>
+			• Gain 10 more exp per Alchemy level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
 			• Unlocked with both 40% Witch Knowledge and 60 Magic.<hr class='divider'>
         ]]></tooltip>
             <story_1><![CDATA[<b>1 Yin:</b>⮀ Placeholder.]]></story_1>

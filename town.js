@@ -1,4 +1,39 @@
 "use strict";
+
+const BEGINNERSVILLE = 0;
+const FORESTPATH = 1;
+const MERCHANTON = 2;
+const MTOLYMPUS = 3;
+const VALHALLA = 4;
+const STARTINGTOWN = 5;
+const JUNGLEPATH = 6;
+const COMMERCEVILLE = 7;
+const VLOLYMPUS = 8;
+const SANCTUARY = 9;
+const CURSEDOCEAN = 10;
+
+const arrow = {
+	none: 0,
+	right: 1,
+	right_alt : 2,
+	left: 3,
+	letf_alt : 4,
+	alt: 5
+};
+
+const zoneOrder = [
+	[9],
+	[0],
+	[1],
+	[2],
+	[3, 10],
+	[4],
+	[5],
+	[6],
+	[7],
+	[8]
+];
+
 function Town(index) {
     this.index = index;
     this.varNames = [];

@@ -61,7 +61,7 @@ const saveName = "idleLoops1";
 // this is to hide the cheat button if you aren't supposed to cheat
 if (window.location.href.includes("http://localhost:8080/")) document.getElementById("cheat").style.display = "inline-block";
 
-const timeNeededInitial = 5 * baseManaPerSecond;
+let timeNeededInitial = 5 * baseManaPerSecond;
 // eslint-disable-next-line prefer-const
 let timer = timeNeededInitial;
 // eslint-disable-next-line prefer-const
@@ -126,10 +126,12 @@ const skillList = ["Combat", "Magic", "Yang", "Yin", "Alchemy", "Brewing", "Craf
 const skillSquirrelList = ["Trust", "Magic", "Combat", "Craftiness"];
 const skills = {};
 const skillsSquirrel = {};
-const buffList = ["YinYang", "Imbuement", "Imbuement2", "Feast", "Aspirant", "Heroism", "Imbuement3"];
+const buffList = ["SpiritBlessing", "ImbueSoulstones", "YinYang", "Imbuement", "Imbuement2", "Feast", "Aspirant", "Heroism", "Imbuement3"];
 const dungeonFloors = [6, 9, 20];
 const trialFloors = [50, 100, 7, 1000, 25];
 const buffHardCaps = {
+	SpiritBlessing: 20,
+	ImbueSoulstones: 200,
     YinYang: 50,
     Imbuement: 500,
     Imbuement2: 500,
@@ -139,6 +141,8 @@ const buffHardCaps = {
     Heroism: 50
 };
 const buffCaps = {
+	SpiritBlessing: 20,
+	ImbueSoulstones : 200,
     YinYang: 50,
     Imbuement: 500,
     Imbuement2: 500,
@@ -389,7 +393,7 @@ function load() {
     } else {
         townsUnlocked = toLoad.townsUnlocked === undefined ? [0] : toLoad.townsUnlocked;
     }
-    for (let i = 0; i <= 8; i++) {
+    for (let i = 0; i <= 10; i++) {
         towns[i] = new Town(i);
     }
     actionTownNum = toLoad.actionTownNum === undefined ? 0 : toLoad.actionTownNum;
@@ -556,14 +560,14 @@ function load() {
     addOffline(Math.min(Math.floor((new Date() - new Date(toLoad.date)) * offlineRatio), 2678400000));
 
     if (toLoad.version75 === undefined) {
-        const total = towns[0].totalSDungeon;
+        const total = towns[BEGINNERSVILLE].totalSDungeon;
         dungeons[0][0].completed = Math.floor(total / 2);
         dungeons[0][1].completed = Math.floor(total / 4);
         dungeons[0][2].completed = Math.floor(total / 8);
         dungeons[0][3].completed = Math.floor(total / 16);
         dungeons[0][4].completed = Math.floor(total / 32);
         dungeons[0][5].completed = Math.floor(total / 64);
-        towns[0].totalSDungeon = dungeons[0][0].completed + dungeons[0][1].completed + dungeons[0][2].completed + dungeons[0][3].completed + dungeons[0][4].completed + dungeons[0][5].completed;
+        towns[BEGINNERSVILLE].totalSDungeon = dungeons[0][0].completed + dungeons[0][1].completed + dungeons[0][2].completed + dungeons[0][3].completed + dungeons[0][4].completed + dungeons[0][5].completed;
     }
 
     if(getExploreProgress() >= 100) addResource("glasses", true);

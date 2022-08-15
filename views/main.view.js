@@ -20,7 +20,7 @@ function View() {
         this.updateProgressActions();
         this.updateLockedHidden();
         this.updateSoulstones();
-        this.showTown(0);
+        this.showTown(0, arrow.none);
         this.showActions(false);
         this.updateTrainingLimits();
         this.changeStatView();
@@ -38,6 +38,8 @@ function View() {
         }, 2000);
         adjustAll();
         this.updateActionTooltips();
+		this.updateBuffCaps();
+		this.updateStartingMana();
     };
 
     this.statLocs = [
@@ -322,6 +324,10 @@ function View() {
         if (buff === "Imbuement") {
             this.updateTrainingLimits();
         } else if (buff == "YinYang"){
+			document.getElementById("skillBuffYinYangLevel").textContent = getBuffLevel("YinYang");
+			document.getElementById("skillBuffYinYangReputation").textContent = resources.reputation;
+			document.getElementById("skillBuffYinYangYinReputation").textContent = Math.max(getBuffLevel("YinYang"), resources.reputation);
+			document.getElementById("skillBuffYinYangYangReputation").textContent = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1));
 			document.getElementById("skillBuffYinYang").textContent = intToString(getYinYangBonus("YinYang"), 4);
 		}
     };
@@ -333,8 +339,12 @@ function View() {
     };
 
     this.updateTime = function() {
+		
+		let multTicksSpeed = 1;
+		if(curTown === SANCTUARY) multTicksSpeed = Math.pow(4, getBuffLevel("SpiritBlessing"));
+		
         document.getElementById("timeBar").style.width = `${100 - timer / timeNeeded * 100}%`;
-        document.getElementById("timer").textContent = `${intToString((timeNeeded - timer), 1)} | ${formatTime((timeNeeded - timer) / baseManaPerSecond / getActualGameSpeed())}`;
+        document.getElementById("timer").textContent = `${intToString((timeNeeded - timer), 1)} | ${formatTime((timeNeeded - timer) / baseManaPerSecond / getActualGameSpeed() / multTicksSpeed)}`;
     };
     this.updateTotalTicks = function() {
         document.getElementById("totalTicks").textContent = `${formatNumber(actions.completedTicks)} | ${formatTime(timeCounter)}`;
@@ -360,6 +370,10 @@ function View() {
         document.getElementById("actionAllowedWarehouses").textContent = intToStringRound(towns[7].totalWarehouses);
         document.getElementById("actionAllowedInsurance").textContent = intToStringRound(towns[7].totalInsurance);
         document.getElementById("totalSurveyProgress").textContent = getExploreProgress();
+		document.getElementById("mysteriousVoiceNextRequirement").textContent = _txt(`actions>mysterious_voice>requirement_${(getBuffLevel("SpiritBlessing")+1)}`)
+		document.getElementById("manaSpotBonus").textContent = intToString(1 +getBuffLevel("SpiritBlessing") * 0.02);
+		
+		
         Array.from(document.getElementsByClassName("surveySkill")).forEach(div => {
             div.textContent = getExploreSkill();
         });
@@ -386,6 +400,7 @@ function View() {
         "rgba(76, 175, 80, 0.4)", //Jungle Path
         "rgba(255, 235, 59, 0.4)", //Commerceville
         "rgba(103, 58, 183, 0.4)", //Valley of Olympus
+		"rgba(145, 100, 35, 0.2)" //Squirrel Sanctuary
         //"rgba(103, 58, 183, 0.2)"
     ];
     this.updateNextActions = function() {
@@ -458,7 +473,11 @@ function View() {
                 if (townNum === collapse.zone && i < collapse.index) display = "display: none";
             }
             let color;
-            if (action.name === "Face Judgement") {
+			if((travelNum > 0 || travelNum == -5) && action.squirrelAction){
+				color = `linear-gradient(${this.zoneTints[townNum]} 49%, ${this.zoneTints[SANCTUARY]} 51%)`;
+			} else if (action.name === "Mysterious Voice"){
+				color = `${this.zoneTints[SANCTUARY]}`;
+			} else if (action.name === "Face Judgement") {
                 color = "linear-gradient(to bottom, rgb(183, 203, 196) 49%, transparent 51%), linear-gradient(to right, rgba(255, 255, 255, 0.2) 50%, rgba(103, 58, 183, 0.2) 51%)";
             } else if (action.name === "Fall From Grace") {
                 color = "linear-gradient(to bottom, rgb(255, 255, 255, 0.2) 49%, rgba(103, 58, 183, 0.2) 51%)";
@@ -739,32 +758,81 @@ function View() {
         }
     };
 
-    this.showTown = function(townNum) {
-        if (!towns[townNum].unlocked()) return;
-
-        if (townNum === 0) {
-            document.getElementById("townViewLeft").style.visibility = "hidden";
-        } else {
-            document.getElementById("townViewLeft").style.visibility = "visible";
-        }
-
-        if (townNum === Math.max(...townsUnlocked)) {
-            document.getElementById("townViewRight").style.visibility = "hidden";
-        } else {
-            document.getElementById("townViewRight").style.visibility = "visible";
-        }
-
-        for (let i = 0; i < actionOptionsTown.length; i++) {
+    this.showTown = function(townNum, arrowDirection) {
+						
+		//Just as a reminder :
+		// console.log("Zone n°4 has " + zoneOrder[4]);
+		// console.log("Cursed ocean is in zone n°" + zoneOrder.findIndex(arr => arr.includes(CURSEDOCEAN)));
+		// console.log("In zone 4, Mt Olympus is in place n°" + zoneOrder[4].indexOf(MTOLYMPUS));
+		
+		let townTarget;
+		const currentZone = zoneOrder.findIndex(arr => arr.includes(townNum));
+		const altZone = (zoneOrder[currentZone].indexOf(townNum) === 0 ? 1 : 0);
+								
+		switch(arrowDirection){
+		
+			case arrow.none: townTarget = townNum;
+							break;
+			case arrow.right: townTarget = zoneOrder[currentZone+1][0];
+							break;
+			case arrow.right_alt: townTarget = zoneOrder[currentZone+1][1];
+							break;
+			case arrow.left: townTarget = zoneOrder[currentZone-1][0];
+							break;
+			case arrow.right_alt: townTarget = zoneOrder[currentZone-1][1];
+							break;
+			case arrow.alt : townTarget = zoneOrder[currentZone][altZone];
+							break;
+		}
+		
+		if(!towns[townTarget].unlocked()) return;
+		
+		const newZone = zoneOrder.findIndex(arr => arr.includes(townTarget));
+				
+		if(zoneOrder[newZone+1] !== undefined && towns[zoneOrder[newZone+1][0]].unlocked()){
+			document.getElementById("townViewRight").style.visibility = "visible";
+		} else {
+			document.getElementById("townViewRight").style.visibility = "hidden";
+		}
+		
+		if(zoneOrder[newZone+1] !== undefined && zoneOrder[newZone+1][1] !== undefined && towns[zoneOrder[newZone+1][1]].unlocked()){
+			document.getElementById("townViewRightAlt").style.visibility = "visible";
+		} else {
+			document.getElementById("townViewRightAlt").style.visibility = "hidden";
+		}
+		
+		if(zoneOrder[newZone-1] !== undefined && towns[zoneOrder[newZone-1][0]].unlocked()){
+			document.getElementById("townViewLeft").style.visibility = "visible";
+		} else {
+			document.getElementById("townViewLeft").style.visibility = "hidden";
+		}
+		
+		if(zoneOrder[newZone-1] !== undefined && zoneOrder[newZone-1][1] !== undefined && towns[zoneOrder[newZone-1][1]].unlocked()){
+			document.getElementById("townViewLeftAlt").style.visibility = "visible";
+		} else {
+			document.getElementById("townViewLeftAlt").style.visibility = "hidden";
+		}
+		
+		if(zoneOrder[newZone][altZone] !== undefined && towns[zoneOrder[newZone][altZone]].unlocked()){
+			document.getElementById("townViewAlt").style.visibility = "visible";
+		} else {
+			document.getElementById("townViewAlt").style.visibility = "hidden";
+		}
+				
+		for (let i = 0; i < actionOptionsTown.length; i++) {
             actionOptionsTown[i].style.display = "none";
             actionStoriesTown[i].style.display = "none";
             townInfos[i].style.display = "none";
         }
-        if (actionStoriesShowing) actionStoriesTown[townNum].style.display = "block";
-        else actionOptionsTown[townNum].style.display = "block";
-        townInfos[townNum].style.display = "block";
-        document.getElementById("townName").textContent = _txt(`towns>town${townNum}>name`);
-        document.getElementById("townDesc").textContent = _txt(`towns>town${townNum}>desc`);
-        townShowing = townNum;
+			
+		if (actionStoriesShowing) actionStoriesTown[townTarget].style.display = "block";
+		else actionOptionsTown[townTarget].style.display = "block";
+		
+		townInfos[townTarget].style.display = "block";
+        document.getElementById("townName").textContent = _txt(`towns>town${townTarget}>name`);
+        document.getElementById("townDesc").textContent = _txt(`towns>town${townTarget}>desc`);
+        townShowing = townTarget;
+						
     };
 
     this.showActions = function(stories) {
@@ -921,6 +989,7 @@ function View() {
         const actionsDiv = document.createElement("div");
         actionsDiv.innerHTML = totalDivText;
         if (isTravel) actionsDiv.style.width = "100%";
+		
         actionOptionsTown[action.townNum].appendChild(actionsDiv);
 
         if (action.storyReqs !== undefined) {
@@ -1345,15 +1414,47 @@ function View() {
     };
 	
 	
-	 this.createTravelMenu = function() {
-       let travelMenu = document.getElementById("travelMenu");
-        travelMenu.innerHTML = "";
-        townNames.forEach((town, index) => {
-            if (townsUnlocked.includes(index))
-                travelMenu.innerHTML += `<div id='travelButton`+index+`' class='button showthat control' onClick='view.showTown(`+index+`)'>`+town+`</div><br>`;
-        });
+	this.createTravelMenu = function() {
+		let travelMenu = document.getElementById("travelMenu");
+		travelMenu.innerHTML = "";
+		
+		zoneOrder.forEach((zones) => {
+			if(townsUnlocked.includes(zones[0])){
+				travelMenu.innerHTML += `<div id='travelButton`+zones[0]+`' class='button showthat control' onClick='view.showTown(`+zones[0]+`, arrow.none)'>`+(_txt(`towns>town${zones[0]}>name`))+`</div>`;
+			}
+			if(zones[1] !== undefined && townsUnlocked.includes(zones[1])){
+				travelMenu.innerHTML += `<div id='travelButton`+zones[1]+`' class='button showthat control' onClick='view.showTown(`+zones[1]+`, arrow.none)'>`+(_txt(`towns>town${zones[1]}>name`))+`</div><br>`;
+			} else if(townsUnlocked.includes(zones[0])){	
+				travelMenu.innerHTML += `<br>`;
+			}
+		});
+		
     }
-
+	
+	this.updateTravelMenu = function() {
+		view.createTravelMenu();
+	}
+	
+	this.updateBuffCaps = function() {
+		
+		const ImbudeSoulstonesCap = Math.max(0, getBuffLevel("SpiritBlessing")-2)*10;
+	
+		buffHardCaps.ImbueSoulstones = ImbudeSoulstonesCap;
+		buffCaps.ImbueSoulstones = ImbudeSoulstonesCap;
+			
+		for (const buff of buffList) {
+			document.getElementById(`buff${buff}Cap`).value = buffCaps[buff];
+			//Math.min(parseInt(document.getElementById(`buff${buff}Cap`).value), buffHardCaps[buff]);
+			//buffCaps[buff] = parseInt(document.getElementById(`buff${buff}Cap`).value);
+		}
+		
+	}
+	
+	this.updateStartingMana = function() {
+		
+		timeNeededInitial = 5 * baseManaPerSecond + 50 * getBuffLevel("ImbueSoulstones");
+		document.getElementById("buffImbueSoulstonesStartingMana").textContent = timeNeededInitial;
+	}
 }
 
 function unlockGlobalStory(num) {
@@ -1372,7 +1473,7 @@ const nextActionsDiv = document.getElementById("nextActionsList");
 const actionOptionsTown = [];
 const actionStoriesTown = [];
 const townInfos = [];
-for (let i = 0; i <= 8; i++) {
+for (let i = 0; i <= 9; i++) {
     actionOptionsTown[i] = document.getElementById(`actionOptionsTown${i}`);
     actionStoriesTown[i] = document.getElementById(`actionStoriesTown${i}`);
     townInfos[i] = document.getElementById(`townInfo${i}`);
@@ -1433,13 +1534,6 @@ function adjustActionListSize(amt) {
     }
     setScreenSize();
     saveUISettings();
-}
-
-function updateBuffCaps() {
-    for (const buff of buffList) {
-        document.getElementById(`buff${buff}Cap`).value = Math.min(parseInt(document.getElementById(`buff${buff}Cap`).value), buffHardCaps[buff]);
-        buffCaps[buff] = parseInt(document.getElementById(`buff${buff}Cap`).value);
-    }
 }
 
 function setScreenSize() {

@@ -2,7 +2,7 @@
 
 // eslint-disable-next-line prefer-const
 let gameSpeed = 1;
-const baseManaPerSecond = 100;
+let baseManaPerSecond = 100;
 
 const halfDayMs = 1000*60*60*12;
 
@@ -59,17 +59,23 @@ function tick() {
         if (stop) {
             return;
         }
-        timer++;
-        timeCounter += 1 / baseManaPerSecond / getActualGameSpeed();
-        effectiveTime += 1 / baseManaPerSecond / getSpeedMult();
 		
-        actions.tick();
-        for (const dungeon of dungeons) {
-            for (const level of dungeon) {
-                const chance = level.ssChance;
-                if (chance < 1) level.ssChance = Math.min(chance + 0.0000001, 1);
-            }
-        }
+		let multTicks = 1;
+		if(curTown === SANCTUARY) multTicks = Math.pow(4, getBuffLevel("SpiritBlessing"));
+	
+        timer += multTicks;
+        timeCounter += 1 / baseManaPerSecond / getActualGameSpeed() / multTicks;
+        effectiveTime += 1 / baseManaPerSecond / getSpeedMult() / multTicks;
+		
+        actions.tick(multTicks);
+		if(multTicks === 1){
+			for (const dungeon of dungeons) {
+				for (const level of dungeon) {
+					const chance = level.ssChance;
+					if (chance < 1) level.ssChance = Math.min(chance + 0.0000001, 1);
+				}
+			}
+		}
 		
         if (shouldRestart || timer >= timeNeeded) {
             prepareRestart();
@@ -79,6 +85,7 @@ function tick() {
             save();
         }
         gameTicksLeft -= ((1000 / baseManaPerSecond) / getActualGameSpeed());
+		
     }
 	
 
@@ -171,6 +178,9 @@ function restart() {
     actions.restart();
     view.updateCurrentActionsDivs();
     view.updateTrials();
+	view.adjustGoldCost("ManaSpots", 100000);
+	view.adjustGoldCost("TrainSquirrel", getSelfCombat() * 4);
+	
 }
 
 function addActionToList(name, townNum, isTravelAction, insertAtIndex) {
@@ -333,13 +343,14 @@ function unlockTown(townNum) {
         townsUnlocked.push(townNum);
         townsUnlocked.sort();
         // refresh current
-        view.showTown(townNum);
+        view.showTown(townNum, arrow.none);
 		view.requestUpdate("updateTravelMenu",null);
     }
     curTown = townNum;
 }
 
 function adjustAll() {
+	adjustManaSpots();
     adjustPots();
     adjustLocks();
     adjustSQuests();

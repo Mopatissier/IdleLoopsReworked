@@ -10,17 +10,18 @@ function Actions() {
     this.currentPos = 0;
     this.timeSinceLastUpdate = 0;
 
-    this.tick = function() {
+    this.tick = function(ticksAmt) {
         const curAction = this.getNextValidAction();
         // out of actions
         if (!curAction) {
             shouldRestart = true;
             return;
         }
-		addExpFromAction(curAction);
-        curAction.ticks++;
-        curAction.manaUsed++;
-        curAction.timeSpent += 1 / baseManaPerSecond / getActualGameSpeed();
+		
+		if(ticksAmt === 1) addExpFromAction(curAction);
+		curAction.ticks += ticksAmt;
+		curAction.manaUsed += ticksAmt;
+		curAction.timeSpent += 1 / baseManaPerSecond / getActualGameSpeed() / ticksAmt;
         // only for multi-part progress bars
         if (curAction.loopStats) {
             let segment = 0;
@@ -30,7 +31,7 @@ function Actions() {
                 segment++;
             }
             // segment is 0,1,2
-            const toAdd = curAction.tickProgress(segment) * (curAction.manaCost() / curAction.adjustedTicks);
+            const toAdd = curAction.tickProgress(segment) * (curAction.manaCost() / curAction.adjustedTicks) * ticksAmt;
             // console.log("using: "+curAction.loopStats[(towns[curAction.townNum][curAction.varName + "LoopCounter"]+segment) % curAction.loopStats.length]+" to add: " + toAdd + " to segment: " + segment + " and part " +towns[curAction.townNum][curAction.varName + "LoopCounter"]+" of progress " + curProgress + " which costs: " + curAction.loopCost(segment));
             towns[curAction.townNum][curAction.varName] += toAdd;
             curProgress += toAdd;
@@ -143,8 +144,8 @@ function Actions() {
 		endLoopWithNoValidAction = true;
 		squirrelAlreadyPickedUp = false;
         curTown = 0;
-        towns[0].suppliesCost = 450;
-		view.adjustGoldCost("BuySupplies", towns[0].suppliesCost);
+        towns[BEGINNERSVILLE].suppliesCost = 450;
+		view.adjustGoldCost("BuySupplies", towns[BEGINNERSVILLE].suppliesCost);
         view.updateResource("supplies");
         curAdvGuildSegment = 0;
         curCraftGuildSegment = 0;
@@ -280,7 +281,7 @@ function addExpFromAction(action) {
                 action[statExp] = 0;
             }
             action[statExp] += expToAdd;
-            addExp(stat, expToAdd);
+			addExp(stat, expToAdd);
         }
     }
 }

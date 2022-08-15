@@ -130,7 +130,7 @@ GameKeyboard.bind(["ctrl", "command"], () => setControlKey(false), "keyup");
 
 function handleTownHotkey(townNum) {
     if (townNum === undefined) return;
-    if (townsUnlocked.includes(townNum)) view.showTown(townNum);
+    if (townsUnlocked.includes(townNum)) view.showTown(townNum, arrow.none);
 }
 
 function undo() {

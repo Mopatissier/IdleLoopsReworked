@@ -2,6 +2,8 @@ Views.registerView("buffsContainer", {
     selector: "#buffsContainer",
     html() {
         const fullNames = {
+			SpiritBlessing: "Spirit Blessing",
+			ImbueSoulstones: "Soulstones Imbued",
 			YinYang: "Yin Yang Magic",
             Imbuement: "Imbue Mind",
             Imbuement2: "Imbue Body",

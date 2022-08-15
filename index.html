@@ -11,7 +11,7 @@
 
     <title>Idle Loops Reworked</title>
     <link rel="stylesheet" href="stylesheet.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.1/css/all.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" crossorigin="anonymous">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     
@@ -618,15 +618,23 @@
 
     <div id="townColumn" style="width:535px;vertical-align:top;">
         <div id="townWindow" style="width:100%;text-align:center;">
-            <div style="float:left;margin-left:150px;" class="actionIcon fa fa-arrow-left" id="townViewLeft" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)-1])"></div>
-            <div class="showthat">
-                <div class="large bold"><div class="bold" id="townName"></div></div>
-                <div id='townDesc' class='showthis'></div>
-            </div>
-			<div style="float:right;margin-right:100px;margin-bottom:20px;" class="actionIcon fa fa-arrow-down showthatH">
-                <div id="travelMenu" class="showthisH" style="margin-top:-5px;"></div></div>
-            <div style="float:right;margin-right:50px;" class="actionIcon fa fa-arrow-right" id="townViewRight" onclick="view.showTown(townsUnlocked[townsUnlocked.indexOf(townShowing)+1])"></div>
-		</div><br>
+			<div id= "lineTop" style="width:100%;text-align:center;">
+				<div class="showthat">
+					<div class="large bold"><div class="bold" id="townName"></div></div>
+					<div id='townDesc' class='showthis'></div>
+				</div>
+				<div style="float:left;margin-left:150px;" class="actionIcon fa fa-arrow-left" id="townViewLeft" onclick="view.showTown(townShowing, arrow.left)"></div>
+				<div style="float:right;margin-right:80px;" class="actionIcon fa fa-arrow-down showthatH">
+					<div id="travelMenu" class="showthisH" style="margin-top:-5px;"></div>
+				</div>
+				<div style="float:right;margin-right:58px;" class="actionIcon fa fa-arrow-right" id="townViewRight" onclick="view.showTown(townShowing, arrow.right)"></div>
+			</div>
+			<div id= "lineBottom" style="width:100%;text-align:center;">
+				<div class="actionIcon fa fa-arrows-rotate" id="townViewAlt" onclick="view.showTown(townShowing, arrow.alt)"></div>
+				<div style="float:left;margin-left:150px;" class="actionIcon fa fa-arrow-left" id="townViewLeftAlt" onclick="view.showTown(townShowing, arrow.left_alt)"></div>
+				<div style="float:right;margin-right:150px;" class="actionIcon fa fa-arrow-right" id="townViewRightAlt" onclick="view.showTown(townShowing, arrow.right_alt)"></div>
+			</div>
+		</div>
         <div id="townInfo0" class='townInfo'></div>
         <div id="townInfo1" class='townInfo' style="display:none;"></div>
         <div id="townInfo2" class='townInfo' style="display:none;"></div>
@@ -636,6 +644,7 @@
         <div id="townInfo6" class='townInfo' style="display:none;"></div>
         <div id="townInfo7" class='townInfo' style="display:none;"></div>
         <div id="townInfo8" class='townInfo' style="display:none;"></div>
+        <div id="townInfo9" class='townInfo' style="display:none;"></div>
 
         <div class="showthat" style="display:block;margin:10px auto 2px auto;text-align:center;">
             <div style="float:left;margin-left:150px;" class="actionIcon fa fa-arrow-left" id="actionsViewLeft" onclick="view.showActions(false)"></div>
@@ -647,7 +656,7 @@
 			<img src='img/human.svg' class='smallIcon' draggable='false' style="float:left;margin-left:150px" id="iconSquirrelMode">
             <span class='large bold' id="squirrelModeTitle">Squirrel Mode</span>
 			<div class='showthis localized' data-lockey="actions>tooltip_squirrel_mode"></div>
-			<input style="float:right;margin-right:150px;margin-top:-1px" type="checkbox" id="squirrelModeCheck" ">
+			<input style="float:right;margin-right:150px;margin-top:-1px" type="checkbox" id="squirrelModeCheck" >
         </div>
 		
         <div id="actionOptionsTown0" class='actionOptions'></div>
@@ -659,6 +668,7 @@
         <div id="actionOptionsTown6" class='actionOptions' style="display:none;"></div>
         <div id="actionOptionsTown7" class='actionOptions' style="display:none;"></div>
         <div id="actionOptionsTown8" class='actionOptions' style="display:none;"></div>
+        <div id="actionOptionsTown9" class='actionOptions' style="display:none;"></div>
         <div id="actionStoriesTown0" class='actionStories' style="display:none;"></div>
         <div id="actionStoriesTown1" class='actionStories' style="display:none;"></div>
         <div id="actionStoriesTown2" class='actionStories' style="display:none;"></div>
@@ -668,6 +678,7 @@
         <div id="actionStoriesTown6" class='actionStories' style="display:none;"></div>
         <div id="actionStoriesTown7" class='actionStories' style="display:none;"></div>
         <div id="actionStoriesTown8" class='actionStories' style="display:none;"></div>
+        <div id="actionStoriesTown9" class='actionStories' style="display:none;"></div>
     </div>
 
     <div id="tutorial" style="position:absolute;width:100%;height:100%;left:0;top:0;z-index:9999;">
