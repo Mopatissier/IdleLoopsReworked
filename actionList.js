@@ -3324,6 +3324,10 @@ Action.ContinueOn = new Action("Continue On", {
     },
     finish() {
         //unlockTown(2);
+		
+		if(this.squirrelAction){
+			unlockTown(SANCTUARY);
+		}
     },
 });
 
