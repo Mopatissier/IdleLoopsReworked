@@ -6,9 +6,16 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.5"><![CDATA[
+            <b> August 24th, 2022</b>
+            • Added all the squirrel actions in the forest!<br>
+            • Tweaked a few forest actions.<br>
+            • The feed animals action now gives you the squirrel if you didn't recruit it yet. You monster!<br>
+            • Surprisingly, fixed a lot of glitches!<br>
+            ]]></version>
 			<version verNum="0.2.4"><![CDATA[
             <b> August 16th, 2022</b>
-            • Added a new zone! Like the forest, it lacks squirrel actions and story bits for now. Wait, which zone? Well... That's up tp you to discover. Just one hint : it's not after the forest.<br>
+            • Added a new zone! Like the forest, it lacks squirrel actions and story bits for now. Wait, which zone? Well... That's up to you to discover. Just one hint : it's not after the forest.<br>
             • Changed the way travelling works : now, there can be alternative zones.<br>
             • Fixed a ton of glitches and typos.<br>
             • Reworked the yin yang magic tooltip.
@@ -681,8 +688,7 @@
         <title>Buffs</title>
 		<spirit_blessing>
 			<label>Spirit Blessing</label>
-			<desc><![CDATA[You have been blessed by a mysterious being.<br><br>
-			
+			<desc><![CDATA[You have been blessed by a mysterious being.<br>
 			Every level of Spirit Blessing unlocks a new action in the Squirrel Sanctuary.<br>
 			You also consume each level 4x more mana per tick in the Sanctuary, quadrupling speed.<br>
 			Additionally, every action there becomes stronger.
@@ -690,7 +696,7 @@
 		</spirit_blessing>
 		<soulstones_imbued>
 			<label>Soulstones Imbued</label>
-			<desc><![CDATA[Overcharge up your soulstones with mana.<br>
+			<desc><![CDATA[Overcharge your soulstones with mana.<br>
 			Every level gives you +50 starting mana. Neat!<br><br>
 			Right now, you start every loop with <div id='buffImbueSoulstonesStartingMana'></div> mana.
 			]]></desc>	
@@ -1065,7 +1071,7 @@
 			As soon as you get the permission to absorb mana, glowing spots appear around you.<br>
 			You just have to stand in them and you'll absorb an incredible amount of mana. Neat!<br>
 			You're quite stunned by how much mana there is. Is this place actually made of mana?<hr class='divider'>
-			• You can only absord 1 out of 10 mana spots.<br>
+			• Only 1 in 10 mana spots can be safely absorbed.<br>
 			• Every mana spot absorbed gives <div id='manaSpotBonus'></div>% more mana than the last.<br>
 			• This % gets bigger by +0.02 for each level of Spirit Blessing.<br>
 			• If you absorb a mana spot right now, it'd give			
@@ -1099,7 +1105,7 @@
         ]]></tooltip>
             <tooltip2><![CDATA[
             soulstones in each stat for this action to work.<br>
-			• Every level of Spirit Blessing will increase the Soulstones Imbued buff cap by 10.<br>
+			• Every level of Spirit Blessing beyond 3 will increase the Soulstones Imbued buff cap by 10.<br>
 			• The soulstone price of this action gets bigger by 1 for the first 10 times, then 2 for the next 10, then 3,...<hr class='divider'>
         ]]></tooltip2>
 		<story_1><![CDATA[<b>You know this is a placeholder, right? :</b>⮀ Placeholder.]]></story_1>
@@ -1132,6 +1138,7 @@
 			• Every time this action is done, increase the Spirit Blessing buff by one.<br>
 			• Each time you do this action, the requirement to complete it changes.<br>
 			• <div id='mysteriousVoiceNextRequirement'></div><br>
+			• Each Spirit Blessing level will accelerate time in the Squirrel Sanctuary by x4, unlock a new action, and strengthen unlocked actions.<br>
 			• Unlocked at 1% looked around.</b><hr class='divider'>
 			]]></tooltip>
 			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
@@ -1208,7 +1215,8 @@
 			• Doing so recruits the squirrel, it'll fit snuggly in your inventory.<br>
 			• Every level of trust the squirrel has increases the mana cost of this action by 100.<br>
 			• Unlocked at 5% explored.<br>
-			• <b>Try petting the squirrel to get it by your side, then doing the squirrel mode version of this action in the same loop to test its trust, it will eventually be worth it!</b><hr class='divider'>
+			• <b>Try petting the squirrel to get it by your side, then doing the squirrel mode version of this action in the same loop to test its trust, it will eventually be worth it!<br>
+			• Look at the tooltip of this action in squirrel mode to see what the effects are.</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			You ask the squirrel to pet itself. It looks at you with extreme confusion.<br>
@@ -1827,7 +1835,31 @@
             <story_6><![CDATA[<b>60% Forest explored:</b>⮀ You continue searching around the forest, finding tracks and trails, boltholes and hollowed out tree trunks. Life is abundant in this forest, and you're seeing that. On both sides.]]></story_6>
             <story_7><![CDATA[<b>80% Forest explored:</b>⮀ You've managed to figure out where most of the herds in this forest are during your trip through, you've also stumbled across a fair amount of plants that produce mana, you wonder if they have a use.]]></story_7>
             <story_8><![CDATA[<b>100% Forest explored:</b>⮀ You've done it, you find it impossible to get lost in the forest now, and your sense of wanderlust has faded. You've seen practically all you can in this forest. There were areas barred to you, and you found no way to enter them with a cursory examination.]]></story_8>
-        </explore_forest>
+			<squirrel_1><![CDATA[
+			A new zone, finally! You spent an eternity in Beginnersville, you and the squirrel are both excited about exploring this new place!<br>
+			Actually, it's so excited it looks like it wants to explore things on its own then come back to you.<br>
+			Oh well, why not?<br>
+			Except there's a slight problem... No matter how much you wait, it isn't coming back.<br>
+			You're pretty sure it got lost... Ah well, you'll see it back next loop, so it's not that big of a problem.<hr class='divider'>
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>trust >= 32 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			This time, you decide to not take any risk and not split up with the squirrel.<br>
+			And it was the right call! It's really thorough with its exploration.<br>
+			It manages to find in places you already went a few magical herbs here and there you missed. Good!<hr class='divider'>
+			<b>Effect: </b>Gain 200 more herbs. This effect can only be done once.<br>
+			<b>Next: </b>trust >= 36 <hr class='divider'>
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			The squirrel found a lot of herbs last time, so you have high hope this time!<br>
+			After a while, seeing how it hasn't found anything, you can't help but feel disappointed...<br>
+			The squirrel, seeing your disappointed looks, goes into overdrive and starts furrowing the ground everywhere.<br>
+			After a while, he comes back to you with a smug look, pointing at some mana spots he dug out.<br>
+			This is the best friend you could ever ask for!<hr class='divider'>
+			<b>Effect: </b>Gain 100 more mana spots. This effect can only be done once.<hr class='divider'>
+		]]></squirrel_3>
+		</explore_forest>
         <wild_mana>
             <label>Wild Mana</label>
             <label_done>Mana Sources Tapped</label_done>
@@ -1842,7 +1874,26 @@
             mana.<br>
 			• Every 10 mana spots have good mana.<hr class='divider'>
         ]]></tooltip2>
-            <story_1><![CDATA[<b>Source checked for mana:</b>⮀ It's just sitting there, stray slightly from the beaten path and you find an abundance of mana just waiting for someone to take it, the only catch being you need to extract it from the plants surrounding it and they've proven slightly unwilling to part with it.]]></story_1>
+            <squirrel_1><![CDATA[
+			A new way to get mana! You wonder if asking the squirrel to do it for you will change anything.<br>
+			... Turns out, it's exactly the same. It was worth a try.<hr class='divider'>
+			<b>Effect: </b>Normal effect.<br>
+			<b>Next: </b>squirrel magic >= 15 <hr class='divider'>	
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			The squirrel keeps insisting gathering mana for you again, so you let it do it.<br>
+			Oh! With its new magic senses, it is capable of absorbing the mana in a more efficicent way!<br>
+			Thank you, squirrel!<hr class='divider'>
+			<b>Effect: </b>Mana spots give 100 extra mana.<br>
+			<b>Next: </b>squirrel combat >= 25 <hr class='divider'>	
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			Well well... Thanks to the squirrel, you just discovered shredding the mana spots to pieces is quite useful.<br>
+			It's way quicker to absorb mana this way, but it also means they are unable to replenish anymore...<br>
+			Ah well, they will come back next loop, so it shouldn't be a problem! <hr class='divider'>	
+			<b>Effect: </b>In addition of giving 100 extra mana, it takes 15% less time to do this action. <hr class='divider'>	
+		]]></squirrel_3>
+			<story_1><![CDATA[<b>Source checked for mana:</b>⮀ It's just sitting there, stray slightly from the beaten path and you find an abundance of mana just waiting for someone to take it, the only catch being you need to extract it from the plants surrounding it and they've proven slightly unwilling to part with it.]]></story_1>
         </wild_mana>
         <gather_herbs>
             <label>Gather Herbs</label>
@@ -1855,6 +1906,30 @@
 			• Every 10 funny plants are herbs.<br>
 			• Unlocked at 10% Forest Explored.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			If those herbs really have magic inside, eating them will probably give you some mana...<br>
+			So you ask the squirrel to eat them instead of picking them up.<br>
+			It looks at you with doubtful eyes. Then shakes its head. Maybe he thinks they are poisonous to squirrels?<br>
+			You think they aren't, but you can't really convey that to the squirrel.<br>
+			Well, it looks like it won't eat it until it trusts you enough for that, in any case.<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>trust >= 34 <hr class='divider'>	
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Finally, the squirrel trusts you enough to eat those herbs!<br>
+			It looks like they aren't poisonous to squirrels in the end! Not that you ever doubted it. Erm...<br>
+			You finally see the results, and... they give less mana than the squirrel needs to eat them.<br>
+			Talk about a waste...<hr class='divider'>
+			<b>Effect: </b>Consume one herb instead of gathering it to gain 200 mana.<br>
+			<b>Next: </b>magic >= 35 <hr class='divider'>
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			Something changed... It looks like the herbs give more mana now?<br>
+			It has probably something to do with the new magical power the squirrel have.<br>
+			Also, it looks like the squirrel now got hooked on them... Are they that tasty?<br>
+			You're tempted to try, but... maybe another day?<hr class='divider'>
+			<b>Effect: </b>Consume one herb instead of gathering it to gain 250 mana.<hr class='divider'>	
+		]]></squirrel_3>
             <story_1><![CDATA[<b>Plant checked for use:</b>⮀ You pull up random plants across the forest that emanate mana only to find that in most cases, they're simply plants that have started gathering mana, but in some cases they're actually magical plants. Small distinction, but a significant one.]]></story_1>
         </gather_herbs>
         <hunt>
@@ -1868,6 +1943,22 @@
 			• Every 10 animals have good hides.<br>
 			• Unlocked at 40% Animals Feed.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			The squirrel wants to hunt the animals for you!<br>
+			That's sweet, but... You can't help but feel a bit worried about it.<br>
+			It doesn't wait for your approval, and goes attacking a pack of animals at once.<br>
+			Well, uh... next time's the charm, maybe?<hr class='divider'>
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>squirrel combat >= 50 <hr class='divider'>	
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Now that the squirrel is quite strong, it might be a good idea to attempt this again.<br>
+			And it works! It goes attacking the same pack of animals and completely decimate them.<br>
+			It's a bit too gory for your taste, but it works...<br>
+			Suprisingly, the squirrel is even better at you at hunting animals!<br>
+			You feel proud : training it for all this time was very worth it!<hr class='divider'>	
+			<b>Effect: </b>Hunting with the squirrel takes 20% less mana.<hr class='divider'>	
+		]]></squirrel_2>
             <story_1><![CDATA[<b>Animal checked for hide:</b>⮀ You manage to track down a relatively harmless animal, but in the time it took you to bring the critter down you had ruined its pelt beyond all use. You needed practice.]]></story_1>
             <story_2><![CDATA[<b>10 Animals with hide:</b>⮀ You ghost through the forest, targeting packs that you know graze or are moving through locations easily reached and ambushed. You're starting to get good at this tracking thing, but you suppose you only really have to do it once.]]></story_2>
             <story_3><![CDATA[<b>20 Animals with hide:</b>⮀ A deer languishes by the water, lapping gently at the water seemingly unaware of your presence. It remains unaware of your presence as you slowly edge closer, the deer remains unaware of your presence until it is unaware of everything forevermore. You ghost through the forest on silent feet, swift as the wind and as deadly as a viper, your body swaying as you slip between blind spots and perception to reach your targets. The animals feel nothing as they die, you've had much practice. You offer a silent thanks as their pelts will be of value to you.]]></story_3>
@@ -1879,6 +1970,14 @@
 			• Has 4x exp/talent gain, and can only be done <div id='trainingLimitSoul'></div> times per reset.<br>
 			• Unlocked at 70% Forest Explored.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			The squirrel wants to sit under the waterfall!<br>
+			Why not? It might be fun for it to sit there.<br>
+			... After a while, it starts sneezing. Oh no, it caught a cold!<br>
+			You take it back with you. Poor little critter!<br>
+			In that state, it's probably not good to let it do any other action until next loop...<hr class='divider'>	
+			<b>Effect: </b>Lose the squirrel.<hr class='divider'>	
+		]]></squirrel_1>
             <story_1><![CDATA[<b>Sat by waterfall:</b>⮀ You find a waterfall flowing from a higher point in a mountain down the side oddly scenic and decide stop to stare for awhile, simply to observe the natural beauty of the sight. As you watched, the force of the water managed to dislodge a small pebble from the top of the waterfall and send it careening down. You watch oddly mesmerized at it bounces along the path, constantly being immersed and spat out by the water. You don't know when you sat down and began meditating, only that you woke from your deep realization hours later.]]></story_1>
         </sit_by_waterfall>
         <old_shortcut>
@@ -1888,9 +1987,28 @@
             No one has come down this way in quite some time.<hr class='divider'>
 			• Gives some additional herbs.<br>
 			• Old men are a pain unless you know something they care about.<br>
-			Talk to Hermit gives 4% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>
+			Talk to Hermit gives 3% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>
 			• Unlocked at 20% Forest Explored.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			The squirrel feels pretty confident it won't get lost this time, exploring this place!<br>
+			... Aaaand it got lost again. Gosh darn it.<hr class='divider'>	
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>squirrel magic >= 5 <hr class='divider'>	
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Using its new magic skills, the squirrel manages to not get lost this time!<br>
+			Apparently, something about these shortcuts radiates a small amount of magic.<br>
+			The hermit talked about this magic : its knowledge should be quite helpful for the squirrel.<hr class='divider'>	
+			<b>Effect: </b>Talk to Hermit gives a 4% bonus to this action instead of 3%.<br>
+			<b>Next: </b>squirrel magic >= 25 <hr class='divider'>	
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			Now that the squirrel has a better handle on his magic skills, he is even better at exploring shortcuts!<br>
+			Who knew having a magic squirrel could be so handy?<br>
+			You can't help but reward it with a nut. It makes a little happy dance!<hr class='divider'>	
+			<b>Effect: </b>Talk to Hermit gives a 5% bonus to this action instead of 3%.<hr class='divider'>	
+		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Shortcut explored:</b>⮀ You continued on with your trip and discovered a small and worn path leading off the main thoroughfare. You wondered what it was and decided to explore.]]></story_1>
             <story_2><![CDATA[<b>10% Shortcut explored:</b>⮀ You're mildly surprised to discover a seemingly sprawling network of interconnected paths that seem to get almost everywhere within the forest.]]></story_2>
             <story_3><![CDATA[<b>20% Shortcut explored:</b>⮀ You stumble across a small clearing in the forest, racks of drying herbs and bubbling cauldrons litter the clearing. As soon as you step in, a hermit leaps from his hut yelling at you.]]></story_3>
@@ -1905,9 +2023,31 @@
             <tooltip><![CDATA[
             This old man is happy to have a listening ear, surely he has some useful knowledge. You hope. He's initially confrontational, but opens up once you start talking about the road.<hr class='divider'>
 			• Reduces mana cost of Gather Herbs, Practice Yang, and Learn Alchemy by 0.5% per 1% of Hermit Knowledge.<br>
-			• His knowledge about shortcuts also gives 4% more Old Shortcut speed per 1% Hermit Knowledge Learned.<br>
+			• His knowledge about shortcuts also gives 3% more Old Shortcut speed per 1% Hermit Knowledge Learned.<br>
 			• Unlocked with both 20% Shortcut Explored and 40 Magic.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			In Beginnersville, using the squirrel charms was quite useful, so let's try it here!<br>
+			You ask the squirrel to make its best at looking cute while you talk to the hermit.<br>
+			The moment you turn your back, you hear some sort of high pitch muffling sound?<br>
+			It looks like the squirrel is gone now.<br>
+			Where did it go?<hr class='divider'>	
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>squirrel combat >= 8 <hr class='divider'>	
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			You decide to try again at charming the hermit with the squirrel.<br>
+			The moment you turn your back, you hear the hermit screaming "OW!".<br>
+			Oh, he has a little bite mark on his hand now. Weird!<br><hr class='divider'>	
+			<b>Effect: </b>Old Shortcut gives a 4% bonus to this action instead of 3%.<br>
+			<b>Next: </b>squirrel combat >= 30 <hr class='divider'>	
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			This time, the hermit screams louder and has multiple bite marks on his hand.<br>
+			He really is on his guard about something, which helps lowering it guard against you.<br>
+			You don't really understand whats happening, but now he's easier to talk to, so yay!<hr class='divider'>	
+			<b>Effect: </b>Old Shortcut gives a 5% bonus to this action instead of 3%.<hr class='divider'>	
+		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Hermit knowledge learned:</b>⮀ The Hermit is old, scraggly and surprisingly, not bald. Looks old as dirt. He doesn't know the name of the surrounding provinces, but knows the names of the provinces before the current ones.]]></story_1>
             <story_2><![CDATA[<b>10% Hermit knowledge learned:</b>⮀ The old hermit is an absolute genius at using magic to speed things up and just in general make things quicker and easier. You have much information to wring from him. He doesn't tell you his name and insists you call him 'Old man', or 'Hermit'.]]></story_2>
             <story_3><![CDATA[<b>20% Hermit knowledge learned:</b>⮀ He still hasn't told you his name and you've tried to worm it out of him over multiple loops. He just seems amused at your attempts. Either way, you're steadily wringing out more information from him.]]></story_3>
@@ -1923,7 +2063,24 @@
 			• Gives 25 more yang exp per reputation you have.<br>
 			• Unlocked with both 20% Hermit Knowledge and 45 magic.<hr class='divider'>
         ]]></tooltip>
-            <story_1><![CDATA[<b>1 Yan:</b>⮀ Placeholder.]]></story_1>
+			<squirrel_1><![CDATA[
+			Before starting practicing Yang, the hermit asks you to hand over the squirrel.<br>
+			He says that he will be really grateful for it, and that it'll help you with practicing Yang.<br>
+			But the squirrel shakes its head, as if to say no.<br>
+			You're curious about what would happen, but as long as the squirrel is against it, you can't really say yes...<hr class='divider'>	
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>trust >= 38 <hr class='divider'>	
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			As usual, the hermit asks you to hand over the squirrel.<br>
+			You wait for the squirrel to say no as usual, but instead, it looks pensive.<br>
+			It looks like it really wants to help you, so it's ready to take the bullet!<br>
+			You accept the offer and hand over the squirrel. You can't help wondering about what will happen to it...<br>
+			All you know is that at the start of the next loop, the squirrel looks pretty happy...<br>
+			No, seriously, what happened?!.<hr class='divider'>	
+			<b>Effect: </b>Gain 4 reputation but lose the squirrel.<hr class='divider'>	
+		]]></squirrel_2>
+            <story_1><![CDATA[<b>1 Yang not practiced:</b>⮀ Placeholder.]]></story_1>
         </practice_yang>
         <learn_alchemy>
             <label>Learn Alchemy</label>
@@ -1934,6 +2091,12 @@
 			• Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
 			• Unlocked with both 40% Hermit Knowledge and 50 Magic.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			Despite how much the squirrel is willing to learn... It's still a squirrel.<br>
+			And complex equations are quite hard for it to understand.<br>
+			Maybe by training another set of skills will it be able to understand it?<hr class='divider'>	
+			<b>Effect: </b>None.<hr class='divider'>	
+		]]></squirrel_1>
             <story_1><![CDATA[<b>Alchemy learned:</b>⮀ You ask the hermit about potion's and are regaled of tales from his time as an apprentice, the mistakes he made and how one time, he managed to douse his masters beard with potion that would wildly change the color of it every minute, for a full year his master had to deal with a beard that was either glowing white like pure fallen snow or was more fit to be in the sky after rain. You take notes as the hermit speaks.]]></story_1>
             <story_2><![CDATA[<b>25 Alchemy:</b>⮀ You sit by the fire inside the hermits clearing, fire dancing merrily away as he feeds magical herbs to the fire while throwing precise amounts into the large pot boiling above it. The stories he tells of his youth and learning alchemy under his master make you howl with laughter and provoke deep thoughtful silences.]]></story_2>
             <story_3><![CDATA[<b>50 Alchemy:</b>⮀ As you learn more and more about alchemy, the potion that caused you to start looping begins to seem more and more hideously complex. Something as simple as your reputation can effect the outcome of a potion. It's more of an art than a science, or anything even easily conveyed really.]]></story_3>
@@ -1952,12 +2115,17 @@
 			• Requires a reputation of 10 or above, or he won't let you near his stuff.<br>
 			• Gives (alchemy + brewing/2) * (1 + main stat / 100) * sqrt(1 + potions distilled / 100) progress points per mana.<br>
 			• Creates a potion from 10 herbs to sell at the next town.<br>
-			• Gives alchemy and magic skill.<br>
 			• Unlocked with 10 Alchemy.<hr class='divider'>
         ]]></tooltip>
             <story_1><![CDATA[<b>Potion brewed:</b>⮀ The old man happily lets you use his apparatus to brew your own potions after much haranguing about your technique and the fact that you're not buying ingredients off him, he leaves you to it. His workstations are old, well used and obviously well looked after. The only fault you can lay at their feet is that the measuring system used is older than dirt. Fits you suppose.]]></story_1>
             <story_2><![CDATA[<b>Action failed with low reputation:</b>⮀ The hermit refuses to allow you near his workstations and potion brewing equipment no matter how much you ask and offer to pay. He tells you that you don't have a good enough karma for him to even be willing to risk you using his workstations and potion benches.]]></story_2>
             <story_3><![CDATA[<b>Action failed with negative reputation:</b>⮀ The hermit shoos you away from his clearing when you even make a mention of using his potion supplies, something about not wanting you to taint his equipment with your karma.]]></story_3>
+			<squirrel_1><![CDATA[
+			You have to admit, it's quite funny looking at the squirrel trying to grab flasks!<br>
+			Without any opposible thumbs, it's quite hard to grab anything.<br>
+			The hermit is less happy about seeing flasks being broken right and left, though...<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>	
+		]]></squirrel_1>
         </distill_potions>
         <train_squirrel>
             <label>Train Squirrel</label>
@@ -1968,7 +2136,21 @@
 			<tooltip2> <![CDATA[ squirrel combat exp per action.<br>
 			• Unlocked at 30% Forest Explored.<hr class='divider'>
 			]]></tooltip2>
-            <story_1><![CDATA[<b>Squirrel trained:</b>⮀ Placeholder.]]></story_1>
+			<squirrel_1><![CDATA[
+			Instead of being trained by you, the squirrel wants to try to train by itself!<br>
+			So it runs towards an animal to fight it, and...<br>
+			Yeah, no, this was a bad idea.<hr class='divider'>
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>combat >= 5 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Alright, now that the squirrel have learn its lesson, it decides to go against an animal of around the same strenght as itself.<br>
+			This time, he manages to beat it! What a strong squirrel!<br>
+			Instead of stopping there, it goes against another... And then against another...<br>
+			Until it fails. Well, at least it learned a lot from this!<hr class='divider'>
+			<b>Effect: </b>Gain Squirrel Combat Level x 10 combat exp, but lose the squirrel.<hr class='divider'>
+		]]></squirrel_2>
+            <story_1><![CDATA[<b>Squirrel untrained:</b>⮀ Placeholder.]]></story_1>
         </train_squirrel>
 		<feed_animals>
             <label>Feed Animals</label>
@@ -1976,11 +2158,34 @@
             <tooltip><![CDATA[
             Feed wild animals and they will show you ressources scattered around the forest. They sure do like magical herbs!<hr class='divider'>
 			• The more herbs you have, the easier they will approach you :<br>
-			• every herb you have gives a +2% efficiency.<br>
+			• Every herb you have gives a +2% efficiency.<br>
+			• If you don't have the squirrel at the start of each loop yet, now it will join you.<br>
 			• Consumes 10 herbs per action.<br>
 			• Unlocked at 40% Forest Explored.<hr class='divider'>
         ]]></tooltip>
-            <story_1><![CDATA[<b>Animal fed:</b>⮀ Placeholder]]></story_1>
+			<squirrel_1><![CDATA[
+			Upon feeding some animals, a bunch of wild squirrels appear.<br>
+			Your squirrel wants to go with them!<br>
+			You can't refuse that, can you?<br>
+			Let it go on a squirrel adventure with squirrel friends!<hr class='divider'>
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>squirrel combat >= 18 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			It looks like your squirrel was able to go in a squirrel dungeon with its squirrel friends.<br>
+			It got a little map that points out some wild mana spots hidden in the forest.<br>
+			That's some great loot! You pet the squirrel and let it go for new squirrel adventures!<hr class='divider'>
+			<b>Effect: </b>Gain 100 more mana spots. This effect can only be done once. Lose the squirrel.<br>
+			<b>Next: </b>squirrel combat >= 40 <hr class='divider'>
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			Even more loot! Looks like your squirrel and its friends have conquered the 2 squirrel dungeons in this forest.<br>
+			This little map points out a stack of hidden magical herbs this time. Great!<br>
+			While there's not much to gain from this anymore, you still let your squirrel go away.<br>
+			It'll probably go drink some squirrel beers with its squirrel friends while you finish the loop!<hr class='divider'>
+			<b>Effect: </b>Gain 200 more herbs. This effect can only be done once. Lose the squirrel.<hr class='divider'>
+		]]></squirrel_3>
+            <story_1><![CDATA[<b>Animal not fed:</b>⮀ Placeholder]]></story_1>
         </feed_animals>
 		<pot_fairy>
             <label>Mana Pot Fairy</label>
@@ -1990,6 +2195,29 @@
 			• If you didn't break any pots, she will bless you and give you 2000 mana and 1 reputation per 10 mana pots discovered.<br>
 			• Unlocked at 10% Animals Fed.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			Your squirrel decides to go see the fairy before you do.<br>
+			Despite its efforts to communicate, the fairy ignores it.<br>
+			How rude!<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squirrel magic >= 20 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Something is wrong... The fairy emits a lot of mana, but a good part comes from another place.<br>
+			Your squirrel decides to investigate and find another fairy!<br>
+			It's the magical herb fairy, the daughter of the mana pot fairy.<br>
+			Now that you know she's here, she's ready to pick up herbs for you... If you don't anger her mother.<hr class='divider'>
+			<b>Effect: </b>If the fairy blesses you, picks up 100 magical herbs for you.<br>
+			<b>Next: </b>squirrel magic >= 40 <hr class='divider'>
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			Using its own magical power, the squirrel is able to strenghten the magical herb fairy!<br>
+			Uh oh, looks like injecting magical power into a fairy is seen by them as a big romantic thing.<br>
+			Now she has a crush on your squirrel... You're not sure if it's a good or a bad thing?<br>
+			Anyway, now she shouldn't have any issue picking up all the herbs you have found. Awesome!<hr class='divider'>
+			<b>Effect: </b>If the fairy blesses you, picks up all magical herbs you have found.<br>
+			<b>Next: </b>magic >= 40 <hr class='divider'>
+		]]></squirrel_3>
             <story_1><![CDATA[<b>Pot fairied:</b>⮀ Placeholder.]]></story_1>
         </pot_fairy>
 		<burn_forest>
@@ -2008,16 +2236,37 @@
 			• For some reason, burning 2 acres of forest will reduce your reputation by 1.<br>
 			• Unlocked at 20% Animals Fed.<hr class='divider'>
         ]]></tooltip>
-            <story_1><![CDATA[<b>forest burned:</b>⮀ Placeholder.]]></story_1>
+			<squirrel_1><![CDATA[
+			... The squirrel seems to enjoy this a bit too much.<br>
+			You've never heard a squirrel laughing so maniacally before.<br>
+			And honestly? It scares you a bit. It's helpful, but...<br>
+			When it's time to do another action, instead of following you, it goes somewhere else to set it on fire.<br>
+			Maybe it's better to leave it alone for now...<hr class='divider'>
+			<b>Effect: </b>Acts as if you have 10 more herbs on you, but lose the squirrel.<br>
+			<b>Next: </b>trust >= 40 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			This is still disturbing to see your squirrel enjoy burning things too much...<br>
+			You were expecting it to maybe be afraid, but not this!<br>
+			At least, this time, when it's time to do another action, it follows you.<br>
+			Phew, it seems like now it likes you better than arson, that's good!<hr class='divider'>
+			<b>Effect: </b>Acts as if you have 10 more herbs on you.<hr class='divider'>
+		]]></squirrel_2>
+            <story_1><![CDATA[<b>forest unburned:</b>⮀ Placeholder.]]></story_1>
         </burn_forest>
         <bird_watching>
             <label>Bird Watching</label>
             <tooltip><![CDATA[
-            Far along the flower trail, there seems to be a large variety of birds flying about. Perhaps you could take up a new hobby.<hr class='divider'>
+            Far along a flower trail, there seems to be a large variety of birds flying about. Perhaps you could take up a new hobby.<hr class='divider'>
 			• Requires glasses.<br>
 			• Has 4x exp/talent gain, and can only be done <div id='trainingLimitPer'></div> times per reset.<br>
 			• Unlocked at 70% Animals Fed.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			This was the most interesting session of bird watching you've ever seen.<br>
+			Seeing a squirrel ride a bird was certainly a sight to see!<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
             <story_1><![CDATA[<b>Birds watched:</b>⮀ You spot a colorful bird and attempt to follow it with your eyes, you fail. You try again and again until you can reliable pick out fast moving birds and animals with pinpoint precision. It's also strangely relaxing to watch birds congregate together, listening to the bird-call and watching them interact. Its fast, frenetic and savage at times, but that's nature.]]></story_1>
         </bird_watching>
 		<dark_forest>
@@ -2028,9 +2277,29 @@
 			• Gives some additional herbs.<br>
 			• Requires negative reputation.<br>
 			• The witch loves this place, knowing about it will help talking to her.<br>
-			Talk to Witch gives 4% more Witch Knowledge Learned per 1% Dark Forest Explored.<br>
+			Talk to Witch gives 3% more Witch Knowledge Learned per 1% Dark Forest Explored.<br>
 			• Unlocked at 30% Animals Fed.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			The squirrel assures you it won't get lost this time.<br>
+			... And immediatly gets lost. Sigh...<hr class='divider'>
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>squirrel combat >= 12 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Well, apparently, last time, the squirrel didn't actually get lost.<br>
+			Tree roots are apparently hunting squirrels here, and your companion was caught?!<br>
+			Thankfully, it can now fight them off now!<br>
+			The witch must know about all of this, let's ask her about this next time.<hr class='divider'>
+			<b>Effect: </b>Talk to Witch gives a 4% bonus to this action instead of 3%.<br>
+			<b>Next: </b>squirrel combat >= 35 <hr class='divider'>
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			What you've learned from the witch about this forest is quite useful!<br>
+			This place is dangerous for a squirrel, but now it has no issue fighting off the roots.<br>
+			Perfect! The sooner this place is explored, the sooner you can stop exploring it!<hr class='divider'>
+			<b>Effect: </b>Talk to Witch gives a 5% bonus to this action instead of 3%.<hr class='divider'>
+		]]></squirrel_3>
             <story_1><![CDATA[<b>Dark forested:</b>⮀ Placeholder.]]></story_1>
         </dark_forest>
         <talk_to_witch>
@@ -2039,10 +2308,34 @@
             <tooltip><![CDATA[
             Talk to the witch to learn her secrets of the dark arts.<hr class='divider'>
 			• Requires negative reputation.<br>
-			• Reduces mana cost of Practice Yang and Learn Brewing by 0.5% per 1% of Witch Knowledge.<br>
-			• Her love for the dark forest also gives 4% more Dark Forest speed per 1% Witch Knowledge Learned.<br>
+			• Reduces mana cost of Practice Yin and Learn Brewing by 0.5% per 1% of Witch Knowledge.<br>
+			• Her love for the dark forest also gives 3% more Dark Forest speed per 1% Witch Knowledge Learned.<br>
 			• Unlocked with both 20% Dark Forest Explored and 50 Magic.<hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			The squirrel tries to charm the witch!<br>
+			... And immediatly freeze. It looks like it is scared of her.<br>
+			Suddenly, you hear a loud sound on your right! But there's nothing there...<br>
+			Oh? Your squirrel is gone. Weird, it was unable to move just a second ago!<hr class='divider'>
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>squirrel magic >= 8 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			You don't know why, but the squirrel looks ready this time!<br>
+			When the loud sound happens, the squirrel manages to not disappear.<br>
+			It looks like there's faint traces of magic around it... Did it use a spell?<br>
+			The witch looks like she's about to laugh and opens up to you.<br>
+			You're not sure why, but that's great!<hr class='divider'>
+			<b>Effect: </b>Dark Forest gives a 4% bonus to this action instead of 3%.<br>
+			<b>Next: </b>squirrel magic >= 8 <hr class='divider'>
+		]]></squirrel_2>
+		<squirrel_3><![CDATA[
+			The now familiar loud sound happens again, but this time, things are a bit different.<br>
+			It looks like the witch have now light wounds on her, and your squirrel emits a lot more mana.<br>
+			Well, if she was about to laugh before, now she's laughing very audibly!<br>
+			You've never seen her so friendly toward you like that before. Excellent!<hr class='divider'>
+			<b>Effect: </b>Dark Forest gives a 5% bonus to this action instead of 3%.<hr class='divider'>
+		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Witch knowledge learned:</b>⮀ You stumble across a small crooked hut and as you approach the boundary, a small slip of a woman step outs. She's stunning and you're immediately on guard. The area pulses with a heady hum of magic that sends shivers down your spine. She introduces herself as Evis.]]></story_1>
             <story_2><![CDATA[<b>10% Witch knowledge learned:</b>⮀ The Witch as you taken to referring to her as, seeing as she changes her name every time she introduces herself to you, is a veritable font of magical knowledge, of how to dominate the mana itself and make more from less.]]></story_2>
             <story_3><![CDATA[<b>20% Witch knowledge learned:</b>⮀ You continue to hunt down the Witch and drag more information out of her, the magic she teaches you is cruel, callous even. The witch is surprisingly personable for what you would consider a stereotypical 'Wicked Witch'.]]></story_3>
@@ -2059,7 +2352,25 @@
 			• Gives 25 more yin exp per negative reputation you have.<br>
 			• Unlocked with both 20% Witch Knowledge and 55 Magic.<hr class='divider'>
         ]]></tooltip>
-            <story_1><![CDATA[<b>1 Yin:</b>⮀ Placeholder.]]></story_1>
+			<squirrel_1><![CDATA[
+			As you about to start practicing Yin, the witch makes you an offer.<br>
+			She's apparently missing a little critter to use as a sacrifice for some ritual.<br>
+			She assures you that handing over the squirrel would be good for Yin practicing!<br>
+			The squirrel hides behind you. Oh heck no, you're not doing that!<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>trust >= 40 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			The witch does the usual offer about handing over your squirrel.<br>
+			Except this time, it goes by itself to the witch.<br>
+			It looks like it's ready to sacrifice itself for your own good...<br>
+			You know he will be back next loop, but still...!<br>
+			With a heavy heart, you accept. Thank you, squirrel friend, you will be remembered!<br>
+			You expect the squirrel to be traumatized at the start of the next loop, but it looks pretty happy.<br>
+			Wait... What happened, then?!<hr class='divider'>
+			<b>Effect: </b>Lose 4 reputation and lose the squirrel.<hr class='divider'>
+		]]></squirrel_2>
+            <story_1><![CDATA[<b>0 Yin:</b>⮀ Placeholder.]]></story_1>
         </practice_yin>
 		<learn_brewing>
             <label>Learn Brewing</label>
@@ -2070,7 +2381,12 @@
 			• Gain 10 more exp per Alchemy level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
 			• Unlocked with both 40% Witch Knowledge and 60 Magic.<hr class='divider'>
         ]]></tooltip>
-            <story_1><![CDATA[<b>1 Yin:</b>⮀ Placeholder.]]></story_1>
+			<squirrel_1><![CDATA[
+			You want to see your squirrel acting like a little squirrel witch!<br>
+			Sadly, it isn't fit for that... It's not evil enough. Too bad!<hr class='divider'>
+			<b>Effect: </b>None.<br><hr class='divider'>
+		]]></squirrel_1>
+            <story_1><![CDATA[<b>1 No brewing lesson taken:</b>⮀ Placeholder.]]></story_1>
         </learn_brewing>
 		<concoct_potions>
             <label>Concoct Potions</label>
@@ -2088,7 +2404,13 @@
 			• Creates a potion from 10 dark essence to sell at the next town.<br>
 			• Unlocked with 10 Brewing.<hr class='divider'>
         ]]></tooltip>
-           <story_1><![CDATA[<b>1 Yin:</b>⮀ Placeholder.]]></story_1>
+			<squirrel_1><![CDATA[
+			The squirrel is too pure to approach the cauldron!<br>
+			You're a bit disappointed about that...<br>
+			Maybe a future set of skill will resolve that problem?<hr class='divider'>
+			<b>Effect: </b>None.<br><hr class='divider'>
+		]]></squirrel_1>
+           <story_1><![CDATA[<b>Potion not concocted:</b>⮀ Placeholder.]]></story_1>
         </concoct_potions>
         <continue_on>
             <label>Continue On</label>
@@ -2098,6 +2420,20 @@
 			• Mana cost also reduced by 600 per Dark Forest % for the first 50%, and 60 for the next 50%.<br>
 			• <b>Warning : this action has been deactivated for the time being. It will reactivate once the development this zone is finished.</b><hr class='divider'>
         ]]></tooltip>
+			<squirrel_1><![CDATA[
+			The squirrel wants you to follow it to a new zone!<br>
+			... Except it's too far from here to access it now.<br>
+			It looks quite annoyed about this...<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squirrel magic >= 10 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Looks like the squirrel is now confident this time.<br>
+			It asks you to follow it : it leads you towards Commerceville.<br>
+			... And suddenly, you find yourself in the Squirrel Sanctuary.<br>
+			How did this happened?!<hr class='divider'>
+			<b>Effect: </b>Go to a new zone.<br><hr class='divider'>
+		]]></squirrel_2>
             <story_1><![CDATA[<b>Traveled to the third zone:</b>⮀ You sigh gustily to yourself, you've done all you cared to do here and there was nothing left to do really, time to move on and out of the boonies and into civilized territory. Laws, taxes and bribes. You were almost looking forward to it, given how long you had been out in the country for at this point.]]></story_1>
         </continue_on>
         <!--town 3-->

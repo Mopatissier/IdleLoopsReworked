@@ -64,8 +64,8 @@ function tick() {
 		if(curTown === SANCTUARY) multTicks = Math.pow(4, getBuffLevel("SpiritBlessing"));
 	
         timer += multTicks;
-        timeCounter += 1 / baseManaPerSecond / getActualGameSpeed() / multTicks;
-        effectiveTime += 1 / baseManaPerSecond / getSpeedMult() / multTicks;
+        timeCounter += 1 / baseManaPerSecond / getActualGameSpeed();
+        effectiveTime += 1 / baseManaPerSecond / getSpeedMult();
 		
         actions.tick(multTicks);
 		if(multTicks === 1){

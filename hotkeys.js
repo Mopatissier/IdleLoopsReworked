@@ -128,10 +128,6 @@ GameKeyboard.bind("shift", () => setShiftKey(false), "keyup");
 GameKeyboard.bind(["ctrl", "command"], () => setControlKey(true), "keydown");
 GameKeyboard.bind(["ctrl", "command"], () => setControlKey(false), "keyup");
 
-function handleTownHotkey(townNum) {
-    if (townNum === undefined) return;
-    if (townsUnlocked.includes(townNum)) view.showTown(townNum, arrow.none);
-}
 
 function undo() {
     const before = copyArray(actions.next);
@@ -141,10 +137,10 @@ function undo() {
     view.updateLockedHidden();
 }
 
-GameKeyboard.bindHotkey("right", () => handleTownHotkey(townsUnlocked[townsUnlocked.indexOf(townShowing) + 1]));
-GameKeyboard.bindHotkey("d", () => handleTownHotkey(townsUnlocked[townsUnlocked.indexOf(townShowing) + 1]));
-GameKeyboard.bindHotkey("left", () => handleTownHotkey(townsUnlocked[townsUnlocked.indexOf(townShowing) - 1]));
-GameKeyboard.bindHotkey("a", () => handleTownHotkey(townsUnlocked[townsUnlocked.indexOf(townShowing) - 1]));
+GameKeyboard.bindHotkey("right", () => view.showTown(townShowing, arrow.right));
+GameKeyboard.bindHotkey("d", () => view.showTown(townShowing, arrow.right));
+GameKeyboard.bindHotkey("left", () => view.showTown(townShowing, arrow.left));
+GameKeyboard.bindHotkey("a", () => view.showTown(townShowing, arrow.left));
 
 GameKeyboard.bindHotkey("shift+right", () => view.showActions(true));
 GameKeyboard.bindHotkey("shift+d", () => view.showActions(true));

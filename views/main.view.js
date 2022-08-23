@@ -326,8 +326,8 @@ function View() {
         } else if (buff == "YinYang"){
 			document.getElementById("skillBuffYinYangLevel").textContent = getBuffLevel("YinYang");
 			document.getElementById("skillBuffYinYangReputation").textContent = resources.reputation;
-			document.getElementById("skillBuffYinYangYinReputation").textContent = Math.max(getBuffLevel("YinYang"), resources.reputation);
-			document.getElementById("skillBuffYinYangYangReputation").textContent = Math.max(getBuffLevel("YinYang"), resources.reputation * (-1));
+			document.getElementById("skillBuffYinYangYinReputation").textContent = Math.min(Math.max(getBuffLevel("YinYang"), resources.reputation), 50);
+			document.getElementById("skillBuffYinYangYangReputation").textContent = Math.min(Math.max(getBuffLevel("YinYang"), resources.reputation * (-1)), 50);
 			document.getElementById("skillBuffYinYang").textContent = intToString(getYinYangBonus("YinYang"), 4);
 		}
     };
@@ -773,18 +773,22 @@ function View() {
 		
 			case arrow.none: townTarget = townNum;
 							break;
-			case arrow.right: townTarget = zoneOrder[currentZone+1][0];
+			case arrow.right: if(zoneOrder[currentZone+1] === undefined) return;
+							  townTarget = zoneOrder[currentZone+1][0];
 							break;
-			case arrow.right_alt: townTarget = zoneOrder[currentZone+1][1];
+			case arrow.right_alt: if(zoneOrder[currentZone+1] === undefined || zoneOrder[currentZone+1][1] === undefined) return;
+								  townTarget = zoneOrder[currentZone+1][1];
 							break;
-			case arrow.left: townTarget = zoneOrder[currentZone-1][0];
+			case arrow.left: if(zoneOrder[currentZone-1] === undefined) return;
+							  townTarget = zoneOrder[currentZone-1][0];
 							break;
-			case arrow.right_alt: townTarget = zoneOrder[currentZone-1][1];
+			case arrow.right_alt: if(zoneOrder[currentZone-1] === undefined || zoneOrder[currentZone-1][1] === undefined) return;
+								  townTarget = zoneOrder[currentZone-1][1];
 							break;
-			case arrow.alt : townTarget = zoneOrder[currentZone][altZone];
+			case arrow.alt : if(zoneOrder[currentZone][altZone] === undefined) return;
+							 townTarget = zoneOrder[currentZone][altZone];
 							break;
 		}
-		
 		if(!towns[townTarget].unlocked()) return;
 		
 		const newZone = zoneOrder.findIndex(arr => arr.includes(townTarget));

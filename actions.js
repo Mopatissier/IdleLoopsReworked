@@ -21,7 +21,7 @@ function Actions() {
 		if(ticksAmt === 1) addExpFromAction(curAction);
 		curAction.ticks += ticksAmt;
 		curAction.manaUsed += ticksAmt;
-		curAction.timeSpent += 1 / baseManaPerSecond / getActualGameSpeed() / ticksAmt;
+		curAction.timeSpent += 1 / baseManaPerSecond / getActualGameSpeed();
         // only for multi-part progress bars
         if (curAction.loopStats) {
             let segment = 0;
@@ -212,6 +212,7 @@ function Actions() {
         view.requestUpdate("updateMultiPartActions");
         view.requestUpdate("updateNextActions");
         view.requestUpdate("updateTime");
+		addResource("reputation", 0);
     };
 
     this.adjustTicksNeeded = function() {
