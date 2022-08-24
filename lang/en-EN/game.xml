@@ -8,8 +8,8 @@
             </meta>
 			<version verNum="0.2.6"><![CDATA[
             <b> August 25th, 2022</b>
-			Finally! And with that update, z2 and z0 are finished. I still need to rebalance it if needed, so don't hesitate to share your savefile!
-            • Added all the squirrel actions in the squirrel sanctuary, and added more in the Beginnersville!<br>
+			Finally! And with that update, z2 and z0 are finished. I still need to rebalance the zones if needed, so don't hesitate to share your savefile!<br>
+            • Added all the squirrel actions in the Squirrel Sanctuary, and added more in Beginnersville!<br>
             • Rebalanced the "burn the forest" action, it was too powerful.<br>
             • Some glitches were fixed!<br>
             ]]></version>
@@ -1768,7 +1768,7 @@
 			<b>Next: </b>squirrel combat >= 10 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Now that it has the same combat skill level as you when you started hunting monsters, it should be fine now, right?<br>
+			Now that it has the same combat skill level as you when you started hunting monsters, it should be fine, right?<br>
 			So you take the squirrel and throw it on a monster.<br>
 			... The result is too gory to describe.<br>
 			You feel bad for that poor monster.<br>
@@ -2472,7 +2472,7 @@
 			The witch looks like she's about to laugh and opens up to you.<br>
 			You're not sure why, but that's great!<hr class='divider'>
 			<b>Effect: </b>Dark Forest gives a 4% bonus to this action instead of 3%.<br>
-			<b>Next: </b>squirrel magic >= 8 <hr class='divider'>
+			<b>Next: </b>squirrel magic >= 30 <hr class='divider'>
 		]]></squirrel_2>
 		<squirrel_3><![CDATA[
 			The now familiar loud sound happens again, but this time, things are a bit different.<br>
