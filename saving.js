@@ -54,7 +54,7 @@ function cheatSoulstone(stat, targetSS)
     view.updateSoulstones();
 }
 
-let cheatBonusSpeed = 100;
+let cheatBonusSpeed = 1;
 
 let mainTickLoop;
 const saveName = "idleLoops1";
