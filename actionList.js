@@ -3360,6 +3360,7 @@ Action.PotFairy = new Action("Pot Fairy", {
 							const herbsToGather = Math.min(100, towns[FORESTPATH].goodTempHerbs);
 							addResource("herbs", herbsToGather);
 							towns[FORESTPATH].goodTempHerbs -= herbsToGather;
+							view.updateRegular("Herbs", FORESTPATH);
 							
 						} else {
 							if(resources.reputation >= 0) {
@@ -3375,7 +3376,8 @@ Action.PotFairy = new Action("Pot Fairy", {
 							addMana(multPots * 2000);
 							
 							addResource("herbs", towns[FORESTPATH].goodTempHerbs);
-							towns[FORESTPATH].goodTempHerbs  = 0;							
+							towns[FORESTPATH].goodTempHerbs  = 0;	
+							view.updateRegular("Herbs", FORESTPATH);
 							
 						} else {
 							if(resources.reputation >= 0) {
