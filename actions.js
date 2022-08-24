@@ -130,7 +130,11 @@ function Actions() {
 
     this.getErrorMessage = function(action) {
         if (action.townNum !== curTown) {
-            return `You were in zone ${curTown + 1} when you tried this action, and needed to be in zone ${action.townNum + 1}`;
+			
+			const curTownNumber = zoneOrder.findIndex(arr => arr.includes(curTown));
+			const actionTownNumber = zoneOrder.findIndex(arr => arr.includes(action.townNum));
+			
+            return `You were in zone ${curTownNumber} when you tried this action, and needed to be in zone ${actionTownNumber}`;
         }
         if (action.canStart && !action.canStart()) {
             return "You could not make the cost for this action.";
@@ -143,6 +147,9 @@ function Actions() {
         this.completedTicks = 0;
 		endLoopWithNoValidAction = true;
 		squirrelAlreadyPickedUp = false;
+		alreadyHealed = false;
+		alreadyFought = false;
+		alreadySDungeon = false;
         curTown = 0;
         towns[BEGINNERSVILLE].suppliesCost = 450;
 		view.adjustGoldCost("BuySupplies", towns[BEGINNERSVILLE].suppliesCost);

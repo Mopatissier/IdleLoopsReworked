@@ -10,7 +10,9 @@ const JUNGLEPATH = 6;
 const COMMERCEVILLE = 7;
 const VLOLYMPUS = 8;
 const SANCTUARY = 9;
-const CURSEDOCEAN = 10;
+const CURSEDOCEAN = 11;
+
+const CHRONOSLAIR = 10;
 
 const arrow = {
 	none: 0,
@@ -26,12 +28,13 @@ const zoneOrder = [
 	[0],
 	[1],
 	[2],
-	[3, 10],
+	[3, 11],
 	[4],
 	[5],
 	[6],
 	[7],
-	[8]
+	[8],
+	[10]
 ];
 
 function Town(index) {

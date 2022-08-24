@@ -400,7 +400,17 @@ function View() {
         "rgba(76, 175, 80, 0.4)", //Jungle Path
         "rgba(255, 235, 59, 0.4)", //Commerceville
         "rgba(103, 58, 183, 0.4)", //Valley of Olympus
-		"rgba(145, 100, 35, 0.2)" //Squirrel Sanctuary
+		"rgba(145, 100, 35, 0.2)", //Squirrel Sanctuary
+		"rgba(145, 100, 35, 0)", //4b
+		"rgba(145, 100, 35, 0)", //5b
+		"rgba(145, 100, 35, 0)", //6b
+		"rgba(145, 100, 35, 0)", //7b
+		"rgba(145, 100, 35, 0)", //8b
+		"rgba(145, 100, 35, 0)", //9b
+		"rgba(145, 100, 35, 0)", //9c
+		"rgba(145, 100, 35, 0)", //9d
+		"rgba(255, 255, 255, 0.2)", //Chronos' Layer
+		
         //"rgba(103, 58, 183, 0.2)"
     ];
     this.updateNextActions = function() {
@@ -473,10 +483,12 @@ function View() {
                 if (townNum === collapse.zone && i < collapse.index) display = "display: none";
             }
             let color;
-			if((travelNum > 0 || travelNum == -5) && action.squirrelAction){
-				color = `linear-gradient(${this.zoneTints[townNum]} 49%, ${this.zoneTints[SANCTUARY]} 51%)`;
-			} else if (action.name === "Mysterious Voice"){
+			if (action.name === "Mysterious Voice" && action.squirrelAction && getLevelSquirrelAction("Mysterious Voice") >= 2){
+				color = `linear-gradient(${this.zoneTints[SANCTUARY]} 49%, ${this.zoneTints[CHRONOSLAIR]} 51%)`
+			} else if (action.name === "Mysterious Voice") {
 				color = `${this.zoneTints[SANCTUARY]}`;
+			} else if((travelNum > 0 || travelNum == -5) && action.squirrelAction){
+				color = `linear-gradient(${this.zoneTints[townNum]} 49%, ${this.zoneTints[SANCTUARY]} 51%)`;
 			} else if (action.name === "Face Judgement") {
                 color = "linear-gradient(to bottom, rgb(183, 203, 196) 49%, transparent 51%), linear-gradient(to right, rgba(255, 255, 255, 0.2) 50%, rgba(103, 58, 183, 0.2) 51%)";
             } else if (action.name === "Fall From Grace") {
@@ -932,7 +944,7 @@ function View() {
         let actionStats = "";
         let actionSkills = "";
         const statKeyNames = Object.keys(action.stats);
-        for (let i = 0; i < 9; i++) {
+        for (let i = 0; i < 10; i++) {
             for (const stat of statKeyNames) {
                 if (statList[i] === stat) {
                     const statLabel = _txt(`stats>${stat}>short_form`);
@@ -1477,7 +1489,7 @@ const nextActionsDiv = document.getElementById("nextActionsList");
 const actionOptionsTown = [];
 const actionStoriesTown = [];
 const townInfos = [];
-for (let i = 0; i <= 9; i++) {
+for (let i = 0; i <= 10; i++) {
     actionOptionsTown[i] = document.getElementById(`actionOptionsTown${i}`);
     actionStoriesTown[i] = document.getElementById(`actionStoriesTown${i}`);
     townInfos[i] = document.getElementById(`townInfo${i}`);

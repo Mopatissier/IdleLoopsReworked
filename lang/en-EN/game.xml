@@ -6,6 +6,13 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.6"><![CDATA[
+            <b> August 25th, 2022</b>
+			Finally! And with that update, z2 and z0 are finished. I still need to rebalance it if needed, so don't hesitate to share your savefile!
+            • Added all the squirrel actions in the squirrel sanctuary, and added more in the Beginnersville!<br>
+            • Rebalanced the "burn the forest" action, it was too powerful.<br>
+            • Some glitches were fixed!<br>
+            ]]></version>
 			<version verNum="0.2.5"><![CDATA[
             <b> August 24th, 2022</b>
             • Added all the squirrel actions in the forest!<br>
@@ -382,6 +389,11 @@
             <title><![CDATA[<img src="img/temporalStone.svg" class="smallIcon">]]></title>
             <id>stone</id>
             <desc>A strange rock that seems to resist change from looping.</desc>
+        </resource>
+		<resource initially_hidden="true" no_count="true">
+            <title><![CDATA[<img src="img/loopPotion.svg" class="smallIcon">]]></title>
+            <id>loopPotion</id>
+            <desc>You made the same loop potion as the one that got you into this mess. You can finally break the loop with it!</desc>
         </resource>
     </tracked_resources>
     <time_controls>
@@ -803,6 +815,10 @@
 			<name>Squirrel Sanctuary</name>
 			<desc>What is this place? You can't really describe what is happening here, except that time and space feel distorded. You might be the first human to ever set foot here...</desc>
 		</town9>
+		<town10>
+			<name>Chronos' Lair</name>
+			<desc>Finally, you found the lair of the deity of time! Clear their trials, and they will break the time loop for you.</desc>
+		</town10>
     </towns>
     <actions>
         <title>Action Options</title>
@@ -1058,7 +1074,13 @@
 			• For every level of Spirit Blessing, divide the mana cost by 6.<br>
 			• You need glasses for this action.<br>
 			• <b>Be careful, you can't gain any exp for the rest of the loop once you set foot in the Squirrel Sanctuary!</b><hr class='divider'>
-			]]></tooltip>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			Since looking around makes this place bigger, the squirrel should be helpful!<br>
+			... Well, apparently, when it looks around, nothing changes. This only works for you.<br>
+			You really don't understand the logic of this place.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
 			<story_1><![CDATA[<b>0% Explored:</b>⮀ Placeholder.]]></story_1>
 		</look_around>
 		<absorb_mana>
@@ -1079,6 +1101,12 @@
             <tooltip2><![CDATA[
             mana.<hr class='divider'>
         ]]></tooltip2>
+			<squirrel_1><![CDATA[
+			You take the squirrel and place it in one glowing spot, expecting some good results!<br>
+			And nothing happens.<br>
+			Really?!<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
             <story_1><![CDATA[<b>Didn't even absorbed a mana spot :</b>⮀ Placeholder.]]></story_1>
 		</absorb_mana>
 		<imbue_squirrel>
@@ -1094,6 +1122,12 @@
 			• Every level of Spirit Blessing will make this action 3x more expensive.<br>
 			• It will also make this action give 4x more magic exp. <hr class='divider'>
         ]]></tooltip2>
+			<squirrel_1><![CDATA[
+			You wonder what would happen if the squirrel imbue itself without your help.<br>
+			Turns out, it has an harder time doing it! Not that much of a surprise, honestly..<br>
+			Though as it absorbs mana in smaller chunks, this might actually come in handy...<hr class='divider'>
+			<b>Effect: </b>Act as if you have one less Spirit Blessing : mana cost / 3 and exp / 4.<hr class='divider'>
+		]]></squirrel_1>
 			<story_1><![CDATA[<b>Didn't even made the squirrel imbue anything :</b>⮀ Placeholder.]]></story_1>
 		</imbue_squirrel>
 		<imbue_soulstones>
@@ -1108,6 +1142,12 @@
 			• Every level of Spirit Blessing beyond 3 will increase the Soulstones Imbued buff cap by 10.<br>
 			• The soulstone price of this action gets bigger by 1 for the first 10 times, then 2 for the next 10, then 3,...<hr class='divider'>
         ]]></tooltip2>
+			<squirrel_1><![CDATA[
+			The squirrel tries its best to hold the soulstones in its paws, but can't do it!<br>
+			That's problematic. They need to be in your hand to work.<br>
+			Awww, it looks disappointed. Don't worry, little buddy!<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
 		<story_1><![CDATA[<b>You know this is a placeholder, right? :</b>⮀ Placeholder.]]></story_1>
 		</imbue_soulstones>
 		<balance_soulstones>
@@ -1122,6 +1162,12 @@
 			times per loop.<br>
 			• Every level of Spirit Blessing will multiply that limit by 3.<hr class='divider'>
         ]]></tooltip2>
+		<squirrel_1><![CDATA[
+			Uh oh. This action also asks you to hold soulstones.<br>
+			The squirrel looks frustrated and doesn't even try it.<br>
+			You make a mental note to give him some extra nuts next loop to better its mood.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
 		<story_1><![CDATA[<b>Are you even reading this? :</b>⮀ Placeholder.]]></story_1>
 		</balance_soulstones>
 		<mysterious_voice>
@@ -1141,6 +1187,24 @@
 			• Each Spirit Blessing level will accelerate time in the Squirrel Sanctuary by x4, unlock a new action, and strengthen unlocked actions.<br>
 			• Unlocked at 1% looked around.</b><hr class='divider'>
 			]]></tooltip>
+			<squirrel_1><![CDATA[
+			It looks like the squirrel and the mysterious voice are having a heated debate.<br>
+			You wish you could understand anything, but all you can hear are squirrel sounds...<br>
+			When it ends, the squirrel looks dejected. Looks like it lost!<br>
+			You have a feeling this is about a magic issue...<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squirrel magic >= human magic <hr class='divider'>
+			]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Looks like this time, the squirrel won the argument.<br>
+			You hear the mysterious voice talking to you.<br>
+			"I will give you the opportunity to see how to end your loop.<br>
+			However, it will need a lot of magical power and mana, and I need assistance.<br>
+			You will be sent there without your squirrel and with a measly amount of mana.<br>
+			I am sorry I cannot do any better."<hr class='divider'>
+			<b>Effect: </b>Go to a new zone, but lose your squirrel and only keep 1000 mana.<br>
+			<b>Next: </b>squirrel magic >= human magic <hr class='divider'>
+			]]></squirrel_2>
 			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
 		</mysterious_voice>
         <!--town 1-->
@@ -1167,8 +1231,16 @@
 			<squirrel_3><![CDATA[
 			The squirrel wanders around and comes back with pots you haven't seen before.<br>
 			Where did it find those?<hr class='divider'>
-			<b>Effect: </b>Adds 100 new pots to smash. Happens only once.<hr class='divider'>
+			<b>Effect: </b>Adds 100 new pots to smash. Happens only once.<br>
+			<b>Next: </b>squirrel magic >= 20 <hr class='divider'>
 			]]></squirrel_3>
+			<squirrel_4><![CDATA[
+			Before you can say anything, the squirrel runs away.<br>
+			It comes shortly after with pots you haven't seen before.<br>
+			It looks like it used its magic to sense out the mana crystals in them, neat!<br>
+			But you were pretty sure you checked everywhere, so how could it find more of them?<hr class='divider'>
+			<b>Effect: </b>Adds 100 new pots to smash. Happens only once.<hr class='divider'>
+			]]></squirrel_4>
             <story_1><![CDATA[<b>20% Explored:</b>⮀ You know the general layout of the small village now, you don't get lost walking from one side to another!]]></story_1>
             <story_2><![CDATA[<b>40% Explored:</b>⮀ You're starting to really know your way around, you can almost figure your way around without following a set path!]]></story_2>
             <story_3><![CDATA[<b>60% Explored:</b>⮀ You've tread all the main roads and you avail yourself to the unkempt side paths and well worn paths. If you let yourself into some houses, well, no one needs to know, do they?]]></story_3>
@@ -1196,15 +1268,24 @@
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Wait a second, you just realized the squirrel is small enough to go in those pots!<br>
-			You ask it to go in one. The squirrel goes in it. And doesn't come out.<br>Upon looking inside, you realize it's trying to grab the mana crystal, but it's too smooth for its paws. Oh well...<hr class='divider'>
+			You ask it to go in one. The squirrel goes in it. And doesn't come out.<br>U
+			pon looking inside, you realize it's trying to grab the mana crystal, but it's too smooth for its paws. Oh well...<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 15 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			Did you just see the squirrel eat a crystal?! And your mana reserve just got bigger too. So that means...<br>
 			With a grin, you ask the squirrel to go eat all the crystals it can find. It looks like it is faster to gather mana this way than by smashing the pots.<hr class='divider'>
-			<b>Effect: </b>Smashing pots in squirrel mode takes 20% less mana. <hr class='divider'>
+			<b>Effect: </b>Smashing pots in squirrel mode takes 20% less mana. <br>
+			<b>Next: </b>squirrel combat >= 20 <hr class='divider'>
 			]]></squirrel_3>
+			<squirrel_4><![CDATA[
+			The squirrel isn't even subtle anymore.<br>
+			Instead of going in the pots to eat the crystal, it straight up headbutt them.<br>
+			That's enough to make a hole for it to eat them. And it's faster too.<br>
+			You can't help but be a bit worried, but you've trained it enough to know it won't hurt it!<hr class='divider'>
+			<b>Effect: </b>Smashing pots in squirrel mode takes 35% less mana. <hr class='divider'>			
+			]]></squirrel_4>
             <story_1><![CDATA[<b>50 Pots with mana:</b>⮀ You've smashed every single pot in this village, and have figured out all the pots that contain any trace of mana. Having to break them all physically was time consuming, and your skills at absorbing the mana weren't the best. There must be more efficient ways of doing it.]]></story_1>
         </smash_pots>
 		<pet_squirrel>
@@ -1503,8 +1584,14 @@
 			<squirrel_2><![CDATA[
 			The squirrel wants to help you! It offers being a target for your training. It worked quite well, you learned a lot more from this!<br>
 			... For some unrelated reasons, you lose your squirrel for the rest of the loop.<hr class='divider'>
-			<b>Effect: </b>Gives 300 combat exp, but lose the squirrel.<hr class='divider'>
+			<b>Effect: </b>Gives 300 combat exp, but lose the squirrel.<br>
+			<b>Next: </b>squirrel combat >= 30 <hr class='divider'>
 			]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			Now that the squirrel is pretty strong, it is really helping you with your training!<br>
+			... Too bad you still lose your squirrel for some unrelated reason.<hr class='divider'>
+			<b>Effect: </b>Gives 1000 combat exp, but lose the squirrel.<hr class='divider'>
+			]]></squirrel_3>
             <story_1><![CDATA[<b>1 Combat:</b>⮀ You manage to track down the warrior that was staying in town, and are greeted by a small woman holding a sword almost as tall as her. She introduces herself as "Iron" and smiles politely, doesn't stop her from thoroughly trouncing you.]]></story_1>
             <story_2><![CDATA[<b>100 Combat:</b>⮀ You manage to give Iron a run for her money, but she still manages to eek out a victory, she's noticeably worn out afterwards.]]></story_2>
             <story_3><![CDATA[<b>200 Combat:</b>⮀ You push Iron to the brink of defeat and then she starts fighting dirty.]]></story_3>
@@ -1526,8 +1613,15 @@
 			<squirrel_2><![CDATA[
 			You promise to lend your squirrel to the mage if he does his best during this lesson. The mage happily agrees.<br>
 			You learned so much more during this lesson!<hr class='divider'>
-			<b>Effect: </b>Gives 300 magic exp, but lose the squirrel.<hr class='divider'>
+			<b>Effect: </b>Gives 300 magic exp, but lose the squirrel.<br>
+			<b>Next: </b>squirrel magic >= 30 <hr class='divider'>
 			]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			Looks like the squirrel became quite an expert at magic!<br>
+			Every time the mage says something that could be explained better, the squirrel helps.<br>
+			Too bad you still need the mage for that as you can't speak squirrel!<hr class='divider'>
+			<b>Effect: </b>Gives 1000 magic exp, but lose the squirrel.<hr class='divider'>			
+			]]></squirrel_3>
             <story_1><![CDATA[<b>1 Magic:</b>⮀ You approach a burly man dressed in flowing robes, and ask if he would be willing to teach you some magic. The man agrees to teach you some basic cantrips if you help him out with menial tasks. He introduces himself as Warrick.]]></story_1>
             <story_2><![CDATA[<b>100 Magic:</b>⮀ Warrick compliments you on your ability to wield mana, and is happy to share some more dangerous cantrips with your promise to not use it for ill. He refuses to teach you about alchemy.]]></story_2>
             <story_3><![CDATA[<b>200 Magic:</b>⮀ Warrick is suspicious about your proficiency with mana for someone he's just run into in the wild, but is still more than willing to humor you. If he throws appraising glances at you every now and then, you pay them no mind.]]></story_3>
@@ -1551,8 +1645,25 @@
 			<squirrel_1><![CDATA[
 			The squirrel wants to heal people too! He tries and... looks completely at a loss over what to do.<br>
 			At least he tried, right?<hr class='divider'>
-			<b>Effect: </b>None.<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squirrel magic >= 12 <hr class='divider'>
 			]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Now that the squirrel have the same magic skill as you when you started healing people, it shoud be alright!<br>
+			The squirrel goes and lays on a patient, and starts to concentrate for a long time.<br>
+			Then it glows, and the patient suddenly gets healed as if nothing ever happened to them.<br>
+			Wait, is the squirrel actually better than you at healing people now?!<br>
+			Observing this happening is also helping you a lot at becoming better yourself at magic!<br>
+			Oh, it looks like it tired it, and it can't do it again this loop. Too bad!<hr class='divider'>
+			<b>Effect: </b>Heal one patient and gives 150 magic exp instead of 50. Can only be done once a loop.<br>
+			<b>Next: </b>squirrel magic >= 50 <hr class='divider'>
+			]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			If the squirrel was good at magic before, now it is even better!<br>
+			It is able to heal 2 people at the same time, how amazing is that?!<br>
+			Still, it still can only do it once per loop. Too bad for that!<hr class='divider'>
+			<b>Effect: </b>Heal two patient and gives 300 magic exp instead of 100. Can only be done once a loop.<hr class='divider'>
+			]]></squirrel_3>
             <story_1><![CDATA[<b>Patient healed:</b>⮀ You're allowed in to see the patients and begin healing. It's excellent practice and everyone you heal, be it from broken bones to small scrapes is extraordinarily thankful for your help.]]></story_1>
             <story_2><![CDATA[<b>10 Patients healed in a loop:</b>⮀ Your reputation is absolutely sterling, you've basically cleared out the entire healing home and the nurses and healers are more than thankful for your help.]]></story_2>
             <story_3><![CDATA[<b>Failed Action:</b>⮀ You're turned away at the door, the small healers home stating that they can't trust you to not poison the people inside or make the situation worse.]]></story_3>
@@ -1653,7 +1764,26 @@
 			<squirrel_1><![CDATA[
 			The squirrel looks ready to fight! So you throw it on a monster.<br>
 			... Maybe it's better to not describe what happens next.<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<hr class='divider'>]]></squirrel_1>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squirrel combat >= 10 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Now that it has the same combat skill level as you when you started hunting monsters, it should be fine now, right?<br>
+			So you take the squirrel and throw it on a monster.<br>
+			... The result is too gory to describe.<br>
+			You feel bad for that poor monster.<br>
+			The squirrel is now satisfied and doesn't feel like fighting anymore for this loop.<br>
+			Well, that was a thing that just happened.<hr class='divider'>	
+			<b>Effect: </b>Kill one monster. Can only be done once every loop.<br>
+			<b>Next: </b>squirrel combat >= 50 <hr class='divider'>
+			]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			The squirrel looks like it's craving fighting even more than before.<br>
+			You do a silent prayer for the monster and throw it on them.<br>
+			After shredding two monsters, it comes back, satisfied.<br>
+			You can't help but wonder if you created a monster...<hr class='divider'>
+			<b>Effect: </b>Kill two monsters. Can only be done once every loop.<hr class='divider'>
+			]]></squirrel_3>
             <story_1><![CDATA[<b>Monster killed:</b>⮀ It's all so new, the way they respond and attack, you're not ashamed to admit that you almost got brained by a deer. Either way, their hides and rendered components will sell well.]]></story_1>
             <story_2><![CDATA[<b>100 Monsters killed:</b>⮀ You've fought enough that you're really starting to figure out how they'll respond to most things.]]></story_2>
             <story_3><![CDATA[<b>500 Monsters killed:</b>⮀ You've pretty much figured out their patterns now, how they respond to what you do.]]></story_3>
@@ -1735,8 +1865,24 @@
 			<squirrel_1><![CDATA[
 			You don't think it's a good idea, but the squirrel seems to want to go the dungeon.<br>
 			Ah, wait, no, he just wanted the nuts that were in front of the door. Nevermind, then.<hr class='divider'>
-			<b>Effect: </b>None.<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squirrel combat + squirrel magic >= 35 <hr class='divider'>
 			]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Now that the squirrel have the right skills to try the dungeon, you decide to let it do that.<br>
+			It acts as the leader and is actually pretty competent at that!<br>
+			After clearing half a floor, it gets distracted by some nuts laying around and stop doing anything else, though...<br>
+			Truly the most horrible trap you've seen in here.<hr class='divider'>
+			<b>Effect: </b>Clear half a dungeon floor. Can only be done once per loop.<br>
+			<b>Next: </b>squirrel combat + squirrel magic >= 100 <hr class='divider'>
+		]]></squirrel_2>
+			<squirrel_3><![CDATA[
+			This time, the squirrel is really prepared for the dungeon!<br>
+			It manages to ignore the nuts... Until it becomes too much for it to bear.<br>
+			At least it managed to clear a full floor this time!<hr class='divider'>			
+			<b>Effect: </b>Clear a dungeon floor. Can only be done once per loop.<hr class='divider'>
+			<b>Next: </b>squirrel combat + squirrel magic >= 100 <hr class='divider'>
+		]]></squirrel_3>
             <story_1><![CDATA[<b>Small dungeon attempted:</b>⮀ The cavernous entrance to the villages dungeon greets you. It's dark and looming, with rocks forming jagged fangs. It's the most imposing thing you've found in this town so far.]]></story_1>
             <story_2><![CDATA[<b>1,000 Dungeon floors looted:</b>⮀ You know your way around the dungeon like no one else, almost as if you've explored every nook and cranny. You have.]]></story_2>
             <story_3><![CDATA[<b>5,000 Dungeon floors looted:</b>⮀ The dungeon poses less and less of a threat to you each time you conquer it, the soulstones growing your power by small amounts now that you've accumulated so many of them.]]></story_3>
@@ -1789,7 +1935,7 @@
 			• Costs 1 supplies.<br>
 			• Finish once to unlock Forest Path's actions, then finish this in order to use Forest Path's actions.<br>
 			• Unlocked at a combined Combat and Magic skill of 35.<br>
-			• <b>Warning : the next zone isn't finished. Like at all. Getting further will only give you an extremely unbalanced gameplay that will give you a taste of what's to come.<br>Please, please back up your save before going further! There's even the risk your savefile could be corrupted if you go further.<br>If you want to see how far in development the next zone is, look at the changelog!</b><hr class='divider'>
+			• <b>Warning : the next zone is finished, and in beta! Please try it, and give your thoughts and your savefile once tne zone finished so that it can be correctly rebalanced for a better experience!</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The squirrel asks you to follow it, then stops. It looks extremely torn. Looks like it doesn't trust you enough yet for it to reveal where it wanted to go...<br>
@@ -1800,7 +1946,7 @@
 			<squirrel_2><![CDATA[
 			The squirrel asks you to follow it. It's leading you out of the village, in the opposite direction from the forest.<br>
 			Just where is it leading you?<br>
-			<b>Note : The new zone unlocked isn't finished yet. Look at the warning in human mode to know what to do!</b><hr class='divider'>
+			<b>Note : The new zone is finished but in beta. Look at the warning in human mode to know what to do!</b><hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>Traveled to the second zone:</b>⮀ You leave town, heading towards the forest that stood between the village and Merchanton. You had exhausted every option in Beginnersville and there was nothing here that would stop the loops, it was time to look for other areas and solutions.]]></story_1>
@@ -1921,7 +2067,7 @@
 			You finally see the results, and... they give less mana than the squirrel needs to eat them.<br>
 			Talk about a waste...<hr class='divider'>
 			<b>Effect: </b>Consume one herb instead of gathering it to gain 200 mana.<br>
-			<b>Next: </b>magic >= 35 <hr class='divider'>
+			<b>Next: </b>squirrel magic >= 35 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			Something changed... It looks like the herbs give more mana now?<br>
@@ -2215,8 +2361,7 @@
 			Uh oh, looks like injecting magical power into a fairy is seen by them as a big romantic thing.<br>
 			Now she has a crush on your squirrel... You're not sure if it's a good or a bad thing?<br>
 			Anyway, now she shouldn't have any issue picking up all the herbs you have found. Awesome!<hr class='divider'>
-			<b>Effect: </b>If the fairy blesses you, picks up all magical herbs you have found.<br>
-			<b>Next: </b>magic >= 40 <hr class='divider'>
+			<b>Effect: </b>If the fairy blesses you, picks up all magical herbs you have found.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>Pot fairied:</b>⮀ Placeholder.]]></story_1>
         </pot_fairy>
@@ -2231,7 +2376,7 @@
             <tooltip><![CDATA[
             It's good to let loose, sometimes! Don't worry, only a small part of the forest will be set aflame. So it's fine, right?<hr class='divider'>
 			• Requires negative reputation.<br>
-			• Gives herbs * (1 + main stat / 1000) * sqrt(1 + acres burnt / 1000) progress points per mana.<br>Every acre burnt uses up 10 magical herbs in fuel, releasing 4000 mana for you to absorb.<br>
+			• Gives herbs * (1 + sqrt(main stat / 1000)) progress points per mana.<br>Every acre burnt uses up 10 magical herbs in fuel, releasing 3500 mana for you to absorb.<br>
 			• For every 10% of the dark side of the forest explored, you will also gain 1 dark essence per acre burnt.<br>
 			• For some reason, burning 2 acres of forest will reduce your reputation by 1.<br>
 			• Unlocked at 20% Animals Fed.<hr class='divider'>
@@ -2418,7 +2563,7 @@
             Keep walking to the next town, Merchanton.<hr class='divider'>
 			• Mana cost reduced by 600 per Old Shortcut % for the first 50%, and 60 for the next 50%.<br>
 			• Mana cost also reduced by 600 per Dark Forest % for the first 50%, and 60 for the next 50%.<br>
-			• <b>Warning : this action has been deactivated for the time being. It will reactivate once the development this zone is finished.</b><hr class='divider'>
+			• <b>Warning : this action has been deactivated for the time being. It will reactivate once the development in the next zone is far enough to go in.</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The squirrel wants you to follow it to a new zone!<br>
@@ -3354,6 +3499,28 @@
             Requires the powers of the gods.
         ]]></tooltip>
         </restore_time>
+		<!--town 10-->
+		<first_trial>
+			<label>First Trial</label>
+			<tooltip><![CDATA[
+			This is the trial of the Squirrel Sanctuary.<br>
+			Chronos gave you their permission to break the time loop as long as you clear their trials.<br>
+			First, prove that you didn't come to this place by using the back door.<hr class='divider'>
+			• You must have the squirrel on you to clear this trial.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>This is a regular placeholder:</b>⮀ Placeholder.]]></story_1>
+		</first_trial>
+		<break_loop>
+			<label>Break the Loop</label>
+			<tooltip><![CDATA[
+			Finally, here's the end of your quest!<br>
+			Chronos tells you that the loop potion is an extremely powerful artifact.<br>
+			By using it, they'll be able to break your time loop.<br>
+			They will give you the formula once you clear their trials.<hr class='divider'>
+			• You need a loop potion for this action.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>This is an irregular placeholder:</b>⮀ Placeholder.]]></story_1>
+		</break_loop>
     </actions>
     <spells>
         <title>Spells</title>

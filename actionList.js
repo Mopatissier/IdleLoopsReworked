@@ -59,6 +59,7 @@ function getTravelNum(name) {
     if (name === "Underworld") return 5;
     if (name === "Open Portal") return -5;
 	if (name === "Mysterious Voice") return 1;
+	if (name === "Break Loop") return 1;
     return 0;
 }
 function isTraining(name) {
@@ -360,7 +361,8 @@ Action.LookAround = new Action("Look Around", {
         return 30000 * (Math.pow(2, towns[SANCTUARY].getLevel(this.varName))) / (Math.pow(6, getBuffLevel("SpiritBlessing")));
     },
 	canStart() {
-        return resources.glasses;
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.glasses;
     },
     visible() {
         return true;
@@ -369,9 +371,26 @@ Action.LookAround = new Action("Look Around", {
         return true;
     },
     finish() {
-		towns[SANCTUARY].finishProgress(this.varName, 100);
-		view.adjustManaCost("Look Around");
 		
+		if(this.squirrelAction){
+			
+			switch(getLevelSquirrelAction("Look Around")){
+				
+				case 0: levelUpSquirrelAction("Look Around");
+					break;
+					
+			}
+			
+			switch(getLevelSquirrelAction("Look Around")){
+						
+				case 1: break;
+										
+			}
+		} else {	
+			towns[SANCTUARY].finishProgress(this.varName, 100);
+			view.adjustManaCost("Look Around");
+		}
+
     }
 });
 
@@ -401,6 +420,10 @@ Action.AbsorbMana = new Action("Absorb Mana", {
     manaCost() {
         return 10000;
     },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
     visible() {
         return getBuffLevel("SpiritBlessing") >= 1;
     },
@@ -415,12 +438,30 @@ Action.AbsorbMana = new Action("Absorb Mana", {
         return Math.floor(manaBase * Math.pow(exponent, manaSpotsAbsorbed));
     },
     finish() {
-		const manaGain = this.goldCost();
-		towns[SANCTUARY].finishRegular(this.varName, 10, () => {
-			addMana(manaGain);	
-			return manaGain;
-		});
-		view.adjustGoldCost("ManaSpots", this.goldCost());
+		
+		if(this.squirrelAction){
+			
+			switch(getLevelSquirrelAction("Absorb Mana")){
+				
+				case 0: levelUpSquirrelAction("Absorb Mana");
+					break;
+					
+			}
+			
+			switch(getLevelSquirrelAction("Absorb Mana")){
+						
+				case 1: break;
+										
+			}
+		} else {	
+			const manaGain = this.goldCost();
+			towns[SANCTUARY].finishRegular(this.varName, 10, () => {
+				addMana(manaGain);	
+				return manaGain;
+			});
+			view.adjustGoldCost("ManaSpots", this.goldCost());
+		}
+			
     }
 });
 
@@ -444,11 +485,17 @@ Action.ImbueSquirrel = new Action("Imbue Squirrel", {
     },
 	skillsSquirrel: {
         Magic() {
-			return Math.pow(4, getBuffLevel("SpiritBlessing"));
+			const squirrelMod = ((this.squirrelAction && getLevelSquirrelAction("Imbue Squirrel") >= 1) ? 1 : 0);
+			return Math.pow(4, getBuffLevel("SpiritBlessing") - squirrelMod);
 		}
     },
-    manaCost() {
-        return 3500 * Math.pow(3, getBuffLevel("SpiritBlessing"));
+    manaCost(squirrelTooltip) {
+		const squirrelMod = (((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Imbue Squirrel") >= 1) ? 1 : 0);
+        return 3500 * Math.pow(3, getBuffLevel("SpiritBlessing")  - squirrelMod);
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
     },
     visible() {
         return getBuffLevel("SpiritBlessing") >= 2;
@@ -460,7 +507,28 @@ Action.ImbueSquirrel = new Action("Imbue Squirrel", {
         return Math.pow(4, getBuffLevel("SpiritBlessing"));
     },
     finish() {
-		handleSkillSquirrelExp(this.skillsSquirrel);
+		
+		if(this.squirrelAction){
+			
+			switch(getLevelSquirrelAction("Imbue Squirrel")){
+				
+				case 0: levelUpSquirrelAction("Imbue Squirrel");
+					break;
+					
+			}
+			
+			switch(getLevelSquirrelAction("Imbue Squirrel")){
+						
+				case 1: handleSkillSquirrelExp(this.skillsSquirrel);
+						view.adjustManaCost("Imbue Squirrel", squirrelMode);
+					break;
+										
+			}
+		} else {	
+			handleSkillSquirrelExp(this.skillsSquirrel);
+		}
+		
+		
     }
 });
 
@@ -485,7 +553,8 @@ Action.ImbueSoulstones = new Action("Imbue Soulstones", {
         return 100000;
     },
 	canStart() {
-		return this.getMinimumSoulstones();
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && this.getMinimumSoulstones();
     },
 	getMinimumSoulstones(){
 				
@@ -514,9 +583,27 @@ Action.ImbueSoulstones = new Action("Imbue Soulstones", {
         return getBuffLevel("SpiritBlessing") >= 3;
     },
     finish() {
-		addBuffAmt("ImbueSoulstones", 1);
-		view.updateStartingMana();
-		view.adjustGoldCost(this.varName, this.goldCost());
+		
+		if(this.squirrelAction){
+			
+			switch(getLevelSquirrelAction("Imbue Soulstones")){
+				
+				case 0: levelUpSquirrelAction("Imbue Soulstones");
+					break;
+					
+			}
+			
+			switch(getLevelSquirrelAction("Imbue Soulstones")){
+						
+				case 1: break;
+										
+			}
+		} else {	
+			addBuffAmt("ImbueSoulstones", 1);
+			view.updateStartingMana();
+			view.adjustGoldCost(this.varName, this.goldCost());
+		}
+		
     }
 });
 
@@ -541,6 +628,10 @@ Action.BalanceSoulstones = new Action("Balance Soulstones", {
     manaCost() {
         return 100000;
     },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
 	allowed() {
 		return Math.pow(3, getBuffLevel("SpiritBlessing") - 4);
 	},
@@ -555,18 +646,35 @@ Action.BalanceSoulstones = new Action("Balance Soulstones", {
         return getBuffLevel("SpiritBlessing") >= 4;
     },
     finish() {
-		let statWithLessSoulstones = "Dex";
-		let statWithMostSoulstones = "Dex";
 		
-		for (const stat of statList) {
-			if(stats[stat].soulstone > stats[statWithMostSoulstones].soulstone) statWithMostSoulstones = stat;
-			if(stats[stat].soulstone < stats[statWithLessSoulstones].soulstone) statWithLessSoulstones = stat;
+		if(this.squirrelAction){
+			
+			switch(getLevelSquirrelAction("Balance Soulstones")){
+				
+				case 0: levelUpSquirrelAction("Balance Soulstones");
+					break;
+					
+			}
+			
+			switch(getLevelSquirrelAction("Balance Soulstones")){
+						
+				case 1: break;
+										
+			}
+		} else {	
+			let statWithLessSoulstones = "Dex";
+			let statWithMostSoulstones = "Dex";
+			
+			for (const stat of statList) {
+				if(stats[stat].soulstone > stats[statWithMostSoulstones].soulstone) statWithMostSoulstones = stat;
+				if(stats[stat].soulstone < stats[statWithLessSoulstones].soulstone) statWithLessSoulstones = stat;
+			}
+			
+			stats[statWithMostSoulstones].soulstone --;
+			stats[statWithLessSoulstones].soulstone ++;
+			
+			view.updateSoulstones();
 		}
-		
-		stats[statWithMostSoulstones].soulstone --;
-		stats[statWithLessSoulstones].soulstone ++;
-		
-		view.updateSoulstones();
 		
     }
 });
@@ -590,6 +698,10 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
     manaCost() {
         return 10000;
     },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
     visible() {
         return true;
     },
@@ -597,24 +709,50 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
         return towns[SANCTUARY].getLevel("LookAround") >= 1;
     },
     finish() {
-		switch(getBuffLevel("SpiritBlessing")){
+		
+		if(this.squirrelAction){
 			
-			case 0: addBuffAmt("SpiritBlessing", 1);
-				break;
-			case 1: if(this.squirrelAction) addBuffAmt("SpiritBlessing", 1);
-				break;
-			case 2: if(resources.stolenGoods >= 10) addBuffAmt("SpiritBlessing", 1);
-				break;
-			case 3: if(resources.herbs >= 100) addBuffAmt("SpiritBlessing", 1);
-				break;
-			case 4: break;
-		}
-		view.updateActionTooltips();
-		view.adjustManaCost("Look Around");
-		view.adjustManaCost("Imbue Squirrel");
-		view.adjustGoldCost("ImbueSquirrel", Action.ImbueSquirrel.goldCost());
-		view.updateBuffCaps();
-		view.adjustGoldCost("BalanceSoulstones", Action.BalanceSoulstones.goldCost());
+			switch(getLevelSquirrelAction("Mysterious Voice")){
+				
+				case 0: levelUpSquirrelAction("Mysterious Voice");
+					break;
+					
+				case 1: if(getSkillSquirrelLevel("Magic") >= getSkillLevel("Magic")) levelUpSquirrelAction("Mysterious Voice");
+					break;
+					
+			}
+			
+			switch(getLevelSquirrelAction("Mysterious Voice")){
+						
+				case 1: break;
+				
+				case 2:	addResource("squirrel", false);
+						// Set the mana to 1000.
+						timer = timeNeeded - 1001;
+						unlockTown(CHRONOSLAIR);
+						break;
+										
+			}
+		} else {	
+			switch(getBuffLevel("SpiritBlessing")){
+				case 0: addBuffAmt("SpiritBlessing", 1);
+					break;
+				case 1: if(this.squirrelAction) addBuffAmt("SpiritBlessing", 1);
+					break;
+				case 2: if(resources.stolenGoods >= 10) addBuffAmt("SpiritBlessing", 1);
+					break;
+				case 3: if(resources.herbs >= 100) addBuffAmt("SpiritBlessing", 1);
+					break;
+				case 4: break;
+			}
+			view.updateActionTooltips();
+			view.adjustManaCost("Look Around");
+			view.adjustManaCost("Imbue Squirrel");
+			view.adjustGoldCost("ImbueSquirrel", Action.ImbueSquirrel.goldCost());
+			view.updateBuffCaps();
+			view.adjustGoldCost("BalanceSoulstones", Action.BalanceSoulstones.goldCost());
+			}
+		
     }
 });
 
@@ -675,6 +813,9 @@ Action.Wander = new Action("Wander", {
 					
 				case 2: if(getSkillSquirrelLevel("Trust") >= 20) levelUpSquirrelAction("Wander");
 					break;
+					
+				case 3: if(getSkillSquirrelLevel("Magic") >= 20) levelUpSquirrelAction("Wander");
+					break;
 			}
 			
 			switch(getLevelSquirrelAction("Wander")){
@@ -687,6 +828,9 @@ Action.Wander = new Action("Wander", {
 				case 3: adjustPots();
 						break;
 				
+				case 4: adjustPots();
+						break;
+				
 			}
 		} else {	
 			towns[BEGINNERSVILLE].finishProgress(this.varName, 200 * (resources.glasses ? 4 : 1));
@@ -697,7 +841,7 @@ Action.Wander = new Action("Wander", {
 
 function adjustPots() {
     let town = towns[BEGINNERSVILLE];
-    let basePots = town.getLevel("Wander") * 5 + (getLevelSquirrelAction("Wander") >= 3 ? 100 : 0);
+    let basePots = town.getLevel("Wander") * 5 + (getLevelSquirrelAction("Wander") >= 3 ? 100 : 0) + (getLevelSquirrelAction("Wander") >= 4 ? 100 : 0);
     town.totalPots = Math.floor(basePots + basePots * getSurveyBonus(town));
 }
 function adjustLocks() {
@@ -724,7 +868,8 @@ Action.SmashPots = new Action("Smash Pots", {
         Spd: 0.6
     },
     manaCost(squirrelTooltip) {
-		const squirrelManaMult = (((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Smash Pots") >= 3) ? 0.8 : 1);
+		let squirrelManaMult = (((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Smash Pots") >= 3) ? 0.8 : 1);
+		if(squirrelManaMult === 0.8 && getLevelSquirrelAction("Smash Pots") >= 4) squirrelManaMult = 0.65;
         return Math.ceil(100 * squirrelManaMult);
     },
 	canStart() {
@@ -753,9 +898,10 @@ Action.SmashPots = new Action("Smash Pots", {
 				case 1: if(getSkillSquirrelLevel("Trust") >= 10) levelUpSquirrelAction("Smash Pots");
 					break;
 					
-				case 2: if(getSkillSquirrelLevel("Trust") >= 15){levelUpSquirrelAction("Smash Pots");
-						adjustPots();
-					}
+				case 2: if(getSkillSquirrelLevel("Trust") >= 15) levelUpSquirrelAction("Smash Pots");
+					break;
+					
+				case 3: if(getSkillSquirrelLevel("Combat") >= 20) levelUpSquirrelAction("Smash Pots");
 					break;
 			}
 			
@@ -766,6 +912,14 @@ Action.SmashPots = new Action("Smash Pots", {
 				case 2: break;
 				
 				case 3: view.adjustManaCost("Smash Pots", squirrelMode);
+						towns[BEGINNERSVILLE].finishRegular(this.varName, 10, () => {
+							const manaGain = this.goldCost();
+							addMana(manaGain);
+							return manaGain;
+						});
+						break;
+						
+				case 4: view.adjustManaCost("Smash Pots", squirrelMode);
 						towns[BEGINNERSVILLE].finishRegular(this.varName, 10, () => {
 							const manaGain = this.goldCost();
 							addMana(manaGain);
@@ -1631,6 +1785,9 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 
 				case 1: if(getSkillSquirrelLevel("Trust") >= 24) levelUpSquirrelAction("Warrior Lessons");
 					break;
+					
+				case 2: if(getSkillSquirrelLevel("Combat") >= 30) levelUpSquirrelAction("Warrior Lessons");
+					break;
 
 			}
 			
@@ -1641,6 +1798,12 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 				case 2: handleSkillExp(this.skills);
 						handleSkillExp(this.skills);
 						handleSkillExp(this.skills);
+						addResource("squirrel", false);
+					break;
+					
+				case 3: for(let i = 0; i < 10; i++){
+							handleSkillExp(this.skills);
+						}
 						addResource("squirrel", false);
 					break;
 					
@@ -1709,7 +1872,8 @@ Action.MageLessons = new Action("Mage Lessons", {
 				case 1: if(getSkillSquirrelLevel("Trust") >= 24) levelUpSquirrelAction("Mage Lessons");
 					break;
 					
-
+				case 2: if(getSkillSquirrelLevel("Magic") >= 30) levelUpSquirrelAction("Mage Lessons");
+					break;
 			}
 			
 			switch(getLevelSquirrelAction("Mage Lessons")){
@@ -1719,6 +1883,12 @@ Action.MageLessons = new Action("Mage Lessons", {
 				case 2: handleSkillExp(this.skills);
 						handleSkillExp(this.skills);
 						handleSkillExp(this.skills);
+						addResource("squirrel", false);
+					break;
+					
+				case 3: for(let i = 0; i < 10; i++){
+							handleSkillExp(this.skills);
+						}
 						addResource("squirrel", false);
 					break;
 					
@@ -1755,7 +1925,8 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
     },
 	canStart() {
 		if(this.squirrelAction){
-			return resources.squirrel && resources.reputation >= 1;
+			if(getLevelSquirrelAction("Heal The Sick") >= 2) return resources.squirrel && resources.reputation >= 1 && alreadyHealed === false;
+			else return resources.squirrel && resources.reputation >= 1;
 		}
         return resources.reputation >= 1;
     },
@@ -1770,7 +1941,17 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
         return fibonacci(2 + Math.floor((towns[BEGINNERSVILLE].HealLoopCounter + segment) / this.segments + 0.0000001)) * 10000;
     },
     tickProgress(offset) {
-		if(this.squirrelAction) return 0;
+		if(this.squirrelAction){
+			let squirrelMult = 0;
+			if(getLevelSquirrelAction("Heal The Sick") == 2){
+				squirrelMult = 1;
+			} else if (getLevelSquirrelAction("Heal The Sick") >= 3){
+				squirrelMult = 2;
+			}
+			
+			return squirrelMult * this.loopCost(offset) * 3 / this.manaCost();			
+			
+		}
         return getSkillLevel("Magic") * Math.max(getSkillLevel("Restoration") / 50, 1) * (1 + getLevel(this.loopStats[(towns[BEGINNERSVILLE].HealLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[BEGINNERSVILLE].totalHeal / 100);
     },
     loopsFinished() {
@@ -1792,13 +1973,31 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
 			switch(getLevelSquirrelAction("Heal The Sick")){
 				
 				case 0: levelUpSquirrelAction("Heal The Sick");
-					break;		
+					break;
+					
+				case 1: if(getSkillSquirrelLevel("Magic") >= 12) levelUpSquirrelAction("Heal The Sick");
+					break;
+					
+				case 2: if(getSkillSquirrelLevel("Magic") >= 50) levelUpSquirrelAction("Heal The Sick");
+					break;
 
 			}
 			
 			switch(getLevelSquirrelAction("Heal The Sick")){
 						
 				case 1:  break;
+				
+				case 2: alreadyHealed = true;
+						handleSkillExp(this.skills);
+						handleSkillExp(this.skills);
+					break;
+				
+				case 3: alreadyHealed = true;
+						handleSkillExp(this.skills);
+						handleSkillExp(this.skills);
+						handleSkillExp(this.skills);
+						handleSkillExp(this.skills);
+					break;
 					
 			}
 		} else {	
@@ -1840,7 +2039,8 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
     },
 	canStart() {
 		if(this.squirrelAction){
-			return resources.squirrel && resources.reputation >= 2;
+			if(getLevelSquirrelAction("Fight Monsters") >= 2) return resources.squirrel && resources.reputation >= 2 && alreadyFought === false;
+			else return resources.squirrel && resources.reputation >= 2;
 		}
         return resources.reputation >= 2;
     },
@@ -1855,7 +2055,19 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
         return fibonacci(Math.floor((towns[BEGINNERSVILLE].FightLoopCounter + segment) - towns[BEGINNERSVILLE].FightLoopCounter / 3 + 0.0000001)) * 20000;
     },
     tickProgress(offset) {
-		if(this.squirrelAction) return 0;
+		
+		if(this.squirrelAction){
+			let squirrelMult = 0;
+			if(getLevelSquirrelAction("Fight Monsters") == 2){
+				squirrelMult = 1;
+			} else if (getLevelSquirrelAction("Fight Monsters") >= 3){
+				squirrelMult = 2;
+			}
+			
+			return squirrelMult * this.loopCost(offset) * 3 / this.manaCost();			
+			
+		}
+		
         return getSelfCombat() * (1 + getLevel(this.loopStats[(towns[BEGINNERSVILLE].FightLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[BEGINNERSVILLE].totalFight / 100);
     },
     loopsFinished() {
@@ -1885,13 +2097,25 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
 			switch(getLevelSquirrelAction("Fight Monsters")){
 				
 				case 0: levelUpSquirrelAction("Fight Monsters");
-					break;		
+					break;
+					
+				case 1: if(getSkillSquirrelLevel("Combat") >= 10) levelUpSquirrelAction("Fight Monsters");
+					break;
+					
+				case 2: if(getSkillSquirrelLevel("Combat") >= 50) levelUpSquirrelAction("Fight Monsters");
+					break;
 
 			}
 			
 			switch(getLevelSquirrelAction("Fight Monsters")){
 						
 				case 1: addResource("squirrel", false);
+					break;
+					
+				case 2:  alreadyFought = true;
+					break;
+				
+				case 3:  alreadyFought = true;
 					break;
 					
 			}
@@ -2036,7 +2260,10 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
     canStart() {
         const curFloor = Math.floor((towns[this.townNum].SDungeonLoopCounter) / this.segments + 0.0000001);
 		if(this.squirrelAction){
-			return resources.squirrel && resources.reputation >= 2 && curFloor < dungeons[this.dungeonNum].length;
+			
+			if(getLevelSquirrelAction("Small Dungeon") >= 2) return resources.squirrel && resources.reputation >= 2 && curFloor < dungeons[this.dungeonNum].length && alreadySDungeon === false;
+			else return resources.squirrel && resources.reputation >= 2 && curFloor < dungeons[this.dungeonNum].length;
+			
 		}
         return resources.reputation >= 2 && curFloor < dungeons[this.dungeonNum].length;
     },
@@ -2044,7 +2271,19 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
         return precision3(Math.pow(2.5, Math.floor((towns[this.townNum].SDungeonLoopCounter + segment) / this.segments + 0.0000001)) * 30000);
     },
     tickProgress(offset) {
-		if(this.squirrelAction) return 0;
+		
+		if(this.squirrelAction){
+			let squirrelMult = 0;
+			if(getLevelSquirrelAction("Small Dungeon") == 2){
+				squirrelMult = 0.5;
+			} else if (getLevelSquirrelAction("Small Dungeon") >= 3){
+				squirrelMult = 1;
+			}
+			
+			return squirrelMult * this.loopCost(offset) * 7 / this.manaCost();			
+			
+		}
+		
         const floor = Math.floor((towns[this.townNum].SDungeonLoopCounter) / this.segments + 0.0000001);
         return (getSelfCombat() + getSkillLevel("Magic")) *
             (1 + getLevel(this.loopStats[(towns[this.townNum].SDungeonLoopCounter + offset) % this.loopStats.length]) / 100) *
@@ -2073,14 +2312,25 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
 			switch(getLevelSquirrelAction("Small Dungeon")){
 				
 				case 0: levelUpSquirrelAction("Small Dungeon");
-					break;		
+					break;
+
+				case 1: if((getSkillSquirrelLevel("Combat") + getSkillSquirrelLevel("Magic")) >= 35) levelUpSquirrelAction("Small Dungeon");
+					break;
+					
+				case 2: if((getSkillSquirrelLevel("Combat") + getSkillSquirrelLevel("Magic")) >= 100) levelUpSquirrelAction("Small Dungeon");
+					break;
 
 			}
 			
 			switch(getLevelSquirrelAction("Small Dungeon")){
 						
 				case 1: break;
-					
+				
+				case 2:  alreadySDungeon = true;
+					break;
+				
+				case 3:  alreadySDungeon = true;
+					break;
 			}
 		} else {
 			unlockStory("smallDungeonAttempted");
@@ -2994,7 +3244,7 @@ Action.PracticeYang = new Action("Practice Yang", {
 									
 			}
 			
-			switch(getLevelSquirrelAction("Talk To Hermit")){
+			switch(getLevelSquirrelAction("Practice Yang")){
 						
 				case 1:	break;
 
@@ -3430,14 +3680,14 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
 		return squirrelRequirements && resources.herbs >= 10 && resources.reputation < 0;
     },
     loopCost(segment) {
-        return 60000;
+        return 75000;
     },
     tickProgress(offset) {
 		const squirrelHelp = ((this.squirrelAction && getLevelSquirrelAction("Burn Forest") >= 1) ? 10 : 0);
-        return (resources.herbs + squirrelHelp) * (1 + getLevel(this.loopStats[(towns[FORESTPATH].BurnLoopCounter + offset) % this.loopStats.length]) / 1000) * Math.sqrt(1 + towns[FORESTPATH].totalBurn / 1000);
+        return (resources.herbs + squirrelHelp) *  Math.sqrt((1 + getLevel(this.loopStats[(towns[FORESTPATH].BurnLoopCounter + offset) % this.loopStats.length]) / 1000));
     },
     loopsFinished() {
-		addMana(4000);
+		addMana(3500);
         addResource("darkEssences", Math.floor(towns[FORESTPATH].getLevel("DarkForest")/10 + 0.000001));
 		addResource("herbs", -10);
 		if(towns[FORESTPATH].BurnLoopCounter%4 === 0) addResource("reputation", -1);
@@ -7630,7 +7880,7 @@ Action.LeaveCity = new Action("Leave City", {
 });
 
 //====================================================================================================
-//Zone 9 - Jungle Path
+//Zone 9 - Valley of Olympus
 //====================================================================================================
 Action.ImbueSoul = new MultipartAction("Imbue Soul", {
     type: "multipart",
@@ -7874,3 +8124,81 @@ Action.RestoreTime = new Action("Restore Time", {
 const actionsWithGoldCost = Object.values(Action).filter(
     action => action.goldCost !== undefined
 );
+
+//====================================================================================================
+//Zone 10 - Chronos' Lair
+//====================================================================================================
+
+Action.FirstTrial = new Action("First Trial", {
+    type: "normal",
+    expMult: 1,
+    townNum: 10,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Cha: 0.6,
+        Luck: 0.1,
+        Soul: 0.2,
+    },
+    allowed() {
+        return 1;
+    },
+    manaCost() {
+        return 1000;
+    },
+    canStart() {
+        return resources.squirrel;
+    },
+    visible() {
+        return true;
+    },
+    unlocked() {
+        return true;
+    },
+    finish() {
+		
+    },
+});
+
+
+Action.BreakLoop = new Action("Break Loop", {
+    type: "normal",
+    expMult: 1,
+    townNum: 10,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Con : 0.1,
+		Cha: 0.5,
+		Int : 0.1,
+        Soul: 0.3,
+    },
+    allowed() {
+        return 1;
+    },
+    manaCost() {
+        return 1000;
+    },
+    canStart() {
+        return resources.loopPotion;
+    },
+    visible() {
+        return true;
+    },
+    unlocked() {
+        return true;
+    },
+    finish() {
+		
+    },
+});

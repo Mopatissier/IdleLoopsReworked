@@ -110,11 +110,15 @@ let resources = {
     citizenship: false,
     pegasus: false,
     key: false,
-    stone: false
+    stone: false,
+	loopPotion: false,
 };
 const resourcesTemplate = copyObject(resources);
 // eslint-disable-next-line prefer-const
 let guild = "";
+let alreadyHealed = false;
+let alreadyFought = false;
+let alreadySDungeon = false;
 let magicFight = false;
 let squirrelHaggle = false;
 let portalUsed = false;
