@@ -650,8 +650,12 @@ function setActivatedBonusSpeed() {
 	
 	const numberHalfDayOffline = Math.floor(totalOfflineMs/halfDayMs);
 	
-	bonusSpeed = numberHalfDayOffline * 0.5 + 2;
-	if(bonusSpeed > 5){
+	if(cheatBonusSpeed === 1){
+		bonusSpeed = numberHalfDayOffline * 0.5 + 2;
+	} else {
+		bonusSpeed = cheatBonusSpeed;
+	}
+	if(bonusSpeed > 5 && cheatBonusSpeed === 1){
 		bonusSpeed = 5;
 	}
 	if (document.getElementById("isBonusOn").textContent == _txt("time_controls>bonus_seconds>state>off")) {

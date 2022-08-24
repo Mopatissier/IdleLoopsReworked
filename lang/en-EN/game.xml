@@ -2141,7 +2141,7 @@
 			So it runs towards an animal to fight it, and...<br>
 			Yeah, no, this was a bad idea.<hr class='divider'>
 			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>combat >= 5 <hr class='divider'>
+			<b>Next: </b>squirrel combat >= 5 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Alright, now that the squirrel have learn its lesson, it decides to go against an animal of around the same strenght as itself.<br>
