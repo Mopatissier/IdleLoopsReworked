@@ -67,8 +67,10 @@ function tick() {
         timeCounter += 1 / baseManaPerSecond / getActualGameSpeed();
         effectiveTime += 1 / baseManaPerSecond / getSpeedMult();
 		
+		if(timer > timeNeeded) timer = timeNeeded;
+		
         actions.tick(multTicks);
-		if(multTicks === 1){
+		if(curTown != SANCTUARY){
 			for (const dungeon of dungeons) {
 				for (const level of dungeon) {
 					const chance = level.ssChance;
@@ -76,7 +78,7 @@ function tick() {
 				}
 			}
 		}
-		
+				
         if (shouldRestart || timer >= timeNeeded) {
             prepareRestart();
         }

@@ -38,7 +38,7 @@ function View() {
         }, 2000);
         adjustAll();
         this.updateActionTooltips();
-		this.updateBuffCaps();
+		this.updateBuffCaps(true);
 		this.updateStartingMana();
     };
 
@@ -1451,21 +1451,28 @@ function View() {
 		view.createTravelMenu();
 	}
 	
-	this.updateBuffCaps = function() {
+	this.updateBuffCaps = function(upgradeSpiritBlessing) {
 		
-		const ImbudeSoulstonesCap = Math.max(0, getBuffLevel("SpiritBlessing")-2)*10;
-	
-		buffHardCaps.ImbueSoulstones = ImbudeSoulstonesCap;
-			
+				
 		for (const buff of buffList) {
 			
-			let buffCapValue = Math.max(document.getElementById(`buff${buff}Cap`).value, getBuffLevel(buff));
-			buffCapValue = Math.min(buffCapValue, buffHardCaps[buff]);
+			if(buff === "ImbueSoulstones" && upgradeSpiritBlessing){
+				
+				const ImbudeSoulstonesCap = Math.max(0, getBuffLevel("SpiritBlessing")-2)*10;
+				
+				buffHardCaps.ImbueSoulstones = ImbudeSoulstonesCap;
+				buffCaps.ImbueSoulstones = ImbudeSoulstonesCap;
+				
+			} else {
+				
+				let buffCapValue = Math.max(document.getElementById(`buff${buff}Cap`).value, getBuffLevel(buff));
+				buffCapValue = Math.min(buffCapValue, buffHardCaps[buff]);
+				
+				buffCaps[buff] = buffCapValue;
+			}
 			
-			buffCaps[buff] = buffCapValue;
-			
-			document.getElementById(`buff${buff}Cap`).value = buffCaps[buff];			
-						
+			document.getElementById(`buff${buff}Cap`).value = buffCaps[buff];	
+
 		}
 		
 	}

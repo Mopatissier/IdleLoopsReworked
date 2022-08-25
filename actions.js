@@ -18,7 +18,7 @@ function Actions() {
             return;
         }
 		
-		if(ticksAmt === 1) addExpFromAction(curAction);
+		if(curTown != SANCTUARY) addExpFromAction(curAction);
 		curAction.ticks += ticksAmt;
 		curAction.manaUsed += ticksAmt;
 		curAction.timeSpent += 1 / baseManaPerSecond / getActualGameSpeed();
@@ -77,6 +77,7 @@ function Actions() {
 
             curAction.lastMana = curAction.rawTicks;
             this.completedTicks += curAction.adjustedTicks;
+			
             curAction.finish();
             curAction.manaRemaining = timeNeeded - timer;
             

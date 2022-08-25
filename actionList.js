@@ -724,10 +724,22 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 			
 			switch(getLevelSquirrelAction("Mysterious Voice")){
 						
-				case 1: if(getBuffLevel("SpiritBlessing") == 1) addBuffAmt("SpiritBlessing", 1);
+				case 1: if(getBuffLevel("SpiritBlessing") == 1) {
+							addBuffAmt("SpiritBlessing", 1);
+							view.updateActionTooltips();
+							view.adjustManaCost("Look Around");
+							view.adjustManaCost("Imbue Squirrel");
+							view.adjustGoldCost("ImbueSquirrel", Action.ImbueSquirrel.goldCost());
+						}
 					break;
 				
-				case 2:	if(getBuffLevel("SpiritBlessing") == 1) addBuffAmt("SpiritBlessing", 1);
+				case 2:	if(getBuffLevel("SpiritBlessing") == 1) {
+							addBuffAmt("SpiritBlessing", 1);
+							view.updateActionTooltips();
+							view.adjustManaCost("Look Around");
+							view.adjustManaCost("Imbue Squirrel");
+							view.adjustGoldCost("ImbueSquirrel", Action.ImbueSquirrel.goldCost());
+						}
 						addResource("squirrel", false);
 						// Set the mana to 1000.
 						timer = timeNeeded - 1001;
@@ -750,7 +762,7 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 			view.adjustManaCost("Look Around");
 			view.adjustManaCost("Imbue Squirrel");
 			view.adjustGoldCost("ImbueSquirrel", Action.ImbueSquirrel.goldCost());
-			view.updateBuffCaps();
+			view.updateBuffCaps(true);
 			view.adjustGoldCost("BalanceSoulstones", Action.BalanceSoulstones.goldCost());
 			}
 		

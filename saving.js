@@ -677,7 +677,13 @@ function importSave() {
 function exportCurrentList() {
     let toReturn = "";
     for (const action of actions.next) {
-        toReturn += `${action.loops}x ${action.name}`;
+        toReturn += `${action.loops}x ${action.name}_`;
+		
+		if(!action.squirrelAction){
+			toReturn += `Human`;
+		} else {
+			toReturn += `Squirrel`;
+		}
         toReturn += "\n";
     }
     document.getElementById("exportImportList").value = toReturn.slice(0, -1);
@@ -692,11 +698,16 @@ function importCurrentList() {
         if (!toImport[i]) {
             continue;
         }
-        const name = toImport[i].substr(toImport[i].indexOf("x") + 1).trim();
-        const loops = toImport[i].substr(0, toImport[i].indexOf("x"));
+		const modeName = toImport[i].substring(toImport[i].indexOf("_")).trim();
+		const name = toImport[i].substring(toImport[i].indexOf("x") + 1, toImport[i].indexOf("_")).trim();
+		const loops = toImport[i].substring(0, toImport[i].indexOf("x"));
+						
+		let modeIsSquirrel = true;
+		if(modeName === "_Human")  modeIsSquirrel = false;
+		
         const action = translateClassNames(name);
         if (action && action.unlocked()) {
-            actions.next.push({ name, loops: Number(loops), disabled: false });
+            actions.next.push({ name, loops: Number(loops), disabled: false, squirrelAction : Boolean(modeIsSquirrel)});
         }
     }
     view.updateNextActions();

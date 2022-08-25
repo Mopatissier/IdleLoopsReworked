@@ -6,6 +6,13 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.7"><![CDATA[
+            <b> August 25th, 2022 (again)</b>
+            • Reworked the export/import list option! Now it saves if the actions are in squirrel mode or not.<br>
+            • For transparency, changed the tooltips for the exploring actions to say how much progress you gain from doing those.<br>
+            • The buff cap system was broken. It is now fixed!.<br>
+            • And a bunch of glitches and typos the discord community pointed out. Thanks!<br>
+            ]]></version>
 			<version verNum="0.2.6"><![CDATA[
             <b> August 25th, 2022</b>
 			Finally! And with that update, z2 and z0 are finished. I still need to rebalance the zones if needed, so don't hesitate to share your savefile!<br>
@@ -1070,6 +1077,7 @@
 			<tooltip><![CDATA[
 			It's quite confusing. This place is very small at first, but every time you look around, it becomes bigger.<br>
 			It's not just space that feels weird, time too : your body feels frozen in time, despite being capable of moving.<hr class='divider'>
+			• Gives 100 exp worth of progress as a base.<br>
 			• Every % looked at doubles the mana cost of this action.<br>
 			• For every level of Spirit Blessing, divide the mana cost by 6.<br>
 			• You need glasses for this action.<br>
@@ -1212,6 +1220,7 @@
             <label_done>Explored</label_done>
 			<tooltip><![CDATA[
             Explore the town, look for hidden areas and treasures.<hr class='divider'>
+			• Gives 200 exp worth of progress as a base.<br>
 			• 4x progress with glasses.<hr class='divider'>
 			]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -1414,6 +1423,7 @@
             <label_done>People Met</label_done>
             <tooltip><![CDATA[
             They won't let you get away with a simple chat.<hr class='divider'>
+			• Gives 200 exp worth of progress as a base.<br>
 			• Unlocked at 22% Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -1490,6 +1500,7 @@
             <label_done>Investigated</label_done>
             <tooltip><![CDATA[
             You've been hearing some rumors...<hr class='divider'>
+			• Gives 400 exp worth of progress as a base.<br>
 			• Your stolen valuable might have clues. Adds 20% efficiency for each one you have.<br>
 			• Unlocked at 25% People Met.<hr class='divider'>
         ]]></tooltip>
@@ -1549,7 +1560,7 @@
             <label>Throw Party</label>
             <tooltip><![CDATA[
             Take a break and socialize.<hr class='divider'>
-			• Gives people met progress equivalent to 14 Meet People actions.<br>
+			• Gives people met progress equivalent to 14 Meet People actions : 2800 exp worth of progress in total.<br>
 			• Costs 2 reputation.<br>
 			• Unlocked at 30% Investigated.<hr class='divider'>
         ]]></tooltip>
@@ -1779,7 +1790,7 @@
 			<squirrel_3><![CDATA[
 			The squirrel looks like it's craving fighting even more than before.<br>
 			You do a silent prayer for the monster and throw it on them.<br>
-			After shredding two monsters, it comes back, satisfied.<br>
+			After shredding two of them, it comes back, satisfied.<br>
 			You can't help but wonder if you created a monster...<hr class='divider'>
 			<b>Effect: </b>Kill two monsters. Can only be done once every loop.<hr class='divider'>
 			]]></squirrel_3>
@@ -1969,6 +1980,7 @@
             <label_done>Forest Explored</label_done>
             <tooltip><![CDATA[
             What a pleasant area.<hr class='divider'>
+			• Gives 100 exp worth of progress as a base.<br>
 			• 4x progress with glasses.<hr class='divider'>
         ]]></tooltip>
             <story_1><![CDATA[<b>1% Forest explored:</b>⮀ You look at the side of the path from your little campsite, and are struck with a sense of wanderlust. You leave your camp to explore. Not too far from your campsite you find a tiny glade practically overflowing with mana.]]></story_1>
@@ -2129,9 +2141,9 @@
             <label_done>Shortcut Explored</label_done>
             <tooltip><![CDATA[
             No one has come down this way in quite some time.<hr class='divider'>
+			• Gives 100 exp worth of progress as a base.<br>
 			• Gives some additional herbs.<br>
-			• Old men are a pain unless you know something they care about.<br>
-			Talk to Hermit gives 3% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>
+			• Old men are a pain unless you know something they care about : Talk to Hermit gives 3% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>
 			• Unlocked at 20% Forest Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -2166,6 +2178,7 @@
             <label_done>Hermit Knowledge Learned</label_done>
             <tooltip><![CDATA[
             This old man is happy to have a listening ear, surely he has some useful knowledge. You hope. He's initially confrontational, but opens up once you start talking about the road.<hr class='divider'>
+			• Gives 50 exp worth of progress as a base.<br>
 			• Reduces mana cost of Gather Herbs, Practice Yang, and Learn Alchemy by 0.5% per 1% of Hermit Knowledge.<br>
 			• His knowledge about shortcuts also gives 3% more Old Shortcut speed per 1% Hermit Knowledge Learned.<br>
 			• Unlocked with both 20% Shortcut Explored and 40 Magic.<hr class='divider'>
@@ -2203,7 +2216,8 @@
 		<practice_yang>
             <label>Practice Yang</label>
             <tooltip><![CDATA[
-			It looks like being alone for so long made the hermit practice some kind of weird but useful magic. It's like pulling teeth getting this knowledge from the Hermit, though.<hr class='divider'>
+			It looks like being alone for so long made the hermit practice some kind of weird but useful magic.<br>
+			It's like pulling teeth getting this knowledge from him, though!<hr class='divider'>
 			• Gives 25 more yang exp per reputation you have.<br>
 			• Unlocked with both 20% Hermit Knowledge and 45 magic.<hr class='divider'>
         ]]></tooltip>
@@ -2229,8 +2243,9 @@
         <learn_alchemy>
             <label>Learn Alchemy</label>
             <tooltip><![CDATA[
-            You can listen to him yammer while making light healing and remedy potions.<hr class='divider'>
-			• You're starting to think the potion that caused you to loop time was a complex one.<br>You provide the ingredients; costs 10 herbs.<br>
+            You can listen to him yammer while making light healing and remedy potions.<br>
+			You're starting to think the potion that caused you to loop time was a complex one...<hr class='divider'>
+			• You provide the ingredients; costs 10 herbs.<br>
 			• Use what you learned from brewing to make this action more efficient.<br>
 			• Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
 			• Unlocked with both 40% Hermit Knowledge and 50 Magic.<hr class='divider'>
@@ -2301,8 +2316,8 @@
 			<label_done>Animals Fed</label_done>
             <tooltip><![CDATA[
             Feed wild animals and they will show you ressources scattered around the forest. They sure do like magical herbs!<hr class='divider'>
-			• The more herbs you have, the easier they will approach you :<br>
-			• Every herb you have gives a +2% efficiency.<br>
+			• Gives 100 exp worth of progress as a base.<br>
+			• The more herbs you have, the easier they will approach you : every herb you have gives a +2% efficiency.<br>
 			• If you don't have the squirrel at the start of each loop yet, now it will join you.<br>
 			• Consumes 10 herbs per action.<br>
 			• Unlocked at 40% Forest Explored.<hr class='divider'>
@@ -2348,7 +2363,7 @@
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Something is wrong... The fairy emits a lot of mana, but a good part comes from another place.<br>
-			Your squirrel decides to investigate and find another fairy!<br>
+			Your squirrel decides to investigate and finds another fairy!<br>
 			It's the magical herb fairy, the daughter of the mana pot fairy.<br>
 			Now that you know she's here, she's ready to pick up herbs for you... If you don't anger her mother.<hr class='divider'>
 			<b>Effect: </b>If the fairy blesses you, picks up 100 magical herbs for you.<br>
@@ -2417,6 +2432,7 @@
 			<label_done>Dark Forest Explored</label_done>
             <tooltip><![CDATA[
             There's a lot of useful paths in here. You have avoided them for too long.<hr class='divider'>
+			• Gives 100 exp worth of progress as a base.<br>
 			• Gives some additional herbs.<br>
 			• Requires negative reputation.<br>
 			• The witch loves this place, knowing about it will help talking to her.<br>
@@ -2450,6 +2466,7 @@
             <label_done>Witch Knowledge Learned</label_done>
             <tooltip><![CDATA[
             Talk to the witch to learn her secrets of the dark arts.<hr class='divider'>
+			• Gives 50 exp worth of progress as a base.<br>
 			• Requires negative reputation.<br>
 			• Reduces mana cost of Practice Yin and Learn Brewing by 0.5% per 1% of Witch Knowledge.<br>
 			• Her love for the dark forest also gives 3% more Dark Forest speed per 1% Witch Knowledge Learned.<br>
