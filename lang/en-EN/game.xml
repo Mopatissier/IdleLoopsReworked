@@ -1124,7 +1124,7 @@
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
 			You wonder what would happen if the squirrel imbue itself without your help.<br>
-			Turns out, it has an harder time doing it! Not that much of a surprise, honestly..<br>
+			Turns out, it has an harder time doing it! Not that much of a surprise, honestly.<br>
 			Though as it absorbs mana in smaller chunks, this might actually come in handy...<hr class='divider'>
 			<b>Effect: </b>Act as if you have one less Spirit Blessing : mana cost / 3 and exp / 4.<hr class='divider'>
 		]]></squirrel_1>
@@ -1202,8 +1202,7 @@
 			However, it will need a lot of magical power and mana, and I need assistance.<br>
 			You will be sent there without your squirrel and with a measly amount of mana.<br>
 			I am sorry I cannot do any better."<hr class='divider'>
-			<b>Effect: </b>Go to a new zone, but lose your squirrel and only keep 1000 mana.<br>
-			<b>Next: </b>squirrel magic >= human magic <hr class='divider'>
+			<b>Effect: </b>Go to a new zone, but lose your squirrel and only keep 1000 mana.<hr class='divider'>
 			]]></squirrel_2>
 			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
 		</mysterious_voice>
@@ -1881,7 +1880,6 @@
 			It manages to ignore the nuts... Until it becomes too much for it to bear.<br>
 			At least it managed to clear a full floor this time!<hr class='divider'>			
 			<b>Effect: </b>Clear a dungeon floor. Can only be done once per loop.<hr class='divider'>
-			<b>Next: </b>squirrel combat + squirrel magic >= 100 <hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>Small dungeon attempted:</b>⮀ The cavernous entrance to the villages dungeon greets you. It's dark and looming, with rocks forming jagged fangs. It's the most imposing thing you've found in this town so far.]]></story_1>
             <story_2><![CDATA[<b>1,000 Dungeon floors looted:</b>⮀ You know your way around the dungeon like no one else, almost as if you've explored every nook and cranny. You have.]]></story_2>
@@ -2175,7 +2173,7 @@
 			<squirrel_1><![CDATA[
 			In Beginnersville, using the squirrel charms was quite useful, so let's try it here!<br>
 			You ask the squirrel to make its best at looking cute while you talk to the hermit.<br>
-			The moment you turn your back, you hear some sort of high pitch muffling sound?<br>
+			The moment you turn your back, you hear some sort of high pitched muffled sound?<br>
 			It looks like the squirrel is gone now.<br>
 			Where did it go?<hr class='divider'>	
 			<b>Effect: </b>Lose the squirrel.<br>
@@ -2573,10 +2571,10 @@
 			<b>Next: </b>squirrel magic >= 10 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Looks like the squirrel is now confident this time.<br>
+			The squirrel looks confident this time.<br>
 			It asks you to follow it : it leads you towards Commerceville.<br>
 			... And suddenly, you find yourself in the Squirrel Sanctuary.<br>
-			How did this happened?!<hr class='divider'>
+			How did this happen?!<hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<br><hr class='divider'>
 		]]></squirrel_2>
             <story_1><![CDATA[<b>Traveled to the third zone:</b>⮀ You sigh gustily to yourself, you've done all you cared to do here and there was nothing left to do really, time to move on and out of the boonies and into civilized territory. Laws, taxes and bribes. You were almost looking forward to it, given how long you had been out in the country for at this point.]]></story_1>

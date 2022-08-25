@@ -724,9 +724,11 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 			
 			switch(getLevelSquirrelAction("Mysterious Voice")){
 						
-				case 1: break;
+				case 1: if(getBuffLevel("SpiritBlessing") == 1) addBuffAmt("SpiritBlessing", 1);
+					break;
 				
-				case 2:	addResource("squirrel", false);
+				case 2:	if(getBuffLevel("SpiritBlessing") == 1) addBuffAmt("SpiritBlessing", 1);
+						addResource("squirrel", false);
 						// Set the mana to 1000.
 						timer = timeNeeded - 1001;
 						unlockTown(CHRONOSLAIR);
@@ -737,8 +739,7 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 			switch(getBuffLevel("SpiritBlessing")){
 				case 0: addBuffAmt("SpiritBlessing", 1);
 					break;
-				case 1: if(this.squirrelAction) addBuffAmt("SpiritBlessing", 1);
-					break;
+				case 1: break;
 				case 2: if(resources.stolenGoods >= 10) addBuffAmt("SpiritBlessing", 1);
 					break;
 				case 3: if(resources.herbs >= 100) addBuffAmt("SpiritBlessing", 1);
@@ -826,9 +827,11 @@ Action.Wander = new Action("Wander", {
 				case 2: break;
 				
 				case 3: adjustPots();
+						view.updateRegular("Pots", BEGINNERSVILLE);
 						break;
 				
 				case 4: adjustPots();
+						view.updateRegular("Pots", BEGINNERSVILLE);
 						break;
 				
 			}
@@ -1723,6 +1726,8 @@ Action.ThrowParty = new Action("Throw Party", {
 				case 2: adjustSQuests();
 						adjustLQuests();
 						towns[BEGINNERSVILLE].finishProgress("Met", 3600);
+						view.updateRegular("SQuests", BEGINNERSVILLE);
+						view.updateRegular("LQuests", BEGINNERSVILLE);
 					break;
 					
 			}
@@ -1957,6 +1962,10 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
     loopsFinished() {
         addResource("reputation", 3);
 		handleSkillExp(this.skills);
+		if(this.squirrelAction){
+			handleSkillExp(this.skills);
+			handleSkillExp(this.skills);
+		}
     },
     getPartName() {
         return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[BEGINNERSVILLE].HealLoopCounter + 0.0001) / this.segments + 1))}`;
@@ -1988,15 +1997,9 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
 				case 1:  break;
 				
 				case 2: alreadyHealed = true;
-						handleSkillExp(this.skills);
-						handleSkillExp(this.skills);
 					break;
 				
 				case 3: alreadyHealed = true;
-						handleSkillExp(this.skills);
-						handleSkillExp(this.skills);
-						handleSkillExp(this.skills);
-						handleSkillExp(this.skills);
 					break;
 					
 			}
@@ -2696,9 +2699,11 @@ Action.ExploreForest = new Action("Explore Forest", {
 					break;
 				
 				case 2: adjustHerbs();
+						view.updateRegular("Herbs", FORESTPATH);
 					break;
 				
 				case 3: adjustWildMana();
+						view.updateRegular("WildMana", FORESTPATH);
 					break;
 					
 			}
@@ -3531,10 +3536,12 @@ Action.FeedAnimals = new Action("Feed Animals", {
 					break;
 				
 				case 2: adjustWildMana();
+						view.updateRegular("WildMana", FORESTPATH);
 						addResource("squirrel", false);
 					break;
 					
 				case 3: adjustHerbs();
+						view.updateRegular("Herbs", FORESTPATH);
 						addResource("squirrel", false);
 					break;
 			}

@@ -245,7 +245,7 @@ function addSquirrelLevel(action) {
 }
 
 function addBuffAmt(name, amount) {
-    if (getBuffLevel(name) === buffHardCaps[name]) return;
+    if (getBuffLevel(name) === buffCaps[name]) return;
     buffs[name].amt += amount;
     view.updateBuff(name);
 }

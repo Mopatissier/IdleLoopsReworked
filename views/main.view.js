@@ -1456,12 +1456,16 @@ function View() {
 		const ImbudeSoulstonesCap = Math.max(0, getBuffLevel("SpiritBlessing")-2)*10;
 	
 		buffHardCaps.ImbueSoulstones = ImbudeSoulstonesCap;
-		buffCaps.ImbueSoulstones = ImbudeSoulstonesCap;
 			
 		for (const buff of buffList) {
-			document.getElementById(`buff${buff}Cap`).value = buffCaps[buff];
-			//Math.min(parseInt(document.getElementById(`buff${buff}Cap`).value), buffHardCaps[buff]);
-			//buffCaps[buff] = parseInt(document.getElementById(`buff${buff}Cap`).value);
+			
+			let buffCapValue = Math.max(document.getElementById(`buff${buff}Cap`).value, getBuffLevel(buff));
+			buffCapValue = Math.min(buffCapValue, buffHardCaps[buff]);
+			
+			buffCaps[buff] = buffCapValue;
+			
+			document.getElementById(`buff${buff}Cap`).value = buffCaps[buff];			
+						
 		}
 		
 	}
