@@ -78,7 +78,17 @@ function Actions() {
             curAction.lastMana = curAction.rawTicks;
             this.completedTicks += curAction.adjustedTicks;
 			
-            curAction.finish();
+			if(curAction.squirrelAction){
+					
+				if(curAction.squirrelLevelUp !== "undefined" && curAction.squirrelActionEffect !== "undefined"){
+					
+					curAction.squirrelLevelUp();
+					curAction.squirrelActionEffect();
+					
+				}
+			} else {
+				curAction.finish();
+			}
             curAction.manaRemaining = timeNeeded - timer;
             
             if (curAction.cost) {
