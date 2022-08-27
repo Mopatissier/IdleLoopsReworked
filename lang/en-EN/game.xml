@@ -2286,7 +2286,7 @@
 			• Requires a reputation of 10 or above, or he won't let you near his stuff.<br>
 			• Gives (alchemy + brewing/2) * (1 + main stat / 100) * sqrt(1 + potions distilled / 100) progress points per mana.<br>
 			• Creates a potion from 10 herbs to sell at the next town.<br>
-			• Every potions distilled gives as much exp as the Learn Brewing action.<br>
+			• Every potions distilled gives as much exp as the Learn Alchemy action.<br>
 			• Unlocked with 10 Alchemy.<hr class='divider'>
         ]]></tooltip>
             <story_1><![CDATA[<b>Potion brewed:</b>⮀ The old man happily lets you use his apparatus to brew your own potions after much haranguing about your technique and the fact that you're not buying ingredients off him, he leaves you to it. His workstations are old, well used and obviously well looked after. The only fault you can lay at their feet is that the measuring system used is older than dirt. Fits you suppose.]]></story_1>
