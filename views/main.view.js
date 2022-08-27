@@ -499,7 +499,17 @@ function View() {
                 color = (travelNum > 0 || travelNum == -5) ? `linear-gradient(${this.zoneTints[townNum]} 49%, ${this.zoneTints[townNum + travelNum]} 51%)` : this.zoneTints[townNum];
             }
 			let squirrelModeIcon = `<img id='modeIcon${i}' src='img/human.svg' class='modeIcon' onclick='changeMode(${i})'>`;
-			if(action.squirrelAction) squirrelModeIcon = `<img id='modeIcon${i}' src='img/petSquirrel.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+			if(action.squirrelAction){
+				const actionTemplate = Action[action.name.replace(/ /g,'')];
+								
+				if(actionTemplate.hasOwnProperty('squirrelLevelUp') && actionTemplate.squirrelLevelUp(true)){
+					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelNewAction.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+				} else if(actionTemplate.hasOwnProperty('squirrelActionEffect') && actionTemplate.squirrelActionEffect(true)) {
+					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelLose.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+				} else {
+					squirrelModeIcon = `<img id='modeIcon${i}' src='img/petSquirrel.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+				}	
+			}			
             totalDivText +=(
                 `<div
                     id='nextActionContainer${i}'

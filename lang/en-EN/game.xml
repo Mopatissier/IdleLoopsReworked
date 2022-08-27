@@ -6,6 +6,15 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.8"><![CDATA[
+            <b> August 27th, 2022</b>
+			• The game's name have been changed! It is now Idle Loops : Squirrel Edition, Squirrel Loops for short. The tab icon has changed to reflect this.<br>
+            • The squirrel icons in the list of action now reflect if you'll lose your squirrel or gain a new squirrel level!<br>
+            • The Practice Yin/Yang icons have been changed to make it easier to differenciate.<br>
+            • The action bars for Beginnersville are now slightly slower to fill.<br>
+            • The magic requirements for the Forest Path have been raised.<br>
+            • Distill Potions and Concoct Potions now give Alchemy/Brewing experience!<br>
+            ]]></version>
 			<version verNum="0.2.7"><![CDATA[
             <b> August 25th, 2022 (again)</b>
             • Reworked the export/import list option! Now it saves if the actions are in squirrel mode or not.<br>
@@ -571,7 +580,7 @@
 					Every level increases your speed by 0.5%.<br>
 					It cannot go higher than (2x your positive reputation)%.<br>
 					Capped at speed increase of +100%.<br>
-					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br><br>
+					Every 10 levels reached in both yin and yang magic raise the Yin Yang Magic buff by 1 .<br><br>
 					Currently gives a <div id='skillBonusYang'></div>x speed increase.
 					]]>
 			</desc2>
@@ -583,7 +592,7 @@
 					Every level increases your speed by 0.5%.<br>
 					It cannot go higher than (2x your negative reputation)%.<br>
 					Capped at a speed increase of +100%.<br>
-					Every 10 levels reached in both yin and yan magic raise the Yin Yang Magic buff by 1 .<br><br>
+					Every 10 levels reached in both yin and yang magic raise the Yin Yang Magic buff by 1 .<br><br>
 					Currently gives a <div id='skillBonusYin'></div>x speed increase.
 					]]>
 			</desc2>
@@ -883,6 +892,7 @@
 		  You're not sure it's gonna be useful, but you have infinite time under your hand.<br>
 		  So why not try?<br>
 		  <b>Note:</b> in the action list, if you click on the human/squirrel icon, you can also switch the mode for that specific action.<br>
+		  The icon will also reflect if you can level up an action or if you'll lose the squirrel doing it.<br>
 		  How convenient!]]>
 		</tooltip_squirrel_mode>
         <current_action>
@@ -1199,7 +1209,9 @@
 			It looks like the squirrel and the mysterious voice are having a heated debate.<br>
 			You wish you could understand anything, but all you can hear are squirrel sounds...<br>
 			When it ends, the squirrel looks dejected. Looks like it lost!<br>
-			You have a feeling this is about a magic issue...<hr class='divider'>
+			You have a feeling this is about a magic issue...<br>
+			The squirrel should easily surpass you once you get a few more Spirit Blessings.<br>
+			It's probably better to focus on it later.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>squirrel magic >= human magic <hr class='divider'>
 			]]></squirrel_1>
@@ -1276,8 +1288,8 @@
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Wait a second, you just realized the squirrel is small enough to go in those pots!<br>
-			You ask it to go in one. The squirrel goes in it. And doesn't come out.<br>U
-			pon looking inside, you realize it's trying to grab the mana crystal, but it's too smooth for its paws. Oh well...<hr class='divider'>
+			You ask it to go in one. The squirrel goes in it. And doesn't come out.<br>
+			Upon looking inside, you realize it's trying to grab the mana crystal, but it's too smooth for its paws. Oh well...<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 15 <hr class='divider'>
 			]]></squirrel_2>
@@ -1423,7 +1435,7 @@
             <label_done>People Met</label_done>
             <tooltip><![CDATA[
             They won't let you get away with a simple chat.<hr class='divider'>
-			• Gives 200 exp worth of progress as a base.<br>
+			• Gives 150 exp worth of progress as a base.<br>
 			• Unlocked at 22% Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -1500,7 +1512,7 @@
             <label_done>Investigated</label_done>
             <tooltip><![CDATA[
             You've been hearing some rumors...<hr class='divider'>
-			• Gives 400 exp worth of progress as a base.<br>
+			• Gives 300 exp worth of progress as a base.<br>
 			• Your stolen valuable might have clues. Adds 20% efficiency for each one you have.<br>
 			• Unlocked at 25% People Met.<hr class='divider'>
         ]]></tooltip>
@@ -1560,7 +1572,7 @@
             <label>Throw Party</label>
             <tooltip><![CDATA[
             Take a break and socialize.<hr class='divider'>
-			• Gives people met progress equivalent to 14 Meet People actions : 2800 exp worth of progress in total.<br>
+			• Gives people met progress equivalent to 14 Meet People actions : 2100 exp worth of progress in total.<br>
 			• Costs 2 reputation.<br>
 			• Unlocked at 30% Investigated.<hr class='divider'>
         ]]></tooltip>
@@ -1774,7 +1786,7 @@
 			<squirrel_1><![CDATA[
 			The squirrel looks ready to fight! So you throw it on a monster.<br>
 			... Maybe it's better to not describe what happens next.<hr class='divider'>
-			<b>Effect: </b>None.<br>
+			<b>Effect: </b>Lose the squirrel.<br>
 			<b>Next: </b>squirrel combat >= 10 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
@@ -2081,7 +2093,7 @@
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			Something changed... It looks like the herbs give more mana now?<br>
-			It has probably something to do with the new magical power the squirrel have.<br>
+			It has probably something to do with the new magical power the squirrel has.<br>
 			Also, it looks like the squirrel now got hooked on them... Are they that tasty?<br>
 			You're tempted to try, but... maybe another day?<hr class='divider'>
 			<b>Effect: </b>Consume one herb instead of gathering it to gain 250 mana.<hr class='divider'>	
@@ -2097,7 +2109,7 @@
             <tooltip><![CDATA[
             The forest provides.<hr class='divider'>
 			• Every 10 animals have good hides.<br>
-			• Unlocked at 40% Animals Feed.<hr class='divider'>
+			• Unlocked at 40% Animals Fed.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The squirrel wants to hunt the animals for you!<br>
@@ -2109,9 +2121,9 @@
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Now that the squirrel is quite strong, it might be a good idea to attempt this again.<br>
-			And it works! It goes attacking the same pack of animals and completely decimate them.<br>
-			It's a bit too gory for your taste, but it works...<br>
-			Suprisingly, the squirrel is even better at you at hunting animals!<br>
+			And it works! It goes attacking the same pack of animals and completely decimates them.<br>
+			It's too violent for your tastes, but it works...<br>
+			In the end, the squirrel performed better than you at hunting animals!<br>
 			You feel proud : training it for all this time was very worth it!<hr class='divider'>	
 			<b>Effect: </b>Hunting with the squirrel takes 20% less mana.<hr class='divider'>	
 		]]></squirrel_2>
@@ -2219,7 +2231,7 @@
 			It looks like being alone for so long made the hermit practice some kind of weird but useful magic.<br>
 			It's like pulling teeth getting this knowledge from him, though!<hr class='divider'>
 			• Gives 25 more yang exp per reputation you have.<br>
-			• Unlocked with both 20% Hermit Knowledge and 45 magic.<hr class='divider'>
+			• Unlocked with both 20% Hermit Knowledge and 50 magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			Before starting practicing Yang, the hermit asks you to hand over the squirrel.<br>
@@ -2248,7 +2260,7 @@
 			• You provide the ingredients; costs 10 herbs.<br>
 			• Use what you learned from brewing to make this action more efficient.<br>
 			• Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
-			• Unlocked with both 40% Hermit Knowledge and 50 Magic.<hr class='divider'>
+			• Unlocked with both 40% Hermit Knowledge and 60 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			Despite how much the squirrel is willing to learn... It's still a squirrel.<br>
@@ -2274,6 +2286,7 @@
 			• Requires a reputation of 10 or above, or he won't let you near his stuff.<br>
 			• Gives (alchemy + brewing/2) * (1 + main stat / 100) * sqrt(1 + potions distilled / 100) progress points per mana.<br>
 			• Creates a potion from 10 herbs to sell at the next town.<br>
+			• Every potions distilled gives as much exp as the Learn Brewing action.<br>
 			• Unlocked with 10 Alchemy.<hr class='divider'>
         ]]></tooltip>
             <story_1><![CDATA[<b>Potion brewed:</b>⮀ The old man happily lets you use his apparatus to brew your own potions after much haranguing about your technique and the fact that you're not buying ingredients off him, he leaves you to it. His workstations are old, well used and obviously well looked after. The only fault you can lay at their feet is that the measuring system used is older than dirt. Fits you suppose.]]></story_1>
@@ -2317,6 +2330,7 @@
             <tooltip><![CDATA[
             Feed wild animals and they will show you ressources scattered around the forest. They sure do like magical herbs!<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
+			• Gives additional herbs and wild mana.<br>
 			• The more herbs you have, the easier they will approach you : every herb you have gives a +2% efficiency.<br>
 			• If you don't have the squirrel at the start of each loop yet, now it will join you.<br>
 			• Consumes 10 herbs per action.<br>
@@ -2366,7 +2380,7 @@
 			Your squirrel decides to investigate and finds another fairy!<br>
 			It's the magical herb fairy, the daughter of the mana pot fairy.<br>
 			Now that you know she's here, she's ready to pick up herbs for you... If you don't anger her mother.<hr class='divider'>
-			<b>Effect: </b>If the fairy blesses you, picks up 100 magical herbs for you.<br>
+			<b>Effect: </b>If the fairy blesses you, picks up 100 of the magical herbs you found for you.<br>
 			<b>Next: </b>squirrel magic >= 40 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
@@ -2474,7 +2488,7 @@
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The squirrel tries to charm the witch!<br>
-			... And immediatly freeze. It looks like it is scared of her.<br>
+			... And immediatly freezes. It looks like it is scared of her.<br>
 			Suddenly, you hear a loud sound on your right! But there's nothing there...<br>
 			Oh? Your squirrel is gone. Weird, it was unable to move just a second ago!<hr class='divider'>
 			<b>Effect: </b>Lose the squirrel.<br>
@@ -2491,9 +2505,9 @@
 		]]></squirrel_2>
 		<squirrel_3><![CDATA[
 			The now familiar loud sound happens again, but this time, things are a bit different.<br>
-			It looks like the witch have now light wounds on her, and your squirrel emits a lot more mana.<br>
+			It looks like the witch now has light wounds on her, and your squirrel emits a lot more mana.<br>
 			Well, if she was about to laugh before, now she's laughing very audibly!<br>
-			You've never seen her so friendly toward you like that before. Excellent!<hr class='divider'>
+			You've never seen her so friendly toward you before. Excellent!<hr class='divider'>
 			<b>Effect: </b>Dark Forest gives a 5% bonus to this action instead of 3%.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Witch knowledge learned:</b>⮀ You stumble across a small crooked hut and as you approach the boundary, a small slip of a woman step outs. She's stunning and you're immediately on guard. The area pulses with a heady hum of magic that sends shivers down your spine. She introduces herself as Evis.]]></story_1>
@@ -2510,10 +2524,10 @@
             <tooltip><![CDATA[
 			Embrace the dark arts and practice the Yin Magic the Witch created!<hr class='divider'>
 			• Gives 25 more yin exp per negative reputation you have.<br>
-			• Unlocked with both 20% Witch Knowledge and 55 Magic.<hr class='divider'>
+			• Unlocked with both 20% Witch Knowledge and 60 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			As you about to start practicing Yin, the witch makes you an offer.<br>
+			As you are about to start practicing Yin, the witch makes you an offer.<br>
 			She's apparently missing a little critter to use as a sacrifice for some ritual.<br>
 			She assures you that handing over the squirrel would be good for Yin practicing!<br>
 			The squirrel hides behind you. Oh heck no, you're not doing that!<hr class='divider'>
@@ -2539,7 +2553,7 @@
 			• Doing this action costs 10 dark essences.<br>
 			• Use what you learned from alchemy to make this action more efficient.<br>
 			• Gain 10 more exp per Alchemy level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
-			• Unlocked with both 40% Witch Knowledge and 60 Magic.<hr class='divider'>
+			• Unlocked with both 40% Witch Knowledge and 70 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			You want to see your squirrel acting like a little squirrel witch!<br>
@@ -2562,6 +2576,7 @@
 			• The cauldron's negative energy is so strong you have to have a reputation of -10 or below to even get close to it.<br>
 			• Gives (brewing + alchemy/2) * (1 + main stat / 100) * sqrt(1 + dark potions concocted / 100) progress points per mana.<br>
 			• Creates a potion from 10 dark essence to sell at the next town.<br>
+			• Every dark potions concocted gives as much exp as the Learn Brewing action.<br>
 			• Unlocked with 10 Brewing.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[

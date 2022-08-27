@@ -123,7 +123,7 @@ function stopGame() {
     stop = true;
     view.updateTime();
     view.updateCurrentActionBar(actions.currentPos);
-    document.title = "*PAUSED* Idle Loops";
+    document.title = "*PAUSED* Squirrel Loops";
     document.getElementById("pausePlay").textContent = _txt("time_controls>play_button");
 }
 
@@ -131,7 +131,11 @@ function pauseGame(ping) {
     stop = !stop;
     view.updateTime();
     view.updateCurrentActionBar(actions.currentPos);
-    document.title = stop ? "*PAUSED* Idle Loops Reworked" : "Idle Loops Reworked";
+	if(stop){
+		document.title = "*PAUSED* Squirrel Loops";
+	} else {
+		document.title = "*Idle Loops : Squirrel Edition";
+	}
     document.getElementById("pausePlay").textContent = _txt(`time_controls>${stop ? "play_button" : "pause_button"}`);
     if (!stop && (shouldRestart || timer >= timeNeeded)) {
         restart();
@@ -169,7 +173,7 @@ function restart() {
     timeCounter = 0;
     effectiveTime = 0;
     timeNeeded = timeNeededInitial;
-    document.title = "Idle Loops";
+    document.title = "Idle Loops : Squirrel Edition";
     resetResources();
     restartStats();
     for (let i = 0; i < towns.length; i++) {
