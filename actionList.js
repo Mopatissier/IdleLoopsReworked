@@ -4522,7 +4522,7 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
 			return false;
 		}
 		
-		if(shouldLevelUp) levelUpSquirrelAction("Learn Alchemy");
+		if(shouldLevelUp) levelUpSquirrelAction("Distill Potions");
 		
 	},
 	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
