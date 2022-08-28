@@ -395,11 +395,12 @@ Action.LookAround = new Action("Look Around", {
 		if(shouldLevelUp) levelUpSquirrelAction("Look Around");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Look Around")){
 						
@@ -409,6 +410,11 @@ Action.LookAround = new Action("Look Around", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -489,11 +495,11 @@ Action.AbsorbMana = new Action("Absorb Mana", {
 		if(shouldLevelUp) levelUpSquirrelAction("Absorb Mana");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Absorb Mana")){
 						
@@ -503,6 +509,11 @@ Action.AbsorbMana = new Action("Absorb Mana", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -577,11 +588,11 @@ Action.ImbueSquirrel = new Action("Imbue Squirrel", {
 		if(shouldLevelUp) levelUpSquirrelAction("Imbue Squirrel");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Imbue Squirrel")){
 						
@@ -595,6 +606,11 @@ Action.ImbueSquirrel = new Action("Imbue Squirrel", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -680,11 +696,11 @@ Action.ImbueSoulstones = new Action("Imbue Soulstones", {
 		if(shouldLevelUp) levelUpSquirrelAction("Imbue Soulstones");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Imbue Soulstones")){
 						
@@ -694,6 +710,11 @@ Action.ImbueSoulstones = new Action("Imbue Soulstones", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -775,11 +796,11 @@ Action.BalanceSoulstones = new Action("Balance Soulstones", {
 		if(shouldLevelUp) levelUpSquirrelAction("Balance Soulstones");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Balance Soulstones")){
 						
@@ -792,6 +813,10 @@ Action.BalanceSoulstones = new Action("Balance Soulstones", {
 			return false;
 		}
 		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
 		if(loseSquirrel) addResource("squirrel", false);
 		
 		actionEffect();
@@ -868,11 +893,11 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 		if(shouldLevelUp) levelUpSquirrelAction("Mysterious Voice");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Mysterious Voice")){
 						
@@ -885,6 +910,7 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 							view.adjustGoldCost("ImbueSquirrel", Action.ImbueSquirrel.goldCost());
 						}
 					};
+					if(getBuffLevel("SpiritBlessing") !== 1) nothingHappens;
 					break;
 			
 			case 2:	 actionEffect = () => {
@@ -906,6 +932,11 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -990,11 +1021,11 @@ Action.Wander = new Action("Wander", {
 		if(shouldLevelUp) levelUpSquirrelAction("Wander");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Wander")){
 						
@@ -1007,18 +1038,25 @@ Action.Wander = new Action("Wander", {
 						adjustPots();
 						view.updateRegular("Pots", BEGINNERSVILLE);
 					};
+					nothingHappens = true;
 					break;
 			
 			case 4: actionEffect = () => {
 						adjustPots();
 						view.updateRegular("Pots", BEGINNERSVILLE);
 					};
+					nothingHappens = true;
 					break;
 			
 		}
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1110,11 +1148,11 @@ Action.SmashPots = new Action("Smash Pots", {
 		if(shouldLevelUp) levelUpSquirrelAction("Smash Pots");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Smash Pots")){
 						
@@ -1146,6 +1184,11 @@ Action.SmashPots = new Action("Smash Pots", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+	
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1227,11 +1270,11 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
 		if(shouldLevelUp) levelUpSquirrelAction("Pet Squirrel");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Pet Squirrel")){
 						
@@ -1251,6 +1294,11 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1336,11 +1384,11 @@ Action.PickLocks = new Action("Pick Locks", {
 		if(shouldLevelUp) levelUpSquirrelAction("Pick Locks");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Pick Locks")){
 						
@@ -1360,6 +1408,11 @@ Action.PickLocks = new Action("Pick Locks", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1424,11 +1477,11 @@ Action.TakeGlasses = new Action("Take Glasses", {
 		if(shouldLevelUp) levelUpSquirrelAction("Take Glasses");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Take Glasses")){
 						
@@ -1438,6 +1491,11 @@ Action.TakeGlasses = new Action("Take Glasses", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1547,11 +1605,11 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
 		if(shouldLevelUp) levelUpSquirrelAction("Buy Mana Z1");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Buy Mana Z1")){
 						
@@ -1590,6 +1648,11 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1665,11 +1728,11 @@ Action.MeetPeople = new Action("Meet People", {
 		if(shouldLevelUp) levelUpSquirrelAction("Meet People");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Meet People")){
 						
@@ -1681,6 +1744,11 @@ Action.MeetPeople = new Action("Meet People", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1750,11 +1818,11 @@ Action.TrainStrength = new Action("Train Strength", {
 		if(shouldLevelUp) levelUpSquirrelAction("Train Strength");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Train Strength")){
 						
@@ -1763,6 +1831,11 @@ Action.TrainStrength = new Action("Train Strength", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1843,11 +1916,11 @@ Action.ShortQuest = new Action("Short Quest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Short Quest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Short Quest")){
 						
@@ -1875,6 +1948,11 @@ Action.ShortQuest = new Action("Short Quest", {
 		}
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -1953,11 +2031,11 @@ Action.Investigate = new Action("Investigate", {
 		if(shouldLevelUp) levelUpSquirrelAction("Investigate");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Investigate")){
 						
@@ -1969,8 +2047,14 @@ Action.Investigate = new Action("Investigate", {
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2057,10 +2141,11 @@ Action.LongQuest = new Action("Long Quest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Long Quest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Long Quest")){
 						
@@ -2088,8 +2173,14 @@ Action.LongQuest = new Action("Long Quest", {
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2158,10 +2249,11 @@ Action.ThrowParty = new Action("Throw Party", {
 		if(shouldLevelUp) levelUpSquirrelAction("Throw Party");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Throw Party")){
 						
@@ -2181,8 +2273,14 @@ Action.ThrowParty = new Action("Throw Party", {
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2259,10 +2357,11 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 		if(shouldLevelUp) levelUpSquirrelAction("Warrior Lessons");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Warrior Lessons")){
 						
@@ -2285,8 +2384,14 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2366,10 +2471,11 @@ Action.MageLessons = new Action("Mage Lessons", {
 		if(shouldLevelUp) levelUpSquirrelAction("Mage Lessons");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Mage Lessons")){
 						
@@ -2392,8 +2498,14 @@ Action.MageLessons = new Action("Mage Lessons", {
 				break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2501,10 +2613,11 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
 		if(shouldLevelUp) levelUpSquirrelAction("Heal The Sick");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Heal The Sick")){
 						
@@ -2523,6 +2636,11 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
 		}
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2640,10 +2758,11 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
 		if(shouldLevelUp) levelUpSquirrelAction("Fight Monsters");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Fight Monsters")){
 						
@@ -2661,8 +2780,14 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2769,19 +2894,25 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		if(shouldLevelUp) levelUpSquirrelAction("Magic Fighter");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Magic Fighter")){
 					
 			case 1: break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -2899,11 +3030,11 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
 		if(shouldLevelUp) levelUpSquirrelAction("Small Dungeon");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
-		
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Small Dungeon")){
 						
@@ -2923,8 +3054,14 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
 					};
 					break;
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3016,21 +3153,29 @@ Action.BuySupplies = new Action("Buy Supplies", {
 		if(shouldLevelUp) levelUpSquirrelAction("Buy Supplies");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Buy Supplies")){
 						
 			case 1: actionEffect = () => {
 						addResource("gold", towns[BEGINNERSVILLE].suppliesCost);
 					};
+					nothingHappens = true;
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3108,10 +3253,11 @@ Action.Haggle = new Action("Haggle", {
 		if(shouldLevelUp) levelUpSquirrelAction("Haggle");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Haggle")){
 						
@@ -3129,8 +3275,14 @@ Action.Haggle = new Action("Haggle", {
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3199,10 +3351,11 @@ Action.StartJourney = new Action("Start Journey", {
 		if(shouldLevelUp) levelUpSquirrelAction("Start Journey");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Start Journey")){
 						
@@ -3214,8 +3367,14 @@ Action.StartJourney = new Action("Start Journey", {
 						break;
 					
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3365,10 +3524,11 @@ Action.ExploreForest = new Action("Explore Forest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Explore Forest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Explore Forest")){
 						
@@ -3379,17 +3539,25 @@ Action.ExploreForest = new Action("Explore Forest", {
 						adjustHerbs();
 						view.updateRegular("Herbs", FORESTPATH);
 					};
+					nothingHappens = true;
 					break;
 			
 			case 3: actionEffect = () => {
 						adjustWildMana();
 						view.updateRegular("WildMana", FORESTPATH);
 					};
+					nothingHappens = true;
 					break;
 				
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3481,10 +3649,11 @@ Action.WildMana = new Action("Wild Mana", {
 		if(shouldLevelUp) levelUpSquirrelAction("Wild Mana");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Wild Mana")){
 						
@@ -3517,8 +3686,14 @@ Action.WildMana = new Action("Wild Mana", {
 					break;
 					
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3590,10 +3765,11 @@ Action.GatherHerbs = new Action("Gather Herbs", {
 		if(shouldLevelUp) levelUpSquirrelAction("Gather Herbs");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Gather Herbs")){
 						
@@ -3618,8 +3794,14 @@ Action.GatherHerbs = new Action("Gather Herbs", {
 					break;
 					
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3671,7 +3853,6 @@ Action.Hunt = new Action("Hunt", {
 			return 1;
 		});
 		
-       
     },
 	squirrelLevelUp(onlyGetState) {
 		let shouldLevelUp = false;
@@ -3695,10 +3876,11 @@ Action.Hunt = new Action("Hunt", {
 		if(shouldLevelUp) levelUpSquirrelAction("Hunt");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Hunt")){
 						
@@ -3713,11 +3895,16 @@ Action.Hunt = new Action("Hunt", {
 						view.adjustManaCost("Hunt", squirrelMode);
 					};
 					break;
-			
 					
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3781,18 +3968,25 @@ Action.SitByWaterfall = new Action("Sit By Waterfall", {
 		if(shouldLevelUp) levelUpSquirrelAction("Sit By Waterfall");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Sit By Waterfall")){
 						
 			case 1:	loseSquirrel = true;
 					break;								
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3876,10 +4070,11 @@ Action.OldShortcut = new Action("Old Shortcut", {
 		if(shouldLevelUp) levelUpSquirrelAction("Old Shortcut");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Old Shortcut")){
 						
@@ -3900,8 +4095,14 @@ Action.OldShortcut = new Action("Old Shortcut", {
 					};
 					break;
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -3986,10 +4187,11 @@ Action.TalkToHermit = new Action("Talk To Hermit", {
 		if(shouldLevelUp) levelUpSquirrelAction("Talk To Hermit");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Talk To Hermit")){
 						
@@ -4014,8 +4216,14 @@ Action.TalkToHermit = new Action("Talk To Hermit", {
 					};
 					break;
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4086,10 +4294,11 @@ Action.PracticeYang = new Action("Practice Yang", {
 		if(shouldLevelUp) levelUpSquirrelAction("Practice Yang");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Practice Yang")){
 						
@@ -4102,8 +4311,14 @@ Action.PracticeYang = new Action("Practice Yang", {
 					break;
 
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4191,18 +4406,25 @@ Action.LearnAlchemy = new Action("Learn Alchemy", {
 		if(shouldLevelUp) levelUpSquirrelAction("Learn Alchemy");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Learn Alchemy")){
 						
 			case 1:	break;
 
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4303,18 +4525,25 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
 		if(shouldLevelUp) levelUpSquirrelAction("Learn Alchemy");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Distill Potions")){
 						
 			case 1:	break;
 
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4387,10 +4616,11 @@ Action.TrainSquirrel = new Action("Train Squirrel", {
 		if(shouldLevelUp) levelUpSquirrelAction("Train Squirrel");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Train Squirrel")){
 						
@@ -4403,8 +4633,14 @@ Action.TrainSquirrel = new Action("Train Squirrel", {
 					loseSquirrel = true;
 				break;
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4481,10 +4717,11 @@ Action.FeedAnimals = new Action("Feed Animals", {
 		if(shouldLevelUp) levelUpSquirrelAction("Feed Animals");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Feed Animals")){
 						
@@ -4496,6 +4733,7 @@ Action.FeedAnimals = new Action("Feed Animals", {
 						view.updateRegular("WildMana", FORESTPATH);
 					};
 					loseSquirrel = true;
+					nothingHappens = true;
 				break;
 				
 			case 3: actionEffect = () => {
@@ -4503,10 +4741,17 @@ Action.FeedAnimals = new Action("Feed Animals", {
 						view.updateRegular("Herbs", FORESTPATH);
 					};
 					loseSquirrel = true;
+					nothingHappens = true;
 				break;
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4587,10 +4832,11 @@ Action.PotFairy = new Action("Pot Fairy", {
 		if(shouldLevelUp) levelUpSquirrelAction("Pot Fairy");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Pot Fairy")){
 						
@@ -4635,8 +4881,14 @@ Action.PotFairy = new Action("Pot Fairy", {
 					};
 					break;
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4718,10 +4970,11 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Burn Forest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Burn Forest")){
 						
@@ -4731,8 +4984,14 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
 			case 2: break;
 
 		}
+		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4796,21 +5055,28 @@ Action.BirdWatching = new Action("Bird Watching", {
 		if(shouldLevelUp) levelUpSquirrelAction("Bird Watching");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Bird Watching")){
 						
 			case 1:	actionEffect = () => {
 						unlockStory("birdsWatched")
 					};
+					nothingHappens = true;
 					break;
 		}
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4884,10 +5150,11 @@ Action.DarkForest = new Action("Dark Forest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Dark Forest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Dark Forest")){
 						
@@ -4911,6 +5178,11 @@ Action.DarkForest = new Action("Dark Forest", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -4996,10 +5268,11 @@ Action.TalkToWitch = new Action("Talk To Witch", {
 		if(shouldLevelUp) levelUpSquirrelAction("Talk To Witch");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Talk To Witch")){
 						
@@ -5025,6 +5298,11 @@ Action.TalkToWitch = new Action("Talk To Witch", {
 		
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -5095,10 +5373,11 @@ Action.PracticeYin = new Action("Practice Yin", {
 		if(shouldLevelUp) levelUpSquirrelAction("Practice Yin");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Practice Yin")){
 						
@@ -5114,6 +5393,11 @@ Action.PracticeYin = new Action("Practice Yin", {
 	
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -5195,7 +5479,7 @@ Action.LearnBrewing = new Action("Learn Brewing", {
 		if(shouldLevelUp) levelUpSquirrelAction("Learn Brewing");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
@@ -5208,6 +5492,11 @@ Action.LearnBrewing = new Action("Learn Brewing", {
 	
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -5304,10 +5593,11 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
 		if(shouldLevelUp) levelUpSquirrelAction("Concoct Potions");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Concoct Potions")){
 						
@@ -5317,6 +5607,11 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
 	
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		
@@ -5422,10 +5717,11 @@ Action.ContinueOn = new Action("Continue On", {
 		if(shouldLevelUp) levelUpSquirrelAction("Continue On");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
+		let nothingHappens = false;
 		
 		switch(getLevelSquirrelAction("Continue On")){
 						
@@ -5439,6 +5735,11 @@ Action.ContinueOn = new Action("Continue On", {
 	
 		if(onlyGetLoseSquirrel){
 			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
 			return false;
 		}
 		

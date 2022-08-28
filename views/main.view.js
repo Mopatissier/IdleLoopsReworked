@@ -506,6 +506,8 @@ function View() {
 					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelNewAction.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				} else if(actionTemplate.hasOwnProperty('squirrelActionEffect') && actionTemplate.squirrelActionEffect(true)) {
 					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelLose.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+				} else if(actionTemplate.hasOwnProperty('squirrelActionEffect') && actionTemplate.squirrelActionEffect(false, true)) {
+					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelSleep.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				} else {
 					squirrelModeIcon = `<img id='modeIcon${i}' src='img/petSquirrel.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				}	

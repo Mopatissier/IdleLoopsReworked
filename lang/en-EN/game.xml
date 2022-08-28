@@ -6,12 +6,17 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.2.9"><![CDATA[
+            <b> August 28th, 2022</b>
+			• A new checkbox have been added : Pause on exploration complete. It pauses your game when you fill an exploration bar to 100%. No more wasted bonus time!<br>
+			• Added a new squirrel icon! It shows when doing a squirrel action won't have any effect.<br>
+            ]]></version>
 			<version verNum="0.2.8"><![CDATA[
             <b> August 27th, 2022</b>
 			• The game's name have been changed! It is now Idle Loops : Squirrel Edition, Squirrel Loops for short. The tab icon has changed to reflect this.<br>
             • The squirrel icons in the list of action now reflect if you'll lose your squirrel or gain a new squirrel level!<br>
             • The Practice Yin/Yang icons have been changed to make it easier to differenciate.<br>
-            • The action bars for Beginnersville are now slightly slower to fill.<br>
+            • The exploration bars for Beginnersville are now slightly slower to fill.<br>
             • The magic requirements for the Forest Path have been raised.<br>
             • Distill Potions and Concoct Potions now give Alchemy/Brewing experience!<br>
             ]]></version>
@@ -417,6 +422,7 @@
         <pause_button>Pause</pause_button>
         <pause_before_restart>Pause before restart</pause_before_restart>
         <pause_on_failed_loop>Pause on failed loop</pause_on_failed_loop>
+		<pause_on_exploration_complete>Pause on exploration complete</pause_on_exploration_complete>
         <restart_button>Restart</restart_button>
         <restart_text>Resets the loop. Not a hard reset.</restart_text>
         <hours>h</hours>
@@ -892,7 +898,7 @@
 		  You're not sure it's gonna be useful, but you have infinite time under your hand.<br>
 		  So why not try?<br>
 		  <b>Note:</b> in the action list, if you click on the human/squirrel icon, you can also switch the mode for that specific action.<br>
-		  The icon will also reflect if you can level up an action or if you'll lose the squirrel doing it.<br>
+		  The icon will also reflect if you can level up an action, if it does nothing, or if it makes you lose the squirrel.<br>
 		  How convenient!]]>
 		</tooltip_squirrel_mode>
         <current_action>
@@ -1112,8 +1118,8 @@
 			You just have to stand in them and you'll absorb an incredible amount of mana. Neat!<br>
 			You're quite stunned by how much mana there is. Is this place actually made of mana?<hr class='divider'>
 			• Only 1 in 10 mana spots can be safely absorbed.<br>
-			• Every mana spot absorbed gives <div id='manaSpotBonus'></div>% more mana than the last.<br>
-			• This % gets bigger by +0.02 for each level of Spirit Blessing.<br>
+			• Every mana spot absorbed gives <div id='manaSpotBonus'></div>x more mana than the last.<br>
+			• This multiplication gets bigger by +0.02 for each level of Spirit Blessing.<br>
 			• If you absorb a mana spot right now, it'd give			
         ]]></tooltip>
             <tooltip2><![CDATA[
@@ -2403,7 +2409,8 @@
             <tooltip><![CDATA[
             It's good to let loose, sometimes! Don't worry, only a small part of the forest will be set aflame. So it's fine, right?<hr class='divider'>
 			• Requires negative reputation.<br>
-			• Gives herbs * (1 + sqrt(main stat / 1000)) progress points per mana.<br>Every acre burnt uses up 10 magical herbs in fuel, releasing 3500 mana for you to absorb.<br>
+			• Gives herbs * (1 + sqrt(main stat / 1000)) progress points per mana.<br>
+			• Every acre burnt uses up 10 magical herbs in fuel, releasing 3500 mana for you to absorb.<br>
 			• For every 10% of the dark side of the forest explored, you will also gain 1 dark essence per acre burnt.<br>
 			• For some reason, burning 2 acres of forest will reduce your reputation by 1.<br>
 			• Unlocked at 20% Animals Fed.<hr class='divider'>

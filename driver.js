@@ -148,8 +148,10 @@ function pauseGame(ping) {
 function prepareRestart() {
     const curAction = actions.getNextValidAction();
     if (options.pauseBeforeRestart || endLoopWithNoValidAction ||
+		(options.pauseOnExplorationComplete && stopOnExplorationComplete) ||
         (options.pauseOnFailedLoop && 
          (actions.current.filter(action => action.loopsLeft - action.extraLoops > 0).length > 0))) {
+		stopOnExplorationComplete = false;
         if (options.pingOnPause) {
             beep(250);
             setTimeout(() => beep(250), 500);

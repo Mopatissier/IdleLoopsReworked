@@ -267,11 +267,14 @@ const options = {
     addActionsToTop: false,
     pauseBeforeRestart: false,
     pauseOnFailedLoop: false,
+	pauseOnExplorationComplete : false,
     pingOnPause: false,
     autoMaxTraining: false,
     hotkeys: true,
     updateRate: 50
 };
+
+let stopOnExplorationComplete = false;
 
 function setOption(option, value) {
     options[option] = value;

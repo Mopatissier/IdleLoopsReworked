@@ -45,6 +45,10 @@ Views.registerView("timeControls", {
         <div class='control'>
             <input type='checkbox' id='pauseOnFailedLoopInput' onchange='setOption("pauseOnFailedLoop", this.checked)'>
             <label for='pauseOnFailedLoopInput'>${_txt("time_controls>pause_on_failed_loop")}</label>
+        </div>
+		<div class='control'>
+            <input type='checkbox' id='pauseOnExplorationCompleteInput' onchange='setOption("pauseOnExplorationComplete", this.checked)'>
+            <label for='pauseOnExplorationCompleteInput'>${_txt("time_controls>pause_on_exploration_complete")}</label>
         </div>`;
         return html;
     },

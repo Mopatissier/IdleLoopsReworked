@@ -55,7 +55,12 @@ function Actions() {
                         curAction.ticks = 0;
                         curAction.manaRemaining = timeNeeded - timer;
                         curAction.goldRemaining = resources.gold;
-                        curAction.finish();
+						if(curAction.squirrelAction && curAction.squirrelLevelUp !== "undefined" && curAction.squirrelActionEffect !== "undefined"){
+							curAction.squirrelLevelUp();
+							curAction.squirrelActionEffect();
+						} else {
+							curAction.finish();
+						}
                         break;
                     }
                     towns[curAction.townNum][curAction.varName] = curProgress;
@@ -78,17 +83,13 @@ function Actions() {
             curAction.lastMana = curAction.rawTicks;
             this.completedTicks += curAction.adjustedTicks;
 			
-			if(curAction.squirrelAction){
-					
-				if(curAction.squirrelLevelUp !== "undefined" && curAction.squirrelActionEffect !== "undefined"){
-					
-					curAction.squirrelLevelUp();
-					curAction.squirrelActionEffect();
-					
-				}
+			if(curAction.squirrelAction && curAction.squirrelLevelUp !== "undefined" && curAction.squirrelActionEffect !== "undefined"){
+				curAction.squirrelLevelUp();
+				curAction.squirrelActionEffect();
 			} else {
 				curAction.finish();
 			}
+			
             curAction.manaRemaining = timeNeeded - timer;
             
             if (curAction.cost) {
