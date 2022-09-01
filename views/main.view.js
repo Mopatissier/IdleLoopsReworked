@@ -428,6 +428,7 @@ function View() {
             document.getElementById(`upButton${count}`).removeAttribute("onclick");
             document.getElementById(`downButton${count}`).removeAttribute("onclick");
             document.getElementById(`removeButton${count}`).removeAttribute("onclick");
+			document.getElementById(`favoriteButton${count}`).removeAttribute("onclick");
 
             const dragAndDropDiv = document.getElementById(`nextActionContainer${count}`);
             dragAndDropDiv.removeAttribute("ondragover");
@@ -512,6 +513,11 @@ function View() {
 					squirrelModeIcon = `<img id='modeIcon${i}' src='img/petSquirrel.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				}	
 			}			
+			let favButton = `<i id='favoriteButton${i}' onclick= 'setFavMode("${action.name}", ${action.squirrelAction})' class = 'actionIcon fa-regular fa-star'></i>`;
+			if((action.squirrelAction && favMode[camelize(action.name)] === fav.squirrel) ||
+				(!action.squirrelAction && favMode[camelize(action.name)] === fav.human)){
+				favButton = `<i id='favoriteButton${i}' onclick= 'setFavMode("${action.name}", ${action.squirrelAction})' class = 'actionIcon fa-solid fa-star'></i>`;
+			}
             totalDivText +=(
                 `<div
                     id='nextActionContainer${i}'
@@ -533,8 +539,9 @@ function View() {
                         ${capButton}
                         ${isSingular ? "" : `<i id='plusButton${i}' onclick='addLoop(${i})' class='actionIcon fas fa-plus'></i>`}
                         ${isSingular ? "" : `<i id='minusButton${i}' onclick='removeLoop(${i})' class='actionIcon fas fa-minus'></i>`}
-                        ${isSingular ? "" : `<i id='splitButton${i}' onclick='split(${i})' class='actionIcon fas fa-arrows-alt-h'></i>`}
+                        ${isSingular ? "" : `<i id='splitButton${i}' onclick='split(${i})' class='actionIcon fas fa-arrows-alt-h'></i>`}						
                         ${travelNum ? `<i id='collapseButton${i}' onclick='collapse(${i})' class='actionIcon fas fa-${action.collapsed ? "expand" : "compress"}-alt'></i>` : ""}
+						${favButton}
                         <i id='upButton${i}' onclick='moveUp(${i})' class='actionIcon fas fa-sort-up'></i>
                         <i id='downButton${i}' onclick='moveDown(${i})' class='actionIcon fas fa-sort-down'></i>
                         <i id='skipButton${i}' onclick='disableAction(${i})' class='actionIcon far fa-${action.disabled ? "check" : "times"}-circle'></i>
@@ -976,13 +983,23 @@ function View() {
                 }
             }
         }
+		
         let extraImage = "";
-        const extraImagePositions = ["margin-top:17px;margin-left:5px;", "margin-top:17px;margin-left:-55px;", "margin-top:0px;margin-left:-55px;", "margin-top:0px;margin-left:5px;"];
+        const extraImagePositions = ["margin-top:17px;margin-left:5px;", "margin-top:17px;margin-left:-55px;", "margin-top:0px;margin-left:-55px;"];
         if (action.affectedBy) {
             for (let i = 0; i < action.affectedBy.length; i++) {
                 extraImage += `<img src='img/${camelize(action.affectedBy[i])}.svg' class='smallIcon' draggable='false' style='position:absolute;${extraImagePositions[i]}'>`;
             }
         }
+		
+		let favModeImage = ""
+		if(favMode[camelize(action.name)] === fav.human){
+			favModeImage = "img/human.svg";
+		} else if(favMode[camelize(action.name)] === fav.squirrel){
+			favModeImage = "img/petSquirrel.svg";
+		}
+		
+		extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;'>`
 
         const isTravel = getTravelNum(action.name) > 0;
         const divClass = isTravel ? "travelContainer showthat" : "actionContainer showthat";
@@ -1493,6 +1510,19 @@ function View() {
 		
 		timeNeededInitial = 5 * baseManaPerSecond + 50 * getBuffLevel("ImbueSoulstones");
 		document.getElementById("buffImbueSoulstonesStartingMana").textContent = timeNeededInitial;
+	}
+	
+	this.updateFavModeShown = function(actionName) {
+		
+		let favModeImage = "";
+		if(favMode[camelize(actionName)] === fav.human){
+			favModeImage = "img/human.svg";
+		} else if(favMode[camelize(actionName)] === fav.squirrel){
+			favModeImage = "img/petSquirrel.svg";
+		}
+				
+		document.getElementById(`favMode${actionName}`).src = favModeImage;
+		
 	}
 }
 

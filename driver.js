@@ -18,6 +18,12 @@ let squirrelAlreadyPickedUp = false;
 
 let bonusMultString = "1x";
 
+const fav = {
+	none: 0,
+	human: 1,
+	squirrel: 2
+};
+
 function getSpeedMult(zone = curTown) {
     let speedMult = 1;
 
@@ -596,7 +602,7 @@ function disableAction(index) {
         action.disabled = true;
     }
     view.updateNextActions();
-    view.updateLockedHidden();
+    //view.updateLockedHidden();
 }
 function removeAction(index) {
     actions.nextLast = copyObject(actions.next);
@@ -606,7 +612,27 @@ function removeAction(index) {
     }
     actions.next.splice(index, 1);
     view.updateNextActions();
-    view.updateLockedHidden();
+    //view.updateLockedHidden();
+}
+
+function setFavMode(actionName, modeIsSquirrel){
+	
+	if(modeIsSquirrel){
+		if(favMode[camelize(actionName)] === fav.squirrel){
+			favMode[camelize(actionName)] = fav.none;
+		} else {
+			favMode[camelize(actionName)] = fav.squirrel;
+		}
+	} else {
+		if(favMode[camelize(actionName)] === fav.human){
+			favMode[camelize(actionName)] = fav.none;
+		} else {
+			favMode[camelize(actionName)] = fav.human;
+		}
+	}
+	
+	view.updateNextActions();
+	view.updateFavModeShown(actionName);
 }
 
 function addOffline(num) {

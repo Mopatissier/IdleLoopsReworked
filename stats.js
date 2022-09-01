@@ -240,8 +240,21 @@ function initializeSquirrelLevels() {
 
 }
 
+
 function addSquirrelLevel(action) {
 	squirrelLevel[camelize(action.varName)] = 0;
+}
+
+function initializeFavModes() {
+	
+	for(const action of totalActionList){
+		addFavMode(action);
+	}
+	
+}
+
+function addFavMode(action){
+	favMode[camelize(action.name)] = fav.none;
 }
 
 function addBuffAmt(name, amount) {

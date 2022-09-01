@@ -240,6 +240,7 @@ const storyReqs = {
     fellFromGrace: false
 };
 const squirrelLevel = {};
+const favMode = {};
 
 const curDate = new Date();
 let totalOfflineMs = 0;
@@ -299,6 +300,7 @@ function loadDefaults() {
     initializeSkills();
 	initializeSkillsSquirrel();
 	initializeSquirrelLevels();
+	initializeFavModes();
 	initializeBuffs();
 }
 
@@ -377,6 +379,14 @@ function load() {
 		for (const property in toLoad.squirrelLevel) {
 			if (toLoad.squirrelLevel.hasOwnProperty(property)) {
 				squirrelLevel[property] = toLoad.squirrelLevel[property];
+			}
+		}
+	}
+	
+	if(toLoad.favMode !== undefined){
+		for(const property in toLoad.favMode) {
+			if (toLoad.favMode.hasOwnProperty(property)) {
+				favMode[property] = toLoad.favMode[property];
 			}
 		}
 	}
@@ -638,6 +648,7 @@ function save() {
     toSave.storyMax = storyMax;
     toSave.storyReqs = storyReqs;
 	toSave.squirrelLevel = squirrelLevel;
+	toSave.favMode = favMode;
     //toSave.buffCaps = buffCaps;
 
     toSave.date = new Date();

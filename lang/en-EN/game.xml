@@ -6,6 +6,12 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.0"><![CDATA[
+            <b> August 28th, 2022</b>
+			The gates for the third zone are open! It is untouched as of right now, so expect tooltips to be glitchy. But it's open, at least? Don't forget to back up your save before trying it.<br>
+			• Added the possibility to favorite the human/squirrel mode for every action : adding an action will then always be done in your favorite mode.<br>
+			• Fixed some glitches and typos.<br>
+            ]]></version>
 			<version verNum="0.2.9"><![CDATA[
             <b> August 28th, 2022</b>
 			• A new checkbox have been added : Pause on exploration complete. It pauses your game when you fill an exploration bar to 100%. No more wasted bonus time!<br>
@@ -1217,7 +1223,8 @@
 			When it ends, the squirrel looks dejected. Looks like it lost!<br>
 			You have a feeling this is about a magic issue...<br>
 			The squirrel should easily surpass you once you get a few more Spirit Blessings.<br>
-			It's probably better to focus on it later.<hr class='divider'>
+			It's probably better to focus on it later.<br>
+			You're pretty sure the result won't be gaining any Spirit Blessing level, anyway...<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>squirrel magic >= human magic <hr class='divider'>
 			]]></squirrel_1>
@@ -1373,7 +1380,7 @@
 			Well, if it can't rob houses, maybe it can use the bag you made differently.<br>
 			You prepare a small bag with jewelry with a letter glued on it that reads "please buy this for mana"<br>
 			After sending the squirrel to the merchant, it comes back later with a bunch of mana. Now that's better!<hr class='divider'>
-			<b>Effect: </b>The valuable you borrow are immediately sold for mana.<hr class='divider'>
+			<b>Effect: </b>You borrow valuables which are immediately sold for mana.<hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>House checked:</b>⮀ You manage to pick a lock that was in disrepair and opened the door, only to walk into the home's inhabitant. Good thing the loop ended not soon after. You're gonna have to figure out which houses are worth hitting. Some money wouldn't go astray.]]></story_1>
             <story_2><![CDATA[<b>50 Houses known:</b>⮀ You really should look at hitting those locked houses around, who knows what goodies you'll manage to scrounge up.]]></story_2>
@@ -1647,7 +1654,8 @@
 			<squirrel_3><![CDATA[
 			Looks like the squirrel became quite an expert at magic!<br>
 			Every time the mage says something that could be explained better, the squirrel helps.<br>
-			Too bad you still need the mage for that as you can't speak squirrel!<hr class='divider'>
+			Too bad you still need the mage for that as you can't speak squirrel!<br>
+			Also too bad it still only works if you lend your squirrel to the mage.<hr class='divider'>
 			<b>Effect: </b>Gives 1000 magic exp, but lose the squirrel.<hr class='divider'>			
 			]]></squirrel_3>
             <story_1><![CDATA[<b>1 Magic:</b>⮀ You approach a burly man dressed in flowing robes, and ask if he would be willing to teach you some magic. The man agrees to teach you some basic cantrips if you help him out with menial tasks. He introduces himself as Warrick.]]></story_1>
@@ -2600,7 +2608,9 @@
             Keep walking to the next town, Merchanton.<hr class='divider'>
 			• Mana cost reduced by 600 per Old Shortcut % for the first 50%, and 60 for the next 50%.<br>
 			• Mana cost also reduced by 600 per Dark Forest % for the first 50%, and 60 for the next 50%.<br>
-			• <b>Warning : this action has been deactivated for the time being. It will reactivate once the development in the next zone is far enough to go in.</b><hr class='divider'>
+			• <b>Warning : the next zone isn't finished. Like at all. Getting further will only give you an extremely unbalanced gameplay that will give you a taste of what's to come.<br>
+			Please, please back up your save before going further! There's even the risk your savefile could be corrupted if you go further.<br>
+			If you want to see how far in development the next zone is, look at the changelog!</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The squirrel wants you to follow it to a new zone!<br>

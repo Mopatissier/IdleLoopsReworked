@@ -252,7 +252,18 @@ function Actions() {
     this.addAction = function(action, loops, initialOrder, squirrelAction, disabled) {
         const toAdd = {};
         toAdd.name = action;
-		toAdd.squirrelAction = squirrelAction;
+				
+		switch(favMode[camelize(action)]){
+			case fav.none : toAdd.squirrelAction = squirrelAction;
+					break;
+			
+			case fav.squirrel : toAdd.squirrelAction = true;
+					break;
+			
+			case fav.human : toAdd.squirrelAction = false;
+					break;
+		}
+				
         if (disabled) toAdd.disabled = true;
         else toAdd.disabled = false;
 

@@ -2958,7 +2958,7 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
         return 4000;
     },
 	canStart() {
-		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		const squirrelRequirements = (!this.squirrelAction || (resources.squirrel && alreadySDungeon === false));
 		const curFloor = Math.floor((towns[this.townNum].SDungeonLoopCounter) / this.segments + 0.0000001);
 		
 		return squirrelRequirements && resources.reputation >= 2 && curFloor < dungeons[this.dungeonNum].length;
@@ -3005,6 +3005,7 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
         
 		unlockStory("smallDungeonAttempted");
 		if (towns[BEGINNERSVILLE].SDungeonLoopCounter >= 42) unlockStory("clearSDungeon");
+		
     },
 	squirrelLevelUp(onlyGetState) {
 		let shouldLevelUp = false;
@@ -4978,10 +4979,12 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
 		
 		switch(getLevelSquirrelAction("Burn Forest")){
 						
-			case 1:	loseSquirrel = true;
+			case 1:	actionEffect = () => {/*Has an effect*/};
+					loseSquirrel = true;
 				break;
 			
-			case 2: break;
+			case 2:actionEffect = () => {/*Has an effect*/};
+					break;
 
 		}
 		
@@ -5693,7 +5696,7 @@ Action.ContinueOn = new Action("Continue On", {
     },
     finish() {
 		
-		//unlockTown(2);
+		unlockTown(MERCHANTON);
     },
 	squirrelLevelUp(onlyGetState) {
 		let shouldLevelUp = false;
@@ -6672,7 +6675,7 @@ Action.StartTrek = new Action("Start Trek", {
         return towns[MERCHANTON].getLevel("City") >= 60;
     },
     finish() {
-        unlockTown(3);
+        //unlockTown(3);
     },
 });
 
