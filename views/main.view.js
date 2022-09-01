@@ -1001,9 +1001,9 @@ function View() {
 		}
 		
 		if(favModeImage === ""){
-			extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;' style = 'hidden'>`
+			extraImage += `<img id= "favMode${action.name}" src='' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;visibility: hidden;'>`
 		} else {
-			extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;' style = 'visible'>`
+			extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;visibility: visible;'>`
 		}
 
         const isTravel = getTravelNum(action.name) > 0;
