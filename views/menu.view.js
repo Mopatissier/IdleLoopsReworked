@@ -92,6 +92,9 @@ Views.registerView("menu", {
                 <input id='autoMaxTrainingInput' type='checkbox' onchange='setOption("autoMaxTraining", this.checked)'/>
                 <label for='autoMaxTrainingInput'>${_txt("menu>options>auto_max_training")}</label>
                 <br>
+				<input id='ferretModeInput' type='checkbox' onchange='setOption("ferretMode", this.checked)'/>
+                <label for='ferretModeInput'>${_txt("menu>options>ferret_mode")}</label>
+                <br>
                 <input id='hotkeysInput' type='checkbox' onchange='setOption("hotkeys", this.checked)'/>
                 <label class='showthat' for='hotkeysInput'>${_txt("menu>options>hotkeys")}
                     <div class='showthis'>${_txt("menu>options>hotkeys_tooltip")}</div>

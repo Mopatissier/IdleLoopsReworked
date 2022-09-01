@@ -271,6 +271,7 @@ const options = {
 	pauseOnExplorationComplete : false,
     pingOnPause: false,
     autoMaxTraining: false,
+	ferretMode:false,
     hotkeys: true,
     updateRate: 50
 };
@@ -525,6 +526,7 @@ function load() {
         options.repeatLastAction = toLoad.repeatLast;
         options.pingOnPause = toLoad.pingOnPause === undefined ? false : toLoad.pingOnPause;
         options.autoMaxTraining = toLoad.autoMaxTraining === undefined ? true : toLoad.autoMaxTraining;
+		options.ferretMode = toLoad.pingOnPause === undefined ? false : toLoad.ferretMode;
         options.hotkeys = toLoad.hotkeys === undefined ? true : toLoad.hotkeys;
         options.updateRate = toLoad.updateRate === undefined ? 50 : toLoad.updateRate;
     } else {
@@ -532,6 +534,14 @@ function load() {
             options[option] = toLoad.options[option];
         }
     }
+	
+	if(options.ferretMode){
+		squirrelIcon = 'img/ferret.png';
+		squirrelNewAction = 'img/ferretNewAction.svg';
+		document.getElementById("favIcon16x16").href = "faviconFerret-16x16.png";
+		document.getElementById("favIcon32x32").href = "faviconFerret-32x32.png";
+		
+	}
 
     for (const town of towns) {
         for (const action of town.totalActionList) {
@@ -601,8 +611,23 @@ function load() {
     view.update();
     recalcInterval(options.updateRate);
     pauseGame();
-	
 
+}
+
+function getFerretModeByLoading(){
+		
+	let toLoad = {};
+    // has a save file
+    if (window.localStorage[saveName] && window.localStorage[saveName] !== "null") {
+        toLoad = JSON.parse(window.localStorage[saveName]);
+    }
+		
+	if (toLoad.options !== undefined && toLoad.options.ferretMode === true) {
+        return true;
+    }
+	
+	return false;
+	
 }
 
 function save() {

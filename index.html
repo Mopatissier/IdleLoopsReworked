@@ -9,11 +9,10 @@
     <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
     <meta http-equiv="pragma" content="no-cache" />
 
-    <title>Idle Loops : Squirrel Edition</title>
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" crossorigin="anonymous">
-    <link rel="icon" type="image/png" sizes="32x32" href="faviconSquirrel-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="faviconSquirrel-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="faviconSquirrel-32x32.png" id="favIcon32x32">
+    <link rel="icon" type="image/png" sizes="16x16" href="faviconSquirrel-16x16.png" id="favIcon16x16">
     
     <script src='lib/jquery.min.js'></script>
     <script src='lib/lz-string.min.js'></script>
@@ -655,7 +654,7 @@
         </div>
 		<div class="showthat" style="display:block;margin:5px auto 5px auto;text-align:center;" onclick = "checkSquirrelMode()">
 			<img src='img/human.svg' class='smallIcon' draggable='false' style="float:left;margin-left:150px" id="iconSquirrelMode">
-            <span class='large bold' id="squirrelModeTitle">Squirrel Mode</span>
+            <span class='large bold' id="squirrelModeTitle"></span>
 			<div class='showthis localized' data-lockey="actions>tooltip_squirrel_mode"></div>
 			<input style="float:right;margin-right:150px;margin-top:-1px" type="checkbox" id="squirrelModeCheck" >
         </div>
@@ -694,7 +693,6 @@
 
     <script src="helpers.js"></script>
     <script src="actionList.js"></script>
-    <script src="localization.js"></script>
     <script src="interval.js"></script>
     <script src="driver.js"></script>
     <script src="stats.js"></script>
@@ -703,6 +701,7 @@
     <script src="views/main.view.js"></script>
     <script src="town.js"></script>
     <script src="saving.js"></script>
+	<script src="localization.js"></script>
     <script src="hotkeys.js"></script>
     <script src="views/views.js"></script>
     <script src="views/menu.view.js"></script>

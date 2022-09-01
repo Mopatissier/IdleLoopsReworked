@@ -77,10 +77,24 @@ window.Localization = {
     },
     loadXML(libName, callback) {
         if (libName === "fallback"){
-			$.get("lang/en-EN/game.xml", null, callback, "xml");
+						
+			if(!getFerretModeByLoading()){
+				$.get("lang/en-EN/game.xml", null, callback, "xml");
+			} else {
+				$.get("lang/en-EN-Ferret/game.xml", null, callback, "xml");
+			}
+			
 			//console.log(callback);
 		}
-        else $.get(`lang/${Localization.currentLang}/${libName}.xml`, null, callback, "xml");
+        else{
+			
+			if(!getFerretModeByLoading()){
+				$.get(`lang/${Localization.currentLang}/${libName}.xml`, null, callback, "xml");	
+			} else {
+				$.get("lang/en-EN-Ferret/game.xml", null, callback, "xml");
+			}
+			
+		}
     },
     getUrlVars() {
         const vars = {};

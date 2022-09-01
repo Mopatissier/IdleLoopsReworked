@@ -2,8 +2,8 @@
 <body>
     <menu>
 		<game_name>
-			<full_name><![CDATA[Idle Loops : Squirrel Edition]]></full_name>
-			<pause_name><![CDATA[*PAUSED* Squirrel Loops]]></pause_name>
+			<full_name><![CDATA[Idle Loops : Ferret Edition]]></full_name>
+			<pause_name><![CDATA[*PAUSED* Ferret Loops]]></pause_name>
 		</game_name>
         <changelog>
             <meta>
@@ -240,7 +240,7 @@
             </adblock_warning>
             <pause_audio_cue>Ping on pause</pause_audio_cue>
             <auto_max_training>Max All Training Actions on Training cap increase</auto_max_training>
-            <ferret_mode>Click here if you hate squirrels. (Must save and reload for it to have the complete effect.)</ferret_mode>
+			<ferret_mode>Click here if you love squirrels. (Must save and reload for it to have complete effect.)</ferret_mode>
             <hotkeys>Hotkeys</hotkeys>
             <hotkeys_tooltip><![CDATA[
                 Spacebar: Pause/play<br>
@@ -382,7 +382,7 @@
         </resource>
         <!--singular items with img icons rather than counts-->
 		<resource initially_hidden="true" no_count="true">
-            <title><![CDATA[<img src="img/petSquirrel.svg" class="smallIcon">]]></title>
+            <title><![CDATA[<img src="img/ferret.png" class="smallIcon">]]></title>
             <id>squirrel</id>
             <desc>Your partner in crime. Stuck in the time loop with you.</desc>
         </resource>
@@ -710,10 +710,10 @@
         </tooltip>
     </skills>
 	<skillsSquirrel>
-        <title>Squirrel Skills</title>
+        <title>Ferret Skills</title>
 		<trust>
 			<label>Trust</label>
-			<desc>Shows the strength of the bond between you and the squirrel</desc>
+			<desc>Shows the strength of the bond between you and the ferret.</desc>
 		</trust>
         <combat>
             <label>Combat</label>
@@ -730,7 +730,7 @@
         <tooltip>
             <level>Level:</level>
             <level_exp>Level Exp:</level_exp>
-            <no_reset_on_restart><![CDATA[Squirrel skills last through resets.<br>Small skills for a small critter]]>.</no_reset_on_restart>
+            <no_reset_on_restart><![CDATA[Ferret skills last through resets.<br>Small skills for a small critter]]>.</no_reset_on_restart>
         </tooltip>
     </skillsSquirrel>
     <buffs>
@@ -738,7 +738,7 @@
 		<spirit_blessing>
 			<label>Spirit Blessing</label>
 			<desc><![CDATA[You have been blessed by a mysterious being.<br>
-			Every level of Spirit Blessing unlocks a new action in the Squirrel Sanctuary.<br>
+			Every level of Spirit Blessing unlocks a new action in the Ferret Sanctuary.<br>
 			You also consume each level 4x more mana per tick in the Sanctuary, quadrupling speed.<br>
 			Additionally, every action there becomes stronger.
 			]]></desc>	
@@ -849,7 +849,7 @@
             <desc>A mountain shaped hole in the groud.</desc>
         </town8>
 		<town9>
-			<name>Squirrel Sanctuary</name>
+			<name>Ferret Sanctuary</name>
 			<desc>What is this place? You can't really describe what is happening here, except that time and space feel distorded. You might be the first human to ever set foot here...</desc>
 		</town9>
 		<town10>
@@ -860,7 +860,7 @@
     <actions>
         <title>Action Options</title>
         <title_stories>Action Stories</title_stories>
-		<title_squirrel_mode>Squirrel Mode</title_squirrel_mode>
+		<title_squirrel_mode>Ferret Mode</title_squirrel_mode>
         <title_list>Action List</title_list>
         <title_loadout>Loadouts</title_loadout>
         <tooltip>
@@ -907,14 +907,14 @@
       Minimum 1 tick per action.<br>
       Restarts automatically upon no actions left.]]></list_explanation>
         </tooltip>
-		<squirrel_mode_name>Squirrel Mode</squirrel_mode_name>
+		<squirrel_mode_name>Ferret Mode</squirrel_mode_name>
 		<tooltip_squirrel_mode>
 		<![CDATA[
-          Ask your squirrel to do the actions for you.<br>
+          Ask your ferret to do the actions for you.<br>
 		  You're not sure it's gonna be useful, but you have infinite time under your hand.<br>
 		  So why not try?<br>
-		  <b>Note:</b> in the action list, if you click on the human/squirrel icon, you can also switch the mode for that specific action.<br>
-		  The icon will also reflect if you can level up an action, if it does nothing, or if it makes you lose the squirrel.<br>
+		  <b>Note:</b> in the action list, if you click on the human/ferret icon, you can also switch the mode for that specific action.<br>
+		  The icon will also reflect if you can level up an action, if it does nothing, or if it makes you lose the ferret.<br>
 		  How convenient!]]>
 		</tooltip_squirrel_mode>
         <current_action>
@@ -929,9 +929,9 @@
         </current_action>
 		
 		<squirrel_default><![CDATA[
-		Ask the squirrel to do this action for you.<br>
+		Ask the ferret to do this action for you.<br>
 		You have to do it at least once to discover its effect.<hr class='divider'>
-		<b>You need the squirrel to do actions in squirrel mode, make sure to get it by your side before trying any!</b><hr class='divider'>
+		<b>You need the ferret to do actions in ferret mode, make sure to get it by your side before trying any!</b><hr class='divider'>
 		]]></squirrel_default>
 
         <!--survey-->
@@ -1113,10 +1113,10 @@
 			• Every % looked at doubles the mana cost of this action.<br>
 			• For every level of Spirit Blessing, divide the mana cost by 6.<br>
 			• You need glasses for this action.<br>
-			• <b>Be careful, you can't gain any exp for the rest of the loop once you set foot in the Squirrel Sanctuary!</b><hr class='divider'>
+			• <b>Be careful, you can't gain any exp for the rest of the loop once you set foot in the Ferret Sanctuary!</b><hr class='divider'>
 		]]></tooltip>
 			<squirrel_1><![CDATA[
-			Since looking around makes this place bigger, the squirrel should be helpful!<br>
+			Since looking around makes this place bigger, the ferret should be helpful!<br>
 			... Well, apparently, when it looks around, nothing changes. This only works for you.<br>
 			You really don't understand the logic of this place.<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
@@ -1142,7 +1142,7 @@
             mana.<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			You take the squirrel and place it in one glowing spot, expecting some good results!<br>
+			You take the ferret and place it in one glowing spot, expecting some good results!<br>
 			And nothing happens.<br>
 			Really?!<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
@@ -1150,25 +1150,25 @@
             <story_1><![CDATA[<b>Didn't even absorbed a mana spot :</b>⮀ Placeholder.]]></story_1>
 		</absorb_mana>
 		<imbue_squirrel>
-			<label>Imbue Squirrel</label>
+			<label>Imbue Ferret</label>
 			<tooltip><![CDATA[
-			It looks like the squirrel have a better affinity with magic than you!<br>
-			Imbuing the squirrel with all the mana you have is quite efficient.<br>
+			It looks like the ferret have a better affinity with magic than you!<br>
+			Imbuing the ferret with all the mana you have is quite efficient.<br>
 			It needs a crazy amount of mana for it, though... Thankfully, that's not a problem here.<hr class='divider'>
 			• Doing this action will give
         ]]></tooltip>
             <tooltip2><![CDATA[
-            magic exp for the squirrel.<br>
+            magic exp for the ferret.<br>
 			• Every level of Spirit Blessing will make this action 3x more expensive.<br>
 			• It will also make this action give 4x more magic exp. <hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			You wonder what would happen if the squirrel imbue itself without your help.<br>
+			You wonder what would happen if the ferret imbue itself without your help.<br>
 			Turns out, it has an harder time doing it! Not that much of a surprise, honestly.<br>
 			Though as it absorbs mana in smaller chunks, this might actually come in handy...<hr class='divider'>
 			<b>Effect: </b>Act as if you have one less Spirit Blessing : mana cost / 3 and exp / 4.<hr class='divider'>
 		]]></squirrel_1>
-			<story_1><![CDATA[<b>Didn't even made the squirrel imbue anything :</b>⮀ Placeholder.]]></story_1>
+			<story_1><![CDATA[<b>Didn't even made the ferret imbue anything :</b>⮀ Placeholder.]]></story_1>
 		</imbue_squirrel>
 		<imbue_soulstones>
 			<label>Imbue Stones</label>
@@ -1183,7 +1183,7 @@
 			• The soulstone price of this action gets bigger by 1 for the first 10 times, then 2 for the next 10, then 3,...<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			The squirrel tries its best to hold the soulstones in its paws, but can't do it!<br>
+			The ferret tries its best to hold the soulstones in its paws, but can't do it!<br>
 			That's problematic. They need to be in your hand to work.<br>
 			Awww, it looks disappointed. Don't worry, little buddy!<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
@@ -1204,8 +1204,8 @@
         ]]></tooltip2>
 		<squirrel_1><![CDATA[
 			Uh oh. This action also asks you to hold soulstones.<br>
-			The squirrel looks frustrated and doesn't even try it.<br>
-			You make a mental note to give him some extra nuts next loop to better its mood.<hr class='divider'>
+			The ferret looks frustrated and doesn't even try it.<br>
+			You make a mental note to give him some extra bones next loop to better its mood.<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 		]]></squirrel_1>
 		<story_1><![CDATA[<b>Are you even reading this? :</b>⮀ Placeholder.]]></story_1>
@@ -1213,7 +1213,7 @@
 		<mysterious_voice>
 			<label>Mysterious Voice</label>
 			<requirement_1><![CDATA[First, you need to show yourself. (Just do this action as normal.)]]></requirement_1>
-			<requirement_2><![CDATA[Now, show the squirrel. (Do this action in squirrel mode.)]]></requirement_2>
+			<requirement_2><![CDATA[Now, show the ferret. (Do this action in ferret mode.)]]></requirement_2>
 			<requirement_3><![CDATA[Showing 10 stolen goods will probably do the trick for Beginnersville.]]></requirement_3>
 			<requirement_4><![CDATA[The forest is filled with magical herbs. Show 100 of them.]]></requirement_4>
 			<requirement_5><![CDATA[This is the limit for now, it doesn't go further. Wait for further updates.]]></requirement_5>
@@ -1224,28 +1224,28 @@
 			• Every time this action is done, increase the Spirit Blessing buff by one.<br>
 			• Each time you do this action, the requirement to complete it changes.<br>
 			• <div id='mysteriousVoiceNextRequirement'></div><br>
-			• Each Spirit Blessing level will accelerate time in the Squirrel Sanctuary by x4, unlock a new action, and strengthen unlocked actions.<br>
+			• Each Spirit Blessing level will accelerate time in the Ferret Sanctuary by x4, unlock a new action, and strengthen unlocked actions.<br>
 			• Unlocked at 1% looked around.</b><hr class='divider'>
 			]]></tooltip>
 			<squirrel_1><![CDATA[
-			It looks like the squirrel and the mysterious voice are having a heated debate.<br>
-			You wish you could understand anything, but all you can hear are squirrel sounds...<br>
-			When it ends, the squirrel looks dejected. Looks like it lost!<br>
+			It looks like the ferret and the mysterious voice are having a heated debate.<br>
+			You wish you could understand anything, but all you can hear are ferret sounds...<br>
+			When it ends, the ferret looks dejected. Looks like it lost!<br>
 			You have a feeling this is about a magic issue...<br>
-			The squirrel should easily surpass you once you get a few more Spirit Blessings.<br>
+			The ferret should easily surpass you once you get a few more Spirit Blessings.<br>
 			It's probably better to focus on it later.<br>
 			You're pretty sure the result won't be gaining any Spirit Blessing level, anyway...<hr class='divider'>
 			<b>Effect: </b>None.<br>
-			<b>Next: </b>squirrel magic >= human magic <hr class='divider'>
+			<b>Next: </b>ferret magic >= human magic <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Looks like this time, the squirrel won the argument.<br>
+			Looks like this time, the ferret won the argument.<br>
 			You hear the mysterious voice talking to you.<br>
 			"I will give you the opportunity to see how to end your loop.<br>
 			However, it will need a lot of magical power and mana, and I need assistance.<br>
-			You will be sent there without your squirrel and with a measly amount of mana.<br>
+			You will be sent there without your ferret and with a measly amount of mana.<br>
 			I am sorry I cannot do any better."<hr class='divider'>
-			<b>Effect: </b>Go to a new zone, but lose your squirrel and only keep 1000 mana.<hr class='divider'>
+			<b>Effect: </b>Go to a new zone, but lose your ferret and only keep 1000 mana.<hr class='divider'>
 			]]></squirrel_2>
 			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
 		</mysterious_voice>
@@ -1259,26 +1259,26 @@
 			• 4x progress with glasses.<hr class='divider'>
 			]]></tooltip>
 			<squirrel_1><![CDATA[
-			You told the squirrel to wander around for you!<br>
+			You told the ferret to wander around for you!<br>
 			It didn't come back...<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Effect: </b>Lose the ferret.<br>
 			<b>Next: </b>trust >= 5 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			You told the squirrel to wander around for you!<br>
-			It came back after a while with a nut in its paws.<br>
+			You told the ferret to wander around for you!<br>
+			It came back after a while with a bone in its paws.<br>
 			...Well, you don't know what you expected.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 20 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			The squirrel wanders around and comes back with pots you haven't seen before.<br>
+			The ferret wanders around and comes back with pots you haven't seen before.<br>
 			Where did it find those?<hr class='divider'>
 			<b>Effect: </b>Adds 100 new pots to smash. Happens only once.<br>
-			<b>Next: </b>squirrel magic >= 20 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 20 <hr class='divider'>
 			]]></squirrel_3>
 			<squirrel_4><![CDATA[
-			Before you can say anything, the squirrel runs away.<br>
+			Before you can say anything, the ferret runs away.<br>
 			It comes shortly after with pots you haven't seen before.<br>
 			It looks like it used its magic to sense out the mana crystals in them, neat!<br>
 			But you were pretty sure you checked everywhere, so how could it find more of them?<hr class='divider'>
@@ -1305,64 +1305,64 @@
 			• Every 10 pots have mana.<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			The squirrel tries to break a pot! And another!<br>You watch in amazement as it fails to break any...<hr class='divider'>
+			The ferret tries to break a pot! And another!<br>You watch in amazement as it fails to break any...<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 10 <hr class='divider'> 
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Wait a second, you just realized the squirrel is small enough to go in those pots!<br>
-			You ask it to go in one. The squirrel goes in it. And doesn't come out.<br>
+			Wait a second, you just realized the ferret is small enough to go in those pots!<br>
+			You ask it to go in one. The ferret goes in it. And doesn't come out.<br>
 			Upon looking inside, you realize it's trying to grab the mana crystal, but it's too smooth for its paws. Oh well...<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 15 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Did you just see the squirrel eat a crystal?! And your mana reserve just got bigger too. So that means...<br>
-			With a grin, you ask the squirrel to go eat all the crystals it can find. It looks like it is faster to gather mana this way than by smashing the pots.<hr class='divider'>
-			<b>Effect: </b>Smashing pots in squirrel mode takes 20% less mana. <br>
-			<b>Next: </b>squirrel combat >= 20 <hr class='divider'>
+			Did you just see the ferret eat a crystal?! And your mana reserve just got bigger too. So that means...<br>
+			With a grin, you ask the ferret to go eat all the crystals it can find. It looks like it is faster to gather mana this way than by smashing the pots.<hr class='divider'>
+			<b>Effect: </b>Smashing pots in ferret mode takes 20% less mana. <br>
+			<b>Next: </b>ferret combat >= 20 <hr class='divider'>
 			]]></squirrel_3>
 			<squirrel_4><![CDATA[
-			The squirrel isn't even subtle anymore.<br>
+			The ferret isn't even subtle anymore.<br>
 			Instead of going in the pots to eat the crystal, it straight up headbutt them.<br>
 			That's enough to make a hole for it to eat them. And it's faster too.<br>
 			You can't help but be a bit worried, but you've trained it enough to know it won't hurt it!<hr class='divider'>
-			<b>Effect: </b>Smashing pots in squirrel mode takes 35% less mana. <hr class='divider'>			
+			<b>Effect: </b>Smashing pots in ferret mode takes 35% less mana. <hr class='divider'>			
 			]]></squirrel_4>
             <story_1><![CDATA[<b>50 Pots with mana:</b>⮀ You've smashed every single pot in this village, and have figured out all the pots that contain any trace of mana. Having to break them all physically was time consuming, and your skills at absorbing the mana weren't the best. There must be more efficient ways of doing it.]]></story_1>
         </smash_pots>
 		<pet_squirrel>
-            <label>Pet Squirrel</label>
+            <label>Pet Ferret</label>
             <tooltip><![CDATA[
-            Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<hr class='divider'>
+            Wait, you recognize this ferret! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<hr class='divider'>
 			• Spend some time with it to increase its trust by 100 exp.<br>
-			• Doing so recruits the squirrel, it'll fit snuggly in your inventory.<br>
-			• Every level of trust the squirrel has increases the mana cost of this action by 100.<br>
+			• Doing so recruits the ferret, it'll fit snuggly in your inventory.<br>
+			• Every level of trust the ferret has increases the mana cost of this action by 100.<br>
 			• Unlocked at 5% explored.<br>
-			• <b>Try petting the squirrel to get it by your side, then doing the squirrel mode version of this action in the same loop to test its trust, it will eventually be worth it!<br>
-			• Look at the tooltip of this action in squirrel mode to see what the effects are.</b><hr class='divider'>
+			• <b>Try petting the ferret to get it by your side, then doing the ferret mode version of this action in the same loop to test its trust, it will eventually be worth it!<br>
+			• Look at the tooltip of this action in ferret mode to see what the effects are.</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			You ask the squirrel to pet itself. It looks at you with extreme confusion.<br>
+			You ask the ferret to pet itself. It looks at you with extreme confusion.<br>
 			Maybe increasing your trust will change the outcome of this action...<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 5 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			You ask again the squirrel to pet itself. It still looks confused, but does it. Why is this so cute?!<br>
+			You ask again the ferret to pet itself. It still looks confused, but does it. Why is this so cute?!<br>
 			Surprisingly, at the start of the next loop, it directly jumps on your shoulders. And does it again at the next one.<br>
 			Neat, it looks like it'll automatically follow you from now on!<hr class='divider'>
-			<b>Effect: </b>From now on, you will start each loop with the squirrel in your inventory.<br>
+			<b>Effect: </b>From now on, you will start each loop with the ferret in your inventory.<br>
 			<b>Next: </b>trust >= 20 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			The squirrel looks definitely fed up with pets right about now!<br>
+			The ferret looks definitely fed up with pets right about now!<br>
 			When you ask it to pet itself, it instead leads you to some sort of playground for pets. What an excellent idea!<br>
-			Oh uh... Looks like they don't let any random animal here. You're sure with enough reputation, you can convince them to let the squirrel pass.<hr class='divider'>
+			Oh uh... Looks like they don't let any random animal here. You're sure with enough reputation, you can convince them to let the ferret pass.<hr class='divider'>
 			<b>Effect: </b>Gain 200 trust exp for the fixed cost of 2500 mana. Needs 2 reputation.<hr class='divider'>
 			]]></squirrel_3>
-			<story_1><![CDATA[<b>Pet the squirrel:</b>⮀ The squirrel hesitantly approaches you... It looks ready to bite you. It also looks all angry and confused. Probably from you tripping on it and the time rewinding every few minutes.]]></story_1>
-			<story_2><![CDATA[<b>50 trust:</b>⮀ That's it. You've done it. Now you and the squirrel are the best friends there have ever been. He's ready to sacrifice his life for you and vice-versa.]]></story_2>
+			<story_1><![CDATA[<b>Pet the ferret:</b>⮀ The ferret hesitantly approaches you... It looks ready to bite you. It also looks all angry and confused. Probably from you tripping on it and the time rewinding every few minutes.]]></story_1>
+			<story_2><![CDATA[<b>50 trust:</b>⮀ That's it. You've done it. Now you and the ferret are the best friends there have ever been. He's ready to sacrifice his life for you and vice-versa.]]></story_2>
         </pet_squirrel>
         <pick_locks>
             <label>Pick Locks</label>
@@ -1380,16 +1380,16 @@
 			• Unlocked at 20% Explored.<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			You just thought of a master plan! The squirrel can go in the houses through open windows instead of you needing to pick a lock!<br>
-			The squirrel follows your direction : after throwing it in an open windows, it put small jewelry in the little bag you gave it.<br>
+			You just thought of a master plan! The ferret can go in the houses through open windows instead of you needing to pick a lock!<br>
+			The ferret follows your direction : after throwing it in an open windows, it put small jewelry in the little bag you gave it.<br>
 			However, it can't find a way out of the house. Oops. Maybe that wasn't such a master plan...<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Effect: </b>Lose the ferret.<br>
 			<b>Next: </b>trust >= 7 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Well, if it can't rob houses, maybe it can use the bag you made differently.<br>
 			You prepare a small bag with jewelry with a letter glued on it that reads "please buy this for mana"<br>
-			After sending the squirrel to the merchant, it comes back later with a bunch of mana. Now that's better!<hr class='divider'>
+			After sending the ferret to the merchant, it comes back later with a bunch of mana. Now that's better!<hr class='divider'>
 			<b>Effect: </b>You borrow valuables which are immediately sold for mana.<hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>House checked:</b>⮀ You manage to pick a lock that was in disrepair and opened the door, only to walk into the home's inhabitant. Good thing the loop ended not soon after. You're gonna have to figure out which houses are worth hitting. Some money wouldn't go astray.]]></story_1>
@@ -1408,7 +1408,7 @@
 			• Unlocked at 20% explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			You put the little toy glasses you found on the squirrel's head.<br>
+			You put the little toy glasses you found on the ferret's head.<br>
 			This is the cutest thing ever!<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>]]></squirrel_1>
             <story_1><![CDATA[<b>Glasses taken:</b>⮀ The world snaps into sharp focus as you put them on and you gawk a little as details that had slipped your eyes previously stood out in sharp contrast. You're a little gobsmacked at how much of a difference they make.]]></story_1>
@@ -1432,24 +1432,24 @@
 			• Unlocked at 20% Explored.<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			You gave the squirrel a little bag with a word attached to it asking to buy mana with the gold inside.<br>
-			A while later, the squirrel comes back with the mana potions.<br>
+			You gave the ferret a little bag with a word attached to it asking to buy mana with the gold inside.<br>
+			A while later, the ferret comes back with the mana potions.<br>
 			You're surprised that it worked. Too bad the outcome is the same as you doing it.<hr class='divider'>
 			<b>Effect: </b>Normal effect.<br>
 			<b>Next: </b>trust >= 8 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			The mana merchant looks at your squirrel and wants to buy it.<br>
+			The mana merchant looks at your ferret and wants to buy it.<br>
 			You don't know what to say, so she snatches it out and give you a small mana potion in exchange.<br>
-			You just get out of the stand a little stunned... At least the squirrel will be back next loop<hr class='divider'>
-			<b>Effect: </b>Gain 100 extra mana and lose the squirrel.<br>
+			You just get out of the stand a little stunned... At least the ferret will be back next loop<hr class='divider'>
+			<b>Effect: </b>Gain 100 extra mana and lose the ferret.<br>
 			<b>Next: </b>trust >= 15 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			This time you are prepared, and so is the squirrel.<br>
-			The squirrel tries its best to seem cute and you bargain with the merchant.<br>
-			She begrudgingly gives you a lot more mana this time! You and the squirrel both feel proud.<hr class='divider'>
-			<b>Effect: </b>Gain 1500 extra mana and lose the squirrel.<hr class='divider'>
+			This time you are prepared, and so is the ferret.<br>
+			The ferret tries its best to seem cute and you bargain with the merchant.<br>
+			She begrudgingly gives you a lot more mana this time! You and the ferret both feel proud.<hr class='divider'>
+			<b>Effect: </b>Gain 1500 extra mana and lose the ferret.<hr class='divider'>
 			]]></squirrel_3>
             <story_1><![CDATA[<b>Bought Z1 Mana :</b>⮀ Looks like there is a stand selling mana potions. How convenient! It just opened right now. Like, right at the exact time the loop started. You can't help but feel a little uneasy when you think about it...]]></story_1>
         </buy_mana_z1>
@@ -1462,14 +1462,14 @@
 			• Unlocked at 22% Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			It was a mistake. The squirrel kept growling and people don't want to approach you.<br>
+			It was a mistake. The ferret kept growling and people don't want to approach you.<br>
 			Maybe it'll change once it gets more used to people?<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 6 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			It was a mistake. People keep being charmed by the squirrel and don't take time to speak to you.<br>
-			Looks like using the squirrel in this case won't have a positive effect<hr class='divider'>
+			It was a mistake. People keep being charmed by the ferret and don't take time to speak to you.<br>
+			Looks like using the ferret in this case won't have a positive effect<hr class='divider'>
 			<b>Effect: </b>None. <hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>1% People Met:</b>⮀ You stand there, a little stumped at the situation you’ve gotten yourself into, when a young lass asks you about your day so far.]]></story_1>
@@ -1487,7 +1487,7 @@
 			• Unlocked at 5% People Met.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			You've never seen a squirrel train its strength so hard!<br>
+			You've never seen a ferret train its strength so hard!<br>
 			Too bad it doesn't have any strength stat...<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 			]]></squirrel_1>
@@ -1511,19 +1511,19 @@
 			• Unlocked at 5% People Met.<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			The squirrel went and did the quest for you! Well, it tried. And failed.<br>
+			The ferret went and did the quest for you! Well, it tried. And failed.<br>
 			Maybe because it was supposed to be done by humans...<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 11 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			This time, the squirrel tries to help you with the quest! Well, it tried. And failed.<br
+			This time, the ferret tries to help you with the quest! Well, it tried. And failed.<br
 			>Again, that was probably a bad idea... At least the quest is done this time.<hr class='divider'>
 			<b>Effect: </b>Normal effects.<br>
 			<b>Next: </b>trust >= 22 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Maybe if you try from a different angle... You ask the squirrel to charm the quest-giver once you've done all the work.<br>
+			Maybe if you try from a different angle... You ask the ferret to charm the quest-giver once you've done all the work.<br>
 			Surprisingly, it works, and they give you a little bit more money!<hr class='divider'>
 			<b>Effect: </b>Quests give +10% gold.<hr class='divider'>
 			]]></squirrel_3>
@@ -1540,13 +1540,13 @@
 			• Unlocked at 25% People Met.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel goes out and try asking questions to everyone it meets.<br>
+			The ferret goes out and try asking questions to everyone it meets.<br>
 			Sadly, nobody can understand it... Well, it was worth a try.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 17 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			With its small size, the squirrel is able to search more efficiently what you want in the piles of valuables you borrowed.<br
+			With its small size, the ferret is able to search more efficiently what you want in the piles of valuables you borrowed.<br
 			>It makes it slightly faster to investigate them!<hr class='divider'>
 			<b>Effect: </b>Valuables give +25% efficiency instead of +20%.<hr class='divider'>
 			]]></squirrel_2>
@@ -1572,7 +1572,7 @@
 			• Unlocked at 10% Investigated.<hr class='divider'>
         ]]></tooltip2>
 		<squirrel_1><![CDATA[
-		You've seen how badly the squirrel performed for the short quests and you doubt it'd be any better with long quests, but its's worth a try.<br>
+		You've seen how badly the ferret performed for the short quests and you doubt it'd be any better with long quests, but its's worth a try.<br>
 		Unsurprisingly, it fails. Pretty hard too. Oh well...<hr class='divider'>
 		<b>Effect: </b>None.<br>
 		<b>Next: </b>trust >= 22 <hr class='divider'>
@@ -1584,7 +1584,7 @@
 		<b>Next: </b>trust >= 26 <hr class='divider'>
 		]]></squirrel_2>
 		<squirrel_3><![CDATA[
-		Let's be more tactical about this. You hatch a plan so the squirrel only distracts the quest-giver when it counts.<br>
+		Let's be more tactical about this. You hatch a plan so the ferret only distracts the quest-giver when it counts.<br>
 		The plan works, and you get your reputation, this time! You even got a bigger tip! Sweet victory<hr class='divider'>
 		<b>Effect: </b>Quests give +20% gold.<hr class='divider'>
 		]]></squirrel_3>
@@ -1600,14 +1600,14 @@
 			• Unlocked at 30% Investigated.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			It looks like words about you having a cute squirrel have reached more ears than you thought.<br>
+			It looks like words about you having a cute ferret have reached more ears than you thought.<br>
 			There's more people in the party than usual, sweet!<hr class='divider'>
 			<b>Effect: </b>Gives people met progress equivalent to 18 Meet People actions.<br>
 			<b>Next: </b>trust >= 27 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Your squirrel finally trusts you enough to chase itself that wild squirrel that was causing problems at the parties without any hint of hesitation.<br>
-			People seems relieved, and they start talking to you about their squirrel-related problems, and how they couldn't dare tell you about them because you had a pet one.<br>
+			Your ferret finally trusts you enough to chase itself that wild ferret that was causing problems at the parties without any hint of hesitation.<br>
+			People seems relieved, and they start talking to you about their ferret-related problems, and how they couldn't dare tell you about them because you had a pet one.<br>
 			You never knew you could learn about so many new quests at once!<hr class='divider'>
 			<b>Effect: </b>Gain 20 more short quests and 10 more long quests. This effect can only be done once. Still gives 18 Meet People action.<hr class='divider'>
 			]]></squirrel_2>
@@ -1621,21 +1621,21 @@
 			• Unlocked at 20% Investigated.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			You present your squirrel to the warrior! She looks at you confused.<br
+			You present your ferret to the warrior! She looks at you confused.<br
 			>You don't know what you expected.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 24 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			The squirrel wants to help you! It offers being a target for your training. It worked quite well, you learned a lot more from this!<br>
-			... For some unrelated reasons, you lose your squirrel for the rest of the loop.<hr class='divider'>
-			<b>Effect: </b>Gives 300 combat exp, but lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 30 <hr class='divider'>
+			The ferret wants to help you! It offers being a target for your training. It worked quite well, you learned a lot more from this!<br>
+			... For some unrelated reasons, you lose your ferret for the rest of the loop.<hr class='divider'>
+			<b>Effect: </b>Gives 300 combat exp, but lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 30 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Now that the squirrel is pretty strong, it is really helping you with your training!<br>
-			... Too bad you still lose your squirrel for some unrelated reason.<hr class='divider'>
-			<b>Effect: </b>Gives 1000 combat exp, but lose the squirrel.<hr class='divider'>
+			Now that the ferret is pretty strong, it is really helping you with your training!<br>
+			... Too bad you still lose your ferret for some unrelated reason.<hr class='divider'>
+			<b>Effect: </b>Gives 1000 combat exp, but lose the ferret.<hr class='divider'>
 			]]></squirrel_3>
             <story_1><![CDATA[<b>1 Combat:</b>⮀ You manage to track down the warrior that was staying in town, and are greeted by a small woman holding a sword almost as tall as her. She introduces herself as "Iron" and smiles politely, doesn't stop her from thoroughly trouncing you.]]></story_1>
             <story_2><![CDATA[<b>100 Combat:</b>⮀ You manage to give Iron a run for her money, but she still manages to eek out a victory, she's noticeably worn out afterwards.]]></story_2>
@@ -1650,23 +1650,23 @@
 			• Unlocked at 20% Investigated.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			You present your squirrel to the mage! He immediately falls in love with it and plays with it for the rest of the lesson.<br>
+			You present your ferret to the mage! He immediately falls in love with it and plays with it for the rest of the lesson.<br>
 			You learned nothing because of this.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 24 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			You promise to lend your squirrel to the mage if he does his best during this lesson. The mage happily agrees.<br>
+			You promise to lend your ferret to the mage if he does his best during this lesson. The mage happily agrees.<br>
 			You learned so much more during this lesson!<hr class='divider'>
-			<b>Effect: </b>Gives 300 magic exp, but lose the squirrel.<br>
-			<b>Next: </b>squirrel magic >= 30 <hr class='divider'>
+			<b>Effect: </b>Gives 300 magic exp, but lose the ferret.<br>
+			<b>Next: </b>ferret magic >= 30 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Looks like the squirrel became quite an expert at magic!<br>
-			Every time the mage says something that could be explained better, the squirrel helps.<br>
-			Too bad you still need the mage for that as you can't speak squirrel!<br>
-			Also too bad it still only works if you lend your squirrel to the mage.<hr class='divider'>
-			<b>Effect: </b>Gives 1000 magic exp, but lose the squirrel.<hr class='divider'>			
+			Looks like the ferret became quite an expert at magic!<br>
+			Every time the mage says something that could be explained better, the ferret helps.<br>
+			Too bad you still need the mage for that as you can't speak ferret!<br>
+			Also too bad it still only works if you lend your ferret to the mage.<hr class='divider'>
+			<b>Effect: </b>Gives 1000 magic exp, but lose the ferret.<hr class='divider'>			
 			]]></squirrel_3>
             <story_1><![CDATA[<b>1 Magic:</b>⮀ You approach a burly man dressed in flowing robes, and ask if he would be willing to teach you some magic. The man agrees to teach you some basic cantrips if you help him out with menial tasks. He introduces himself as Warrick.]]></story_1>
             <story_2><![CDATA[<b>100 Magic:</b>⮀ Warrick compliments you on your ability to wield mana, and is happy to share some more dangerous cantrips with your promise to not use it for ill. He refuses to teach you about alchemy.]]></story_2>
@@ -1689,23 +1689,23 @@
 			• Unlocked at 12 Magic skill.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel wants to heal people too! He tries and... looks completely at a loss over what to do.<br>
+			The ferret wants to heal people too! He tries and... looks completely at a loss over what to do.<br>
 			At least he tried, right?<hr class='divider'>
 			<b>Effect: </b>None.<br>
-			<b>Next: </b>squirrel magic >= 12 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 12 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Now that the squirrel have the same magic skill as you when you started healing people, it shoud be alright!<br>
-			The squirrel goes and lays on a patient, and starts to concentrate for a long time.<br>
+			Now that the ferret have the same magic skill as you when you started healing people, it shoud be alright!<br>
+			The ferret goes and lays on a patient, and starts to concentrate for a long time.<br>
 			Then it glows, and the patient suddenly gets healed as if nothing ever happened to them.<br>
-			Wait, is the squirrel actually better than you at healing people now?!<br>
+			Wait, is the ferret actually better than you at healing people now?!<br>
 			Observing this happening is also helping you a lot at becoming better yourself at magic!<br>
 			Oh, it looks like it tired it, and it can't do it again this loop. Too bad!<hr class='divider'>
 			<b>Effect: </b>Heal one patient and gives 150 magic exp instead of 50. Can only be done once a loop.<br>
-			<b>Next: </b>squirrel magic >= 50 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 50 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			If the squirrel was good at magic before, now it is even better!<br>
+			If the ferret was good at magic before, now it is even better!<br>
 			It is able to heal 2 people at the same time, how amazing is that?!<br>
 			Still, it still can only do it once per loop. Too bad for that!<hr class='divider'>
 			<b>Effect: </b>Heal two patient and gives 300 magic exp instead of 100. Can only be done once a loop.<hr class='divider'>
@@ -1808,23 +1808,23 @@
                 <segment_modifier>A bunch of</segment_modifier>
             </segment_modifiers>
 			<squirrel_1><![CDATA[
-			The squirrel looks ready to fight! So you throw it on a monster.<br>
+			The ferret looks ready to fight! So you throw it on a monster.<br>
 			... Maybe it's better to not describe what happens next.<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 10 <hr class='divider'>
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 10 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Now that it has the same combat skill level as you when you started hunting monsters, it should be fine, right?<br>
-			So you take the squirrel and throw it on a monster.<br>
+			So you take the ferret and throw it on a monster.<br>
 			... The result is too gory to describe.<br>
 			You feel bad for that poor monster.<br>
-			The squirrel is now satisfied and doesn't feel like fighting anymore for this loop.<br>
+			The ferret is now satisfied and doesn't feel like fighting anymore for this loop.<br>
 			Well, that was a thing that just happened.<hr class='divider'>	
 			<b>Effect: </b>Kill one monster. Can only be done once every loop.<br>
-			<b>Next: </b>squirrel combat >= 50 <hr class='divider'>
+			<b>Next: </b>ferret combat >= 50 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			The squirrel looks like it's craving fighting even more than before.<br>
+			The ferret looks like it's craving fighting even more than before.<br>
 			You do a silent prayer for the monster and throw it on them.<br>
 			After shredding two of them, it comes back, satisfied.<br>
 			You can't help but wonder if you created a monster...<hr class='divider'>
@@ -1872,7 +1872,7 @@
 				<name>Striking with all might</name>
 			</segment_names>
 			<squirrel_1><![CDATA[
-			The magic fighter looks at you with incredulity. Did you just ask him to fight a squirrel?<br>
+			The magic fighter looks at you with incredulity. Did you just ask him to fight a ferret?<br>
 			Seeing how he ignores you for the rest of the loop, you think he didn't take it well.<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 			]]></squirrel_1>
@@ -1909,22 +1909,22 @@
                 <name>Loot</name>
             </segment_names>
 			<squirrel_1><![CDATA[
-			You don't think it's a good idea, but the squirrel seems to want to go the dungeon.<br>
-			Ah, wait, no, he just wanted the nuts that were in front of the door. Nevermind, then.<hr class='divider'>
+			You don't think it's a good idea, but the ferret seems to want to go the dungeon.<br>
+			Ah, wait, no, he just wanted the bones that were in front of the door. Nevermind, then.<hr class='divider'>
 			<b>Effect: </b>None.<br>
-			<b>Next: </b>squirrel combat + squirrel magic >= 35 <hr class='divider'>
+			<b>Next: </b>ferret combat + ferret magic >= 35 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Now that the squirrel have the right skills to try the dungeon, you decide to let it do that.<br>
+			Now that the ferret have the right skills to try the dungeon, you decide to let it do that.<br>
 			It acts as the leader and is actually pretty competent at that!<br>
-			After clearing half a floor, it gets distracted by some nuts laying around and stop doing anything else, though...<br>
+			After clearing half a floor, it gets distracted by some bones laying around and stop doing anything else, though...<br>
 			Truly the most horrible trap you've seen in here.<hr class='divider'>
 			<b>Effect: </b>Clear half a dungeon floor. Can only be done once per loop.<br>
-			<b>Next: </b>squirrel combat + squirrel magic >= 100 <hr class='divider'>
+			<b>Next: </b>ferret combat + ferret magic >= 100 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			This time, the squirrel is really prepared for the dungeon!<br>
-			It manages to ignore the nuts... Until it becomes too much for it to bear.<br>
+			This time, the ferret is really prepared for the dungeon!<br>
+			It manages to ignore the bones... Until it becomes too much for it to bear.<br>
 			At least it managed to clear a full floor this time!<hr class='divider'>			
 			<b>Effect: </b>Clear a dungeon floor. Can only be done once per loop.<hr class='divider'>
 		]]></squirrel_3>
@@ -1943,8 +1943,8 @@
 			• You only need one set of supplies.<hr class='divider'>
 		]]></tooltip2>
 			<squirrel_1><![CDATA[
-			Maybe you could use the squirrel for a discount? You ask it to act cute in front of the shopkeep.<br>
-			Both the squirrel and the shopkeep look at you with a grave look.<br>
+			Maybe you could use the ferret for a discount? You ask it to act cute in front of the shopkeep.<br>
+			Both the ferret and the shopkeep look at you with a grave look.<br>
 			Oh, right, you need to use the haggle action if you want a discount.<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 			]]></squirrel_1>
@@ -1959,13 +1959,13 @@
 			• Unlocked at a combined Combat and Magic skill of 35.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			Until now, the squirrel acting cute worked pretty much every time. Time to get a discount with it!<br>
+			Until now, the ferret acting cute worked pretty much every time. Time to get a discount with it!<br>
 			... Well, you just learned the merchant dislikes squirrels. Oops?<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 30 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			You devise a plan with the squirrel to maximise its cuteness in the hope it would still soften the shopkeep.<br>
+			You devise a plan with the ferret to maximise its cuteness in the hope it would still soften the shopkeep.<br>
 			After a lot of work and tries, it works! But with how difficult that was, you're sure it won't work again...<hr class='divider'>
 			<b>Effect: </b>Reduce the price of supplies by 30 without losing any reputation. Can only be done once per loop.<hr class='divider'>
 			]]></squirrel_2>
@@ -1983,13 +1983,13 @@
 			• <b>Warning : the next zone is finished, and in beta! Please try it, and give your thoughts and your savefile once tne zone finished so that it can be correctly rebalanced for a better experience!</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel asks you to follow it, then stops. It looks extremely torn. Looks like it doesn't trust you enough yet for it to reveal where it wanted to go...<br>
+			The ferret asks you to follow it, then stops. It looks extremely torn. Looks like it doesn't trust you enough yet for it to reveal where it wanted to go...<br>
 			Seeing how it's reacting, you're sure it's something extremely valuable. You have to gain more trust!<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 28 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			The squirrel asks you to follow it. It's leading you out of the village, in the opposite direction from the forest.<br>
+			The ferret asks you to follow it. It's leading you out of the village, in the opposite direction from the forest.<br>
 			Just where is it leading you?<br>
 			<b>Note : The new zone is finished but in beta. Look at the warning in human mode to know what to do!</b><hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<hr class='divider'>
@@ -2028,25 +2028,25 @@
             <story_7><![CDATA[<b>80% Forest explored:</b>⮀ You've managed to figure out where most of the herds in this forest are during your trip through, you've also stumbled across a fair amount of plants that produce mana, you wonder if they have a use.]]></story_7>
             <story_8><![CDATA[<b>100% Forest explored:</b>⮀ You've done it, you find it impossible to get lost in the forest now, and your sense of wanderlust has faded. You've seen practically all you can in this forest. There were areas barred to you, and you found no way to enter them with a cursory examination.]]></story_8>
 			<squirrel_1><![CDATA[
-			A new zone, finally! You spent an eternity in Beginnersville, you and the squirrel are both excited about exploring this new place!<br>
+			A new zone, finally! You spent an eternity in Beginnersville, you and the ferret are both excited about exploring this new place!<br>
 			Actually, it's so excited it looks like it wants to explore things on its own then come back to you.<br>
 			Oh well, why not?<br>
 			Except there's a slight problem... No matter how much you wait, it isn't coming back.<br>
 			You're pretty sure it got lost... Ah well, you'll see it back next loop, so it's not that big of a problem.<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Effect: </b>Lose the ferret.<br>
 			<b>Next: </b>trust >= 32 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			This time, you decide to not take any risk and not split up with the squirrel.<br>
+			This time, you decide to not take any risk and not split up with the ferret.<br>
 			And it was the right call! It's really thorough with its exploration.<br>
 			It manages to find in places you already went a few magical herbs here and there you missed. Good!<hr class='divider'>
 			<b>Effect: </b>Gain 200 more herbs. This effect can only be done once.<br>
 			<b>Next: </b>trust >= 36 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			The squirrel found a lot of herbs last time, so you have high hope this time!<br>
+			The ferret found a lot of herbs last time, so you have high hope this time!<br>
 			After a while, seeing how it hasn't found anything, you can't help but feel disappointed...<br>
-			The squirrel, seeing your disappointed looks, goes into overdrive and starts furrowing the ground everywhere.<br>
+			The ferret, seeing your disappointed looks, goes into overdrive and starts furrowing the ground everywhere.<br>
 			After a while, he comes back to you with a smug look, pointing at some mana spots he dug out.<br>
 			This is the best friend you could ever ask for!<hr class='divider'>
 			<b>Effect: </b>Gain 100 more mana spots. This effect can only be done once.<hr class='divider'>
@@ -2067,20 +2067,20 @@
 			• Every 10 mana spots have good mana.<hr class='divider'>
         ]]></tooltip2>
             <squirrel_1><![CDATA[
-			A new way to get mana! You wonder if asking the squirrel to do it for you will change anything.<br>
+			A new way to get mana! You wonder if asking the ferret to do it for you will change anything.<br>
 			... Turns out, it's exactly the same. It was worth a try.<hr class='divider'>
 			<b>Effect: </b>Normal effect.<br>
-			<b>Next: </b>squirrel magic >= 15 <hr class='divider'>	
+			<b>Next: </b>ferret magic >= 15 <hr class='divider'>	
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			The squirrel keeps insisting gathering mana for you again, so you let it do it.<br>
+			The ferret keeps insisting gathering mana for you again, so you let it do it.<br>
 			Oh! With its new magic senses, it is capable of absorbing the mana in a more efficicent way!<br>
-			Thank you, squirrel!<hr class='divider'>
+			Thank you, ferret!<hr class='divider'>
 			<b>Effect: </b>Mana spots give 100 extra mana.<br>
-			<b>Next: </b>squirrel combat >= 25 <hr class='divider'>	
+			<b>Next: </b>ferret combat >= 25 <hr class='divider'>	
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Well well... Thanks to the squirrel, you just discovered shredding the mana spots to pieces is quite useful.<br>
+			Well well... Thanks to the ferret, you just discovered shredding the mana spots to pieces is quite useful.<br>
 			It's way quicker to absorb mana this way, but it also means they are unable to replenish anymore...<br>
 			Ah well, they will come back next loop, so it shouldn't be a problem! <hr class='divider'>	
 			<b>Effect: </b>In addition of giving 100 extra mana, it takes 15% less time to do this action. <hr class='divider'>	
@@ -2100,25 +2100,25 @@
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			If those herbs really have magic inside, eating them will probably give you some mana...<br>
-			So you ask the squirrel to eat them instead of picking them up.<br>
+			So you ask the ferret to eat them instead of picking them up.<br>
 			It looks at you with doubtful eyes. Then shakes its head. Maybe he thinks they are poisonous to squirrels?<br>
-			You think they aren't, but you can't really convey that to the squirrel.<br>
+			You think they aren't, but you can't really convey that to the ferret.<br>
 			Well, it looks like it won't eat it until it trusts you enough for that, in any case.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 34 <hr class='divider'>	
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Finally, the squirrel trusts you enough to eat those herbs!<br>
+			Finally, the ferret trusts you enough to eat those herbs!<br>
 			It looks like they aren't poisonous to squirrels in the end! Not that you ever doubted it. Erm...<br>
-			You finally see the results, and... they give less mana than the squirrel needs to eat them.<br>
+			You finally see the results, and... they give less mana than the ferret needs to eat them.<br>
 			Talk about a waste...<hr class='divider'>
 			<b>Effect: </b>Consume one herb instead of gathering it to gain 200 mana.<br>
-			<b>Next: </b>squirrel magic >= 35 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 35 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			Something changed... It looks like the herbs give more mana now?<br>
-			It has probably something to do with the new magical power the squirrel has.<br>
-			Also, it looks like the squirrel now got hooked on them... Are they that tasty?<br>
+			It has probably something to do with the new magical power the ferret has.<br>
+			Also, it looks like the ferret now got hooked on them... Are they that tasty?<br>
 			You're tempted to try, but... maybe another day?<hr class='divider'>
 			<b>Effect: </b>Consume one herb instead of gathering it to gain 250 mana.<hr class='divider'>	
 		]]></squirrel_3>
@@ -2136,20 +2136,20 @@
 			• Unlocked at 40% Animals Fed.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel wants to hunt the animals for you!<br>
+			The ferret wants to hunt the animals for you!<br>
 			That's sweet, but... You can't help but feel a bit worried about it.<br>
 			It doesn't wait for your approval, and goes attacking a pack of animals at once.<br>
 			Well, uh... next time's the charm, maybe?<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 50 <hr class='divider'>	
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 50 <hr class='divider'>	
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Now that the squirrel is quite strong, it might be a good idea to attempt this again.<br>
+			Now that the ferret is quite strong, it might be a good idea to attempt this again.<br>
 			And it works! It goes attacking the same pack of animals and completely decimates them.<br>
 			It's too violent for your tastes, but it works...<br>
-			In the end, the squirrel performed better than you at hunting animals!<br>
+			In the end, the ferret performed better than you at hunting animals!<br>
 			You feel proud : training it for all this time was very worth it!<hr class='divider'>	
-			<b>Effect: </b>Hunting with the squirrel takes 20% less mana.<hr class='divider'>	
+			<b>Effect: </b>Hunting with the ferret takes 20% less mana.<hr class='divider'>	
 		]]></squirrel_2>
             <story_1><![CDATA[<b>Animal checked for hide:</b>⮀ You manage to track down a relatively harmless animal, but in the time it took you to bring the critter down you had ruined its pelt beyond all use. You needed practice.]]></story_1>
             <story_2><![CDATA[<b>10 Animals with hide:</b>⮀ You ghost through the forest, targeting packs that you know graze or are moving through locations easily reached and ambushed. You're starting to get good at this tracking thing, but you suppose you only really have to do it once.]]></story_2>
@@ -2163,12 +2163,12 @@
 			• Unlocked at 70% Forest Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel wants to sit under the waterfall!<br>
+			The ferret wants to sit under the waterfall!<br>
 			Why not? It might be fun for it to sit there.<br>
 			... After a while, it starts sneezing. Oh no, it caught a cold!<br>
 			You take it back with you. Poor little critter!<br>
 			In that state, it's probably not good to let it do any other action until next loop...<hr class='divider'>	
-			<b>Effect: </b>Lose the squirrel.<hr class='divider'>	
+			<b>Effect: </b>Lose the ferret.<hr class='divider'>	
 		]]></squirrel_1>
             <story_1><![CDATA[<b>Sat by waterfall:</b>⮀ You find a waterfall flowing from a higher point in a mountain down the side oddly scenic and decide stop to stare for awhile, simply to observe the natural beauty of the sight. As you watched, the force of the water managed to dislodge a small pebble from the top of the waterfall and send it careening down. You watch oddly mesmerized at it bounces along the path, constantly being immersed and spat out by the water. You don't know when you sat down and began meditating, only that you woke from your deep realization hours later.]]></story_1>
         </sit_by_waterfall>
@@ -2183,22 +2183,22 @@
 			• Unlocked at 20% Forest Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel feels pretty confident it won't get lost this time, exploring this place!<br>
+			The ferret feels pretty confident it won't get lost this time, exploring this place!<br>
 			... Aaaand it got lost again. Gosh darn it.<hr class='divider'>	
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel magic >= 5 <hr class='divider'>	
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret magic >= 5 <hr class='divider'>	
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Using its new magic skills, the squirrel manages to not get lost this time!<br>
+			Using its new magic skills, the ferret manages to not get lost this time!<br>
 			Apparently, something about these shortcuts radiates a small amount of magic.<br>
-			The hermit talked about this magic : its knowledge should be quite helpful for the squirrel.<hr class='divider'>	
+			The hermit talked about this magic : its knowledge should be quite helpful for the ferret.<hr class='divider'>	
 			<b>Effect: </b>Talk to Hermit gives a 4% bonus to this action instead of 3%.<br>
-			<b>Next: </b>squirrel magic >= 25 <hr class='divider'>	
+			<b>Next: </b>ferret magic >= 25 <hr class='divider'>	
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Now that the squirrel has a better handle on his magic skills, he is even better at exploring shortcuts!<br>
-			Who knew having a magic squirrel could be so handy?<br>
-			You can't help but reward it with a nut. It makes a little happy dance!<hr class='divider'>	
+			Now that the ferret has a better handle on his magic skills, he is even better at exploring shortcuts!<br>
+			Who knew having a magic ferret could be so handy?<br>
+			You can't help but reward it with a bone. It makes a little happy dance!<hr class='divider'>	
 			<b>Effect: </b>Talk to Hermit gives a 5% bonus to this action instead of 3%.<hr class='divider'>	
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Shortcut explored:</b>⮀ You continued on with your trip and discovered a small and worn path leading off the main thoroughfare. You wondered what it was and decided to explore.]]></story_1>
@@ -2220,20 +2220,20 @@
 			• Unlocked with both 20% Shortcut Explored and 40 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			In Beginnersville, using the squirrel charms was quite useful, so let's try it here!<br>
-			You ask the squirrel to make its best at looking cute while you talk to the hermit.<br>
+			In Beginnersville, using the ferret charms was quite useful, so let's try it here!<br>
+			You ask the ferret to make its best at looking cute while you talk to the hermit.<br>
 			The moment you turn your back, you hear some sort of high pitched muffled sound?<br>
-			It looks like the squirrel is gone now.<br>
+			It looks like the ferret is gone now.<br>
 			Where did it go?<hr class='divider'>	
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 8 <hr class='divider'>	
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 8 <hr class='divider'>	
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			You decide to try again at charming the hermit with the squirrel.<br>
+			You decide to try again at charming the hermit with the ferret.<br>
 			The moment you turn your back, you hear the hermit screaming "OW!".<br>
 			Oh, he has a little bite mark on his hand now. Weird!<br><hr class='divider'>	
 			<b>Effect: </b>Old Shortcut gives a 4% bonus to this action instead of 3%.<br>
-			<b>Next: </b>squirrel combat >= 30 <hr class='divider'>	
+			<b>Next: </b>ferret combat >= 30 <hr class='divider'>	
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			This time, the hermit screams louder and has multiple bite marks on his hand.<br>
@@ -2258,21 +2258,21 @@
 			• Unlocked with both 20% Hermit Knowledge and 50 magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			Before starting practicing Yang, the hermit asks you to hand over the squirrel.<br>
+			Before starting practicing Yang, the hermit asks you to hand over the ferret.<br>
 			He says that he will be really grateful for it, and that it'll help you with practicing Yang.<br>
-			But the squirrel shakes its head, as if to say no.<br>
-			You're curious about what would happen, but as long as the squirrel is against it, you can't really say yes...<hr class='divider'>	
+			But the ferret shakes its head, as if to say no.<br>
+			You're curious about what would happen, but as long as the ferret is against it, you can't really say yes...<hr class='divider'>	
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 38 <hr class='divider'>	
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			As usual, the hermit asks you to hand over the squirrel.<br>
-			You wait for the squirrel to say no as usual, but instead, it looks pensive.<br>
+			As usual, the hermit asks you to hand over the ferret.<br>
+			You wait for the ferret to say no as usual, but instead, it looks pensive.<br>
 			It looks like it really wants to help you, so it's ready to take the bullet!<br>
-			You accept the offer and hand over the squirrel. You can't help wondering about what will happen to it...<br>
-			All you know is that at the start of the next loop, the squirrel looks pretty happy...<br>
+			You accept the offer and hand over the ferret. You can't help wondering about what will happen to it...<br>
+			All you know is that at the start of the next loop, the ferret looks pretty happy...<br>
 			No, seriously, what happened?!.<hr class='divider'>	
-			<b>Effect: </b>Gain 4 reputation but lose the squirrel.<hr class='divider'>	
+			<b>Effect: </b>Gain 4 reputation but lose the ferret.<hr class='divider'>	
 		]]></squirrel_2>
             <story_1><![CDATA[<b>1 Yang not practiced:</b>⮀ Placeholder.]]></story_1>
         </practice_yang>
@@ -2287,7 +2287,7 @@
 			• Unlocked with both 40% Hermit Knowledge and 60 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			Despite how much the squirrel is willing to learn... It's still a squirrel.<br>
+			Despite how much the ferret is willing to learn... It's still a ferret.<br>
 			And complex equations are quite hard for it to understand.<br>
 			Maybe by training another set of skills will it be able to understand it?<hr class='divider'>	
 			<b>Effect: </b>None.<hr class='divider'>	
@@ -2317,36 +2317,36 @@
             <story_2><![CDATA[<b>Action failed with low reputation:</b>⮀ The hermit refuses to allow you near his workstations and potion brewing equipment no matter how much you ask and offer to pay. He tells you that you don't have a good enough karma for him to even be willing to risk you using his workstations and potion benches.]]></story_2>
             <story_3><![CDATA[<b>Action failed with negative reputation:</b>⮀ The hermit shoos you away from his clearing when you even make a mention of using his potion supplies, something about not wanting you to taint his equipment with your karma.]]></story_3>
 			<squirrel_1><![CDATA[
-			You have to admit, it's quite funny looking at the squirrel trying to grab flasks!<br>
+			You have to admit, it's quite funny looking at the ferret trying to grab flasks!<br>
 			Without any opposible thumbs, it's quite hard to grab anything.<br>
 			The hermit is less happy about seeing flasks being broken right and left, though...<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>	
 		]]></squirrel_1>
         </distill_potions>
         <train_squirrel>
-            <label>Train Squirrel</label>
+            <label>Train Ferret</label>
             <tooltip><![CDATA[
-            This is the perfect place to train your squirrel! You prepare a little training arena with branches, and a nut to punch.<hr class='divider'>
+            This is the perfect place to train your ferret! You prepare a little training arena with branches, and a little bone to punch.<hr class='divider'>
 			• Gives Self Combat x 4 = 
 			]]></tooltip>
-			<tooltip2> <![CDATA[ squirrel combat exp per action.<br>
+			<tooltip2> <![CDATA[ ferret combat exp per action.<br>
 			• Unlocked at 30% Forest Explored.<hr class='divider'>
 			]]></tooltip2>
 			<squirrel_1><![CDATA[
-			Instead of being trained by you, the squirrel wants to try to train by itself!<br>
+			Instead of being trained by you, the ferret wants to try to train by itself!<br>
 			So it runs towards an animal to fight it, and...<br>
 			Yeah, no, this was a bad idea.<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 5 <hr class='divider'>
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 5 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Alright, now that the squirrel have learn its lesson, it decides to go against an animal of around the same strenght as itself.<br>
-			This time, he manages to beat it! What a strong squirrel!<br>
+			Alright, now that the ferret have learn its lesson, it decides to go against an animal of around the same strenght as itself.<br>
+			This time, he manages to beat it! What a strong ferret!<br>
 			Instead of stopping there, it goes against another... And then against another...<br>
 			Until it fails. Well, at least it learned a lot from this!<hr class='divider'>
-			<b>Effect: </b>Gain Squirrel Combat Level x 10 combat exp, but lose the squirrel.<hr class='divider'>
+			<b>Effect: </b>Gain ferret Combat Level x 10 combat exp, but lose the ferret.<hr class='divider'>
 		]]></squirrel_2>
-            <story_1><![CDATA[<b>Squirrel untrained:</b>⮀ Placeholder.]]></story_1>
+            <story_1><![CDATA[<b>ferret untrained:</b>⮀ Placeholder.]]></story_1>
         </train_squirrel>
 		<feed_animals>
             <label>Feed Animals</label>
@@ -2356,31 +2356,31 @@
 			• Gives 100 exp worth of progress as a base.<br>
 			• Gives additional herbs and wild mana.<br>
 			• The more herbs you have, the easier they will approach you : every herb you have gives a +2% efficiency.<br>
-			• If you don't have the squirrel at the start of each loop yet, now it will join you.<br>
+			• If you don't have the ferret at the start of each loop yet, now it will join you.<br>
 			• Consumes 10 herbs per action.<br>
 			• Unlocked at 40% Forest Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			Upon feeding some animals, a bunch of wild squirrels appear.<br>
-			Your squirrel wants to go with them!<br>
+			Your ferret wants to go with them!<br>
 			You can't refuse that, can you?<br>
-			Let it go on a squirrel adventure with squirrel friends!<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 18 <hr class='divider'>
+			Let it go on a ferret adventure with ferret friends!<hr class='divider'>
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 18 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			It looks like your squirrel was able to go in a squirrel dungeon with its squirrel friends.<br>
+			It looks like your ferret was able to go in a ferret dungeon with its ferret friends.<br>
 			It got a little map that points out some wild mana spots hidden in the forest.<br>
-			That's some great loot! You pet the squirrel and let it go for new squirrel adventures!<hr class='divider'>
-			<b>Effect: </b>Gain 100 more mana spots. This effect can only be done once. Lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 40 <hr class='divider'>
+			That's some great loot! You pet the ferret and let it go for new ferret adventures!<hr class='divider'>
+			<b>Effect: </b>Gain 100 more mana spots. This effect can only be done once. Lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 40 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Even more loot! Looks like your squirrel and its friends have conquered the 2 squirrel dungeons in this forest.<br>
+			Even more loot! Looks like your ferret and its friends have conquered the 2 ferret dungeons in this forest.<br>
 			This little map points out a stack of hidden magical herbs this time. Great!<br>
-			While there's not much to gain from this anymore, you still let your squirrel go away.<br>
-			It'll probably go drink some squirrel beers with its squirrel friends while you finish the loop!<hr class='divider'>
-			<b>Effect: </b>Gain 200 more herbs. This effect can only be done once. Lose the squirrel.<hr class='divider'>
+			While there's not much to gain from this anymore, you still let your ferret go away.<br>
+			It'll probably go drink some ferret beers with its ferret friends while you finish the loop!<hr class='divider'>
+			<b>Effect: </b>Gain 200 more herbs. This effect can only be done once. Lose the ferret.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>Animal not fed:</b>⮀ Placeholder]]></story_1>
         </feed_animals>
@@ -2393,24 +2393,24 @@
 			• Unlocked at 10% Animals Fed.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			Your squirrel decides to go see the fairy before you do.<br>
+			Your ferret decides to go see the fairy before you do.<br>
 			Despite its efforts to communicate, the fairy ignores it.<br>
 			How rude!<hr class='divider'>
 			<b>Effect: </b>None.<br>
-			<b>Next: </b>squirrel magic >= 20 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 20 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Something is wrong... The fairy emits a lot of mana, but a good part comes from another place.<br>
-			Your squirrel decides to investigate and finds another fairy!<br>
+			Your ferret decides to investigate and finds another fairy!<br>
 			It's the magical herb fairy, the daughter of the mana pot fairy.<br>
 			Now that you know she's here, she's ready to pick up herbs for you... If you don't anger her mother.<hr class='divider'>
 			<b>Effect: </b>If the fairy blesses you, picks up 100 of the magical herbs you found for you.<br>
-			<b>Next: </b>squirrel magic >= 40 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 40 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Using its own magical power, the squirrel is able to strenghten the magical herb fairy!<br>
+			Using its own magical power, the ferret is able to strenghten the magical herb fairy!<br>
 			Uh oh, looks like injecting magical power into a fairy is seen by them as a big romantic thing.<br>
-			Now she has a crush on your squirrel... You're not sure if it's a good or a bad thing?<br>
+			Now she has a crush on your ferret... You're not sure if it's a good or a bad thing?<br>
 			Anyway, now she shouldn't have any issue picking up all the herbs you have found. Awesome!<hr class='divider'>
 			<b>Effect: </b>If the fairy blesses you, picks up all magical herbs you have found.<hr class='divider'>
 		]]></squirrel_3>
@@ -2434,16 +2434,16 @@
 			• Unlocked at 20% Animals Fed.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			... The squirrel seems to enjoy this a bit too much.<br>
-			You've never heard a squirrel laughing so maniacally before.<br>
+			... The ferret seems to enjoy this a bit too much.<br>
+			You've never heard a ferret laughing so maniacally before.<br>
 			And honestly? It scares you a bit. It's helpful, but...<br>
 			When it's time to do another action, instead of following you, it goes somewhere else to set it on fire.<br>
 			Maybe it's better to leave it alone for now...<hr class='divider'>
-			<b>Effect: </b>Acts as if you have 10 more herbs on you, but lose the squirrel.<br>
+			<b>Effect: </b>Acts as if you have 10 more herbs on you, but lose the ferret.<br>
 			<b>Next: </b>trust >= 40 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			This is still disturbing to see your squirrel enjoy burning things too much...<br>
+			This is still disturbing to see your ferret enjoy burning things too much...<br>
 			You were expecting it to maybe be afraid, but not this!<br>
 			At least, this time, when it's time to do another action, it follows you.<br>
 			Phew, it seems like now it likes you better than arson, that's good!<hr class='divider'>
@@ -2461,7 +2461,7 @@
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			This was the most interesting session of bird watching you've ever seen.<br>
-			Seeing a squirrel ride a bird was certainly a sight to see!<hr class='divider'>
+			Seeing a ferret ride a bird was certainly a sight to see!<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 		]]></squirrel_1>
             <story_1><![CDATA[<b>Birds watched:</b>⮀ You spot a colorful bird and attempt to follow it with your eyes, you fail. You try again and again until you can reliable pick out fast moving birds and animals with pinpoint precision. It's also strangely relaxing to watch birds congregate together, listening to the bird-call and watching them interact. Its fast, frenetic and savage at times, but that's nature.]]></story_1>
@@ -2479,22 +2479,22 @@
 			• Unlocked at 30% Animals Fed.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel assures you it won't get lost this time.<br>
+			The ferret assures you it won't get lost this time.<br>
 			... And immediatly gets lost. Sigh...<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel combat >= 12 <hr class='divider'>
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret combat >= 12 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Well, apparently, last time, the squirrel didn't actually get lost.<br>
+			Well, apparently, last time, the ferret didn't actually get lost.<br>
 			Tree roots are apparently hunting squirrels here, and your companion was caught?!<br>
 			Thankfully, it can now fight them off now!<br>
 			The witch must know about all of this, let's ask her about this next time.<hr class='divider'>
 			<b>Effect: </b>Talk to Witch gives a 4% bonus to this action instead of 3%.<br>
-			<b>Next: </b>squirrel combat >= 35 <hr class='divider'>
+			<b>Next: </b>ferret combat >= 35 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			What you've learned from the witch about this forest is quite useful!<br>
-			This place is dangerous for a squirrel, but now it has no issue fighting off the roots.<br>
+			This place is dangerous for a ferret, but now it has no issue fighting off the roots.<br>
 			Perfect! The sooner this place is explored, the sooner you can stop exploring it!<hr class='divider'>
 			<b>Effect: </b>Talk to Witch gives a 5% bonus to this action instead of 3%.<hr class='divider'>
 		]]></squirrel_3>
@@ -2512,25 +2512,25 @@
 			• Unlocked with both 20% Dark Forest Explored and 50 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel tries to charm the witch!<br>
+			The ferret tries to charm the witch!<br>
 			... And immediatly freezes. It looks like it is scared of her.<br>
 			Suddenly, you hear a loud sound on your right! But there's nothing there...<br>
-			Oh? Your squirrel is gone. Weird, it was unable to move just a second ago!<hr class='divider'>
-			<b>Effect: </b>Lose the squirrel.<br>
-			<b>Next: </b>squirrel magic >= 8 <hr class='divider'>
+			Oh? Your ferret is gone. Weird, it was unable to move just a second ago!<hr class='divider'>
+			<b>Effect: </b>Lose the ferret.<br>
+			<b>Next: </b>ferret magic >= 8 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			You don't know why, but the squirrel looks ready this time!<br>
-			When the loud sound happens, the squirrel manages to not disappear.<br>
+			You don't know why, but the ferret looks ready this time!<br>
+			When the loud sound happens, the ferret manages to not disappear.<br>
 			It looks like there's faint traces of magic around it... Did it use a spell?<br>
 			The witch looks like she's about to laugh and opens up to you.<br>
 			You're not sure why, but that's great!<hr class='divider'>
 			<b>Effect: </b>Dark Forest gives a 4% bonus to this action instead of 3%.<br>
-			<b>Next: </b>squirrel magic >= 30 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 30 <hr class='divider'>
 		]]></squirrel_2>
 		<squirrel_3><![CDATA[
 			The now familiar loud sound happens again, but this time, things are a bit different.<br>
-			It looks like the witch now has light wounds on her, and your squirrel emits a lot more mana.<br>
+			It looks like the witch now has light wounds on her, and your ferret emits a lot more mana.<br>
 			Well, if she was about to laugh before, now she's laughing very audibly!<br>
 			You've never seen her so friendly toward you before. Excellent!<hr class='divider'>
 			<b>Effect: </b>Dark Forest gives a 5% bonus to this action instead of 3%.<hr class='divider'>
@@ -2554,20 +2554,20 @@
 			<squirrel_1><![CDATA[
 			As you are about to start practicing Yin, the witch makes you an offer.<br>
 			She's apparently missing a little critter to use as a sacrifice for some ritual.<br>
-			She assures you that handing over the squirrel would be good for Yin practicing!<br>
-			The squirrel hides behind you. Oh heck no, you're not doing that!<hr class='divider'>
+			She assures you that handing over the ferret would be good for Yin practicing!<br>
+			The ferret hides behind you. Oh heck no, you're not doing that!<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 40 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			The witch does the usual offer about handing over your squirrel.<br>
+			The witch does the usual offer about handing over your ferret.<br>
 			Except this time, it goes by itself to the witch.<br>
 			It looks like it's ready to sacrifice itself for your own good...<br>
 			You know he will be back next loop, but still...!<br>
-			With a heavy heart, you accept. Thank you, squirrel friend, you will be remembered!<br>
-			You expect the squirrel to be traumatized at the start of the next loop, but it looks pretty happy.<br>
+			With a heavy heart, you accept. Thank you, ferret friend, you will be remembered!<br>
+			You expect the ferret to be traumatized at the start of the next loop, but it looks pretty happy.<br>
 			Wait... What happened, then?!<hr class='divider'>
-			<b>Effect: </b>Lose 4 reputation and lose the squirrel.<hr class='divider'>
+			<b>Effect: </b>Lose 4 reputation and lose the ferret.<hr class='divider'>
 		]]></squirrel_2>
             <story_1><![CDATA[<b>0 Yin:</b>⮀ Placeholder.]]></story_1>
         </practice_yin>
@@ -2581,7 +2581,7 @@
 			• Unlocked with both 40% Witch Knowledge and 70 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			You want to see your squirrel acting like a little squirrel witch!<br>
+			You want to see your ferret acting like a little ferret witch!<br>
 			Sadly, it isn't fit for that... It's not evil enough. Too bad!<hr class='divider'>
 			<b>Effect: </b>None.<br><hr class='divider'>
 		]]></squirrel_1>
@@ -2605,7 +2605,7 @@
 			• Unlocked with 10 Brewing.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel is too pure to approach the cauldron!<br>
+			The ferret is too pure to approach the cauldron!<br>
 			You're a bit disappointed about that...<br>
 			Maybe a future set of skill will resolve that problem?<hr class='divider'>
 			<b>Effect: </b>None.<br><hr class='divider'>
@@ -2623,16 +2623,16 @@
 			If you want to see how far in development the next zone is, look at the changelog!</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel wants you to follow it to a new zone!<br>
+			The ferret wants you to follow it to a new zone!<br>
 			... Except it's too far from here to access it now.<br>
 			It looks quite annoyed about this...<hr class='divider'>
 			<b>Effect: </b>None.<br>
-			<b>Next: </b>squirrel magic >= 10 <hr class='divider'>
+			<b>Next: </b>ferret magic >= 10 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			The squirrel looks confident this time.<br>
+			The ferret looks confident this time.<br>
 			It asks you to follow it : it leads you towards Commerceville.<br>
-			... And suddenly, you find yourself in the Squirrel Sanctuary.<br>
+			... And suddenly, you find yourself in the Ferret Sanctuary.<br>
 			How did this happen?!<hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<br><hr class='divider'>
 		]]></squirrel_2>
@@ -3560,10 +3560,10 @@
 		<first_trial>
 			<label>First Trial</label>
 			<tooltip><![CDATA[
-			This is the trial of the Squirrel Sanctuary.<br>
+			This is the trial of the Ferret Sanctuary.<br>
 			Chronos gave you their permission to break the time loop as long as you clear their trials.<br>
 			First, prove that you didn't come to this place by using the back door.<hr class='divider'>
-			• You must have the squirrel on you to clear this trial.<hr class='divider'>
+			• You must have the ferret on you to clear this trial.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>This is a regular placeholder:</b>⮀ Placeholder.]]></story_1>
 		</first_trial>

@@ -504,13 +504,13 @@ function View() {
 				const actionTemplate = Action[action.name.replace(/ /g,'')];
 								
 				if(actionTemplate.hasOwnProperty('squirrelLevelUp') && actionTemplate.squirrelLevelUp(true)){
-					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelNewAction.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+					squirrelModeIcon = `<img id='modeIcon${i}' src='${squirrelNewAction}' class='modeIcon' onclick='changeMode(${i})'>`;
 				} else if(actionTemplate.hasOwnProperty('squirrelActionEffect') && actionTemplate.squirrelActionEffect(true)) {
 					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelLose.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				} else if(actionTemplate.hasOwnProperty('squirrelActionEffect') && actionTemplate.squirrelActionEffect(false, true)) {
 					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelSleep.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				} else {
-					squirrelModeIcon = `<img id='modeIcon${i}' src='img/petSquirrel.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+					squirrelModeIcon = `<img id='modeIcon${i}' src='${squirrelIcon}' class='modeIcon' onclick='changeMode(${i})'>`;
 				}	
 			}			
 			let favButton = `<i id='favoriteButton${i}' onclick= 'setFavMode("${action.name}", ${action.squirrelAction})' class = 'actionIcon fa-regular fa-star'></i>`;
@@ -518,6 +518,9 @@ function View() {
 				(!action.squirrelAction && favMode[camelize(action.name)] === fav.human)){
 				favButton = `<i id='favoriteButton${i}' onclick= 'setFavMode("${action.name}", ${action.squirrelAction})' class = 'actionIcon fa-solid fa-star'></i>`;
 			}
+			
+			let actionImage = `<img src='img/${camelize(action.name)}.svg' class='smallIcon imageDragFix'>`;
+			if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='smallIcon imageDragFix'>`;
 			
             totalDivText +=(
                 `<div
@@ -533,7 +536,7 @@ function View() {
                     style='background: ${color}; ${opacity}; ${display};'
                 >
 					
-                    <div><img src='img/${camelize(action.name)}.svg' class='smallIcon imageDragFix'>
+                    <div>${actionImage}
 					${squirrelModeIcon} x
                     <div class='bold'>${actionLoops}</div></div>
                     <div style='float:right; margin-top: 1px; margin-right: 3px;'>
@@ -563,13 +566,18 @@ function View() {
             const action = actions.current[i];
             const actionLoops = action.loops > 99999 ? toSuffix(action.loops) : formatNumber(action.loops);
             const actionLoopsDone = (action.loops - action.loopsLeft) > 99999 ? toSuffix(action.loops - action.loopsLeft) : formatNumber(action.loops - action.loopsLeft);
+			
 			let squirrelModeIcon = "<img src='img/human.svg' class='smallIcon imageDragFix' style='margin-left:4px'>";
-			if(action.squirrelAction) squirrelModeIcon = "<img src='img/petSquirrel.svg' class='smallIcon imageDragFix' style='margin-left:4px'>";
+			if(action.squirrelAction) squirrelModeIcon = `<img src='${squirrelIcon}' class='smallIcon imageDragFix' style='margin-left:4px'>`;
+			
+			let actionImage = `<img src='img/${camelize(action.name)}.svg' class='smallIcon'>`;
+			if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='smallIcon'>`;
+				
             totalDivText +=
                 `<div class='curActionContainer small' onmouseover='view.mouseoverAction(${i}, true)' onmouseleave='view.mouseoverAction(${i}, false)'>
                     <div class='curActionBar' id='action${i}Bar'></div>
                     <div class='actionSelectedIndicator' id='action${i}Selected'></div>
-                    <img src='img/${camelize(action.name)}.svg' class='smallIcon'>
+                    ${actionImage}
 					${squirrelModeIcon}
                     <div id='action${i}LoopsDone' style='margin-left:3px; border-left: 1px solid #b9b9b9;padding-left: 3px;'>${actionLoopsDone}</div>
                     /<div id='action${i}Loops'>${actionLoops}</div>
@@ -888,6 +896,7 @@ function View() {
         }
 
         document.getElementById("actionsTitle").textContent = _txt(`actions>title${(stories) ? "_stories" : ""}`);
+        document.getElementById("squirrelModeTitle").textContent = _txt(`actions>squirrel_mode_name`);
         actionStoriesShowing = stories;
     };
 
@@ -997,7 +1006,7 @@ function View() {
 		if(favMode[camelize(action.name)] === fav.human){
 			favModeImage = "img/human.svg";
 		} else if(favMode[camelize(action.name)] === fav.squirrel){
-			favModeImage = "img/petSquirrel.svg";
+			favModeImage = squirrelIcon;
 		}
 		
 		if(favModeImage === ""){
@@ -1005,6 +1014,9 @@ function View() {
 		} else {
 			extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;visibility: visible;'>`
 		}
+		
+		let actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage}`;
+		if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='superLargeIcon' draggable='false'>${extraImage}`;
 
         const isTravel = getTravelNum(action.name) > 0;
         const divClass = isTravel ? "travelContainer showthat" : "actionContainer showthat";
@@ -1022,7 +1034,7 @@ function View() {
             >
                 ${action.label}<br>
                 <div style='position:relative'>
-                    <img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage}
+					${actionImage}
                 </div>
                 <div class='showthis' draggable='false'>
 					<span id="actionTooltipMode${action.varName}">
@@ -1523,7 +1535,7 @@ function View() {
 		if(favMode[camelize(actionName)] === fav.human){
 			favModeImage = "img/human.svg";
 		} else if(favMode[camelize(actionName)] === fav.squirrel){
-			favModeImage = "img/petSquirrel.svg";
+			favModeImage = squirrelIcon;
 		}
 		
 		let favVisible = "hidden";

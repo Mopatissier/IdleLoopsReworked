@@ -18,6 +18,9 @@ let squirrelAlreadyPickedUp = false;
 
 let bonusMultString = "1x";
 
+let squirrelIcon = 'img/petSquirrel.svg';
+let squirrelNewAction = 'img/squirrelNewAction.svg';
+
 const fav = {
 	none: 0,
 	human: 1,
@@ -129,7 +132,7 @@ function stopGame() {
     stop = true;
     view.updateTime();
     view.updateCurrentActionBar(actions.currentPos);
-    document.title = "*PAUSED* Squirrel Loops";
+    document.title =_txt(`game_name>pause_name`);
     document.getElementById("pausePlay").textContent = _txt("time_controls>play_button");
 }
 
@@ -138,9 +141,9 @@ function pauseGame(ping) {
     view.updateTime();
     view.updateCurrentActionBar(actions.currentPos);
 	if(stop){
-		document.title = "*PAUSED* Squirrel Loops";
+		document.title = _txt(`game_name>pause_name`);
 	} else {
-		document.title = "*Idle Loops : Squirrel Edition";
+		document.title = _txt(`game_name>full_name`);
 	}
     document.getElementById("pausePlay").textContent = _txt(`time_controls>${stop ? "play_button" : "pause_button"}`);
     if (!stop && (shouldRestart || timer >= timeNeeded)) {
@@ -431,7 +434,7 @@ function changeMode(index) {
 		document.getElementById(`modeIcon${index}`).src = "img/human.svg";
 		action.squirrelAction = false;
 	} else {
-		document.getElementById(`modeIcon${index}`).src = 'img/petSquirrel.svg';
+		document.getElementById(`modeIcon${index}`).src = squirrelIcon;
 		action.squirrelAction = true;
 	}
 	view.updateNextActions();
@@ -703,7 +706,7 @@ function setActivatedBonusSpeed() {
 function setSquirrelMode(value) {
 	squirrelMode = value;
 	if(value) {
-		document.getElementById("iconSquirrelMode").src = "img/petSquirrel.svg";
+		document.getElementById("iconSquirrelMode").src = squirrelIcon;
 	} else {
 		document.getElementById("iconSquirrelMode").src = "img/human.svg";
 	}
