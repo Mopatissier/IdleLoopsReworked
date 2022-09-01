@@ -518,6 +518,7 @@ function View() {
 				(!action.squirrelAction && favMode[camelize(action.name)] === fav.human)){
 				favButton = `<i id='favoriteButton${i}' onclick= 'setFavMode("${action.name}", ${action.squirrelAction})' class = 'actionIcon fa-solid fa-star'></i>`;
 			}
+			
             totalDivText +=(
                 `<div
                     id='nextActionContainer${i}'
@@ -999,7 +1000,11 @@ function View() {
 			favModeImage = "img/petSquirrel.svg";
 		}
 		
-		extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;'>`
+		if(favModeImage === ""){
+			extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;' style = 'hidden'>`
+		} else {
+			extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;' style = 'visible'>`
+		}
 
         const isTravel = getTravelNum(action.name) > 0;
         const divClass = isTravel ? "travelContainer showthat" : "actionContainer showthat";
@@ -1520,8 +1525,14 @@ function View() {
 		} else if(favMode[camelize(actionName)] === fav.squirrel){
 			favModeImage = "img/petSquirrel.svg";
 		}
+		
+		let favVisible = "hidden";
+		if(favModeImage !== ""){
+			favVisible = "visible";
+		}
 				
 		document.getElementById(`favMode${actionName}`).src = favModeImage;
+		document.getElementById(`favMode${actionName}`).style.visibility = favVisible;
 		
 	}
 }
