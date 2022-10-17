@@ -29,7 +29,7 @@
             <b> August 27th, 2022</b>
 			• The game's name have been changed! It is now Idle Loops : Squirrel Edition, Squirrel Loops for short. The tab icon has changed to reflect this.<br>
             • The squirrel icons in the list of action now reflect if you'll lose your squirrel or gain a new squirrel level!<br>
-            • The Practice Yin/Yang icons have been changed to make it easier to differenciate.<br>
+            • The Practice Yin/Yang icons have been changed to make it easier to differentiate.<br>
             • The exploration bars for Beginnersville are now slightly slower to fill.<br>
             • The magic requirements for the Forest Path have been raised.<br>
             • Distill Potions and Concoct Potions now give Alchemy/Brewing experience!<br>
@@ -118,24 +118,24 @@
             <b> July 28th, 2022</b>
 			Finally, here's the first version that's complete enough to be played! Have fun, everyone!<br>
             • Added all the squirrel actions.<br>
-			• The magic figther is now finished.<br>
+			• The magic fighter is now finished.<br>
 			• Fixed a variety of small glitches.
             ]]></version>
 			<version verNum="0.1.4"><![CDATA[
             <b> July 25th, 2022</b>
             • Buffed the exp system. Talents are now more powerful, and soulstones are similar, but stronger at the start. Additionally, you get twice more exp from the start.<br>
-			• Reworked a bit the squirrel and the magic figther. They'll soon be complete!<br>
+			• Reworked a bit the squirrel and the magic fighter. They'll soon be complete!<br>
 			• Fixes a few UI glitches that slipped in the last update.
             ]]></version>
 			<version verNum="0.1.3"><![CDATA[
             <b> July 24th, 2022</b>
-            With the help of Reterino, reworked the UI for the stats and skills. It is now more compact and can allow everything to be seen wihtout needing to scroll down.
+            With the help of Reterino, reworked the UI for the stats and skills. It is now more compact and can allow everything to be seen without needing to scroll down.
             ]]></version>
 			<version verNum="0.1.2"><![CDATA[
             <b> July 23th, 2022</b>
             • Added the squirrel mode! Right now, only "Wander" is compatible with it, but the rest will be added soon.<br>
 			• Various little fixes, included some from more recent version of Lloyd's Idle Loops.<br>
-			• Added the zone quick acces menu from Lloyd's latest version.<br>
+			• Added the zone quick access menu from Lloyd's latest version.<br>
 			• Slightly changed the changelog : it didn't like having version names too long.
             ]]></version>
 			<version verNum="0.1.1"><![CDATA[
@@ -147,7 +147,7 @@
 			<version verNum="0.1.0"><![CDATA[
             <b> July 18th, 2022</b>
             • Temporarily deactivated unlocking z2. Once z1 finished, it'll be reactivated.<br>
-			• Added a litte useless companion.<br>
+			• Added a little useless companion.<br>
 			• Reworked picking locks and investigations to make them both more interesting.<br>
 			• Added a magic fighter : he's too powerful for now, though.
             ]]></version>
@@ -200,7 +200,7 @@
             <q_a>
                 <q>What should my first goal be?</q>
                 <a>Start with wandering until you have ways of getting mana back. Then try to find how to get some
-                    warrior lessions to give yourself a permanent boost, and then try fighting monsters!
+                    warrior lessons to give yourself a permanent boost, and then try fighting monsters!
                 </a>
             </q_a>
             <q_a>
@@ -249,8 +249,8 @@
                 1-5: Select loadout 1-5<br>
                 Shift+1-5: Select and load loadout 1-5<br>
                 +/-: Increase/decrease action list size<br>
-                Shift+S: Save current list to selected loudout<br>
-                Shift+L: Load selected loudout<br>
+                Shift+S: Save current list to selected loadout<br>
+                Shift+L: Load selected loadout<br>
                 Shift+C: Clear current list<br>
                 Right/D: Show next zone<br>
                 Left/A: Show previous zone<br>
@@ -343,7 +343,7 @@
         <resource initially_hidden="true">
             <title>Blood:</title>
             <id>blood</id>
-            <desc>Regailed for it's regenerative properties. (this does nothing currently)</desc>
+            <desc>Regaled for it's regenerative properties. (this does nothing currently)</desc>
         </resource>
         <resource initially_hidden="true">
             <title>Artifacts:</title>
@@ -456,7 +456,7 @@
                 often stored in pottery around town, perhaps you'll start there ...
             </story>
             <story num="1">
-                You reach the end of the dungeon, where a softly glowing orb floats on a pedastal. You've found the
+                You reach the end of the dungeon, where a softly glowing orb floats on a pedestal. You've found the
                 dungeon core - for the first level of the dungeon, at least. As you grasp it, the essence dives into
                 you, infusing your very being with the power it holds. It is a small amount of power, but this is a
                 small dungeon. You'll be back to take this power again, knowing with the foreign knowledge implanted
@@ -834,7 +834,7 @@
         </town4>
         <town5>
             <name>Startington</name>
-            <desc>A once familiar place, now crawling with shadows and ominous feelings of wasted sick days. There stands a large pillar of gloomy purple light in the center of it all, eminating from a spire surrounded by black clouds. It's emitting 10 weak beams of purple light to various points around the town, and appears to be casting all the shadows. Maybe you should check those spots out.</desc>
+            <desc>A once familiar place, now crawling with shadows and ominous feelings of wasted sick days. There stands a large pillar of gloomy purple light in the center of it all, emanating from a spire surrounded by black clouds. It's emitting 10 weak beams of purple light to various points around the town, and appears to be casting all the shadows. Maybe you should check those spots out.</desc>
         </town5>
         <town6>
             <name>Jungle Path</name>
@@ -846,11 +846,11 @@
         </town7>
         <town8>
             <name>Valley of Olympus</name>
-            <desc>A mountain shaped hole in the groud.</desc>
+            <desc>A mountain shaped hole in the ground.</desc>
         </town8>
 		<town9>
 			<name>Ferret Sanctuary</name>
-			<desc>What is this place? You can't really describe what is happening here, except that time and space feel distorded. You might be the first human to ever set foot here...</desc>
+			<desc>What is this place? You can't really describe what is happening here, except that time and space feel distorted. You might be the first human to ever set foot here...</desc>
 		</town9>
 		<town10>
 			<name>Chronos' Lair</name>
@@ -1247,7 +1247,7 @@
 			I am sorry I cannot do any better."<hr class='divider'>
 			<b>Effect: </b>Go to a new zone, but lose your ferret and only keep 1000 mana.<hr class='divider'>
 			]]></squirrel_2>
-			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
+			<story_1><![CDATA[<b>Didn't even listened to:</b>⮀ Placeholder.]]></story_1>
 		</mysterious_voice>
         <!--town 1-->
         <wander>
@@ -1336,7 +1336,7 @@
             <tooltip><![CDATA[
             Wait, you recognize this ferret! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<hr class='divider'>
 			• Spend some time with it to increase its trust by 100 exp.<br>
-			• Doing so recruits the ferret, it'll fit snuggly in your inventory.<br>
+			• Doing so recruits the ferret, it'll fit snugly in your inventory.<br>
 			• Every level of trust the ferret has increases the mana cost of this action by 100.<br>
 			• Unlocked at 5% explored.<br>
 			• <b>Try petting the ferret to get it by your side, then doing the ferret mode version of this action in the same loop to test its trust, it will eventually be worth it!<br>
@@ -1572,7 +1572,7 @@
 			• Unlocked at 10% Investigated.<hr class='divider'>
         ]]></tooltip2>
 		<squirrel_1><![CDATA[
-		You've seen how badly the ferret performed for the short quests and you doubt it'd be any better with long quests, but its's worth a try.<br>
+		You've seen how badly the ferret performed for the short quests and you doubt it'd be any better with long quests, but it's worth a try.<br>
 		Unsurprisingly, it fails. Pretty hard too. Oh well...<hr class='divider'>
 		<b>Effect: </b>None.<br>
 		<b>Next: </b>trust >= 22 <hr class='divider'>
@@ -1672,7 +1672,7 @@
             <story_2><![CDATA[<b>100 Magic:</b>⮀ Warrick compliments you on your ability to wield mana, and is happy to share some more dangerous cantrips with your promise to not use it for ill. He refuses to teach you about alchemy.]]></story_2>
             <story_3><![CDATA[<b>200 Magic:</b>⮀ Warrick is suspicious about your proficiency with mana for someone he's just run into in the wild, but is still more than willing to humor you. If he throws appraising glances at you every now and then, you pay them no mind.]]></story_3>
             <story_4><![CDATA[<b>250 Magic:</b>⮀ You and Warrick duel, your lessons from that point on are finding an out of the way location and duking it out with magic. Warrick seems appreciative about the exertion.]]></story_4>
-            <story_5><![CDATA[<b>10 Alchemy:</b>⮀ You offer to help him with his alchemy work and he immdiately seems to develop a soft spot for you, talking about herbs and their effects when combined with eachother and how they build together to create mystical potions. The man's passionate, that's for sure.]]></story_5>
+            <story_5><![CDATA[<b>10 Alchemy:</b>⮀ You offer to help him with his alchemy work and he immediately seems to develop a soft spot for you, talking about herbs and their effects when combined with each other and how they build together to create mystical potions. The man's passionate, that's for sure.]]></story_5>
             <story_6><![CDATA[<b>50 Alchemy:</b>⮀ You offer Warrick some alchemy techniques that he's never heard of in exchange for some more magic techniques and lessons. He agrees readily.]]></story_6>
             <story_7><![CDATA[<b>100 Alchemy:</b>⮀ You offer to teach Warrick about alchemy if he teaches you about the branches of magic you have little grounding in. The man himself is a genius and has much to teach. He gives it his all, tempted by the secrets of Alchemy.]]></story_7>
         </mage_lessons>
@@ -1695,7 +1695,7 @@
 			<b>Next: </b>ferret magic >= 12 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Now that the ferret have the same magic skill as you when you started healing people, it shoud be alright!<br>
+			Now that the ferret have the same magic skill as you when you started healing people, it should be alright!<br>
 			The ferret goes and lays on a patient, and starts to concentrate for a long time.<br>
 			Then it glows, and the patient suddenly gets healed as if nothing ever happened to them.<br>
 			Wait, is the ferret actually better than you at healing people now?!<br>
@@ -1778,7 +1778,7 @@
                 <name>Gelatinous Cubes that are constantly growing in size</name>
                 <name>Fairies with blindingly bright dresses</name>
                 <name>Orcs with multiple weapons</name>
-                <name>Beholders with mouthes on every eye</name>
+                <name>Beholders with mouths on every eye</name>
                 <name>Spectres that are actually scary</name>
                 <name>Mimics without an obvious tell</name>
                 <name>Shambling Mounds that can locomote quickly</name>
@@ -1980,7 +1980,7 @@
 			• Costs 1 supplies.<br>
 			• Finish once to unlock Forest Path's actions, then finish this in order to use Forest Path's actions.<br>
 			• Unlocked at a combined Combat and Magic skill of 35.<br>
-			• <b>Warning : the next zone is finished, and in beta! Please try it, and give your thoughts and your savefile once tne zone finished so that it can be correctly rebalanced for a better experience!</b><hr class='divider'>
+			• <b>Warning : the next zone is finished, and in beta! Please try it, and give your thoughts and your savefile once the zone is finished so that it can be correctly rebalanced for a better experience!</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The ferret asks you to follow it, then stops. It looks extremely torn. Looks like it doesn't trust you enough yet for it to reveal where it wanted to go...<br>
@@ -1999,7 +1999,7 @@
         <hitch_ride>
             <label>Hitch Ride</label>
             <tooltip><![CDATA[
-            The explorers guild has a contract with various caravaans for transport around the world. They have taught you the secret handsigns to gain passage. And this one just happens to have some spare mana to share on the journey!<br>
+            The explorers guild has a contract with various caravans for transport around the world. They have taught you the secret handsigns to gain passage. And this one just happens to have some spare mana to share on the journey!<br>
             Travels to Merchanton.
         ]]></tooltip>
         </hitch_ride>
@@ -2074,7 +2074,7 @@
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			The ferret keeps insisting gathering mana for you again, so you let it do it.<br>
-			Oh! With its new magic senses, it is capable of absorbing the mana in a more efficicent way!<br>
+			Oh! With its new magic senses, it is capable of absorbing the mana in a more efficient way!<br>
 			Thank you, ferret!<hr class='divider'>
 			<b>Effect: </b>Mana spots give 100 extra mana.<br>
 			<b>Next: </b>ferret combat >= 25 <hr class='divider'>	
@@ -2318,7 +2318,7 @@
             <story_3><![CDATA[<b>Action failed with negative reputation:</b>⮀ The hermit shoos you away from his clearing when you even make a mention of using his potion supplies, something about not wanting you to taint his equipment with your karma.]]></story_3>
 			<squirrel_1><![CDATA[
 			You have to admit, it's quite funny looking at the ferret trying to grab flasks!<br>
-			Without any opposible thumbs, it's quite hard to grab anything.<br>
+			Without any opposable thumbs, it's quite hard to grab anything.<br>
 			The hermit is less happy about seeing flasks being broken right and left, though...<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>	
 		]]></squirrel_1>
@@ -2340,7 +2340,7 @@
 			<b>Next: </b>ferret combat >= 5 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Alright, now that the ferret have learn its lesson, it decides to go against an animal of around the same strenght as itself.<br>
+			Alright, now that the ferret have learn its lesson, it decides to go against an animal of around the same strength as itself.<br>
 			This time, he manages to beat it! What a strong ferret!<br>
 			Instead of stopping there, it goes against another... And then against another...<br>
 			Until it fails. Well, at least it learned a lot from this!<hr class='divider'>
@@ -2352,7 +2352,7 @@
             <label>Feed Animals</label>
 			<label_done>Animals Fed</label_done>
             <tooltip><![CDATA[
-            Feed wild animals and they will show you ressources scattered around the forest. They sure do like magical herbs!<hr class='divider'>
+            Feed wild animals and they will show you resources scattered around the forest. They sure do like magical herbs!<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
 			• Gives additional herbs and wild mana.<br>
 			• The more herbs you have, the easier they will approach you : every herb you have gives a +2% efficiency.<br>
@@ -2408,7 +2408,7 @@
 			<b>Next: </b>ferret magic >= 40 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Using its own magical power, the ferret is able to strenghten the magical herb fairy!<br>
+			Using its own magical power, the ferret is able to strengthen the magical herb fairy!<br>
 			Uh oh, looks like injecting magical power into a fairy is seen by them as a big romantic thing.<br>
 			Now she has a crush on your ferret... You're not sure if it's a good or a bad thing?<br>
 			Anyway, now she shouldn't have any issue picking up all the herbs you have found. Awesome!<hr class='divider'>
@@ -2449,7 +2449,7 @@
 			Phew, it seems like now it likes you better than arson, that's good!<hr class='divider'>
 			<b>Effect: </b>Acts as if you have 10 more herbs on you.<hr class='divider'>
 		]]></squirrel_2>
-            <story_1><![CDATA[<b>forest unburned:</b>⮀ Placeholder.]]></story_1>
+            <story_1><![CDATA[<b>forest unburnt:</b>⮀ Placeholder.]]></story_1>
         </burn_forest>
         <bird_watching>
             <label>Bird Watching</label>
@@ -2480,7 +2480,7 @@
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The ferret assures you it won't get lost this time.<br>
-			... And immediatly gets lost. Sigh...<hr class='divider'>
+			... And immediately gets lost. Sigh...<hr class='divider'>
 			<b>Effect: </b>Lose the ferret.<br>
 			<b>Next: </b>ferret combat >= 12 <hr class='divider'>
 		]]></squirrel_1>
@@ -2513,7 +2513,7 @@
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The ferret tries to charm the witch!<br>
-			... And immediatly freezes. It looks like it is scared of her.<br>
+			... And immediately freezes. It looks like it is scared of her.<br>
 			Suddenly, you hear a loud sound on your right! But there's nothing there...<br>
 			Oh? Your ferret is gone. Weird, it was unable to move just a second ago!<hr class='divider'>
 			<b>Effect: </b>Lose the ferret.<br>
@@ -2542,7 +2542,7 @@
             <story_5><![CDATA[<b>50% Witch knowledge learned:</b>⮀ You had apparently impressed her enough this time that she took you to a clearing she had found, and explained to you a ritual that would give you a boost, permanently through any circumstances by calling upon the dark gods. The catch she explained, with ill concealed glee, was that you would need souls to sacrifice if you wanted to do this ritual.]]></story_5>
             <story_6><![CDATA[<b>60% Witch knowledge learned:</b>⮀ As you learn more and more about the witch and her varied names, one thing starts to become glaringly obvious. The Witch and The Hermit know one another. If her irritable grumbling about the old fool and his idiotic desires were anything to go by. You get the feeling that their relationship is complex.]]></story_6>
             <story_7><![CDATA[<b>80% Witch knowledge learned:</b>⮀ The witch is struck with a strange sense of melancholy one loop and you have no idea why, but the witch is strangely open with information and you manage to pry out more of the relationship between her and the Hermit. They were lovers once, and to your surprise, she used to be the one whom nature adores. She shuts up quickly after letting that slip. You're all the more determined to pry it out of her though.]]></story_7>
-            <story_8><![CDATA[<b>100% Witch knowledge learned:</b>⮀ Somehow she seems to sense something about you this loop, and she tells you her name, and its the name she gives for every loop after. Trisha. You manage to pry most of her relationship with the hermit from her. They were lovers once, this you knew, but what you didn't was that she was of nobility and he a common vagabond. She fell for him and him for her, it was a love for the ages she tells you while drunk from the wine you brought along with you. He wanted to run away with her and she agreed, too love struck to question why. He was running from deals he had made and bargains he had forsaken, his glib tounge landing him in trouble of the otherworldly nature. Trisha seems frustrated with her youth's naivety as she tells you how she was made a scapegoat for his failings and forfeits in his deals and bargains. How she was essentially sold to the dark gods as his forfeit. When you ask what she did in return, all Trisha does is smile with dark satisfaction, the fire flaring briefly.]]></story_8>
+            <story_8><![CDATA[<b>100% Witch knowledge learned:</b>⮀ Somehow she seems to sense something about you this loop, and she tells you her name, and its the name she gives for every loop after. Trisha. You manage to pry most of her relationship with the hermit from her. They were lovers once, this you knew, but what you didn't was that she was of nobility and he a common vagabond. She fell for him and him for her, it was a love for the ages she tells you while drunk from the wine you brought along with you. He wanted to run away with her and she agreed, too love struck to question why. He was running from deals he had made and bargains he had forsaken, his glib tongue landing him in trouble of the otherworldly nature. Trisha seems frustrated with her youth's naivety as she tells you how she was made a scapegoat for his failings and forfeits in his deals and bargains. How she was essentially sold to the dark gods as his forfeit. When you ask what she did in return, all Trisha does is smile with dark satisfaction, the fire flaring briefly.]]></story_8>
         </talk_to_witch>
 		<practice_yin>
             <label>Practice Yin</label>
@@ -2594,7 +2594,7 @@
 			<segment_names>
 				<name>Gathering the dark spirits around</name>
 				<name>Picking the right ingredients</name>
-				<name>Stiring the cauldron</name>
+				<name>Stirring the cauldron</name>
 			</segment_names>
             <tooltip><![CDATA[
 			That cauldron is brimming with dark energy! That's perfect to make some dark potions.<hr class='divider'>
@@ -2935,7 +2935,7 @@
         <pyromancy>
             <label>Pyromancy</label>
             <tooltip><![CDATA[
-            Conjure the power of feverishly forceful and furiously firey flickering flames to aid you in combat. And yeah, the runes contain some stuff about this too. <br>Unlocked with both 60% Runic Symbols Deciphered and 200 Magic.
+            Conjure the power of feverishly forceful and furiously fiery flickering flames to aid you in combat. And yeah, the runes contain some stuff about this too. <br>Unlocked with both 60% Runic Symbols Deciphered and 200 Magic.
         ]]></tooltip>
 			<story_1><![CDATA[<b>1 Pyromancy:</b>⮀ Pyromancy is more normal than chronomancy, but it makes up for it by being extra dangerous. Fire, you quickly learn, will consume you just as happily as your foes. Your control has to be ironclad at all times or you might lose a hand in the time it takes to draw a breath.]]></story_1>
 			<story_2><![CDATA[<b>50 Pyromancy:</b>⮀ Without the loops to restore you to normal you'd probably be dead five times over by now, but the rewards you've gained are impressive indeed. Turning that lethality on monsters is a sight to behold, and it's much more versatile than melee combat. Fights often end before they even have a chance to get close.]]></story_2>
@@ -3033,13 +3033,13 @@
             <label>Imbue Body</label>
             <label_done>Completed</label_done>
             <tooltip><![CDATA[
-            With your new knowledge, you believe you can also use the lake to renforce your body across time. Each imbuement will increase starting stats by 1.<br>Gives (magic skill) * (1 + main stat / 100) * (original mana cost / actual mana cost) progress points per mana.<br>Can only have 1 Imbue Body action.<br>Level is limited by imbue mind rank.<br>Sacrifices (imbuements+1) levels of talent. Currently sacrificing 
+            With your new knowledge, you believe you can also use the lake to reinforce your body across time. Each imbuement will increase starting stats by 1.<br>Gives (magic skill) * (1 + main stat / 100) * (original mana cost / actual mana cost) progress points per mana.<br>Can only have 1 Imbue Body action.<br>Level is limited by imbue mind rank.<br>Sacrifices (imbuements+1) levels of talent. Currently sacrificing 
         ]]></tooltip>
             <tooltip2><![CDATA[
              levels of talent.
         ]]></tooltip2>
             <segment_names>
-                <name>Submerge youself</name>
+                <name>Submerge yourself</name>
                 <name>Focus essence</name>
                 <name>Absorb Knowledge</name>
             </segment_names>
