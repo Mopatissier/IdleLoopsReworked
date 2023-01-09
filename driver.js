@@ -132,8 +132,8 @@ function stopGame() {
     stop = true;
     view.updateTime();
     view.updateCurrentActionBar(actions.currentPos);
-    document.title =_txt(`game_name>pause_name`);
-    document.getElementById("pausePlay").textContent = _txt("time_controls>play_button");
+    document.title =_text(`game_name>pause_name`);
+    document.getElementById("pausePlay").textContent = _text("time_controls>play_button");
 }
 
 function pauseGame(ping) {
@@ -141,11 +141,11 @@ function pauseGame(ping) {
     view.updateTime();
     view.updateCurrentActionBar(actions.currentPos);
 	if(stop){
-		document.title = _txt(`game_name>pause_name`);
+		document.title = _text(`game_name>pause_name`);
 	} else {
-		document.title = _txt(`game_name>full_name`);
+		document.title = _text(`game_name>full_name`);
 	}
-    document.getElementById("pausePlay").textContent = _txt(`time_controls>${stop ? "play_button" : "pause_button"}`);
+    document.getElementById("pausePlay").textContent = _text(`time_controls>${stop ? "play_button" : "pause_button"}`);
     if (!stop && (shouldRestart || timer >= timeNeeded)) {
         restart();
     } else if (ping) {
@@ -250,6 +250,8 @@ function addResource(resource, amount) {
 		view.updateSkill("Yang");
 
 		view.updateBuff("YinYang");
+		
+		view.adjustGoldCost("SlaveAuction", Action.SlaveAuction.goldCost());
 	}
 
     if (resource === "teamMembers" || resource === "armor" || resource === "zombie") view.updateTeamCombat();
@@ -376,6 +378,7 @@ function adjustAll() {
     adjustHerbs();
     adjustHunt();
     adjustSuckers();
+	adjustSlaves();
     adjustGeysers();
     adjustMineSoulstones();
     adjustArtifacts();
@@ -675,9 +678,9 @@ function toggleOffline() {
 	if(totalOfflineMs === 0) return;
 	
 	if(bonusSpeed === 1){
-		document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>on");
+		document.getElementById("isBonusOn").textContent = _text("time_controls>bonus_seconds>state>on");
 	} else {
-        document.getElementById("isBonusOn").textContent = _txt("time_controls>bonus_seconds>state>off");	
+        document.getElementById("isBonusOn").textContent = _text("time_controls>bonus_seconds>state>off");	
 	}
 	
 	setActivatedBonusSpeed();
@@ -695,7 +698,7 @@ function setActivatedBonusSpeed() {
 	if(bonusSpeed > 5 && cheatBonusSpeed === 1){
 		bonusSpeed = 5;
 	}
-	if (document.getElementById("isBonusOn").textContent == _txt("time_controls>bonus_seconds>state>off")) {
+	if (document.getElementById("isBonusOn").textContent == _text("time_controls>bonus_seconds>state>off")) {
 		bonusSpeed = 1;
 	}
 	bonusMultString = (bonusSpeed+"x");

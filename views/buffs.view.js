@@ -21,9 +21,9 @@ Views.registerView("buffsContainer", {
                 `<div class="buffContainer showthat" id="buff${buff}Container">
                     <div class="buffNameContainer">
                         <img class="buffIcon" src="img/${camelize(fullName)}.svg">
-                        <div class="buffLabel medium bold">${_txt(`buffs>${XMLName}>label`)}</div>
+                        <div class="buffLabel medium bold">${_text(`buffs>${XMLName}>label`)}</div>
                         <div class="showthis">
-                            <span>${_txt(`buffs>${XMLName}>desc`)}</span>
+                            <span>${_text(`buffs>${XMLName}>desc`)}</span>
                             <br>
                             ${desc2 ? `<span class="localized" data-lockey="buffs>${XMLName}>desc2"></span>` : ""}
                         </div>

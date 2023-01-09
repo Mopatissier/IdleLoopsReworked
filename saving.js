@@ -122,6 +122,7 @@ let alreadySDungeon = false;
 let magicFight = false;
 let squirrelHaggle = false;
 let portalUsed = false;
+let gamblesInARow = 0;
 let stoneLoc = 0;
 let curLoadout = 0;
 let loadouts;
@@ -540,6 +541,7 @@ function load() {
 		squirrelNewAction = 'img/ferretNewAction.svg';
 		document.getElementById("favIcon16x16").href = "faviconFerret-16x16.png";
 		document.getElementById("favIcon32x32").href = "faviconFerret-32x32.png";
+		document.getElementById("resourceSquirrel").src = squirrelIcon;
 		
 	}
 
@@ -612,22 +614,6 @@ function load() {
     recalcInterval(options.updateRate);
     pauseGame();
 
-}
-
-function getFerretModeByLoading(){
-		
-	let toLoad = {};
-    // has a save file
-    if (window.localStorage[saveName] && window.localStorage[saveName] !== "null") {
-        toLoad = JSON.parse(window.localStorage[saveName]);
-    }
-		
-	if (toLoad.options !== undefined && toLoad.options.ferretMode === true) {
-        return true;
-    }
-	
-	return false;
-	
 }
 
 function save() {

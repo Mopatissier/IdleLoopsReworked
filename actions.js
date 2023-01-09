@@ -166,6 +166,7 @@ function Actions() {
         towns[BEGINNERSVILLE].suppliesCost = 450;
 		view.adjustGoldCost("BuySupplies", towns[BEGINNERSVILLE].suppliesCost);
         view.updateResource("supplies");
+		gamblesInARow = 0;
         curAdvGuildSegment = 0;
         curCraftGuildSegment = 0;
 		curWizCollegeSegment = 0;

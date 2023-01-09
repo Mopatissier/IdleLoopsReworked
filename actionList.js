@@ -97,29 +97,29 @@ function Action(name, extras) {
 // always the same; these are loaded lazily once (and then they become own properties of the
 // specific Action object)
 defineLazyGetter(Action.prototype, "tooltip", function() {
-    return _txt(`actions>${getXMLName(this.name)}>tooltip`);
+    return _text(`actions>${getXMLName(this.name)}>tooltip`);
 });
 defineLazyGetter(Action.prototype, "tooltip2", function() {
-    return _txt(`actions>${getXMLName(this.name)}>tooltip2`);
+    return _text(`actions>${getXMLName(this.name)}>tooltip2`);
 });
 defineLazyGetter(Action.prototype, "label", function() {
-    return _txt(`actions>${getXMLName(this.name)}>label`);
+    return _text(`actions>${getXMLName(this.name)}>label`);
 });
 defineLazyGetter(Action.prototype, "labelDone", function() {
-    return _txt(`actions>${getXMLName(this.name)}>label_done`);
+    return _text(`actions>${getXMLName(this.name)}>label_done`);
 });
 
 // all actions to date with info text have the same info text, so presently this is
 // centralized here (function will not be called by the game code if info text is not
 // applicable)
 Action.prototype.infoText = function() {
-    return `${_txt(`actions>${getXMLName(this.name)}>info_text1`)}
+    return `${_text(`actions>${getXMLName(this.name)}>info_text1`)}
             <i class='fa fa-arrow-left'></i>
-            ${_txt(`actions>${getXMLName(this.name)}>info_text2`)}
+            ${_text(`actions>${getXMLName(this.name)}>info_text2`)}
             <i class='fa fa-arrow-left'></i>
-            ${_txt(`actions>${getXMLName(this.name)}>info_text3`)}
-            <br><span class='bold'>${`${_txt("actions>tooltip>total_found")}: `}</span><div id='total${this.varName}'></div>
-            <br><span class='bold'>${`${_txt("actions>tooltip>total_checked")}: `}</span><div id='checked${this.varName}'></div>`;
+            ${_text(`actions>${getXMLName(this.name)}>info_text3`)}
+            <br><span class='bold'>${`${_text("actions>tooltip>total_found")}: `}</span><div id='total${this.varName}'></div>
+            <br><span class='bold'>${`${_text("actions>tooltip>total_checked")}: `}</span><div id='checked${this.varName}'></div>`;
 };
 
 // same as Action, but contains shared code to load segment names for multipart actions.
@@ -156,16 +156,16 @@ DungeonAction.prototype.completedTooltip = function() {
     if (this.dungeonNum < 3) {
         for (let i = 0; i < dungeons[this.dungeonNum].length; i++) {
             ssDivContainer += `Floor ${i + 1} |
-                                <div class='bold'>${_txt(`actions>${getXMLName(this.name)}>chance_label`)} </div> <div id='soulstoneChance${this.dungeonNum}_${i}'></div>% - 
-                                <div class='bold'>${_txt(`actions>${getXMLName(this.name)}>last_stat_label`)} </div> <div id='soulstonePrevious${this.dungeonNum}_${i}'>NA</div> - 
-                                <div class='bold'>${_txt(`actions>${getXMLName(this.name)}>label_done`)}</div> <div id='soulstoneCompleted${this.dungeonNum}_${i}'></div><br>`;
+                                <div class='bold'>${_text(`actions>${getXMLName(this.name)}>chance_label`)} </div> <div id='soulstoneChance${this.dungeonNum}_${i}'></div>% - 
+                                <div class='bold'>${_text(`actions>${getXMLName(this.name)}>last_stat_label`)} </div> <div id='soulstonePrevious${this.dungeonNum}_${i}'>NA</div> - 
+                                <div class='bold'>${_text(`actions>${getXMLName(this.name)}>label_done`)}</div> <div id='soulstoneCompleted${this.dungeonNum}_${i}'></div><br>`;
         }
     }
-    return _txt(`actions>${getXMLName(this.name)}>completed_tooltip`) + ssDivContainer;
+    return _text(`actions>${getXMLName(this.name)}>completed_tooltip`) + ssDivContainer;
 };
 DungeonAction.prototype.getPartName = function() {
     const floor = Math.floor((towns[this.townNum][`${this.varName}LoopCounter`] + 0.0001) / this.segments + 1);
-    return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${floor <= dungeons[this.dungeonNum].length ? numberToWords(floor) : _txt(`actions>${getXMLName(this.name)}>label_complete`)}`;
+    return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${floor <= dungeons[this.dungeonNum].length ? numberToWords(floor) : _text(`actions>${getXMLName(this.name)}>label_complete`)}`;
 };
 
 function TrialAction(name, trialNum, extras) {
@@ -181,7 +181,7 @@ TrialAction.prototype.completedTooltip = function() {
 }
 TrialAction.prototype.getPartName = function() {
     const floor = Math.floor((towns[this.townNum][`${this.varName}LoopCounter`] + 0.0001) / this.segments + 1);
-    return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${floor <= trials[this.trialNum].length ? numberToWords(floor) : _txt(`actions>${getXMLName(this.name)}>label_complete`)}`;
+    return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${floor <= trials[this.trialNum].length ? numberToWords(floor) : _text(`actions>${getXMLName(this.name)}>label_complete`)}`;
 };
 TrialAction.prototype.currentFloor = function() {
     return Math.floor(towns[this.townNum][`${this.varName}LoopCounter`] / this.segments + 0.0000001);
@@ -1071,6 +1071,7 @@ function adjustPots() {
     let basePots = town.getLevel("Wander") * 5 + (getLevelSquirrelAction("Wander") >= 3 ? 100 : 0) + (getLevelSquirrelAction("Wander") >= 4 ? 100 : 0);
     town.totalPots = Math.floor(basePots + basePots * getSurveyBonus(town));
 }
+
 function adjustLocks() {
     let town = towns[BEGINNERSVILLE];
     let baseLocks = town.getLevel("Wander");
@@ -2576,7 +2577,7 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
 		}
     },
     getPartName() {
-        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[BEGINNERSVILLE].HealLoopCounter + 0.0001) / this.segments + 1))}`;
+        return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[BEGINNERSVILLE].HealLoopCounter + 0.0001) / this.segments + 1))}`;
     },
     visible() {
         return towns[BEGINNERSVILLE].getLevel("Secrets") >= 20;
@@ -2861,7 +2862,7 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
     },
     getPartName() {
 		const powerLevel = Math.floor((towns[BEGINNERSVILLE].MagFgtLoopCounter) / 9 + 0.0000001);
-		return `${_txt(`actions>${getXMLName(this.name)}>part_names>name_`+`${powerLevel+1}`)}`;
+		return `${_text(`actions>${getXMLName(this.name)}>part_names>name_`+`${powerLevel+1}`)}`;
 
     },
 	getSegmentName(segment) {
@@ -3787,7 +3788,7 @@ Action.GatherHerbs = new Action("Gather Herbs", {
 			
 			case 3: actionEffect = () => {
 						towns[FORESTPATH].finishRegular(this.varName, 10, () => {
-							const manaGain = 250;
+							const manaGain = 275;
 							addMana(manaGain);
 							return manaGain;
 						});
@@ -4483,7 +4484,7 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
     },
     loopCost(segment) {
 		const numberLoops = towns[FORESTPATH].DistillLoopCounter / 3;
-        return Math.floor(Math.pow(1.4, numberLoops)+ 0.0000001) * 40000;
+        return Math.floor(Math.pow(1.6, numberLoops)+ 0.0000001) * 40000;
     },
     tickProgress(offset) {
 		if(this.squirrelAction) return 0;
@@ -4497,7 +4498,7 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
 		view.adjustExpGain(Action.ConcoctPotions);
     },
     getPartName() {
-        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[FORESTPATH].DistillLoopCounter + 0.0001) / this.segments + 1))}`;
+        return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[FORESTPATH].DistillLoopCounter + 0.0001) / this.segments + 1))}`;
     }, 
     visible() {
         return getSkillLevel("Alchemy") >= 1;
@@ -4939,7 +4940,7 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
 		if(towns[FORESTPATH].BurnLoopCounter%4 === 0) addResource("reputation", -1);
     },
     getPartName() {
-        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[FORESTPATH].BurnLoopCounter + 0.0001) / this.segments + 1))}`;
+        return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[FORESTPATH].BurnLoopCounter + 0.0001) / this.segments + 1))}`;
     },  
     visible() {
 		return towns[FORESTPATH].getLevel("Feed") >= 5;
@@ -5553,7 +5554,7 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
     },
     loopCost(segment) {
 		const numberLoops = towns[FORESTPATH].ConcoctLoopCounter / 3;
-        return Math.floor(Math.pow(1.4, numberLoops)+ 0.0000001) * 50000;
+        return Math.floor(Math.pow(1.6, numberLoops)+ 0.0000001) * 50000;
     },
     tickProgress(offset) {
 		if(this.squirrelAction) return 0;
@@ -5567,7 +5568,7 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
 		view.adjustExpGain(Action.DistillPotions);
     },	
     getPartName() {
-        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[FORESTPATH].ConcoctLoopCounter + 0.0001) / this.segments + 1))}`;
+        return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[FORESTPATH].ConcoctLoopCounter + 0.0001) / this.segments + 1))}`;
     }, 
     visible() {
         return getSkillLevel("Brewing") >= 1;
@@ -5792,7 +5793,7 @@ Action.ExploreCity = new Action("Explore City", {
     },
     affectedBy: ["Take Glasses"],
     manaCost() {
-        return 750;
+        return 1500;
     },
     visible() {
         return true;
@@ -5801,66 +5802,26 @@ Action.ExploreCity = new Action("Explore City", {
         return true;
     },
     finish() {
-        towns[MERCHANTON].finishProgress(this.varName, 100 * (resources.glasses ? 2 : 1));
+        towns[MERCHANTON].finishProgress(this.varName, 50 * (resources.glasses ? 4 : 1));
+		// 50 * guild mult * ?4:1
     },
 });
+
 function adjustSuckers() {
     let town = towns[MERCHANTON];
-    let baseGamble = town.getLevel("City") * 3;
-    town.totalGamble = Math.floor(baseGamble * getSkillMod("Spatiomancy", 600, 800, .5) + baseGamble * getSurveyBonus(town));
+    let baseGamble = town.getLevel("City") * 1.5 + town.getLevel("Drunk") * 2.5;
+    town.totalGamble = Math.floor(baseGamble + 0.000001);
 }
 
-Action.Gamble = new Action("Gamble", {
-    type: "limited",
-    expMult: 2,
-    townNum: 2,
-    storyReqs(storyNum) {
-        switch (storyNum) {
-            case 1:
-                return towns[MERCHANTON][`checked${this.varName}`] >= 1;
-            case 2:
-                return towns[MERCHANTON][`good${this.varName}`] >= 1;
-            case 3:
-                return towns[MERCHANTON][`good${this.varName}`] >= 30;
-            case 4:
-                return storyReqs.failedGamble;
-            case 5:
-                return storyReqs.failedGambleLowMoney;
-        }
-        return false;
-    },
-    stats: {
-        Cha: 0.2,
-        Luck: 0.8
-    },
-    canStart() {
-        return resources.gold >= 20 && resources.reputation >= -5;
-    },
-    cost() {
-        addResource("gold", -20);
-        addResource("reputation", -1);
-    },
-    manaCost() {
-        return 1000;
-    },
-    visible() {
-        return true;
-    },
-    unlocked() {
-        return towns[MERCHANTON].getLevel("City") >= 10;
-    },
-    finish() {
-        towns[MERCHANTON].finishRegular(this.varName, 10, () => {
-            let goldGain = Math.floor(60 * getSkillBonus("Thievery"));
-            addResource("gold", goldGain);
-            return 60;
-        });
-    },
-});
+function adjustSlaves() {
+    let town = towns[MERCHANTON];
+    let baseSlave = town.getLevel("City") * 1 + town.getLevel("Slums") * 2;
+    town.totalSlaveAuction = Math.floor(baseSlave + 0.000001);
+}
 
 Action.GetDrunk = new Action("Get Drunk", {
     type: "progress",
-    expMult: 3,
+    expMult: 2,
     townNum: 2,
     varName: "Drunk",
     storyReqs(storyNum) {
@@ -5891,13 +5852,13 @@ Action.GetDrunk = new Action("Get Drunk", {
         Soul: 0.2
     },
     canStart() {
-        return resources.reputation >= -3;
+        return resources.reputation > 0;
     },
     cost() {
         addResource("reputation", -1);
     },
     manaCost() {
-        return 1000;
+        return 2000;
     },
     visible() {
         return true;
@@ -5906,7 +5867,215 @@ Action.GetDrunk = new Action("Get Drunk", {
         return towns[MERCHANTON].getLevel("City") >= 20;
     },
     finish() {
-        towns[MERCHANTON].finishProgress(this.varName, 100);
+        towns[MERCHANTON].finishProgress(this.varName, 80);
+		// * guild mult
+    },
+});
+
+Action.HelpSlums = new Action("Help Slums", {
+    type: "progress",
+    expMult: 2,
+    townNum: 2,
+    varName: "Slums",
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Dex: 0.5,
+		Str: 0.2,
+		Con: 0.1,
+		Cha: 0.2
+    },
+    canStart() {
+        return resources.reputation < 0;
+    },
+    cost() {
+        addResource("reputation", 1);
+    },
+    manaCost() {
+        return 2500;
+    },
+    visible() {
+        return towns[MERCHANTON].getLevel("City") >= 10;
+    },
+    unlocked() {
+        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+    },
+    finish() {
+        towns[MERCHANTON].finishProgress(this.varName, 80);
+		// * guild mult
+    },
+});
+
+Action.Gamble = new Action("Gamble", {
+    type: "limited",
+    expMult: 2,
+    townNum: 2,
+	gambleWon: false,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return towns[MERCHANTON][`checked${this.varName}`] >= 1;
+            case 2:
+                return towns[MERCHANTON][`good${this.varName}`] >= 1;
+            case 3:
+                return towns[MERCHANTON][`good${this.varName}`] >= 30;
+            case 4:
+                return storyReqs.failedGamble;
+            case 5:
+                return storyReqs.failedGambleLowMoney;
+        }
+        return false;
+    },
+    stats: {
+        Cha: 0.2,
+        Luck: 0.8
+    },
+    canStart() {
+		let costs = 20 + (gamblesInARow*(gamblesInARow+1)/2) * 2
+		return resources.gold >= costs && resources.reputation > 0;
+    },
+    cost() {
+		
+		let costs = (20 + (gamblesInARow*(gamblesInARow+1)/2) * 2) * (-1)
+        addResource("gold", costs);
+        addResource("reputation", -1);
+		
+		if(this.gambleWon){
+			gamblesInARow ++;
+			this.gambleWon = false;
+		}
+		else {
+			gamblesInARow = 0;
+		}
+		
+		view.adjustGoldCost("Gamble", Action.Gamble.goldCost());
+		
+    },
+    manaCost() {
+        return 1000;
+    },
+    visible() {
+        return true;
+    },
+    unlocked() {
+        return towns[MERCHANTON].getLevel("City") >= 10;
+    },
+	goldCost() {
+        return ((gamblesInARow+1)*(gamblesInARow+2)/2) * 2;
+    },
+    finish() {
+		
+		let goodGambles = towns[MERCHANTON].goodGamble;
+		let goodGamblesLeft = towns[MERCHANTON].goodTempGamble;
+		
+		towns[MERCHANTON].finishRegular(this.varName, 10, () => {
+            let goldGain = 20 + ((gamblesInARow+1)*(gamblesInARow+2)/2) * 2
+            addResource("gold", goldGain);
+            return goldGain;
+        });
+		
+		if((goodGambles + 1 == towns[MERCHANTON].goodGamble) || (goodGamblesLeft - 1 == towns[MERCHANTON].goodTempGamble)){
+			this.gambleWon = true;
+			console.log("You won!");
+		}
+		
+    },
+});
+
+Action.SlaveAuction = new Action("Slave Auction", {
+    type: "limited",
+    expMult: 4,
+    townNum: 2,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Per: 0.3,
+		Cha: 0.5,
+		Luck: 0.2
+    },
+    canStart() {
+		let minCost = 70 + resources.reputation;
+		return resources.gold >= minCost && resources.reputation < 0;
+    },
+    cost() {
+        
+		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
+		let costPerSlave = 70 + resources.reputation;
+		
+		let costs = (Math.min(Math.floor(resources.gold/costPerSlave) * costPerSlave, totalSlaves * costPerSlave)) * (-1);
+		
+		addResource("gold", costs);
+        resources.reputation = 0;
+    },
+    manaCost() {
+        return 10000;
+    },
+	allowed() {
+        return 1;
+    },
+    visible() {
+        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+    },
+    unlocked() {
+        return towns[MERCHANTON].getLevel("Slums") >= 20;
+    },
+	goldCost() {
+		
+		if(resources.reputation >= 0) return 0;
+		
+		let bounty = 60;
+		let costPerSlave = 70 + resources.reputation;
+		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
+		
+		let numberSlavesToBuy = Math.min(Math.floor(resources.gold/costPerSlave), totalSlaves);
+		
+		if(numberSlavesToBuy <= towns[MERCHANTON].goodSlaveAuction){
+			
+			return numberSlavesToBuy * (bounty - costPerSlave);
+			
+		} else {
+			
+			let totalGold = towns[MERCHANTON].goodSlaveAuction * (bounty - costPerSlave);
+			
+			let slavesNotChecked = numberSlavesToBuy - towns[MERCHANTON].goodSlaveAuction;
+			
+			let slavesNotCheckedWithBounty = Math.floor((towns[MERCHANTON].checkedSlaveAuction + slavesNotChecked)/10) - towns[MERCHANTON].goodSlaveAuction;
+			
+			totalGold += slavesNotCheckedWithBounty * (bounty - costPerSlave);
+			totalGold -= (slavesNotChecked - slavesNotCheckedWithBounty) * costPerSlave;
+			
+			return totalGold;
+			
+		}
+		
+		
+    },
+    finish() {
+		
+		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
+		let costPerSlave = 70 + resources.reputation;
+		let bounty = 60;
+		
+		let numberOfLoops = Math.min(Math.floor(resources.gold/costPerSlave), totalSlaves);
+		
+		for(let i = 0; i <= numberOfLoops; i++){
+			
+			towns[MERCHANTON].finishRegular(this.varName, 10, () => {
+				addResource("gold", bounty);
+				return bounty;
+			});
+		}
+        
     },
 });
 
@@ -5914,16 +6083,20 @@ Action.BuyManaZ3 = new Action("Buy Mana Z3", {
     type: "normal",
     expMult: 1,
     townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
     stats: {
         Cha: 0.7,
         Int: 0.2,
         Luck: 0.1
     },
     manaCost() {
-        return 100;
-    },
-    canStart() {
-        return !portalUsed;
+        return 200;
     },
     visible() {
         return true;
@@ -5932,7 +6105,7 @@ Action.BuyManaZ3 = new Action("Buy Mana Z3", {
         return true;
     },
     goldCost() {
-        return Math.floor(50 * getSkillBonus("Mercantilism"));
+        return 100;
     },
     finish() {
         addMana(resources.gold * this.goldCost());
@@ -5947,11 +6120,7 @@ Action.SellPotions = new Action("Sell Potions", {
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return storyReqs.potionSold;
-            case 2:
-                return storyReqs.sell20PotionsInALoop;
-            case 3:
-                return storyReqs.sellPotionFor100Gold;
+                return 1;
         }
         return false;
     },
@@ -5961,7 +6130,7 @@ Action.SellPotions = new Action("Sell Potions", {
         Luck: 0.1
     },
     manaCost() {
-        return 1000;
+        return 2000;
     },
     visible() {
         return true;
@@ -5970,11 +6139,11 @@ Action.SellPotions = new Action("Sell Potions", {
         return true;
     },
     finish() {
-        if (resources.potions >= 20) unlockStory("sell20PotionsInALoop");
+        /*if (resources.potions >= 20) unlockStory("sell20PotionsInALoop");
         addResource("gold", resources.potions * getSkillLevel("Alchemy"));
         resetResource("potions");
         unlockStory("potionSold");
-        if (getSkillLevel("Alchemy") >= 100) unlockStory("sellPotionFor100Gold");
+        if (getSkillLevel("Alchemy") >= 100) unlockStory("sellPotionFor100Gold");*/
     },
 });
 
@@ -6054,10 +6223,12 @@ Action.AdventureGuild = new MultipartAction("Adventure Guild", {
         return `Rank ${getAdvGuildRank(segment % 3).name}`;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 5;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 5;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 20;
+		return false;
     },
     finish() {
         guild = "Adventure";
@@ -6119,10 +6290,12 @@ Action.GatherTeam = new Action("Gather Team", {
         return 2000;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 10;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 10;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 20;
+		return false;
     },
     finish() {
         addResource("teamMembers", 1);
@@ -6185,10 +6358,12 @@ Action.LargeDungeon = new DungeonAction("Large Dungeon", 1, {
         finishDungeon(this.dungeonNum, curFloor);
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 5;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 5;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 20;
+		return false;
     },
     finish() {
         handleSkillExp(this.skills);
@@ -6274,10 +6449,12 @@ Action.CraftingGuild = new MultipartAction("Crafting Guild", {
         return `Rank ${getCraftGuildRank(segment % 3).name}`;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 5;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 5;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 30;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 30;
+		return false;
     },
     finish() {
         guild = "Crafting";
@@ -6335,10 +6512,12 @@ Action.CraftArmor = new Action("Craft Armor", {
         return 1000;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 15;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 15;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 30;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 30;
+		return false;
     },
     finish() {
         addResource("armor", 1);
@@ -6388,10 +6567,12 @@ Action.Apprentice = new Action("Apprentice", {
         return 2000;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 20;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 40;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 40;
+		return false;
     },
     finish() {
         towns[MERCHANTON].finishProgress(this.varName, 30 * getCraftGuildRank().bonus);
@@ -6441,10 +6622,12 @@ Action.Mason = new Action("Mason", {
         return 2000;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 40;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 40;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 60 && towns[MERCHANTON].getLevel("Apprentice") >= 100;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 60 && towns[MERCHANTON].getLevel("Apprentice") >= 100;
+		return false;
     },
     finish() {
         towns[MERCHANTON].finishProgress(this.varName, 20 * getCraftGuildRank().bonus);
@@ -6493,10 +6676,12 @@ Action.Architect = new Action("Architect", {
         return 2000;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 60;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 60;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("Drunk") >= 80 && towns[MERCHANTON].getLevel("Mason") >= 100;
+        //return towns[MERCHANTON].getLevel("Drunk") >= 80 && towns[MERCHANTON].getLevel("Mason") >= 100;
+		return false;
     },
     finish() {
         towns[MERCHANTON].finishProgress(this.varName, 10 * getCraftGuildRank().bonus);
@@ -6530,10 +6715,12 @@ Action.ReadBooks = new Action("Read Books", {
         return 2000;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("City") >= 5;
+        //return towns[MERCHANTON].getLevel("City") >= 5;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("City") >= 50;
+        //return towns[MERCHANTON].getLevel("City") >= 50;
+		return false;
     },
     finish() {
         unlockStory("booksRead");
@@ -6569,10 +6756,12 @@ Action.BuyPickaxe = new Action("Buy Pickaxe", {
         return 3000;
     },
     visible() {
-        return towns[MERCHANTON].getLevel("City") >= 60;
+        //return towns[MERCHANTON].getLevel("City") >= 60;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("City") >= 90;
+        //return towns[MERCHANTON].getLevel("City") >= 90;
+		return false;
     },
     finish() {
         addResource("pickaxe", true);
@@ -6634,10 +6823,12 @@ Action.HeroesTrial = new TrialAction("Heroes Trial", 0, {
         view.updateTrialInfo(this.trialNum, curFloor);
     },*/
     visible() {
-        return towns[this.townNum].getLevel("Survey") >= 100;
+        //return towns[this.townNum].getLevel("Survey") >= 100;
+		return false;
     },
     unlocked() {
-        return towns[this.townNum].getLevel("Survey") >= 100;
+        //return towns[this.townNum].getLevel("Survey") >= 100;
+		return false;
     },
     finish() {
         handleSkillExp(this.skills);
@@ -6669,10 +6860,12 @@ Action.StartTrek = new Action("Start Trek", {
         return Math.ceil(12000);
     },
     visible() {
-        return towns[MERCHANTON].getLevel("City") >= 30;
+        //return towns[MERCHANTON].getLevel("City") >= 30;
+		return false;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("City") >= 60;
+        //return towns[MERCHANTON].getLevel("City") >= 60;
+		return false;
     },
     finish() {
         //unlockTown(3);
@@ -6699,10 +6892,12 @@ Action.Underworld = new Action("Underworld", {
         return resources.gold >= 500;
     },
     visible() {
-        return getExploreProgress() >= 50;
+        //return getExploreProgress() >= 50;
+		return false;
     },
     unlocked() {
-        return getExploreProgress() >= 50;
+        //return getExploreProgress() >= 50;
+		return false;
     },
     goldCost() {
         return 500;
@@ -7552,7 +7747,7 @@ Action.TidyUp = new MultipartAction("Tidy Up", {
         // empty.
     },
     getPartName() {
-        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[VALHALLA].TidyLoopCounter + 0.0001) / this.segments + 1))}`;
+        return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[VALHALLA].TidyLoopCounter + 0.0001) / this.segments + 1))}`;
     },
     visible() {
         return towns[VALHALLA].getLevel("Canvassed") >= 10;
@@ -8750,7 +8945,7 @@ Action.RescueSurvivors = new MultipartAction("Rescue Survivors", {
         addResource("reputation", 4);
     },
     getPartName() {
-        return `${_txt(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[JUNGLEPATH].RescueLoopCounter + 0.0001) / this.segments + 1))}`;
+        return `${_text(`actions>${getXMLName(this.name)}>label_part`)} ${numberToWords(Math.floor((towns[JUNGLEPATH].RescueLoopCounter + 0.0001) / this.segments + 1))}`;
     },
     visible() {
         return towns[JUNGLEPATH].getLevel("ExploreJungle") >= 10;

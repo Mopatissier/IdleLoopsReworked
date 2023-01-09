@@ -78,21 +78,12 @@ window.Localization = {
     loadXML(libName, callback) {
         if (libName === "fallback"){
 						
-			if(!getFerretModeByLoading()){
-				$.get("lang/en-EN/game.xml", null, callback, "xml");
-			} else {
-				$.get("lang/en-EN-Ferret/game.xml", null, callback, "xml");
-			}
-			
+			$.get("lang/en-EN/game.xml", null, callback, "xml");
 			//console.log(callback);
 		}
         else{
 			
-			if(!getFerretModeByLoading()){
-				$.get(`lang/${Localization.currentLang}/${libName}.xml`, null, callback, "xml");	
-			} else {
-				$.get("lang/en-EN-Ferret/game.xml", null, callback, "xml");
-			}
+			$.get(`lang/${Localization.currentLang}/${libName}.xml`, null, callback, "xml");	
 			
 		}
     },
@@ -109,6 +100,18 @@ Localization.init();
 // binding the _txt function for simplier use
 window._txt = Localization.txt;
 window._txtsObj = Localization.txtsObj;
+
+function _text(txt){
+	let textToGet = _txt(txt);
+	
+	if(options.ferretMode){
+		textToGet = textToGet.replaceAll("squirrel", "ferret");
+		textToGet = textToGet.replaceAll("Squirrel", "Ferret");
+		textToGet = textToGet.replaceAll("nut", "bone");
+	}
+	
+	return textToGet;
+}
 
 let locCheck = false;
 Localization.loadLib("fallback", () => {

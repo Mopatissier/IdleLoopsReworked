@@ -6,7 +6,7 @@ const statGraph = {
         const dataset = this.getGraphDatasets();
         const statLabels = [];
         $(statList).each((_index, stat) => {
-            statLabels.push(_txt(`stats>${stat}>short_form`));
+            statLabels.push(_text(`stats>${stat}>short_form`));
         });
         this.graphObject = new Chart(statChartCtx, {
             type: "radar",
@@ -64,7 +64,7 @@ const statGraph = {
     getGraphDatasets() {
         const dataset = [
             {
-                label: _txt("stats>tooltip>mana_cost_reduction"),
+                label: _text("stats>tooltip>mana_cost_reduction"),
                 data: [],
                 fill: true,
                 backgroundColor: "rgba(157, 103, 205, 0.2)",

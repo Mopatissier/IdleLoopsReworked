@@ -10,6 +10,15 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.2"><![CDATA[
+            <b> January 9th, 2023 </b>
+			I'm back! Sorry for my little vacation, I'm finally there to work on Merchanton.<br>
+			• Fixed a few tooltips.<br>
+			• Fixed a small visual glitch in the action list.<br>
+			• Made slight changes months ago and forgot what they were about. Oops, sorry!<br>
+			• Nerfed the potion making actions : they're slightly harder to make but are now useful.<br>
+			• Added/Reworked 7 actions in Merchanton.<br>
+            ]]></version>
 			<version verNum="0.3.1"><![CDATA[
             <b> September 1st, 2022 (again)</b>
 			A weird option appeared in the option tab? Only use it if you really dislike squirrels. If you do, you'll have to live with the fact that you betrayed your squirrel friend!
@@ -382,7 +391,7 @@
         </resource>
         <!--singular items with img icons rather than counts-->
 		<resource initially_hidden="true" no_count="true">
-            <title><![CDATA[<img src="img/petSquirrel.svg" class="smallIcon">]]></title>
+            <title><![CDATA[<img src="img/petSquirrel.svg" class="smallIcon" id = "resourceSquirrel">]]></title>
             <id>squirrel</id>
             <desc>Your partner in crime. Stuck in the time loop with you.</desc>
         </resource>
@@ -754,7 +763,7 @@
             <label>Yin Yang Magic</label>
             <desc><![CDATA[Now it finally feels complete!<br><br>
 			
-			Acts if you have have (buff level) minimum reputation on you, for both yin and yang magic.<br>
+			Acts if you have (buff level) minimum reputation on you, for both yin and yang magic.<br>
 			For example, if you have this buff at level 3 with 10 reputation:<br>
 			The yin magic will be activated as if you have -3 reputations.<br>
 			The yang magic will be activated as if you have 10 reputations.<br><br>
@@ -1200,7 +1209,7 @@
         ]]></tooltip>
             <tooltip2><![CDATA[
 			times per loop.<br>
-			• Every level of Spirit Blessing will multiply that limit by 3.<hr class='divider'>
+			• Every level of Spirit Blessing will multiply that limit by 3, starting at Spirit Blessing level 5.<hr class='divider'>
         ]]></tooltip2>
 		<squirrel_1><![CDATA[
 			Uh oh. This action also asks you to hold soulstones.<br>
@@ -2120,7 +2129,7 @@
 			It has probably something to do with the new magical power the squirrel has.<br>
 			Also, it looks like the squirrel now got hooked on them... Are they that tasty?<br>
 			You're tempted to try, but... maybe another day?<hr class='divider'>
-			<b>Effect: </b>Consume one herb instead of gathering it to gain 250 mana.<hr class='divider'>	
+			<b>Effect: </b>Consume one herb instead of gathering it to gain 275 mana.<hr class='divider'>	
 		]]></squirrel_3>
             <story_1><![CDATA[<b>Plant checked for use:</b>⮀ You pull up random plants across the forest that emanate mana only to find that in most cases, they're simply plants that have started gathering mana, but in some cases they're actually magical plants. Small distinction, but a significant one.]]></story_1>
         </gather_herbs>
@@ -2631,7 +2640,7 @@
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			The squirrel looks confident this time.<br>
-			It asks you to follow it : it leads you towards Commerceville.<br>
+			It asks you to follow it : it leads you towards Merchanton.<br>
 			... And suddenly, you find yourself in the Squirrel Sanctuary.<br>
 			How did this happen?!<hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<br><hr class='divider'>
@@ -2642,8 +2651,12 @@
         <explore_city>
             <label>Explore City</label>
             <label_done>City Explored</label_done>
-            <tooltip><![CDATA[
-            Everyone is so busy, and there's so much to do.<br>2x progress with glasses.
+			<tooltip><![CDATA[
+			It's been so long, you almost forgot how big a city could be. It's huge here, and everyone looks busy!<br>
+			If you find some help, it'll probably be easier to find good places to explore.<hr class='divider'>
+			• Gives 50 exp worth of progress as a base.<br>
+			• 4x progress with glasses.<br>
+			• Your guild multiplier impacts this action .<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>1% City Explored:</b>⮀ This is a relatively big city, and as busy as you've ever seen. You have no idea where anything is and nobody seems inclined to spare enough time to talk to you.]]></story_1>
 			<story_2><![CDATA[<b>10% City Explored:</b>⮀ You've found a jovial man willing to chat with you on his way to the casino, where he invited you in for a game of poker. You declined, but it might be a good idea to come here on your own sometime.]]></story_2>
@@ -2655,26 +2668,17 @@
 			<story_8><![CDATA[<b>90% City Explored:</b>⮀ In one of the snobbiest streets of the city, you find a man selling, of all things, mining supplies. He says that he's selling the absolute pinnacle of mining-related craftsmanship, and the second you appear less than enamored he scoffs and sends you away.]]></story_8>
 			<story_9><![CDATA[<b>100% City Explored:</b>⮀ You've seen all that Merchanton has to offer, from all levels of society. The one constant is that no matter where you go, people are busy. This city is a hub for rare items and clandestine deals, and fortunes are made and lost like water to the frantic beat of the city.]]></story_9>
         </explore_city>
-        <gamble>
-            <label>Gamble</label>
-            <label_done>Suckers Swindled</label_done>
-            <info_text1>Suckers left</info_text1>
-            <info_text2>Suckers total</info_text2>
-            <info_text3>People to check if they're suckers</info_text3>
-            <tooltip><![CDATA[
-            The cards still somehow come out different every time.<br>Has 2x exp/talent gain<br>Costs 20 gold and 1 reputation.<br>Requires a reputation above -6.<br>You win against every 10 suckers, and get 60 gold for winning.<br>Unlocked at 10% City Explored.
-        ]]></tooltip>
-			<story_1><![CDATA[<b>Sucker checked:</b>⮀ You sit down at the poker table… and promptly lose everything you bet. It seems Merchanton has a very competitive gambling culture. Still, there must be some people you can win against.]]></story_1>
-			<story_2><![CDATA[<b>Sucker swindled:</b>⮀ You've found him, barely old enough to enter and clearly struggling to remember the rules of the game. It doesn't take long before all his money belongs to you, and you make a mental note to find him next time you come here.]]></story_2>
-			<story_3><![CDATA[<b>30 Suckers swindled:</b>⮀ A fool and his money are soon parted, and you've found every fool in Merchanton. The money you conned them out of will be worth quite a lot of mana, easily worth the time you spent on it.]]></story_3>
-			<story_4><![CDATA[<b>Action failed with low reputation:</b>⮀ You're not sure if it's the conspicuous winning streak or the smell of alcohol on your breath, but it seems casino security has decided to evict you. Big, intimidating thugs practically drag you out, and by the looks on their faces they don't want to see you again anytime soon.]]></story_4>
-			<story_5><![CDATA[<b>Action failed with low money:</b>⮀ As you sit down at the table and reach into your pockets, you realize that you don't have any money left! You hastily excuse yourself and leave the casino, and try to ignore the looks of pity you're given as you go.]]></story_5>
-        </gamble>
-        <get_drunk>
+		<get_drunk>
             <label>Get Drunk</label>
             <label_done>Rumors Heard</label_done>
-            <tooltip><![CDATA[
-            Sometimes you just need a drink.<br>Requires a reputation above -4.<br>Has 3x exp/talent gain.<br>Costs 1 reputation.<br>Unlocked at 20% City Explored.
+			<tooltip><![CDATA[
+			Let's see how much drinks you can put on your tab before being thrown out!<br>
+			Adventurers seem to be gold mine for rumors, but sadly they refuse to talk to anyone other than people of the same rank.<hr class='divider'>
+			• Gives 80 exp worth of progress as a base.<br>
+			• Your adventurer guild multiplier impacts this action .<br>
+			• Require a reputation strictly above 0.<br>
+			• Costs 1 reputation.<br>
+			• Unlocked at 20% City Explored.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>1% Rumors Heard:</b>⮀ A mug of beer and a cheerful environment, it's equal parts relaxing and enjoyable. You leave without paying, but it's okay if you're not welcome there anymore, since they won't remember next loop.]]></story_1>
 			<story_2><![CDATA[<b>10% Rumors Heard:</b>⮀ Lots of people turn into rampant gossips after a few glasses. You're learning about all sorts of interesting places, as well as far too many cases of infidelity and other personal drama for your liking.]]></story_2>
@@ -2685,24 +2689,89 @@
 			<story_7><![CDATA[<b>80% Rumors Heard:</b>⮀ In a more high-class bar, you catch wind of an architectural design competition, where various architects each design the same house and the one with the best design wins the contract to build it. A polite inquiry gets you the name of the person you need to know to enter the competition.]]></story_7>
 			<story_8><![CDATA[<b>100% Rumors Heard:</b>⮀ You've been to every bar and dinner party, and heard every bit of gossip there is to hear. While you've only met a tiny fraction of Merchanton's population you've had drinks with every rung of society, and you're starting to feel like the city's running out of secrets for you to uncover.]]></story_8>
         </get_drunk>
+		<help_slums>
+			<label>Help Slums</label>
+			<label_done>Slumdwellers Helped</label_done>
+			<tooltip><![CDATA[
+			It's crazy the number of people being kidnapped here! It's probably a bad idea to be around if you haven't made people fear you first.<br>
+			Making shelters for the slumdwellers is the easiest way to make them talk, and they've seen quite a lot.<hr class='divider'>
+			• Gives 80 exp worth of progress as a base.<br>
+			• Your cratfing guild multiplier impacts this action .<br>
+			• Require a negative reputation.<br>
+			• Gives 1 reputation.<br>
+			• Unlocked at 20% Rumors Heard.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Helped no one:</b>⮀ Placeholder.]]></story_1>
+		</help_slums>
+        <gamble>
+            <label>Gamble</label>
+            <label_done>Suckers Swindled</label_done>
+            <info_text1>Suckers left</info_text1>
+            <info_text2>Suckers total</info_text2>
+            <info_text3>People to check if they're suckers</info_text3>
+			<tooltip><![CDATA[
+			You found a great game that won't make the casino too wary of you for winning a lot in a row!<br>
+			It says : "Bet your previous winnings to gain more or stop and rack in the cash! 4 players, only 1 person can lose every game!".<br>
+			Now to find suckers to take the losses for you...<hr class='divider'>
+			• Bet 20 gold and all the money you won doing this action.<br>
+			• Get more gold each win : 2, 4, 6, 8,...<br>
+			• Currently would give 
+			]]></tooltip>
+			<tooltip2> <![CDATA[
+			 gold.<br>
+			• Require a reputation strictly above 0.<br>
+			• Costs 0 reputation at first, then 1 reputation after 5 wins, then 1 more for each following 10 wins.<br>
+			• You win against every 10 suckers.<br>
+			• Unlocked at 10% City Explored.<hr class='divider'>
+        ]]></tooltip2>
+			<story_1><![CDATA[<b>Sucker checked:</b>⮀ You sit down at the poker table… and promptly lose everything you bet. It seems Merchanton has a very competitive gambling culture. Still, there must be some people you can win against.]]></story_1>
+			<story_2><![CDATA[<b>Sucker swindled:</b>⮀ You've found him, barely old enough to enter and clearly struggling to remember the rules of the game. It doesn't take long before all his money belongs to you, and you make a mental note to find him next time you come here.]]></story_2>
+			<story_3><![CDATA[<b>30 Suckers swindled:</b>⮀ A fool and his money are soon parted, and you've found every fool in Merchanton. The money you conned them out of will be worth quite a lot of mana, easily worth the time you spent on it.]]></story_3>
+			<story_4><![CDATA[<b>Action failed with low reputation:</b>⮀ You're not sure if it's the conspicuous winning streak or the smell of alcohol on your breath, but it seems casino security has decided to evict you. Big, intimidating thugs practically drag you out, and by the looks on their faces they don't want to see you again anytime soon.]]></story_4>
+			<story_5><![CDATA[<b>Action failed with low money:</b>⮀ As you sit down at the table and reach into your pockets, you realize that you don't have any money left! You hastily excuse yourself and leave the casino, and try to ignore the looks of pity you're given as you go.]]></story_5>
+        </gamble>
+        <slave_auction>
+			<label>Slave Auction</label>
+			<label_done>Slaves With Bounties Freed</label_done>
+            <info_text1>Slaves left</info_text1>
+            <info_text2>Slaves total</info_text2>
+            <info_text3>Slave to check if they have bounties</info_text3>
+			<tooltip><![CDATA[
+			Buy the cheapest kidnapped slaves, release them to their family, rack in the cash and their gratefulness.<br>
+			Sure, with all that money you gave to the slavers they will probably kidnap more people, but... erm.<br>
+			Also, it looks like the more infamous you are, the more they're willing to drop the price. Neat!<hr class='divider'>
+			• Slaves cost 70+reputation gold, and give back 60 gold if they have a bounty.<br>
+			• Can only be done once : get all the slaves you can afford, the unchecked one included.<br>
+			• Currently would give
+			]]></tooltip>
+			<tooltip2> <![CDATA[
+			 gold.<br>
+			• Requires a negative reputation.<br>
+			• Resets reputation back to 0.<br>
+			• Every 10 slaves have a bounty.<br>
+			• Unlocked at 20% Slumdwellers Helped.<hr class='divider'>
+        ]]></tooltip2>
+			<story_1><![CDATA[<b>No slave bought:</b>⮀ Placeholder.]]></story_1>
+        </slave_auction>
         <buy_mana_z3>
             <label>Buy Mana</label>
             <tooltip><![CDATA[
-            1 gold = 
+            Nice, another shop selling mana. Lucky lucky you!<hr class='divider'>
+			• 1 gold = 
         ]]></tooltip>
             <tooltip2><![CDATA[
-            mana. Buys all the mana you can.
+            mana.<br>
+			• Buys all the mana you can.<hr class='divider'>
         ]]></tooltip2>
-            <!--TODO: give this action story-->
+			<story_1><![CDATA[<b>No mana bought:</b>⮀ Placeholder.]]></story_1>
         </buy_mana_z3>
         <sell_potions>
             <label>Sell Potions</label>
-            <tooltip><![CDATA[
-            Potions are worth 1 gold per alchemy skill, but it takes a while to find a buyer.
-        ]]></tooltip>
-			<story_1><![CDATA[<b>Potion sold:</b>⮀ You're part of the attention-grabbing vista now, trying to get people to listen to you long enough to convince them your potions are worth the money. It's surprisingly hard work, but you got a man to give you a small sum of gold for one of your potions.]]></story_1>
-			<story_2><![CDATA[<b>20 Potions sold in a loop:</b>⮀ All the good herbs of the forest, brewed into potions and sold to the people of Merchanton. It took you a while, but the weight in your coin pouch tells you it was worth the effort.]]></story_2>
-			<story_3><![CDATA[<b>Potion sold for 100 gold:</b>⮀ As you hawk your wares, you catch the eye of a passing noblewoman. She's apparently dabbled in alchemy herself, and knows a quality potion when she sees one. After a couple rounds of negotiation she buys the potion for a tidy sum, and you realize your alchemical skills have gotten good enough for you to start marketing to richer clientele.]]></story_3>
+			<tooltip><![CDATA[
+			There seems to be a market for potions here. Useful!<hr class='divider'>
+			• Every potion and dark potion can be sold for 200 gold.<hr class='divider'>
+		]]></tooltip>
+			<story_1><![CDATA[<b>No potion sold:</b>⮀ Placeholder.]]></story_1>
         </sell_potions>
         <adventure_guild>
             <label>Adventure Guild</label>

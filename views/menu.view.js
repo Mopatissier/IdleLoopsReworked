@@ -13,7 +13,7 @@ Views.registerView("menu", {
         const versions = _txtsObj("menu>changelog>version");
         $(versions).each((_index, version) => {
             html += `<div class='showthat2'style='display:inline-block;width:90px'>
-                        ${`${_txt("menu>changelog>meta>version_prefix")} ${$(version).attr("verNum")}`}
+                        ${`${_text("menu>changelog>meta>version_prefix")} ${$(version).attr("verNum")}`}
                         <div class='showthis2' style='margin-left: 95px;'>
                             ${$(version).text()}
                         </div>
@@ -25,7 +25,7 @@ Views.registerView("menu", {
     htmlChangelog() {
         const html =
         `<div style='display:inline-block;height:30px;margin-left:10px;' class='showthatH'>
-            ${_txt("menu>changelog>meta>title")}
+            ${_text("menu>changelog>meta>title")}
             <div style='max-width: 90px;' class='showthisH' id='changelog'>
                 ${this.versions()}
             </div>
@@ -35,22 +35,22 @@ Views.registerView("menu", {
     htmlSaveMenu() {
         const html =
         `<div style='display:inline-block;height:30px;margin-left:10px;' class='showthatH'>
-            ${_txt("menu>save>meta>title")}
+            ${_text("menu>save>meta>title")}
             <div class='showthisH'>
-                <div class='button' onclick='save()'>${_txt("menu>save>manual_save")}</div>
+                <div class='button' onclick='save()'>${_text("menu>save>manual_save")}</div>
                 <br>
-                <textarea id='exportImportList'></textarea><label for='exportImportList'> ${_txt("menu>save>list_label")}</label>
+                <textarea id='exportImportList'></textarea><label for='exportImportList'> ${_text("menu>save>list_label")}</label>
                 <br>
-                <div class='button' style='margin-right: 2px;' onclick='exportCurrentList()'>${_txt("menu>save>export_button")}</div>
-                <div class='button' onclick='importCurrentList()'>${_txt("menu>save>import_button")}</div>
+                <div class='button' style='margin-right: 2px;' onclick='exportCurrentList()'>${_text("menu>save>export_button")}</div>
+                <div class='button' onclick='importCurrentList()'>${_text("menu>save>import_button")}</div>
                 <br>
-                ${_txt("menu>save>list_comment")}
+                ${_text("menu>save>list_comment")}
                 <br><br>
-                <input id='exportImport'><label for='exportImport'> ${_txt("menu>save>input_label")}</label><br>
-                <div class='button' style='margin-top: 5px; margin-right: 2px;' onclick='exportSave()'>${_txt("menu>save>export_button")}</div>
-                <div class='button' style='margin-top: 1px;' onclick='importSave()'>${_txt("menu>save>import_button")}</div><br>
-                ${_txt("menu>save>export_comment")}<br>
-                ${_txt("menu>save>import_comment")}
+                <input id='exportImport'><label for='exportImport'> ${_text("menu>save>input_label")}</label><br>
+                <div class='button' style='margin-top: 5px; margin-right: 2px;' onclick='exportSave()'>${_text("menu>save>export_button")}</div>
+                <div class='button' style='margin-top: 1px;' onclick='importSave()'>${_text("menu>save>import_button")}</div><br>
+                ${_text("menu>save>export_comment")}<br>
+                ${_text("menu>save>import_comment")}
                 <br>
             </div>
         </div>`;
@@ -61,8 +61,8 @@ Views.registerView("menu", {
         const QAs = _txtsObj("menu>faq>q_a");
         $(QAs).each((_index, QA) => {
             html += 
-            `${_txt("menu>faq>meta>q_prefix")} <i>"${$(QA).find("q").html()}"</i><br>
-            ${_txt("menu>faq>meta>a_prefix")} ${$(QA).find("a").html()}<br>
+            `${_text("menu>faq>meta>q_prefix")} <i>"${$(QA).find("q").html()}"</i><br>
+            ${_text("menu>faq>meta>a_prefix")} ${$(QA).find("a").html()}<br>
             <br>`;
         });
         return html;
@@ -70,7 +70,7 @@ Views.registerView("menu", {
     htmlFAQMenu() {
         const html = 
         `<div style='display:inline-block;height:30px;margin-left:10px;' class='showthatH'>
-            ${_txt("menu>faq>meta>title")}
+            ${_text("menu>faq>meta>title")}
             <div class='showthisH'>
                 ${this.FAQs()}
             </div>
@@ -80,27 +80,27 @@ Views.registerView("menu", {
     htmlOptionsMenu() {
         const html =
             `<div style='display:inline-block;height:30px;margin-left:10px;' class='showthatH'>
-            ${_txt("menu>options>meta>title")}
+            ${_text("menu>options>meta>title")}
             <div class='showthisH'>
-                <a target='_blank' href='${_txt("menu>options>discord>link")}'>${_txt("menu>options>discord>title")}</a><br>
+                <a target='_blank' href='${_text("menu>options>discord>link")}'>${_text("menu>options>discord>title")}</a><br>
                 ${Views.menu.htmlThemeMenu()}
                 ${Object.keys(Localization.supportedLang).length > 1 ? Views.menu.htmlLocalizationMenu() : ""}
-                ${_txt("menu>options>adblock_warning")}<br>
+                ${_text("menu>options>adblock_warning")}<br>
                 <input id='pingOnPauseInput' type='checkbox' onchange='setOption("pingOnPause", this.checked)'/>
-                <label for='pingOnPauseInput'>${_txt("menu>options>pause_audio_cue")}</label>
+                <label for='pingOnPauseInput'>${_text("menu>options>pause_audio_cue")}</label>
                 <br>
                 <input id='autoMaxTrainingInput' type='checkbox' onchange='setOption("autoMaxTraining", this.checked)'/>
-                <label for='autoMaxTrainingInput'>${_txt("menu>options>auto_max_training")}</label>
+                <label for='autoMaxTrainingInput'>${_text("menu>options>auto_max_training")}</label>
                 <br>
 				<input id='ferretModeInput' type='checkbox' onchange='setOption("ferretMode", this.checked)'/>
-                <label for='ferretModeInput'>${_txt("menu>options>ferret_mode")}</label>
+                <label for='ferretModeInput'>${_text("menu>options>ferret_mode")}</label>
                 <br>
                 <input id='hotkeysInput' type='checkbox' onchange='setOption("hotkeys", this.checked)'/>
-                <label class='showthat' for='hotkeysInput'>${_txt("menu>options>hotkeys")}
-                    <div class='showthis'>${_txt("menu>options>hotkeys_tooltip")}</div>
+                <label class='showthat' for='hotkeysInput'>${_text("menu>options>hotkeys")}
+                    <div class='showthis'>${_text("menu>options>hotkeys_tooltip")}</div>
                 </label>
                 <br>
-                ${_txt("menu>options>update_rate")}
+                ${_text("menu>options>update_rate")}
                 <input id='updateRateInput' type='number' value='50' min='1' style='width: 50px;transform: translateY(-2px);' oninput='setOption("updateRate", parseInt(this.value))' />
                 <br>
             </div>
@@ -109,7 +109,7 @@ Views.registerView("menu", {
     },
     htmlLocalizationMenu() {
         const lg = Localization.supportedLang;
-        let html = `${_txt("menu>options>localization_title")}: <select id='localization_menu' onchange='Localization.change();'>`;
+        let html = `${_text("menu>options>localization_title")}: <select id='localization_menu' onchange='Localization.change();'>`;
         $.each(lg, (val, str) => {
             html += `<option value='${val}'${Localization.currentLang === val ? "selected" : ""}>${str}</option>`;
         });
@@ -119,7 +119,7 @@ Views.registerView("menu", {
     htmlThemeMenu() {
         const themeList = ["normal", "dark", "cubic"];
         const themes = _txtsObj("menu>options>theme");
-        let html = `${_txt("menu>options>theme_title")}: <select id='themeInput' onchange='view.changeTheme();'>`;
+        let html = `${_text("menu>options>theme_title")}: <select id='themeInput' onchange='view.changeTheme();'>`;
         $(themes).each((index, theme) => {
             html += `<option value='${themeList[index]}'>${$(theme).find(themeList[index]).text()}</option>`;
         });

@@ -74,7 +74,7 @@ function View() {
 				`<div class="statRadarContainer showthat" style="width: 30%;height:3.25rem; padding: 0 0.1rem; ${border}" onmouseover='view.showStat("${stat}")' onmouseout="view.showStat(undefined)">
 					<div class="statLabelContainer" style="display: flex; flex-direction: column;">
 						<div style="display: flex; justify-content: space-between;">
-							<div class="medium bold" style="padding-top: 2px;">${_txt(`stats>${stat}>short_form`)}</div>
+							<div class="medium bold" style="padding-top: 2px;">${_text(`stats>${stat}>short_form`)}</div>
 							<div style="position: absolute; top: -0.2rem; right:0; color:#737373;" class="statNum">
 								<div class="medium" id="stat${stat}ss"></div>
 								<i class="fa fa-gem statIcon"></i>
@@ -91,29 +91,29 @@ function View() {
 					<div class="thinProgressBarUpper"><div class="statBar statLevelBar" id="stat${stat}LevelBar"></div></div>
 					<div class="thinProgressBarLower"><div class="statBar statTalentBar" id="stat${stat}TalentBar"></div></div>
 					<div class="showthis" id="stat${stat}Tooltip" style="width:225px;">
-                    <div class="medium bold">${_txt(`stats>${stat}>long_form`)}</div><br>${_txt(`stats>${stat}>blurb`)}
+                    <div class="medium bold">${_text(`stats>${stat}>long_form`)}</div><br>${_text(`stats>${stat}>blurb`)}
                     <br>
-                    <div class="medium bold">${_txt("stats>tooltip>level")}:</div> <div id="stat${stat}Level2"></div>
+                    <div class="medium bold">${_text("stats>tooltip>level")}:</div> <div id="stat${stat}Level2"></div>
                     <br>
-                    <div class="medium bold">${_txt("stats>tooltip>level_exp")}:</div>
+                    <div class="medium bold">${_text("stats>tooltip>level_exp")}:</div>
                     <div id="stat${stat}LevelExp"></div>/<div id="stat${stat}LevelExpNeeded"></div>
                     <div class="statTooltipPerc">(<div id="stat${stat}LevelProgress"></div>%)</div>
                     <br>
-                    <div class="medium bold">${_txt("stats>tooltip>talent")}:</div>
+                    <div class="medium bold">${_text("stats>tooltip>talent")}:</div>
                     <div id="stat${stat}Talent2"></div>
                     <br>
-                    <div class="medium bold">${_txt("stats>tooltip>talent_exp")}:</div>
+                    <div class="medium bold">${_text("stats>tooltip>talent_exp")}:</div>
                     <div id="stat${stat}TalentExp"></div>/<div id="stat${stat}TalentExpNeeded"></div>
                     <div class="statTooltipPerc">(<div id="stat${stat}TalentProgress"></div>%)</div>
                     <br>
-                    <div class="medium bold">${_txt("stats>tooltip>talent_multiplier")}:</div>
+                    <div class="medium bold">${_text("stats>tooltip>talent_multiplier")}:</div>
                     x<div id="stat${stat}TalentMult"></div>
                     <br>
                     <div id="ss${stat}Container" class="ssContainer">
-                        <div class="bold">${_txt("stats>tooltip>soulstone")}:</div> <div id="ss${stat}"></div><br>
-                        <div class="medium bold">${_txt("stats>tooltip>soulstone_multiplier")}:</div> x<div id="stat${stat}SSBonus"></div>
+                        <div class="bold">${_text("stats>tooltip>soulstone")}:</div> <div id="ss${stat}"></div><br>
+                        <div class="medium bold">${_text("stats>tooltip>soulstone_multiplier")}:</div> x<div id="stat${stat}SSBonus"></div>
                     </div><br>
-                    <div class="medium bold">${_txt("stats>tooltip>total_multiplier")}:</div> x<div id="stat${stat}TotalMult"></div>
+                    <div class="medium bold">${_text("stats>tooltip>total_multiplier")}:</div> x<div id="stat${stat}TotalMult"></div>
                 </div>
                 </div>`;
 		}
@@ -370,7 +370,7 @@ function View() {
         document.getElementById("actionAllowedWarehouses").textContent = intToStringRound(towns[7].totalWarehouses);
         document.getElementById("actionAllowedInsurance").textContent = intToStringRound(towns[7].totalInsurance);
         document.getElementById("totalSurveyProgress").textContent = getExploreProgress();
-		document.getElementById("mysteriousVoiceNextRequirement").textContent = _txt(`actions>mysterious_voice>requirement_${(getBuffLevel("SpiritBlessing")+1)}`)
+		document.getElementById("mysteriousVoiceNextRequirement").textContent = _text(`actions>mysterious_voice>requirement_${(getBuffLevel("SpiritBlessing")+1)}`)
 		document.getElementById("manaSpotBonus").textContent = intToString(1 +getBuffLevel("SpiritBlessing") * 0.02);
 		
 		
@@ -477,7 +477,7 @@ function View() {
             } else {
                 isSingular = translatedAction.allowed() === 1;
             }
-            const actionLoops = action.loops > 99999 ? toSuffix(action.loops) : formatNumber(action.loops);
+            const actionLoops = action.loops > 9999 ? toSuffix(action.loops) : formatNumber(action.loops);
             const opacity = action.disabled || action.loops === 0 ? "opacity: 0.5" : "";
             let display = "display: flex";
             for (const collapse of collapses) {
@@ -593,16 +593,16 @@ function View() {
             totalDivText +=
                 `<div id='actionTooltip${i}' style='display:none;padding-left:10px;width:90%'>` +
                     `<div style='text-align:center;width:100%'>${action.label}</div><br><br>` +
-                    `<b>${_txt("actions>current_action>mana_original")}</b> <div id='action${i}ManaOrig'></div><br>` +
-                    `<b>${_txt("actions>current_action>mana_used")}</b> <div id='action${i}ManaUsed'></div><br>` +
-                    `<b>${_txt("actions>current_action>last_mana")}</b> <div id='action${i}LastMana'></div><br>` +
-                    `<b>${_txt("actions>current_action>mana_remaining")}</b> <div id='action${i}Remaining'></div><br>` +
-                    `<b>${_txt("actions>current_action>gold_remaining")}</b> <div id='action${i}GoldRemaining'></div><br>` +
-                    `<b>${_txt("actions>current_action>time_spent")}</b> <div id='action${i}TimeSpent'></div><br><br>` +
+                    `<b>${_text("actions>current_action>mana_original")}</b> <div id='action${i}ManaOrig'></div><br>` +
+                    `<b>${_text("actions>current_action>mana_used")}</b> <div id='action${i}ManaUsed'></div><br>` +
+                    `<b>${_text("actions>current_action>last_mana")}</b> <div id='action${i}LastMana'></div><br>` +
+                    `<b>${_text("actions>current_action>mana_remaining")}</b> <div id='action${i}Remaining'></div><br>` +
+                    `<b>${_text("actions>current_action>gold_remaining")}</b> <div id='action${i}GoldRemaining'></div><br>` +
+                    `<b>${_text("actions>current_action>time_spent")}</b> <div id='action${i}TimeSpent'></div><br><br>` +
                     `<div id='action${i}ExpGain'></div>` +
                     `<div id='action${i}HasFailed' style='display:none'>` +
-                        `<b>${_txt("actions>current_action>failed_attempts")}</b> <div id='action${i}Failed'></div><br>` +
-                        `<b>${_txt("actions>current_action>error")}</b> <div id='action${i}Error'></div>` +
+                        `<b>${_text("actions>current_action>failed_attempts")}</b> <div id='action${i}Failed'></div><br>` +
+                        `<b>${_text("actions>current_action>error")}</b> <div id='action${i}Error'></div>` +
                     `</div>` +
                 `</div>`;
         }
@@ -658,7 +658,7 @@ function View() {
             }
             for (const stat of statList) {
                 if (action[`statExp${stat}`]) {
-                    statExpGain += `<div class='bold'>${_txt(`stats>${stat}>short_form`)}:</div> ${intToString(action[`statExp${stat}`], 2)}<br>`;
+                    statExpGain += `<div class='bold'>${_text(`stats>${stat}>short_form`)}:</div> ${intToString(action[`statExp${stat}`], 2)}<br>`;
                 }
             }
             expGainDiv.innerHTML = statExpGain;
@@ -768,10 +768,10 @@ function View() {
                     let storyTooltipText = "";
                     let lastInBranch = false;
                     const name = action.name.toLowerCase().replace(/ /gu, "_");
-                    const storyAmt = _txt(`actions>${name}`, "fallback").split("⮀").length - 1;
+                    const storyAmt = _text(`actions>${name}`, "fallback").split("⮀").length - 1;
                     let storiesUnlocked = 0;
                     for (let i = 1; i <= storyAmt; i++) {
-                        const storyText = _txt(`actions>${name}>story_${i}`, "fallback").split("⮀");
+                        const storyText = _text(`actions>${name}>story_${i}`, "fallback").split("⮀");
                         if (action.storyReqs(i)) {
                             storyTooltipText += storyText[0] + storyText[1] + "<br>";
                             lastInBranch = false;
@@ -873,8 +873,8 @@ function View() {
 		else actionOptionsTown[townTarget].style.display = "block";
 		
 		townInfos[townTarget].style.display = "block";
-        document.getElementById("townName").textContent = _txt(`towns>town${townTarget}>name`);
-        document.getElementById("townDesc").textContent = _txt(`towns>town${townTarget}>desc`);
+        document.getElementById("townName").textContent = _text(`towns>town${townTarget}>name`);
+        document.getElementById("townDesc").textContent = _text(`towns>town${townTarget}>desc`);
         townShowing = townTarget;
 						
     };
@@ -895,8 +895,8 @@ function View() {
             actionOptionsTown[townShowing].style.display = "block";
         }
 
-        document.getElementById("actionsTitle").textContent = _txt(`actions>title${(stories) ? "_stories" : ""}`);
-        document.getElementById("squirrelModeTitle").textContent = _txt(`actions>squirrel_mode_name`);
+        document.getElementById("actionsTitle").textContent = _text(`actions>title${(stories) ? "_stories" : ""}`);
+        document.getElementById("squirrelModeTitle").textContent = _text(`actions>squirrel_mode_name`);
         actionStoriesShowing = stories;
     };
 
@@ -957,8 +957,8 @@ function View() {
             <div class='thinActionProgressBarLower'><div id='bar${action.varName}' class='statBar townBar'></div></div>
 
             <div class='showthis'>
-                ${_txt("actions>tooltip>higher_done_percent_benefic")}<br>
-                <div class='bold'>${_txt("actions>tooltip>progress_label")}</div> <div id='progress${action.varName}'></div>%
+                ${_text("actions>tooltip>higher_done_percent_benefic")}<br>
+                <div class='bold'>${_text("actions>tooltip>progress_label")}</div> <div id='progress${action.varName}'></div>%
             </div>
         </div>`;
         const progressDiv = document.createElement("div");
@@ -976,7 +976,7 @@ function View() {
         for (let i = 0; i < 10; i++) {
             for (const stat of statKeyNames) {
                 if (statList[i] === stat) {
-                    const statLabel = _txt(`stats>${stat}>short_form`);
+                    const statLabel = _text(`stats>${stat}>short_form`);
                     actionStats += `<div class='bold'>${statLabel}:</div> ${action.stats[stat] * 100}%<br>`;
                 }
             }
@@ -987,7 +987,7 @@ function View() {
             for (let i = 0; i < l; i++) {
                 for (const skill of skillKeyNames) {
                     if (skillList[i] === skill) {
-                        const skillLabel = `${_txt(`skills>${getXMLName(skill)}>label`)} ${_txt("stats>tooltip>exp")}`;
+                        const skillLabel = `${_text(`skills>${getXMLName(skill)}>label`)} ${_text("stats>tooltip>exp")}`;
                         actionSkills += `<div class='bold'>${skillLabel}:</div><span id='expGain${action.varName}${skill}'></span><br>`;
                     }
                 }
@@ -1043,8 +1043,8 @@ function View() {
 					</span>
                     ${actionSkills}
                     ${actionStats}
-                    <div class='bold'>${_txt("actions>tooltip>mana_cost")}:</div> <div id='manaCost${action.varName}'>${formatNumber(action.manaCost())}</div><br>
-                    <div class='bold'>${_txt("actions>tooltip>exp_multiplier")}:</div> ${action.expMult * 100}%<br>
+                    <div class='bold'>${_text("actions>tooltip>mana_cost")}:</div> <div id='manaCost${action.varName}'>${formatNumber(action.manaCost())}</div><br>
+                    <div class='bold'>${_text("actions>tooltip>exp_multiplier")}:</div> ${action.expMult * 100}%<br>
                 </div>
             </div>`;
 		
@@ -1057,10 +1057,10 @@ function View() {
         if (action.storyReqs !== undefined) {
             let storyTooltipText = "";
             let lastInBranch = false;
-            const storyAmt = _txt(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}`, "fallback").split("⮀").length - 1;
+            const storyAmt = _text(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}`, "fallback").split("⮀").length - 1;
             for (let i = 1; i <= storyAmt; i++) {
-                if (_txt(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`) === undefined) console.log(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`);
-                const storyText = _txt(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`, "fallback").split("⮀");
+                if (_text(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`) === undefined) console.log(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`);
+                const storyText = _text(`actions>${action.name.toLowerCase().replace(/ /gu, "_")}>story_${i}`, "fallback").split("⮀");
                 if (action.storyReqs(i)) {
                     storyTooltipText += storyText[0] + storyText[1] + "<br>";
                     lastInBranch = false;
@@ -1104,9 +1104,9 @@ function View() {
 
 				const tooltipLevel = squirrelLevel[camelize(action.varName)]
 				if(tooltipLevel === undefined || tooltipLevel === 0){	
-					newActionTooltip =  _txt("actions>squirrel_default"); 
+					newActionTooltip =  _text("actions>squirrel_default"); 
 				} else {
-					newActionTooltip =  _txt("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
+					newActionTooltip =  _text("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
 				}
 					
 				if(action.storyReqs !== undefined){
@@ -1123,9 +1123,9 @@ function View() {
 					} else {
 						for(let i= 1; i <= tooltipLevel; i++){
 							newStoryTooltip += ("<b>Effect n°"+i+" : </b>");
-							if(i !== tooltipLevel) newStoryTooltip += 	(( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "<br>");
-							else newStoryTooltip += 					(( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "");
-							if(!(_txt("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
+							if(i !== tooltipLevel) newStoryTooltip += 	(( _text("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "<br>");
+							else newStoryTooltip += 					(( _text("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "");
+							if(!(_text("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
 						}
 					}			
 
@@ -1166,9 +1166,9 @@ function View() {
 		
 		const tooltipLevel = squirrelLevel[camelize(action.varName)]
 		if(tooltipLevel === undefined || tooltipLevel === 0){	
-			newActionTooltip =  _txt("actions>squirrel_default"); 
+			newActionTooltip =  _text("actions>squirrel_default"); 
 		} else {
-			newActionTooltip =  _txt("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
+			newActionTooltip =  _text("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
 		}
 		
 		document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
@@ -1184,9 +1184,9 @@ function View() {
 			} else {
 				for(let i= 1; i <= tooltipLevel; i++){
 					newStoryTooltip += ("<b>Effect n°"+i+" : </b>");
-					newStoryTooltip += ( _txt("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>");
+					newStoryTooltip += ( _text("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>");
 					if(i !== tooltipLevel) newStoryTooltip += "<br>";
-					if(!(_txt("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
+					if(!(_text("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
 				}
 			}			
 
@@ -1400,7 +1400,7 @@ function View() {
                 continue;
             }
             const mainStat = action.loopStats[(town[`${action.varName}LoopCounter`] + i) % action.loopStats.length];
-            document.getElementById(`mainStat${i}${action.varName}`).textContent = _txt(`stats>${mainStat}>short_form`);
+            document.getElementById(`mainStat${i}${action.varName}`).textContent = _text(`stats>${mainStat}>short_form`);
             addStatColors(expBar, mainStat);
             document.getElementById(`segmentName${i}${action.varName}`).textContent = action.getSegmentName(town[`${action.varName}LoopCounter`] + i);
         }
@@ -1482,10 +1482,10 @@ function View() {
 		
 		zoneOrder.forEach((zones) => {
 			if(townsUnlocked.includes(zones[0])){
-				travelMenu.innerHTML += `<div id='travelButton`+zones[0]+`' class='button showthat control' onClick='view.showTown(`+zones[0]+`, arrow.none)'>`+(_txt(`towns>town${zones[0]}>name`))+`</div>`;
+				travelMenu.innerHTML += `<div id='travelButton`+zones[0]+`' class='button showthat control' onClick='view.showTown(`+zones[0]+`, arrow.none)'>`+(_text(`towns>town${zones[0]}>name`))+`</div>`;
 			}
 			if(zones[1] !== undefined && townsUnlocked.includes(zones[1])){
-				travelMenu.innerHTML += `<div id='travelButton`+zones[1]+`' class='button showthat control' onClick='view.showTown(`+zones[1]+`, arrow.none)'>`+(_txt(`towns>town${zones[1]}>name`))+`</div><br>`;
+				travelMenu.innerHTML += `<div id='travelButton`+zones[1]+`' class='button showthat control' onClick='view.showTown(`+zones[1]+`, arrow.none)'>`+(_text(`towns>town${zones[1]}>name`))+`</div><br>`;
 			} else if(townsUnlocked.includes(zones[0])){	
 				travelMenu.innerHTML += `<br>`;
 			}
