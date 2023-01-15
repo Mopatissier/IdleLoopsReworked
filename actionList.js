@@ -2541,7 +2541,7 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
         Soul: 0.4
     },
 	canStart() {
-		const squirrelRequirements = (!this.squirrelAction || resources.squirrel) && alreadyHealed === false;
+		const squirrelRequirements = (!this.squirrelAction || (resources.squirrel && !alreadyHealed ));
 		return squirrelRequirements && resources.reputation >= 1;
     },
     skills: {
@@ -2682,7 +2682,7 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
         Luck: 0.1
     },
 	canStart() {
-		const squirrelRequirements = (!this.squirrelAction || resources.squirrel) && alreadyFought === false;
+		const squirrelRequirements = (!this.squirrelAction || (resources.squirrel && !alreadyFought ));
 		return squirrelRequirements && resources.reputation >= 2;
     },
     skills: {
@@ -2805,15 +2805,15 @@ defineLazyGetter(Action.FightMonsters, "segmentModifiers",
     () => Array.from(_txtsObj("actions>fight_monsters>segment_modifiers>segment_modifier")).map(elt => elt.textContent)
 );
 
-Action.MagicFighter = new MultipartAction("Magic Fighter", {
+Action.TrainingDummy = new MultipartAction("Training Dummy", {
     type: "multipart",
-    expMult: 5,
+    expMult: 3,
     townNum: 0,
-    varName: "MagFgt",
+    varName: "TDummy",
 	storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return storyReqs.foughtMagicFighter;
+                return 1;
         }
         return false;
     },
@@ -2829,8 +2829,131 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		Soul: 0.2,
     },
 	skills: {
-        Combat: 50,
-		Magic: 50
+        Combat: 25,
+		Magic: 25
+    },
+	allowed() {
+        return 1;
+    },
+    loopStats: ["Soul", "Int", "Per", "Dex", "Con", "Spd", "Cha", "Luck", "Str"],
+    manaCost() {
+        return 6000;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		const curPowerLevel = Math.floor((towns[BEGINNERSVILLE].TDummyLoopCounter) / 9 + 0.0000001);
+		
+		return squirrelRequirements && resources.reputation >= 2 && curPowerLevel < 3;
+    },
+    loopCost(segment) {
+        return precision3((Math.floor(Math.pow(3, towns[BEGINNERSVILLE].TDummyLoopCounter/this.segments)+ 0.0000001)) * 60000);
+		
+    },
+    tickProgress(offset) {
+		if(this.squirrelAction) return 0;
+        return (getSelfCombat() + getSkillLevel("Magic")) * Math.sqrt(1 + towns[BEGINNERSVILLE].totalTDummy / 100) * (1 + getLevel(this.loopStats[(towns[BEGINNERSVILLE].TDummyLoopCounter + offset) % this.loopStats.length]) / 100) ; 
+		
+    },
+    loopsFinished() {
+		handleSkillExp(this.skills);
+    },
+    segmentFinished() {
+		handleSkillExp(this.skills);
+    },
+    getPartName() {
+		const powerLevel = Math.floor((towns[BEGINNERSVILLE].TDummyLoopCounter) / 9 + 0.0000001);
+		return `${_text(`actions>${getXMLName(this.name)}>part_names>name_`+`${powerLevel+1}`)}`;
+
+    },
+	getSegmentName(segment) {
+		return this.segmentNames[segment%9];
+	},
+    visible() {
+        return ((getSkillLevel("Combat") + getSkillLevel("Magic")) >= 10) && (magicFighterStrenght < 1);
+    },
+    unlocked() {
+        return ((getSkillLevel("Combat") + getSkillLevel("Magic")) >= 25) && (magicFighterStrenght < 1);
+    },
+    finish() {
+	
+		const curPowerLevel = Math.floor((towns[BEGINNERSVILLE].TDummyLoopCounter) / 9 + 0.0000001);
+		if(curPowerLevel === 3 && magicFighterStrenght === 0){
+			magicFight = true;
+		}
+		
+    },
+	squirrelLevelUp(onlyGetState) {
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Training Dummy")){
+				
+			case 0: shouldLevelUp = true;
+				break;		
+
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Training Dummy");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		let nothingHappens = false;
+		
+		switch(getLevelSquirrelAction("Training Dummy")){
+					
+			case 1: break;
+				
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.MagicFighter = new MultipartAction("Magic Fighter", {
+    type: "multipart",
+    expMult: 10,
+    townNum: 0,
+    varName: "MagFgt",
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Dex: 0.1,
+        Str: 0.1,
+        Con: 0.1,
+		Spd: 0.1,
+		Per: 0.1,
+		Cha: 0.1,
+		Int: 0.1,
+        Luck: 0.1,
+		Soul: 0.2,
+    },
+	skills: {
+        Combat: 75,
+		Magic: 75
     },
 	allowed() {
         return 1;
@@ -2843,15 +2966,15 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
 		const curPowerLevel = Math.floor((towns[BEGINNERSVILLE].MagFgtLoopCounter) / 9 + 0.0000001);
 		
-		return squirrelRequirements && resources.reputation >= 2 && curPowerLevel < 4;
+		return squirrelRequirements && resources.reputation >= 2 && curPowerLevel < magicFighterStrenght;
     },
     loopCost(segment) {
-        return precision3((Math.floor(Math.pow(4, towns[BEGINNERSVILLE].MagFgtLoopCounter/this.segments)+ 0.0000001)) * 200000);
+        return precision3((Math.floor(Math.pow(5, towns[BEGINNERSVILLE].MagFgtLoopCounter/this.segments)+ 0.0000001)) * 500000);
 		
     },
     tickProgress(offset) {
 		if(this.squirrelAction) return 0;
-        return (getSelfCombat() + getSkillLevel("Magic")) * Math.sqrt(1 + towns[BEGINNERSVILLE].totalMagFgt / 100) * (1 + getLevel(this.loopStats[(towns[BEGINNERSVILLE].MagFgtLoopCounter + offset) % this.loopStats.length]) / 100) ; 
+        return (getSelfCombat() + getSkillLevel("Magic")) * Math.sqrt(1 + towns[BEGINNERSVILLE].totalMagFgt / 200) * (1 + getLevel(this.loopStats[(towns[BEGINNERSVILLE].MagFgtLoopCounter + offset) % this.loopStats.length]) / 200) ; 
 		
     },
     loopsFinished() {
@@ -2868,14 +2991,20 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 	getSegmentName(segment) {
 		return this.segmentNames[segment%9];
 	},
+	goldCost() {
+		return magicFighterStrenght;
+    },
     visible() {
-        return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 10;
+        return magicFighterStrenght > 0;
     },
     unlocked() {
-        return (getSkillLevel("Combat") + getSkillLevel("Magic")) >= 25;
+        return magicFighterStrenght > 0;
     },
     finish() {
-		unlockStory("foughtMagicFighter");
+		const curPowerLevel = Math.floor((towns[BEGINNERSVILLE].MagFgtLoopCounter) / 9 + 0.0000001);
+		if(curPowerLevel === magicFighterStrenght){
+			magicFight = true;
+		}
     },
 	squirrelLevelUp(onlyGetState) {
 		let shouldLevelUp = false;
@@ -3266,13 +3395,15 @@ Action.Haggle = new Action("Haggle", {
 			case 1: break;
 			
 			case 2: actionEffect = () => {
-						towns[BEGINNERSVILLE].suppliesCost -= 30;
-						if (towns[BEGINNERSVILLE].suppliesCost < 0) {
-							towns[BEGINNERSVILLE].suppliesCost = 0;
+						if(!squirrelHaggle){
+							towns[BEGINNERSVILLE].suppliesCost -= 30;
+							if (towns[BEGINNERSVILLE].suppliesCost < 0) {
+								towns[BEGINNERSVILLE].suppliesCost = 0;
+							}
+							view.adjustGoldCost("BuySupplies", towns[BEGINNERSVILLE].suppliesCost);
+							squirrelHaggle = true;
+							addResource("reputation", 1);
 						}
-						view.adjustGoldCost("BuySupplies", towns[BEGINNERSVILLE].suppliesCost);
-						squirrelHaggle = true;
-						addResource("reputation", 1);
 					};
 					break;
 				
@@ -5943,7 +6074,6 @@ Action.Gamble = new Action("Gamble", {
 		
 		let costs = (20 + (gamblesInARow*(gamblesInARow+1)/2) * 2) * (-1)
         addResource("gold", costs);
-        addResource("reputation", -1);
 		
 		if(this.gambleWon){
 			gamblesInARow ++;
@@ -5952,6 +6082,9 @@ Action.Gamble = new Action("Gamble", {
 		else {
 			gamblesInARow = 0;
 		}
+		
+		let reputationLost = Math.floor((gamblesInARow+5)/10);
+        addResource("reputation", reputationLost * (-1));
 		
 		view.adjustGoldCost("Gamble", Action.Gamble.goldCost());
 		
@@ -6010,12 +6143,13 @@ Action.SlaveAuction = new Action("Slave Auction", {
     cost() {
         
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
-		let costPerSlave = 70 + resources.reputation;
+		let costPerSlave = Math.max(70 + resources.reputation, 0);
 		
 		let costs = (Math.min(Math.floor(resources.gold/costPerSlave) * costPerSlave, totalSlaves * costPerSlave)) * (-1);
 		
+		resetResource("reputation");
 		addResource("gold", costs);
-        resources.reputation = 0;
+        
     },
     manaCost() {
         return 10000;
@@ -6032,9 +6166,10 @@ Action.SlaveAuction = new Action("Slave Auction", {
 	goldCost() {
 		
 		if(resources.reputation >= 0) return 0;
+		if(towns[MERCHANTON].goodSlaveAuction != towns[MERCHANTON].goodTempSlaveAuction) return 0;
 		
 		let bounty = 60;
-		let costPerSlave = 70 + resources.reputation;
+		let costPerSlave = Math.max(70 + resources.reputation, 0);
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
 		
 		let numberSlavesToBuy = Math.min(Math.floor(resources.gold/costPerSlave), totalSlaves);
@@ -6063,7 +6198,7 @@ Action.SlaveAuction = new Action("Slave Auction", {
     finish() {
 		
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
-		let costPerSlave = 70 + resources.reputation;
+		let costPerSlave = Math.max(70 + resources.reputation, 0);
 		let bounty = 60;
 		
 		let numberOfLoops = Math.min(Math.floor(resources.gold/costPerSlave), totalSlaves);
@@ -6076,74 +6211,6 @@ Action.SlaveAuction = new Action("Slave Auction", {
 			});
 		}
         
-    },
-});
-
-Action.BuyManaZ3 = new Action("Buy Mana Z3", {
-    type: "normal",
-    expMult: 1,
-    townNum: 2,
-	storyReqs(storyNum) {
-        switch (storyNum) {
-            case 1:
-                return 1;
-        }
-        return false;
-    },
-    stats: {
-        Cha: 0.7,
-        Int: 0.2,
-        Luck: 0.1
-    },
-    manaCost() {
-        return 200;
-    },
-    visible() {
-        return true;
-    },
-    unlocked() {
-        return true;
-    },
-    goldCost() {
-        return 100;
-    },
-    finish() {
-        addMana(resources.gold * this.goldCost());
-        resetResource("gold");
-    },
-});
-
-Action.SellPotions = new Action("Sell Potions", {
-    type: "normal",
-    expMult: 1,
-    townNum: 2,
-    storyReqs(storyNum) {
-        switch (storyNum) {
-            case 1:
-                return 1;
-        }
-        return false;
-    },
-    stats: {
-        Cha: 0.7,
-        Int: 0.2,
-        Luck: 0.1
-    },
-    manaCost() {
-        return 2000;
-    },
-    visible() {
-        return true;
-    },
-    unlocked() {
-        return true;
-    },
-    finish() {
-        /*if (resources.potions >= 20) unlockStory("sell20PotionsInALoop");
-        addResource("gold", resources.potions * getSkillLevel("Alchemy"));
-        resetResource("potions");
-        unlockStory("potionSold");
-        if (getSkillLevel("Alchemy") >= 100) unlockStory("sellPotionFor100Gold");*/
     },
 });
 
@@ -6689,6 +6756,279 @@ Action.Architect = new Action("Architect", {
     },
 });
 
+Action.DeliveryAddressZero = new Action("Delivery Address Zero", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+        Con: 0.1,
+        Per: 0.1,
+		Cha: 0.1,
+        Luck: 0.7
+    },
+	allowed() {
+		return 1;
+	},
+    manaCost() {
+        return 5000;
+    },
+    visible() {
+        return magicFighterStrenght === -1;
+    },
+    unlocked() {
+        return towns[MERCHANTON].getLevel("City") >= 100 && magicFighterStrenght === -1;
+    },
+    finish() {
+       magicFighterStrenght = 0;
+    },
+});
+
+Action.DeliveryAddressOne = new Action("Delivery Address One", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Str: 0.4,
+        Con: 0.3,
+		Cha: 0.3
+    },
+	allowed() {
+		return 1;
+	},
+    manaCost() {
+        return 5000;
+    },
+    visible() {
+        return magicFighterStrenght === 0;
+    },
+    unlocked() {
+        return magicFighterStrenght === 0;
+    },
+    finish() {
+		if(magicFight && magicFighterStrenght === 0) magicFighterStrenght = 1;
+    },
+});
+
+Action.DeliveryAddressTwo = new Action("Delivery Address Two", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Str: 0.4,
+        Con: 0.3,
+		Cha: 0.3
+    },
+	allowed() {
+		return 1;
+	},
+    manaCost() {
+        return 5000;
+    },
+    visible() {
+        return magicFighterStrenght === 1;
+    },
+    unlocked() {
+        return magicFighterStrenght === 1;
+    },
+    finish() {
+		if(magicFight && magicFighterStrenght === 1) magicFighterStrenght = 2;
+    },
+});
+
+Action.DeliveryAddressThree = new Action("Delivery Address Three", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Str: 0.4,
+        Con: 0.3,
+		Cha: 0.3
+    },
+	allowed() {
+		return 1;
+	},
+    manaCost() {
+        return 5000;
+    },
+    visible() {
+        return magicFighterStrenght === 2;
+    },
+    unlocked() {
+        return magicFighterStrenght === 2;
+    },
+    finish() {
+		if(magicFight && magicFighterStrenght === 2) magicFighterStrenght = 3;
+    },
+});
+
+Action.DeliveryAddressFour = new Action("Delivery Address Four", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Str: 0.4,
+        Con: 0.3,
+		Cha: 0.3
+    },
+	allowed() {
+		return 1;
+	},
+    manaCost() {
+        return 5000;
+    },
+    visible() {
+        return magicFighterStrenght === 3;
+    },
+    unlocked() {
+        return magicFighterStrenght === 3;
+    },
+    finish() {
+		if(magicFight && magicFighterStrenght === 3) magicFighterStrenght = 4;
+    },
+});
+
+Action.DeliveryAddressFive = new Action("Delivery Address Five", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+		Str: 0.4,
+        Con: 0.3,
+		Cha: 0.3
+    },
+	allowed() {
+		return 1;
+	},
+    manaCost() {
+        return 5000;
+    },
+    visible() {
+        return magicFighterStrenght === 4;
+    },
+    unlocked() {
+        return magicFighterStrenght === 4;
+    },
+    finish() {
+		if(magicFight && magicFighterStrenght === 4){
+			//Give an adventurer buddy.
+		}
+    },
+});
+
+Action.BuyManaZ3 = new Action("Buy Mana Z3", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+        Cha: 0.7,
+        Int: 0.2,
+        Luck: 0.1
+    },
+    manaCost() {
+        return 200;
+    },
+    visible() {
+        return true;
+    },
+    unlocked() {
+        return true;
+    },
+    goldCost() {
+        return 100;
+    },
+    finish() {
+        addMana(resources.gold * this.goldCost());
+        resetResource("gold");
+    },
+});
+
+Action.SellPotions = new Action("Sell Potions", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+        Cha: 0.7,
+        Int: 0.2,
+        Luck: 0.1
+    },
+    manaCost() {
+        return 2000;
+    },
+    visible() {
+        return true;
+    },
+    unlocked() {
+        return true;
+    },
+    finish() {
+		if(resources.potions > 0){
+			addResource("gold", resources.potions * 200);
+			resetResource("potions");
+		}
+		
+		if(resources.darkPotions > 0){
+			addResource("gold", resources.darkPotions * 200);
+			resetResource("darkPotions");
+		}
+    },
+});
+
 Action.ReadBooks = new Action("Read Books", {
     type: "normal",
     expMult: 4,
@@ -6715,12 +7055,10 @@ Action.ReadBooks = new Action("Read Books", {
         return 2000;
     },
     visible() {
-        //return towns[MERCHANTON].getLevel("City") >= 5;
-		return false;
+        return towns[MERCHANTON].getLevel("City") >= 20;
     },
     unlocked() {
-        //return towns[MERCHANTON].getLevel("City") >= 50;
-		return false;
+        return towns[MERCHANTON].getLevel("City") >= 60;
     },
     finish() {
         unlockStory("booksRead");

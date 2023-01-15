@@ -350,6 +350,9 @@ function View() {
         document.getElementById("totalTicks").textContent = `${formatNumber(actions.completedTicks)} | ${formatTime(timeCounter)}`;
         document.getElementById("effectiveTime").textContent = `${formatTime(effectiveTime)}`;
     };
+	this.updateLastLoopTicks = function() {
+		document.getElementById("effectiveTimeLastLoop").textContent = `${formatTime(effectiveTime)}`;
+	}
     this.updateResource = function(resource) {
         if (resource !== "gold") document.getElementById(`${resource}Div`).style.display = resources[resource] ? "inline-block" : "none";
 

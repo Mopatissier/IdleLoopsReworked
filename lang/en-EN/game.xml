@@ -10,6 +10,13 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.3"><![CDATA[
+            <b> January 15th, 2023 </b>
+			• The magic fighter action have been completely overhauled. A new, weaker version has replaced it.<br>
+			• A new action appeared in Merchanton! It might be linked to the story, or it might not.<br>
+			• The library has opened in Merchanton. Finally you can read some books.<br>
+			• Fixed a lot of glitches and tooltips. Now the potions finally can be sold for real!<br>
+            ]]></version>
 			<version verNum="0.3.2"><![CDATA[
             <b> January 9th, 2023 </b>
 			I'm back! Sorry for my little vacation, I'm finally there to work on Merchanton.<br>
@@ -281,7 +288,8 @@
 	  Try to complete the town first!<br>
 	  And remember : read all the tooltips!<br><br>
 	  
-	  This game is a balance rework of the original Idle Loops.<br>
+	  This game is a total rework of the original game Idle Loops.<br>
+	  Starting as a balance patch, it became an entirely new game in itself.<br>
 	  To play the latest version of the original game, check <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
 	  This is one of several versions of the game : for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
 	  Thanks for playing, and have fun!<br><br>
@@ -886,7 +894,8 @@
           Shows stat gain affecting speed.<br>
           Updates every completed action.<br>
           Accurate at end of run.<br>
-          Effective time: <div id='effectiveTime'>0</div>]]></mana_used_explanation>
+          Effective time: <div id='effectiveTime'>0</div><br>
+		  Effective time of last loop: <div id='effectiveTimeLastLoop'>0</div>]]></mana_used_explanation>
             <amount>Amount</amount>
             <current_list_active>Keep current list active</current_list_active>
             <repeat_last_action>Repeat last action on list</repeat_last_action>
@@ -1710,14 +1719,14 @@
 			Wait, is the squirrel actually better than you at healing people now?!<br>
 			Observing this happening is also helping you a lot at becoming better yourself at magic!<br>
 			Oh, it looks like it tired it, and it can't do it again this loop. Too bad!<hr class='divider'>
-			<b>Effect: </b>Heal one patient and gives 150 magic exp instead of 50. Can only be done once a loop.<br>
+			<b>Effect: </b>Does one full progress bar of healing and gives 150 magic exp instead of 50. Can only be done once a loop.<br>
 			<b>Next: </b>squirrel magic >= 50 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			If the squirrel was good at magic before, now it is even better!<br>
 			It is able to heal 2 people at the same time, how amazing is that?!<br>
 			Still, it still can only do it once per loop. Too bad for that!<hr class='divider'>
-			<b>Effect: </b>Heal two patient and gives 300 magic exp instead of 100. Can only be done once a loop.<hr class='divider'>
+			<b>Effect: </b>Heal two patient's worth of healing and gives 300 magic exp instead of 100. Can only be done once a loop.<hr class='divider'>
 			]]></squirrel_3>
             <story_1><![CDATA[<b>Patient healed:</b>⮀ You're allowed in to see the patients and begin healing. It's excellent practice and everyone you heal, be it from broken bones to small scrapes is extraordinarily thankful for your help.]]></story_1>
             <story_2><![CDATA[<b>10 Patients healed in a loop:</b>⮀ Your reputation is absolutely sterling, you've basically cleared out the entire healing home and the nurses and healers are more than thankful for your help.]]></story_2>
@@ -1829,7 +1838,7 @@
 			You feel bad for that poor monster.<br>
 			The squirrel is now satisfied and doesn't feel like fighting anymore for this loop.<br>
 			Well, that was a thing that just happened.<hr class='divider'>	
-			<b>Effect: </b>Kill one monster. Can only be done once every loop.<br>
+			<b>Effect: </b>Does one full progress bar of damage to monsters. Can only be done once every loop.<br>
 			<b>Next: </b>squirrel combat >= 50 <hr class='divider'>
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
@@ -1837,7 +1846,7 @@
 			You do a silent prayer for the monster and throw it on them.<br>
 			After shredding two of them, it comes back, satisfied.<br>
 			You can't help but wonder if you created a monster...<hr class='divider'>
-			<b>Effect: </b>Kill two monsters. Can only be done once every loop.<hr class='divider'>
+			<b>Effect: </b>Kill two monsters' worth of damage. Can only be done once every loop.<hr class='divider'>
 			]]></squirrel_3>
             <story_1><![CDATA[<b>Monster killed:</b>⮀ It's all so new, the way they respond and attack, you're not ashamed to admit that you almost got brained by a deer. Either way, their hides and rendered components will sell well.]]></story_1>
             <story_2><![CDATA[<b>100 Monsters killed:</b>⮀ You've fought enough that you're really starting to figure out how they'll respond to most things.]]></story_2>
@@ -1847,21 +1856,61 @@
             <story_6><![CDATA[<b>10,000 Monsters killed:</b>⮀ You don't struggle or need to worry about anything they throw at you anymore, you know everything.]]></story_6>
             <story_7><![CDATA[<b>20,000 Monsters killed:</b>⮀ This is a joke, the only reason you're still doing this is the gold it rakes in. You need it.]]></story_7>
         </fight_monsters>
+		<training_dummy>
+            <label>Training Dummy</label>
+            <label_done>Attacks Landed</label_done>
+            <tooltip><![CDATA[
+			Let's train every stats at once!<br>
+			There's a magical training dummy here, too bad it only has one mana charge left before it powers down.<br>
+			Though you wish you could fight that one strong looking guy instead. Too bad he keeps ignoring you...<hr class='divider'>
+			• Every completed segment gives 25 magic and combat exp. Landing a hit will give you an extra 25 exp.<br>
+			• Gives (magic + self combat) * (1 + main stat / 100) * sqrt(1 + attacks landed / 100) progress points per mana.<br>
+			• Can only be done once per loop.<br>
+			• Trains every stat, with a 300% exp multiplier.<br>
+			• It has 3 difficulty settings.<br>
+			• Requires a reputation of 2 or above.<br>
+			• Unlocked at a combined Combat and Magic skill of 25.<hr class='divider'>
+        ]]></tooltip>
+			<part_names>
+				<name_1>Training Dummy : Easy Difficulty</name_1>
+				<name_2>Training Dummy : Medium Difficulty</name_2>
+				<name_3>Training Dummy : Hard Difficulty</name_3>
+				<name_4>Training Dummy : Defeated</name_4>
+			</part_names>
+			<segment_names>
+				<name>Resisting intimidation</name>
+				<name>Preparing an attack plan</name>
+				<name>Observing movements</name>
+				<name>Dodging attacks</name>
+				<name>Parrying attacks</name>
+				<name>Getting out of the spell's area of effect</name>
+				<name>Making a distraction</name>
+				<name>Waiting for an opening</name>
+				<name>Striking with all might</name>
+			</segment_names>
+			<squirrel_1><![CDATA[
+			Despite all the biting the squirrel does, the magical dummy doesn't move.<br>
+			It probably set to only fight humans! Well, now you have one disappointed squirrel...<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+			]]></squirrel_1>
+			<story_1><![CDATA[<Not trained against the dummy : placeholder]]></story_1>
+        </training_dummy>
 		<magic_fighter>
             <label>Magic Fighter</label>
             <label_done>Attacks Landed</label_done>
             <tooltip><![CDATA[
-			You might learn a lot from fighting this insanely strong looking magic fighter.
-			<br>Looks like he's about to leave, though, so you only have the time do it once.<br>
-			You have the feeling you're not supposed to meet him so early...<hr class='divider'>
-			• <b>This should be available later in the run, but you're free to fight him right now for a challenge.</b><br>
-			• Every completed segment gives 50 magic and combat exp. Managing to land a hit will give you an extra 50 exp.<br>
-			• Gives (magic + self combat) * (1 + main stat / 100) * sqrt(1 + attacks landed / 100) progress points per mana.<br>
+			Goodbye training dummy, welcome insanely strong magic fighter!<br>
+			Now that you have the means to fight him, training will be better than ever!<br>
+			... That is, if you can even scratch him.<hr class='divider'>
+			• Every completed segment gives 75 magic and combat exp. Landing a hit will give you an extra 75 exp.<br>
+			• Gives (magic + self combat) * (1 + main stat / 200) * sqrt(1 + attacks landed / 200) progress points per mana.<br>
 			• Can only be done once per loop.<br>
-			• To beat him, you have to hit him four times!<br>
-			• Requires a reputation of 2 or above.<br>
-			• Unlocked at a combined Combat and Magic skill of 25.<hr class='divider'>
+			• Trains every stat, with a 1000% exp multiplier.<br>
+			• He will let you hit him 
         ]]></tooltip>
+			<tooltip2><![CDATA[ times before going to Merchanton.<br>
+			• Requires a reputation of 2 or above.<hr class='divider'>
+		]]></tooltip2>
 			<part_names>
 				<name_1>Magic Fighter : Barely Moving A Muscle</name_1>
 				<name_2>Magic Fighter : Going Easy</name_2>
@@ -1885,9 +1934,9 @@
 			Seeing how he ignores you for the rest of the loop, you think he didn't take it well.<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 			]]></squirrel_1>
-			<story_1><![CDATA[<b>Attempted to fight:</b>⮀ The magic fighter sighs and asks you try your best. It looks like this isn't the first time someone asked him this. Before you take your first step, you're already on the ground, defeated. This isn't going to be easy...]]></story_1>
+			<story_1><![CDATA[<Not Attempted to fight : placeholder]]></story_1>
+			<!--><story_1><![CDATA[<b>Attempted to fight:</b>⮀ The magic fighter sighs and asks you try your best. It looks like this isn't the first time someone asked him this. Before you take your first step, you're already on the ground, defeated. This isn't going to be easy...]]></story_1><!-->
         </magic_fighter>
-
         <small_dungeon>
             <label>Small Dungeon</label>
             <label_done>Looted</label_done>
@@ -1987,7 +2036,8 @@
             <tooltip><![CDATA[
             Follow the trail to end up at the next town. You need to keep moving until you can learn how to shut these loops off.<hr class='divider'>
 			• Costs 1 supplies.<br>
-			• Finish once to unlock Forest Path's actions, then finish this in order to use Forest Path's actions.<br>
+			• Doing this action the first time will unlock the next zone's actions. <br>
+			• After that, doing this action will allow you to do the actions of the next zone.<br>
 			• Unlocked at a combined Combat and Magic skill of 35.<br>
 			• <b>Warning : the next zone is finished, and in beta! Please try it, and give your thoughts and your savefile once tne zone finished so that it can be correctly rebalanced for a better experience!</b><hr class='divider'>
         ]]></tooltip>
@@ -2627,9 +2677,9 @@
             Keep walking to the next town, Merchanton.<hr class='divider'>
 			• Mana cost reduced by 600 per Old Shortcut % for the first 50%, and 60 for the next 50%.<br>
 			• Mana cost also reduced by 600 per Dark Forest % for the first 50%, and 60 for the next 50%.<br>
-			• <b>Warning : the next zone isn't finished. Like at all. Getting further will only give you an extremely unbalanced gameplay that will give you a taste of what's to come.<br>
-			Please, please back up your save before going further! There's even the risk your savefile could be corrupted if you go further.<br>
-			If you want to see how far in development the next zone is, look at the changelog!</b><hr class='divider'>
+			• <b>Warning : the next zone is in alpha : you won't have access to all actions, they are prone to change, and there's no squirrel action.<br>
+			Always back up your save before going further! You never know what might happen that's out of hand.<br>
+			To see how far in development the next zone, you can look at the changelog. And don't hesitate to give your thoughts on the Discord server!</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The squirrel wants you to follow it to a new zone!<br>
@@ -2753,26 +2803,6 @@
         ]]></tooltip2>
 			<story_1><![CDATA[<b>No slave bought:</b>⮀ Placeholder.]]></story_1>
         </slave_auction>
-        <buy_mana_z3>
-            <label>Buy Mana</label>
-            <tooltip><![CDATA[
-            Nice, another shop selling mana. Lucky lucky you!<hr class='divider'>
-			• 1 gold = 
-        ]]></tooltip>
-            <tooltip2><![CDATA[
-            mana.<br>
-			• Buys all the mana you can.<hr class='divider'>
-        ]]></tooltip2>
-			<story_1><![CDATA[<b>No mana bought:</b>⮀ Placeholder.]]></story_1>
-        </buy_mana_z3>
-        <sell_potions>
-            <label>Sell Potions</label>
-			<tooltip><![CDATA[
-			There seems to be a market for potions here. Useful!<hr class='divider'>
-			• Every potion and dark potion can be sold for 200 gold.<hr class='divider'>
-		]]></tooltip>
-			<story_1><![CDATA[<b>No potion sold:</b>⮀ Placeholder.]]></story_1>
-        </sell_potions>
         <adventure_guild>
             <label>Adventure Guild</label>
             <label_done>Impressed</label_done>
@@ -2894,10 +2924,129 @@
 			<story_6><![CDATA[<b>80% Projects Planned:</b>⮀ These days you win as often as not, and you rarely place beneath top three. Part of it is that you're already familiar with all of the active competitions, but you wouldn't be winning if you weren't making good designs.]]></story_6>
 			<story_7><![CDATA[<b>100% Projects Planned:</b>⮀ With this victory, you've won every design competition in Merchanton at least once. However, there are countless ways to design a house, so you aren't done designing and maybe never will be.]]></story_7>
         </architect>
+		<delivery_address_zero>
+			<label>Delivery Address</label>
+			<tooltip><![CDATA[
+			Wait, you just remembered the package with the loop potion was supposed to be delivered in Merchanton!<br>
+			But you totally forgot the address, and the potion made the label totally impossible to read...<br>
+			Oh well, let's try to check each door of the city individually until you find it, then.<br>
+			It surely won't be the last one you'll check, right?<br>
+			... Right?<hr class='divider'>
+			• Doing this action will upgrade it into a different one.<br>
+			• Unlocked at 100% City Explored.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Didn't do anything:</b>⮀ Placeholder.]]></story_1>
+		</delivery_address_zero>
+		<delivery_address_one>
+			<label>Delivery Address</label>
+			<tooltip><![CDATA[
+			As you stand in front of the gosh darn last door of the city, you just remember the address...<br>
+			It's this one, you're sure of it!<br>
+			You knock the door as loud as you can, excited to know more about the potion!<br>
+			A strong looking guy opens the door, looks at you, mutters "Weak...", then slams the door.<br>
+			He doesn't respond to further knocking... What a jerk!<br>
+			... Wait, you recognize him. He was at Beginnersville earlier! <br>
+			Well, if he wants you to be powerful, let's show him! Let's defeat the training dummy to prove it!<hr class='divider'>
+			• Defeat the training dummy then do this action for it to have any effect.<br>
+			• Successfully doing this action will upgrade it and upgrade the training dummy as well.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Didn't do anything:</b>⮀ Placeholder.]]></story_1>
+		</delivery_address_one>
+		<delivery_address_two>
+			<label>Delivery Address</label>
+			<tooltip><![CDATA[
+			Hopefully, he won't ignore you this time.<br>
+			And he doesn't! Well, he still looks at you like you're a bug to crush, but that's better.<br>
+			As you explain your situation, he cuts you :<br>
+			"Sure. Go back in time and tell me you want to fight a "magic fighter", then."<br>
+			Then slams the door on your face.<br>
+			What? Well, uh... Let's do that, then. Maybe then he'll listen to you then.<hr class='divider'>
+			• Hit the magic fighter once then do this action for it to have any effect.<br>
+			• Successfully doing this action will upgrade it and allow you to hit twice the magic fighter.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Didn't do anything:</b>⮀ Placeholder.]]></story_1>
+		</delivery_address_two>
+		<delivery_address_three>
+			<label>Delivery Address</label>
+			<tooltip><![CDATA[
+			Why is he so strong? How is he so strong?! At least you managed to scratch him!<br>
+			This time, he listens to your explanation until the end... Phew.<br>
+			But he still looks unimpressed :<br>
+			"Okay. Tell me that you want to prove your worth in Beginnersville, and then we'll see."<br>
+			Then slams the door. Again. Did he even listen to you?!<br>
+			Ah well, you know what to do...<hr class='divider'>
+			• Hit the magic fighter twice then do this action for it to have any effect.<br>
+			• Successfully doing this action will upgrade it and allow you to hit thrice the magic fighter.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Didn't do anything:</b>⮀ Placeholder.]]></story_1>
+		</delivery_address_three>
+		<delivery_address_four>
+			<label>Delivery Address</label>
+			<tooltip><![CDATA[
+			You thought he was strong. You were wrong. He was *insanely* strong.<br>
+			As he opens the door, he exclaims :<br>
+			"Oh, you're that fighter from before, what do you want?"<br>
+			No more disdain on his face! Finally he should listen to you. Maybe.<br>
+			"A looping potion? A time loop? A package? To me? Sorry, I have no idea what you're talking about.<br>
+			I'm sorry, it must have been a wrong address from the start. If your story is even true.<br>
+			If it is true, I dare you to tell me I have a birth mark on my left buttock in the past. See you!"<br>
+			Then gently closes the door.<br>
+			Wouldn't saying that anger him? You feel like it will...<br>
+			You're quite disappointed that he doesn't know anything about the potion...<br>
+			But it's not the first drawback you've ever met. Let's continue the quest.<hr class='divider'>
+			• Hit the magic fighter thrice then do this action for it to have any effect.<br>
+			• Successfully doing this action will upgrade it and allow you to hit four times the magic fighter.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Didn't do anything:</b>⮀ Placeholder.]]></story_1>
+		</delivery_address_four>
+		<delivery_address_five>
+			<label>Delivery Address</label>
+			<tooltip><![CDATA[
+			Yep. He was mad. Thankfully he took his defeat well.<br>
+			You were quite surprised when he declared you his rival!<br>
+			For the first time, he lets you enter his house instead of just talking. That's nice!<br>
+			"Ah, it's you, my new rival! Are you here for a new fight?<br>
+			What, a loop potion? That's ridiculous, I've never heard of anything like that!<br>
+			But if you say so, I'll believe you. Want some tea?<br>
+			Oh, say what? If you go back and tell me you're a rival sent by my father, I might fight you for real.<br>
+			And if you defeat me at my best, which I doubt you can, I'll accompany you on your quest.<br>
+			Just come back here once it's done, and explain me what happened then. Good luck!"<br>
+			You've never seen him so talkative. And you never expected him to be the kind of guy to serve drinks.<br>
+			Having a companion without going to the adventurer guild might be extremely helpful.<br>
+			So let's train and beat him to the ground!<hr class='divider'>
+			• Hit the magic fighter four times then do this action for it to have any effect.<br>
+			• Successfully doing this action will give you a free team mate.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Didn't do anything:</b>⮀ Placeholder.]]></story_1>
+		</delivery_address_five>
+		<buy_mana_z3>
+            <label>Buy Mana</label>
+            <tooltip><![CDATA[
+            Nice, another shop selling mana. Lucky lucky you!<hr class='divider'>
+			• 1 gold = 
+        ]]></tooltip>
+            <tooltip2><![CDATA[
+            mana.<br>
+			• Buys all the mana you can.<hr class='divider'>
+        ]]></tooltip2>
+			<story_1><![CDATA[<b>No mana bought:</b>⮀ Placeholder.]]></story_1>
+        </buy_mana_z3>
+        <sell_potions>
+            <label>Sell Potions</label>
+			<tooltip><![CDATA[
+			There seems to be a market for potions here. Useful!<hr class='divider'>
+			• Sells every potion and dark potion for 200 gold.<hr class='divider'>
+		]]></tooltip>
+			<story_1><![CDATA[<b>No potion sold:</b>⮀ Placeholder.]]></story_1>
+        </sell_potions>
         <read_books>
             <label>Read Books</label>
-            <tooltip><![CDATA[
-            There's a library! You always loved reading.<br>Discover new worlds and perspectives, get ideas from fiction characters, and empathize with the desire to be stronger.<br>Requires glasses.<br>Has 4x exp/talent gain, and can only be done <div id='trainingLimitInt'></div> times per reset.<br>Unlocked at 50% city explored.
+			<tooltip><![CDATA[
+			A library! You always loved reading, and you were starting to fear you'd forget how to read them.<br>
+			Discover new worlds and perspectives, get ideas from fictionnal characters, and empathize with the desire to be stronger.<hr class='divider'>
+			• Requires glasses.<br>
+			• Has 4x exp/talent gain, and can only be done 10 times per reset .<br>
+			• Unlocked at 60% City Explored.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>Books read:</b>⮀ They do have it! You must have read this book a hundred times when you were a kid, and it's been a long time since you've found another copy. That's not all the library has to offer, far from it, but right now you're happy to settle down with your favourite book for an afternoon of reading.]]></story_1>
         </read_books>

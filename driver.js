@@ -179,6 +179,8 @@ function prepareRestart() {
 }
 
 function restart() {
+	view.updateLastLoopTicks();
+	
     shouldRestart = false;
     timer = 0;
     timeCounter = 0;
@@ -251,6 +253,10 @@ function addResource(resource, amount) {
 
 		view.updateBuff("YinYang");
 		
+		view.adjustGoldCost("SlaveAuction", Action.SlaveAuction.goldCost());
+	}
+	
+	if(resource === "gold") {
 		view.adjustGoldCost("SlaveAuction", Action.SlaveAuction.goldCost());
 	}
 

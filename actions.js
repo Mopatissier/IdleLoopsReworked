@@ -247,6 +247,7 @@ function Actions() {
         }
         this.totalNeeded = this.completedTicks + remainingTicks;
         view.updateTotalTicks();
+ 
     };
 
 

@@ -173,6 +173,7 @@ let curActionShowing;
 let dungeonShowing;
 let actionTownNum;
 let trainingLimits = 10;
+let magicFighterStrenght = -1;
 let storyShowing = 0;
 let storyMax = 0;
 const storyReqs = {
@@ -418,6 +419,7 @@ function load() {
     }
     actionTownNum = toLoad.actionTownNum === undefined ? 0 : toLoad.actionTownNum;
     trainingLimits = 10 + getBuffLevel("Imbuement");
+	magicFighterStrenght = toLoad.magicFighterStrenght === undefined ? 0 : toLoad.magicFighterStrenght;
     goldInvested = toLoad.goldInvested === undefined ? 0 : toLoad.goldInvested;
     stonesUsed = toLoad.stonesUsed === undefined ? {1:0, 3:0, 5:0, 6:0} : toLoad.stonesUsed;
 
@@ -629,6 +631,7 @@ function save() {
     toSave.skills = skills;
 	toSave.skillsSquirrel = skillsSquirrel;
     toSave.buffs = buffs;
+	toSave.magicFighterStrenght = magicFighterStrenght;
     toSave.goldInvested = goldInvested;
     toSave.stonesUsed = stonesUsed;
     toSave.version75 = true;
