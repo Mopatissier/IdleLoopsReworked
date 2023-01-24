@@ -257,6 +257,8 @@ function View() {
 				document.getElementById("skillBonusYin").textContent = intToString(getYinYangBonus("Yin"), 4);
 			} else if (skill === "Yang"){
 				document.getElementById("skillBonusYang").textContent = intToString(getYinYangBonus("Yang"), 4);
+			} else if (skill === "TeamWork"){
+				document.getElementById("skillTeamWorkNumber").textContent = intToString(getNumberSoulstonesLargeDungeon(), 1);
 			} else if (skill === "Chronomancy") {
                 document.getElementById("skillBonusChronomancy").textContent = intToString(getSkillBonus("Chronomancy"), 4);
             } else if (skill === "Mercantilism") {
@@ -355,10 +357,6 @@ function View() {
 	}
     this.updateResource = function(resource) {
         if (resource !== "gold") document.getElementById(`${resource}Div`).style.display = resources[resource] ? "inline-block" : "none";
-
-		if(!squirrelMode){
-			if (resource === "teamMembers") document.getElementById("teamCost").textContent = (resources.teamMembers + 1) * 100;
-		}
 
         if (Number.isFinite(resources[resource])) document.getElementById(resource).textContent = resources[resource];
     };

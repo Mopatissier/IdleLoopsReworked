@@ -233,6 +233,7 @@ function Actions() {
         view.requestUpdate("updateNextActions");
         view.requestUpdate("updateTime");
 		addResource("reputation", 0);
+		view.adjustGoldCost("TailJudges", Action.TailJudges.goldCost());
     };
 
     this.adjustTicksNeeded = function() {

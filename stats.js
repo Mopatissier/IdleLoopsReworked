@@ -147,6 +147,14 @@ function getYinYangBonus(skill){
 	}
 }
 
+function getNumberSoulstonesLargeDungeon(){
+	let numberOfSoulstones = 10;
+	numberOfSoulstones = numberOfSoulstones / (1 +resources.teamMembers);
+	numberOfSoulstones = numberOfSoulstones * (1 + getSkillLevel("TeamWork")/100);
+	numberOfSoulstones = Math.min(10, Math.floor(numberOfSoulstones));
+	return numberOfSoulstones;
+}
+
 function getSkillMod(name, min, max, percentChange) {
     if (getSkillLevel(name) < min) return 1;
     else return 1 + Math.min(getSkillLevel(name) - min, max-min) * percentChange / 100;
@@ -188,7 +196,7 @@ function getSelfCombat() {
 }
 
 function getTeamCombat() {
-    return getSelfCombat() + (getSkillLevel("Combat") + getSkillLevel("Restoration") * 2) * (resources.teamMembers / 2) * getAdvGuildRank().bonus;
+    return ((getSelfCombat()/200) * Math.pow(200, resources.teamMembers) * (1 + getSkillLevel("TeamWork")/10));
 }
 
 

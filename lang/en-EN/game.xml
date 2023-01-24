@@ -10,12 +10,21 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.4"><![CDATA[
+            <b> January 24th, 2023 </b>
+			The Adventure Guild has opened its doors! Finally you'll be able to go into the large dungeon!<br>
+			• Added/Reworked 5 new actions based on the Adventurer Guild.<br>
+			• Added another action to help with getting ranks.<br>
+			• Added the mechanic to go to Mt.Olympus (no pickaxe anymore!), even it's closed off for now.<br>
+			• Fixed a bunch of small glitches with the magic fighter.<br>
+            ]]></version>
 			<version verNum="0.3.3"><![CDATA[
             <b> January 15th, 2023 </b>
 			• The magic fighter action have been completely overhauled. A new, weaker version has replaced it.<br>
 			• A new action appeared in Merchanton! It might be linked to the story, or it might not.<br>
 			• The library has opened in Merchanton. Finally you can read some books.<br>
 			• Fixed a lot of glitches and tooltips. Now the potions finally can be sold for real!<br>
+			• Added a timer next to the effective time. It shows the time it the last loop took.<br>
             ]]></version>
 			<version verNum="0.3.2"><![CDATA[
             <b> January 9th, 2023 </b>
@@ -357,6 +366,11 @@
             <id>armor</id>
             <desc>Crafted by your own hand, it protects you from dangers.</desc>
         </resource>
+		<resource initially_hidden="true">
+            <title>Climbing Gears Of Quality </title>
+            <id>climbingGears</id>
+            <desc>Probably a good idea to have if you want to explore a mountain.</desc>
+        </resource>
         <resource initially_hidden="true">
             <title>Blood:</title>
             <id>blood</id>
@@ -597,11 +611,11 @@
         <title>Skills</title>
         <scombat>
             <label>Self Combat</label>
-            <desc>Self Combat = (Combat skill + Pyromancy skill * 5) * (1 + (armor + 3 * enchanted armor) * Crafting Guild Multiplier / 5)</desc>
+            <desc>Self Combat = Combat skill + Pyromancy skill * 5) * (1 + (armor + 3 * enchanted armor) * Crafting Guild Multiplier / 5)</desc>
         </scombat>
         <tcombat>
             <label>Team Combat</label>
-            <desc>Team Combat = Self Combat + (Combat Skill + Restoration skill * 2) * (Team Members / 2) * Adventure Guild Multiplier</desc>
+            <desc>Team Combat = (Self Combat / 200) * (200 ^ Team Members) * ( 1 + Team Work / 10)</desc>
         </tcombat>
         <combat>
             <label>Combat</label>
@@ -643,6 +657,16 @@
             <label>Brewing</label>
             <desc>It feels like a more archaic way to make potions. Nonetheless, it still works.</desc>
         </brewing>
+		<teamwork>
+            <label>Team Work</label>
+            <desc>The greater your team work, the happier your companions!</desc>
+			<desc2><![CDATA[
+					As you get more efficient at team work, your companion will allow you to take more loot.<br>
+					Gives +1% soulstone per level of team work in the large dungeon.<br>
+					Currently, with your teammates, you will gain <div id='skillTeamWorkNumber'>10</div> soulstones out of 10 per large dungeon floor.
+					]]>
+			</desc2>
+        </teamwork>
         <crafting>
             <label>Crafting</label>
             <desc>The skill of using your hands and creativity when doing physical work.</desc>
@@ -1893,7 +1917,7 @@
 			It probably set to only fight humans! Well, now you have one disappointed squirrel...<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 			]]></squirrel_1>
-			<story_1><![CDATA[<Not trained against the dummy : placeholder]]></story_1>
+			<story_1><![CDATA[<b>Not fought:</b>⮀ Placeholder.]]></story_1>
         </training_dummy>
 		<magic_fighter>
             <label>Magic Fighter</label>
@@ -1934,7 +1958,7 @@
 			Seeing how he ignores you for the rest of the loop, you think he didn't take it well.<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 			]]></squirrel_1>
-			<story_1><![CDATA[<Not Attempted to fight : placeholder]]></story_1>
+			<story_1><![CDATA[<b>Not fought:</b>⮀ Placeholder.]]></story_1>
 			<!--><story_1><![CDATA[<b>Attempted to fight:</b>⮀ The magic fighter sighs and asks you try your best. It looks like this isn't the first time someone asked him this. Before you take your first step, you're already on the ground, defeated. This isn't going to be easy...]]></story_1><!-->
         </magic_fighter>
         <small_dungeon>
@@ -2806,36 +2830,52 @@
         <adventure_guild>
             <label>Adventure Guild</label>
             <label_done>Impressed</label_done>
-            <tooltip><![CDATA[
-            The one stop shop for all your adventuring needs.<br>Take their tests and get a rank!<br>You can only join 1 guild at a time, and only try once.<br>Gives 200 mana per rank.<br>Gives ((magic skill)/2 + (self combat)) * (1 + main stat / 100) * sqrt(1 + times completed / 1000) * (original mana cost / actual mana cost) progress points per mana.<br>Unlocked at 20% Rumors Heard.
+			<tooltip><![CDATA[
+			One little test, and you'll have access to all adventurer only facilities!<br>
+			The jury does look a little corruptible here, maybe that'll come in handy...<hr class='divider'>
+			• You can only join 1 guild at a time, and only try once.<br>
+			• Gives ((magic skill + self combat)/2) * sqrt(1 + main stat / 100) * sqrt(1 + times completed) progress points per mana.<br>
+			• Unlocked at 10% Rumors Heard.<hr class='divider'>
         ]]></tooltip>
-			<story_1><![CDATA[<b>Tests taken:</b>⮀ You've gone through the standardized tests of the guild, and you're a little surprised at how low you placed. It seems that what you've considered impressive up until now is just the bare minimum around here.]]></story_1>
-			<story_2><![CDATA[<b>E Rank achieved:</b>⮀ You've clawed your way out of the ranks of the common riffraff. You still don't stand out at all, but it feels good to not be on the bottom rung anymore.]]></story_2>
-			<story_3><![CDATA[<b>D Rank achieved:</b>⮀ They say you're good for a new recruit, but it's still with a bored tone and an apathetic face. It seems even though you're getting much better scores nobody actually cares yet. Well, at least you're better off than the people stuck in F-rank.]]></story_3>
-			<story_4><![CDATA[<b>C Rank achieved:</b>⮀ People seem to actually respect you now, all of a sudden. Apparently it's pretty common for people to fail to make it higher than E or D and quit, but those who make it to C-rank are in for the long haul. You're being treated like a comrade in arms now, and it feels good.]]></story_4>
-			<story_5><![CDATA[<b>B Rank achieved:</b>⮀ Now people are starting to take note. B-rank adventurers don't come around every day, and most of them started lower and climbed their way up. That you came out of nowhere and placed B-rank on arrival is stirring up quite a few rumours.]]></story_5>
-			<story_6><![CDATA[<b>A Rank achieved:</b>⮀ There are only about a dozen A-rank adventurers in Merchanton, and your arrival astonishes them all. Rumours fly, and some are even saying that you're an A-rank previously thought dead, disguised under a new identity. All the attention makes you uncomfortable, but at this point it's hard to avoid.]]></story_6>
-			<story_7><![CDATA[<b>S Rank achieved:</b>⮀ There's only one other S-rank adventurer around, Guildmaster Rannet himself. There aren't any rumours of you being a fake identity this time, because S-rank adventurers are so rare that Rannet personally knows all of them and he's convinced he's never seen you before. Instead, people whisper about everything from the legacy of heroes to divine blood and everything in-between. At this point the only things that could explain your existence are implausible, and you can't really disagree with that assessment.]]></story_7>
-			<story_8><![CDATA[<b>U Rank achieved:</b>⮀ You stand above even Rannet now, and you're told the only person who compares is the strongest Guildmaster, Diphon "Living Earthquake" Granwell. Word spreads like wildfire and you become an instant celebrity. Everyone seems to want you to go challenge Diphon to see who's the strongest, but you know that you'd run out of mana long before you even get close to his city.]]></story_8>
-			<story_9><![CDATA[<b>Godlike rank achieved:</b>⮀ This isn't really a formal rank, as much as it reflects how you're stronger than they have means to measure, stronger than they've thought possible. They tell you you're the strongest human alive, perhaps the strongest to ever live, and while you hesitate to embrace such a status you can see that they honestly believe it.]]></story_9>
+			<story_1><![CDATA[<b>No test taken:</b>⮀ Placeholder.]]></story_1>
         </adventure_guild>
+		<training_facility>
+            <label>Training Facility</label>
+			<tooltip><![CDATA[
+			This place is perfect to train with other people! Let's see how good you are at team work.<br>
+			It's even better if you bring your own teammates, but then it'll cost a fee.<hr class='divider'>
+			• Gives 40 team work exp as a base.<br>
+			• The exp is multiplied by your adventurer guild multiplier.<br>
+			• Bringing teammates makes this action costs 25 gold, but multiplies the exp by (1+teammates).<br>
+			• You need to be an adventurer to have access to this action.<br>
+			• Unlocked at 30% Rumors Heard.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Not trained:</b>⮀ Placeholder.]]></story_1>
+        </training_facility>
         <gather_team>
             <label>Gather Team</label>
-            <tooltip><![CDATA[
-            You don't have to take them on by yourself.<br>Max 5 other team members.<br>Costs <div id='teamCost'></div>
-            gold, and the cost goes up by 100 gold per member.<br>Each member adds (Adventure Guild Multiplier) * (Combat Skill / 2) to your Team Combat.<br>Requires Adventure Guild.<br>Has 3x exp/talent gain.<br>Unlocked at 20% Rumors Heard.
+			<tooltip><![CDATA[
+			Figthing in a team is extremely efficient! Too bad your teammates keep asking for compensation...<hr class='divider'>
+			• You can recruit team members up to (adventurer guild multiplier / 2), rounded down.<br>
+			• Soulstones looted will be shared equally between all members of your team.<br>
+			• Each member multiplies your Team Combat by 200.<br>
+			• Unlocked at 40% Rumors Heard.<hr class='divider'>
         ]]></tooltip>
-			<story_1><![CDATA[<b>Teammate gathered:</b>⮀ Cassandra, self-professed expert spell-slinger, makes no attempt to hide her suspicion of the newcomer who's insisting on an expedition the same day they joined the guild. Still, you're paying the asking price, so she grudgingly accepts. You can tell that she won't be a pleasant companion, though.]]></story_1>
-			<story_2><![CDATA[<b>Full party:</b>⮀ Cassandra was a solo adventurer, but you've located a full party willing to join you in the dungeon. There's Marcus the swordsman, Raven the archer, Harvey the spell-slinger, Emily the healer, and Kyla, a rare specialist in magic-augmented dagger fighting. And you, now that you've paid them handsomely to join you.]]></story_2>
-			<story_3><![CDATA[<b>Failed Action:</b>⮀ When Cassandra names her price, you mentally count the gold you have remaining and make a counteroffer. Before you can say anything else, Cassandra walks out and tells you to go home and stop wasting people's time.]]></story_3>
-        </gather_team>
+			<story_1><![CDATA[<b>Not recruited:</b>⮀ Placeholder.]]></story_1>
+		</gather_team>
         <large_dungeon>
             <label>Large Dungeon</label>
             <label_done>Looted</label_done>
             <label_complete>Completed</label_complete>
             <label_part>Large Dungeon</label_part>
-            <tooltip><![CDATA[
-            With your party, you set out to accomplish great feats of dungeoneering that you couldn't have done while alone.<br>Gives (magic + team combat) * (1 + main stat / 100) * sqrt(1 + times floor completed / 200) * (original mana cost / actual mana cost) progress points per mana.<br>Requires at least one other party member.<br>Unlocked at 20% Rumors Heard.<br>Gives 10 soulstones per completion - hover over Looted for info.
+			<tooltip><![CDATA[
+			The gards won't let you pass without having any teammate... It's time to form a party.<hr class='divider'>
+			• Requires at least 1 team member.<br>
+			• Gives  Team Combat * (1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
+			• Gives 10 soulstone per floor, but they are shared equally between all members of your team.<br>
+			• After which, the skill Team Work will allow you to get more soulstones.<br>
+			• Every floor cleared gives you 100 Team Work exp.<br>
+			• Unlocked at 40% Rumors Heard.<hr class='divider'>
         ]]></tooltip>
             <completed_tooltip><![CDATA[
             Each soulstone improves a random stat's exp gain by (1+(soulstones)^.8/30).<br>Each floor has 10 soulstones that, when received, reduces the chance you'll get the next one by 2%.<br>Chance to receive a soulstone recovers per floor at 0.00001% per mana.<br>
@@ -2851,12 +2891,36 @@
                 <name>Dodge Friendly Fire</name>
                 <name>Fight Boss</name>
             </segment_names>
-			<story_1><![CDATA[<b>Large Dungeon Attempted:</b>⮀ You quickly understand why you couldn't do this alone. The strong guardians at the entrance aside, many of the traps can only be disarmed by multiple people working together. If you tried this on your own you would've been squashed like a bug.]]></story_1>
-			<story_2><![CDATA[<b>2,000 Dungeon Floors Looted:</b>⮀ Adventuring in a party is tricky. Everyone wants the kill, everyone wants the loot, and one wrong word from anyone can spell a cascade of arguments. It's frustrating how much time you need to spend defusing tensions and keeping the party focused.]]></story_2>
-			<story_3><![CDATA[<b>10,000 Dungeon Floors Looted:</b>⮀ While the dungeon is never quite the same, you have its measure, and that lets you persuade your party to go down the right corridors and avoid traps. You can tell they're suspicious, but you shrug it off as some kind of intuition and change the topic before an argument can start.]]></story_3>
-			<story_4><![CDATA[<b>20,000 Dungeon Floors Looted:</b>⮀ They probably don't realize how much you're pulling the strings. How many arguments you've stopped before they start, or why they've never once made a wrong turn. At this point you know them better than they know themselves, and adventuring has never been so peaceful.]]></story_4>
-			<story_5><![CDATA[<b>9 Floors cleared in a loop:</b>⮀ An ornate altar in a room full of carvings holds the final soulstones of the dungeon. It emanates a deep red tinted with gray and you feel slightly unsettled, but soulstones are soulstones. You pocket them and swiftly leave.]]></story_5>
+			<story_1><![CDATA[<b>Not attempted:</b>⮀ Placeholder.]]></story_1>
         </large_dungeon>
+		<mock_battle>
+            <label>Mock Battle</label>
+			<label_done>Battles Won</label_done>
+            <part_names>
+				<name_1>General Of A Small Squad</name_1>
+				<name_2>General Of An Army</name_2>
+				<name_3>General Of Half Of The Guild</name_3>
+			</part_names>
+			<segment_names>
+				<name>Psyching yourself up</name>
+				<name>Giving a speech to your soldiers</name>
+				<name>Observing the battlefield</name>
+				<name>Picking the best strategies</name>
+				<name>Finishing off the enemy general</name>
+			</segment_names>
+            <tooltip><![CDATA[
+			How lucky! This week is the week of the anniversary of the creation of the guild!<br>
+			This year, they are celebrating by doing huge mock battles, with a lot of prizes.<br>
+			Among them, there's one that catches your eyes : climbing gears. Perfect for Mt. Olympus!<br>
+			You'll need to assume the role of a general in the mock battle to get this one.<hr class='divider'>
+			• Gives Team Work * sqrt(1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
+			• Can only be done once per loop.<br>
+			• Each win will give you climbing gears of better quality, up to 3 times.<br>
+			• You need to be an adventurer to have access to this action.<br>
+			• Unlocked at 60% Rumors Heard.<hr class='divider'>
+        ]]></tooltip>
+			<story_1><![CDATA[<b>Not fought:</b>⮀ Placeholder.]]></story_1>
+        </mock_battle>
         <crafting_guild>
             <label>Crafting Guild</label>
             <label_done>Cried From Beauty</label_done>
@@ -3050,13 +3114,26 @@
         ]]></tooltip>
 			<story_1><![CDATA[<b>Books read:</b>⮀ They do have it! You must have read this book a hundred times when you were a kid, and it's been a long time since you've found another copy. That's not all the library has to offer, far from it, but right now you're happy to settle down with your favourite book for an afternoon of reading.]]></story_1>
         </read_books>
-        <buy_pickaxe>
-            <label>Buy Pickaxe</label>
-            <tooltip><![CDATA[
-            Getting the pickaxe vendor to talk to you is a tricky task, but at least he'll offer it to you for 200 gold after some convincing.<br>Affects any action with the pickaxe icon.<br>Can only have 1 Buy Pickaxe action.<br>Unlocked at 90% City Explored.
+		<tail_judges>
+            <label>Tail Judges</label>
+			<tooltip><![CDATA[
+			What do the judges like to see you do? How would they react if you knew their little secrets?<br>
+			The more you know about all of that, the easier the exams become.<br>
+			What, that's cheating? Pft, uh, no, that's fair game, I swear!<hr class='divider'>
+			• Increases the "time completed" stats for the exam of the guild you're currently in.<br>
+			• Gives 10 ^ (guild multiplier rounded down - 1) completions to the exam.<br>
+			• Would currently give 
         ]]></tooltip>
-			<story_1><![CDATA[<b>Pickaxe bought:</b>⮀ The shopowner assures you that the pickaxe is made out of only the most sturdy materials and will last a lifetime without needing repair. You're not entirely convinced, but you don't need it to last a lifetime anyways, and it does have a good heft to it.]]></story_1>
-        </buy_pickaxe>
+			<tooltip2><![CDATA[ completions to the guild you're in.<br>
+			• Can only be done once per loop (too dangerous to do it twice).<br>
+			• If you got both transitive items to quality 3 in previous loops, unlock the next effect :<br>
+			• Having no guild will give you both transitive items at quality 1.<br>
+			• If done so, doesn't allow you to get into Merchanton's guilds (they're angry at you).<br>
+			• Unlocked once E rank has been reached in both guilds in previous loops.<br>
+			• <b>Note : Until the crafting guild opens its door, only E rank in the adventurer guild is required to unlock this action!</b><hr class='divider'>
+        ]]></tooltip2>
+			<story_1><![CDATA[<b>Didn't tail anyone:</b>⮀ Placeholder.]]></story_1>
+		</tail_judges>
         <heroes_trial>
             <label>Heroes Trial</label>
             <label_done>Done</label_done>
@@ -3079,10 +3156,13 @@
         </heroes_trial>
         <start_trek>
             <label>Start Trek</label>
-            <tooltip><![CDATA[
-            Begin your trek to the top of Mt. Olympus.<br>Unlocked at 60% City Explored.
+			<tooltip><![CDATA[
+			Begin your trek to the top of Mt. Olympus as long as you have the equipment for it.<br>
+			This sacred moutain might hold lost magic, it's probably worth exploring.<hr class='divider'>
+			• Requires climbing gear.<br>
+			• <b>Warning : Content for Mt. Olymps hasn't been made yet, so this action has no effect yet.</b><hr class='divider'>
         ]]></tooltip>
-			<story_1><![CDATA[<b>Traveled to the fourth zone:</b>⮀ Merchanton is an interesting place, but unfortunately it doesn't seem to have your cure. You've heard many wonderous things about Mt. Olympus though, and if the stories are real then maybe divine intervention or old magic could be the solution you're looking for. They also say the mountain is dangerous, but to be honest you've always wanted to go mountain climbing.]]></story_1>
+			<story_1><![CDATA[<b>Didn't tail anyone:</b>⮀ Placeholder.]]></story_1>
         </start_trek>
         <underworld>
             <label>Underworld</label>

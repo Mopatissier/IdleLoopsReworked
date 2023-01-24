@@ -93,6 +93,7 @@ let resources = {
 	darkPotions: 0,
     teamMembers: 0,
     armor: 0,
+	climbingGears: 0,
     blood: 0,
     artifacts: 0,
     favors: 0,
@@ -128,12 +129,12 @@ let curLoadout = 0;
 let loadouts;
 let loadoutnames;
 //let loadoutnames = ["1", "2", "3", "4", "5"];
-const skillList = ["Combat", "Magic", "Yang", "Yin", "Alchemy", "Brewing", "Crafting", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy", "Mercantilism", "Divine", "Commune", "Wunderkind", "Gluttony", "Thievery"];
+const skillList = ["Combat", "Magic", "Yang", "Yin", "Alchemy", "Brewing", "TeamWork", "Crafting", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy", "Mercantilism", "Divine", "Commune", "Wunderkind", "Gluttony", "Thievery"];
 const skillSquirrelList = ["Trust", "Magic", "Combat", "Craftiness"];
 const skills = {};
 const skillsSquirrel = {};
 const buffList = ["SpiritBlessing", "ImbueSoulstones", "YinYang", "Imbuement", "Imbuement2", "Feast", "Aspirant", "Heroism", "Imbuement3"];
-const dungeonFloors = [6, 9, 20];
+const dungeonFloors = [6, 12, 20];
 const trialFloors = [50, 100, 7, 1000, 25];
 const buffHardCaps = {
 	SpiritBlessing: 20,
@@ -174,6 +175,8 @@ let dungeonShowing;
 let actionTownNum;
 let trainingLimits = 10;
 let magicFighterStrenght = -1;
+let gotERankAdv = false;
+let gotERankCra = false;
 let storyShowing = 0;
 let storyMax = 0;
 const storyReqs = {
@@ -420,6 +423,8 @@ function load() {
     actionTownNum = toLoad.actionTownNum === undefined ? 0 : toLoad.actionTownNum;
     trainingLimits = 10 + getBuffLevel("Imbuement");
 	magicFighterStrenght = toLoad.magicFighterStrenght === undefined ? 0 : toLoad.magicFighterStrenght;
+	gotERankAdv = toLoad.gotERankAdv === undefined ? false : toLoad.gotERankAdv;
+	gotERankCra = toLoad.gotERankCra === undefined ? false : toLoad.gotERankCra;
     goldInvested = toLoad.goldInvested === undefined ? 0 : toLoad.goldInvested;
     stonesUsed = toLoad.stonesUsed === undefined ? {1:0, 3:0, 5:0, 6:0} : toLoad.stonesUsed;
 
@@ -632,6 +637,8 @@ function save() {
 	toSave.skillsSquirrel = skillsSquirrel;
     toSave.buffs = buffs;
 	toSave.magicFighterStrenght = magicFighterStrenght;
+	toSave.gotERankAdv = gotERankAdv;
+	toSave.gotERankCra = gotERankCra;
     toSave.goldInvested = goldInvested;
     toSave.stonesUsed = stonesUsed;
     toSave.version75 = true;

@@ -2998,12 +2998,16 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
         return magicFighterStrenght > 0;
     },
     unlocked() {
-        return magicFighterStrenght > 0;
+        return magicFighterStrenght > 0; 
     },
     finish() {
 		const curPowerLevel = Math.floor((towns[BEGINNERSVILLE].MagFgtLoopCounter) / 9 + 0.0000001);
 		if(curPowerLevel === magicFighterStrenght){
 			magicFight = true;
+			if(magicFighterStrenght === 4){
+				addResource("teamMembers", 1);
+				view.adjustExpGain(Action.TrainingFacility);
+			}
 		}
     },
 	squirrelLevelUp(onlyGetState) {
@@ -3201,7 +3205,7 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
 		actionEffect();
 	}
 });
-function finishDungeon(dungeonNum, floorNum) {
+function finishDungeon(dungeonNum, floorNum, teamDungeon) {
     const floor = dungeons[dungeonNum][floorNum];
     if (!floor) {
         return false;
@@ -3211,7 +3215,11 @@ function finishDungeon(dungeonNum, floorNum) {
     if (rand <= floor.ssChance) {
         const statToAdd = statList[Math.floor(Math.random() * statList.length)];
         floor.lastStat = statToAdd;
-        stats[statToAdd].soulstone = stats[statToAdd].soulstone ? (stats[statToAdd].soulstone + Math.floor(Math.pow(10, dungeonNum) * getSkillBonus("Divine"))) : 1;
+		if(teamDungeon === true){
+			stats[statToAdd].soulstone = stats[statToAdd].soulstone + getNumberSoulstonesLargeDungeon();
+		} else {
+			stats[statToAdd].soulstone = stats[statToAdd].soulstone + Math.floor(Math.pow(10, dungeonNum));
+		}
         floor.ssChance *= 0.98;
         view.updateSoulstones();
         return true;
@@ -6224,24 +6232,7 @@ Action.AdventureGuild = new MultipartAction("Adventure Guild", {
     varName: "AdvGuild",
     storyReqs(storyNum) {
         switch (storyNum) {
-            case 1:
-                return storyReqs.advGuildTestsTaken;
-            case 2:
-                return storyReqs.advGuildRankEReached;
-            case 3:
-                return storyReqs.advGuildRankDReached;
-            case 4:
-                return storyReqs.advGuildRankCReached;
-            case 5:
-                return storyReqs.advGuildRankBReached;
-            case 6:
-                return storyReqs.advGuildRankAReached;
-            case 7:
-                return storyReqs.advGuildRankSReached;
-            case 8:
-                return storyReqs.advGuildRankUReached;
-            case 9:
-                return storyReqs.advGuildRankGodlikeReached;
+            case 1: return 1;
         }
         return false;
     },
@@ -6252,7 +6243,7 @@ Action.AdventureGuild = new MultipartAction("Adventure Guild", {
     },
     loopStats: ["Str", "Dex", "Con"],
     manaCost() {
-        return 3000;
+        return 6000;
     },
     allowed() {
         return 1;
@@ -6261,27 +6252,18 @@ Action.AdventureGuild = new MultipartAction("Adventure Guild", {
         return guild === "";
     },
     loopCost(segment) {
-        return precision3(Math.pow(1.2, towns[MERCHANTON][`${this.varName}LoopCounter`] + segment)) * 5e6;
+        return precision3(Math.pow(1.65, towns[MERCHANTON][`${this.varName}LoopCounter`] + segment)) * 230000;
     },
     tickProgress(offset) {
-        return (getSkillLevel("Magic") / 2 +
-                getSelfCombat("Combat")) *
-                (1 + getLevel(this.loopStats[(towns[MERCHANTON][`${this.varName}LoopCounter`] + offset) % this.loopStats.length]) / 100) *
-                Math.sqrt(1 + towns[MERCHANTON][`total${this.varName}`] / 1000);
+        return (getSkillLevel("Magic") / 2 + getSelfCombat("Combat") / 2) *
+                Math.sqrt((1 + getLevel(this.loopStats[(towns[MERCHANTON][`${this.varName}LoopCounter`] + offset) % this.loopStats.length]) / 100)) *
+                Math.sqrt(1 + towns[MERCHANTON][`total${this.varName}`]);
     },
     loopsFinished() {
-        if (curAdvGuildSegment >= 0) unlockStory("advGuildRankEReached");
-        if (curAdvGuildSegment >= 3) unlockStory("advGuildRankDReached");
-        if (curAdvGuildSegment >= 6) unlockStory("advGuildRankCReached");
-        if (curAdvGuildSegment >= 9) unlockStory("advGuildRankBReached");
-        if (curAdvGuildSegment >= 12) unlockStory("advGuildRankAReached");
-        if (curAdvGuildSegment >= 15) unlockStory("advGuildRankSReached");
-        if (curAdvGuildSegment >= 27) unlockStory("advGuildRankUReached");
-        if (curAdvGuildSegment >= 39) unlockStory("advGuildRankGodlikeReached");
+		gotERankAdv = true;
     },
     segmentFinished() {
         curAdvGuildSegment++;
-        addMana(200);
     },
     getPartName() {
         return `Rank ${getAdvGuildRank().name}`;
@@ -6290,23 +6272,24 @@ Action.AdventureGuild = new MultipartAction("Adventure Guild", {
         return `Rank ${getAdvGuildRank(segment % 3).name}`;
     },
     visible() {
-        //return towns[MERCHANTON].getLevel("Drunk") >= 5;
-		return false;
+       return towns[MERCHANTON].getLevel("City") >= 20;
     },
     unlocked() {
-        //return towns[MERCHANTON].getLevel("Drunk") >= 20;
-		return false;
+        return towns[MERCHANTON].getLevel("Drunk") >= 10;
     },
     finish() {
         guild = "Adventure";
-        unlockStory("advGuildTestsTaken");
+		view.adjustExpGain(Action.TrainingFacility);
+		view.adjustGoldCost("TailJudges", Action.TailJudges.goldCost());
     },
 });
 function getAdvGuildRank(offset) {
-    let name = ["F", "E", "D", "C", "B", "A", "S", "SS", "SSS", "SSSS", "U", "UU", "UUU", "UUUU"][Math.floor(curAdvGuildSegment / 3 + 0.00001)];
+    //let name = ["F", "E", "D", "C", "B", "A", "S", "SS", "SSS", "SSSS", "U", "UU", "UUU", "UUUU"][Math.floor(curAdvGuildSegment / 3 + 0.00001)];
+	let name = ["F", "E", "D", "C", "B", "A", "S", "U", "Godlike"][Math.floor(curAdvGuildSegment / 3 + 0.00001)]
 
     const segment = (offset === undefined ? 0 : offset - (curAdvGuildSegment % 3)) + curAdvGuildSegment;
-    let bonus = precision3(1 + segment / 20 + Math.pow(segment, 2) / 300);
+    //let bonus = precision3(1 + segment / 20 + Math.pow(segment, 2) / 300);
+	let bonus = Math.floor(1 + segment / 3) + (segment%3) * 0.25;
     if (name) {
         if (offset === undefined) {
             name += ["-", "", "+"][curAdvGuildSegment % 3];
@@ -6314,25 +6297,73 @@ function getAdvGuildRank(offset) {
             name += ["-", "", "+"][offset % 3];
         }
     } else {
-        name = "Godlike";
+        name = "Corrupted the whole guild";
         bonus = 10;
     }
     name += `, Mult x${bonus}`;
     return { name, bonus };
 }
 
-Action.GatherTeam = new Action("Gather Team", {
-    type: "normal",
-    expMult: 3,
+Action.TrainingFacility = new Action("Training Facility", {
+	type: "normal",
+    expMult: 1.5,
     townNum: 2,
     storyReqs(storyNum) {
         switch (storyNum) {
-            case 1:
-                return storyReqs.teammateGathered;
-            case 2:
-                return storyReqs.fullParty;
-            case 3:
-                return storyReqs.failedGatherTeam;
+            case 1: return 1;
+        }
+        return false;
+    },
+    stats: {
+        Per: 0.1,
+        Cha: 0.5,
+        Int: 0.3,
+        Soul: 0.1
+    },
+	skills: {
+        TeamWork() {
+			let exp = 40;
+			exp = exp * getAdvGuildRank().bonus;
+			exp = exp * ( 1 + resources.teamMembers);
+			return exp;
+		}
+    },
+    affectedBy: ["Adventure Guild"],
+    canStart() {
+		let membersCheck = false;
+		if(resources.teamMembers === 0 || resources.gold >= 25){
+			membersCheck = true;
+		}
+		
+		return guild === "Adventure" && membersCheck;
+    },
+    cost() {
+		if(resources.teamMembers > 0){
+			addResource("gold", -25);
+		}
+    },
+    manaCost() {
+        return 5000;
+    },
+    visible() {
+        return towns[MERCHANTON].getLevel("Drunk") >= 10;
+    },
+    unlocked() {
+        return towns[MERCHANTON].getLevel("Drunk") >= 30;
+		return true;
+    },
+    finish() {
+		handleSkillExp(this.skills);
+    },
+});
+
+Action.GatherTeam = new Action("Gather Team", {
+    type: "normal",
+    expMult: 1,
+    townNum: 2,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1: return 1;
         }
         return false;
     },
@@ -6343,31 +6374,23 @@ Action.GatherTeam = new Action("Gather Team", {
         Luck: 0.1
     },
     affectedBy: ["Adventure Guild"],
-    allowed() {
-        return 5;
-    },
     canStart() {
-        return guild === "Adventure" && resources.gold >= (resources.teamMembers + 1) * 100;
-    },
-    cost() {
-        // cost comes after finish
-        addResource("gold", -(resources.teamMembers) * 100);
+		let teamLimit = Math.floor (getAdvGuildRank().bonus / 2);
+        return guild === "Adventure" && resources.teamMembers < teamLimit;
     },
     manaCost() {
-        return 2000;
+        return 4000;
     },
     visible() {
-        //return towns[MERCHANTON].getLevel("Drunk") >= 10;
-		return false;
+        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+		return true;
     },
     unlocked() {
-        //return towns[MERCHANTON].getLevel("Drunk") >= 20;
-		return false;
+        return towns[MERCHANTON].getLevel("Drunk") >= 40;
     },
     finish() {
         addResource("teamMembers", 1);
-        unlockStory("teammateGathered");
-        if (resources.teamMembers >= 5) unlockStory("fullParty");
+		view.adjustExpGain(Action.TrainingFacility);
     },
 });
 
@@ -6378,16 +6401,7 @@ Action.LargeDungeon = new DungeonAction("Large Dungeon", 1, {
     varName: "LDungeon",
     storyReqs(storyNum) {
         switch (storyNum) {
-            case 1:
-                return storyReqs.largeDungeonAttempted;
-            case 2:
-                return towns[MERCHANTON][`total${this.varName}`] >= 2000;
-            case 3:
-                return towns[MERCHANTON][`total${this.varName}`] >= 10000;
-            case 4:
-                return towns[MERCHANTON][`total${this.varName}`] >= 20000;
-            case 5:
-                return storyReqs.clearLDungeon;
+            case 1:return 1;
         }
         return false;
     },
@@ -6399,45 +6413,102 @@ Action.LargeDungeon = new DungeonAction("Large Dungeon", 1, {
         Luck: 0.1
     },
     skills: {
-        Combat: 15,
-        Magic: 15
+        TeamWork: 100
     },
     loopStats: ["Cha", "Spd", "Str", "Cha", "Dex", "Dex", "Str"],
     affectedBy: ["Gather Team"],
     manaCost() {
-        return 6000;
+        return 10000;
     },
     canStart() {
         const curFloor = Math.floor((towns[this.townNum].LDungeonLoopCounter) / this.segments + 0.0000001);
         return resources.teamMembers >= 1 && curFloor < dungeons[this.dungeonNum].length;
     },
     loopCost(segment) {
-        return precision3(Math.pow(3, Math.floor((towns[this.townNum].LDungeonLoopCounter + segment) / this.segments + 0.0000001)) * 5e5);
+        return precision3(Math.pow(4, Math.floor((towns[this.townNum].LDungeonLoopCounter + segment) / this.segments + 0.0000001)) * 300000);
     },
     tickProgress(offset) {
         const floor = Math.floor((towns[this.townNum].LDungeonLoopCounter) / this.segments + 0.0000001);
-        return (getTeamCombat() + getSkillLevel("Magic")) *
+        return getTeamCombat() *
             (1 + getLevel(this.loopStats[(towns[this.townNum].LDungeonLoopCounter + offset) % this.loopStats.length]) / 100) *
-            Math.sqrt(1 + dungeons[this.dungeonNum][floor].completed / 200);
+            Math.sqrt(1 + dungeons[this.dungeonNum][floor].completed / 100);
     },
     loopsFinished() {
         const curFloor = Math.floor((towns[this.townNum].LDungeonLoopCounter) / this.segments + 0.0000001 - 1);
-        finishDungeon(this.dungeonNum, curFloor);
+        finishDungeon(this.dungeonNum, curFloor, true);
+		handleSkillExp(this.skills);
     },
     visible() {
-        //return towns[MERCHANTON].getLevel("Drunk") >= 5;
-		return false;
+        return towns[MERCHANTON].getLevel("Drunk") >= 20;
+		return true;
     },
     unlocked() {
-        //return towns[MERCHANTON].getLevel("Drunk") >= 20;
-		return false;
+        return towns[MERCHANTON].getLevel("Drunk") >= 40;
     },
     finish() {
-        handleSkillExp(this.skills);
-        unlockStory("largeDungeonAttempted");
-        if (towns[MERCHANTON].LDungeonLoopCounter >= 63) unlockStory("clearLDungeon");
+        
     },
 });
+
+Action.MockBattle = new MultipartAction("Mock Battle", {
+    type: "multipart",
+    expMult: 1,
+    townNum: 2,
+	varName: "Mock",
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return 1;
+        }
+        return false;
+    },
+    stats: {
+        Str: 0.1,
+		Per: 0.2,
+		Cha: 0.3,
+		Int: 0.3,
+        Soul: 0.1
+    },
+	loopStats: ["Soul", "Cha", "Per", "Int", "Str"],
+	affectedBy: ["Adventure Guild"],
+    manaCost() {
+        return 10000;
+    },
+	 allowed() {
+        return 1;
+    },
+	canStart() {
+		return guild === "Adventure";
+    },
+    loopCost(segment) {
+		const numberLoops = towns[this.townNum].MockLoopCounter / 5;
+        return Math.floor(Math.pow(10, numberLoops)+ 0.0000001) * 150000;
+    },
+    tickProgress(offset) {
+        return (getSkillLevel("TeamWork")) * Math.sqrt(1 + getLevel(this.loopStats[(towns[this.townNum].MockLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[this.townNum].totalMock / 100);
+    },
+    loopsFinished() {
+		addResource("climbingGears", 1);
+    },	
+	getPartName() {
+		const battleDifficulty = Math.floor((towns[this.townNum].MockLoopCounter) / 5 + 0.0000001);
+		return `${_text(`actions>${getXMLName(this.name)}>part_names>name_`+`${battleDifficulty+1}`)}`;
+
+    },
+	getSegmentName(segment) {
+		return this.segmentNames[segment%5];
+	},
+    visible() {
+        return towns[MERCHANTON].getLevel("Drunk") >= 40;
+    },
+    unlocked() {
+        return towns[MERCHANTON].getLevel("Drunk") >= 60;
+    },
+    finish() {
+			
+    },
+});
+
 
 Action.CraftingGuild = new MultipartAction("Crafting Guild", {
     type: "multipart",
@@ -6526,6 +6597,7 @@ Action.CraftingGuild = new MultipartAction("Crafting Guild", {
     finish() {
         guild = "Crafting";
         unlockStory("craftGuildTestsTaken");
+		//view.adjustGoldCost("TailJudges", Action.TailJudges.goldCost());
     },
 });
 function getCraftGuildRank(offset) {
@@ -6820,6 +6892,7 @@ Action.DeliveryAddressOne = new Action("Delivery Address One", {
     },
     finish() {
 		if(magicFight && magicFighterStrenght === 0) magicFighterStrenght = 1;
+		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
     },
 });
 
@@ -6853,6 +6926,7 @@ Action.DeliveryAddressTwo = new Action("Delivery Address Two", {
     },
     finish() {
 		if(magicFight && magicFighterStrenght === 1) magicFighterStrenght = 2;
+		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
     },
 });
 
@@ -6886,6 +6960,7 @@ Action.DeliveryAddressThree = new Action("Delivery Address Three", {
     },
     finish() {
 		if(magicFight && magicFighterStrenght === 2) magicFighterStrenght = 3;
+		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
     },
 });
 
@@ -6919,6 +6994,7 @@ Action.DeliveryAddressFour = new Action("Delivery Address Four", {
     },
     finish() {
 		if(magicFight && magicFighterStrenght === 3) magicFighterStrenght = 4;
+		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
     },
 });
 
@@ -6952,7 +7028,8 @@ Action.DeliveryAddressFive = new Action("Delivery Address Five", {
     },
     finish() {
 		if(magicFight && magicFighterStrenght === 4){
-			//Give an adventurer buddy.
+			addResource("teamMembers", 1);
+			view.adjustExpGain(Action.TrainingFacility);
 		}
     },
 });
@@ -7058,54 +7135,65 @@ Action.ReadBooks = new Action("Read Books", {
         return towns[MERCHANTON].getLevel("City") >= 20;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("City") >= 60;
+        return towns[MERCHANTON].getLevel("City") >= 80;
     },
     finish() {
         unlockStory("booksRead");
     },
 });
 
-Action.BuyPickaxe = new Action("Buy Pickaxe", {
+Action.TailJudges = new Action("Tail Judges", {
     type: "normal",
-    expMult: 1,
+    expMult: 2,
     townNum: 2,
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return storyReqs.pickaxeBought;
+                return 1;
         }
         return false;
     },
     stats: {
-        Cha: 0.8,
-        Int: 0.1,
-        Spd: 0.1
+		Dex: 0.2,
+		Per: 0.3,
+		Cha: 0.3,
+		Luck: 0.2
     },
+    affectedBy: ["Adventure Guild", "Crafting Guild"],
     allowed() {
         return 1;
     },
-    canStart() {
-        return resources.gold >= 200;
-    },
-    cost() {
-        addResource("gold", -200);
-    },
     manaCost() {
-        return 3000;
+        return 15000;
     },
     visible() {
-        //return towns[MERCHANTON].getLevel("City") >= 60;
-		return false;
+        return towns[MERCHANTON].getLevel("Drunk") >= 10;
     },
     unlocked() {
-        //return towns[MERCHANTON].getLevel("City") >= 90;
-		return false;
+        return gotERankAdv === true;
+    },
+	goldCost() {
+        if(guild === "Adventure"){
+			return Math.floor(Math.pow(10, (Math.floor(getAdvGuildRank().bonus) - 1)));
+		} else if(guild === "Crafting"){
+			return Math.floor(Math.pow(10, (Math.floor(getCraftGuildRank().bonus) - 1)));
+		} else {
+			return 0
+		}
     },
     finish() {
-        addResource("pickaxe", true);
-        unlockStory("pickaxeBought");
+		if(guild === "Adventure"){
+			towns[MERCHANTON]["totalAdvGuild"] = towns[MERCHANTON]["totalAdvGuild"] + Math.floor(Math.pow(10, Math.floor(getAdvGuildRank().bonus - 1)));
+		} else if(guild === "Crafting"){
+			towns[MERCHANTON]["totalCraftGuild"] = towns[MERCHANTON]["totalCraftGuild"] + Math.floor(Math.pow(10, Math.floor(getCraftGuildRank().bonus - 1)));
+		} else {
+			//addResource("climbingGears", 1);
+			//add boat
+			//but only if both have already been already taken at level 3.
+		}
     },
 });
+
 
 Action.HeroesTrial = new TrialAction("Heroes Trial", 0, {
     type: "multipart",
@@ -7173,7 +7261,7 @@ Action.HeroesTrial = new TrialAction("Heroes Trial", 0, {
         view.updateBuff("Heroism");
         view.updateSkills();
     },
-});
+})
 
 Action.StartTrek = new Action("Start Trek", {
     type: "normal",
@@ -7181,8 +7269,7 @@ Action.StartTrek = new Action("Start Trek", {
     townNum: 2,
     storyReqs(storyNum) {
         switch (storyNum) {
-            case 1:
-                return townsUnlocked.includes(3);
+            case 1: return 1;
         }
         return false;
     },
@@ -7191,22 +7278,23 @@ Action.StartTrek = new Action("Start Trek", {
         Per: 0.2,
         Spd: 0.1
     },
-    allowed() {
-        return getNumOnList("Open Portal") > 0 ? 2 : 1;
+	allowed() {
+        return 1;
+    },
+	canStart() {
+		return resources.climbingGears >= 1;
     },
     manaCost() {
-        return Math.ceil(12000);
+        return 10000;
     },
     visible() {
-        //return towns[MERCHANTON].getLevel("City") >= 30;
-		return false;
+        return towns[MERCHANTON].getLevel("City") >= 30;
     },
     unlocked() {
-        //return towns[MERCHANTON].getLevel("City") >= 60;
-		return false;
+        return towns[MERCHANTON].getLevel("City") >= 30;
     },
     finish() {
-        //unlockTown(3);
+        //unlockTown(MTOLYMPUS);
     },
 });
 
