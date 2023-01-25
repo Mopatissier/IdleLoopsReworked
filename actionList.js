@@ -3004,10 +3004,6 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		const curPowerLevel = Math.floor((towns[BEGINNERSVILLE].MagFgtLoopCounter) / 9 + 0.0000001);
 		if(curPowerLevel === magicFighterStrenght){
 			magicFight = true;
-			if(magicFighterStrenght === 4){
-				addResource("teamMembers", 1);
-				view.adjustExpGain(Action.TrainingFacility);
-			}
 		}
     },
 	squirrelLevelUp(onlyGetState) {
@@ -6153,7 +6149,8 @@ Action.SlaveAuction = new Action("Slave Auction", {
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
 		let costPerSlave = Math.max(70 + resources.reputation, 0);
 		
-		let costs = (Math.min(Math.floor(resources.gold/costPerSlave) * costPerSlave, totalSlaves * costPerSlave)) * (-1);
+		let affordableMaxSlaves = (costPerSlave === 0 ? totalSlaves : Math.floor(resources.gold/costPerSlave));
+		let costs = (Math.min(affordableMaxSlaves * costPerSlave, totalSlaves * costPerSlave)) * (-1);
 		
 		resetResource("reputation");
 		addResource("gold", costs);
@@ -6180,7 +6177,8 @@ Action.SlaveAuction = new Action("Slave Auction", {
 		let costPerSlave = Math.max(70 + resources.reputation, 0);
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
 		
-		let numberSlavesToBuy = Math.min(Math.floor(resources.gold/costPerSlave), totalSlaves);
+		let affordableMaxSlaves = (costPerSlave === 0 ? totalSlaves : Math.floor(resources.gold/costPerSlave));
+		let numberSlavesToBuy = Math.min(affordableMaxSlaves, totalSlaves);
 		
 		if(numberSlavesToBuy <= towns[MERCHANTON].goodSlaveAuction){
 			
@@ -6191,7 +6189,6 @@ Action.SlaveAuction = new Action("Slave Auction", {
 			let totalGold = towns[MERCHANTON].goodSlaveAuction * (bounty - costPerSlave);
 			
 			let slavesNotChecked = numberSlavesToBuy - towns[MERCHANTON].goodSlaveAuction;
-			
 			let slavesNotCheckedWithBounty = Math.floor((towns[MERCHANTON].checkedSlaveAuction + slavesNotChecked)/10) - towns[MERCHANTON].goodSlaveAuction;
 			
 			totalGold += slavesNotCheckedWithBounty * (bounty - costPerSlave);
@@ -6209,7 +6206,8 @@ Action.SlaveAuction = new Action("Slave Auction", {
 		let costPerSlave = Math.max(70 + resources.reputation, 0);
 		let bounty = 60;
 		
-		let numberOfLoops = Math.min(Math.floor(resources.gold/costPerSlave), totalSlaves);
+		let affordableMaxSlaves = (costPerSlave === 0 ? totalSlaves : Math.floor(resources.gold/costPerSlave));
+		let numberOfLoops = Math.min(affordableMaxSlaves, totalSlaves);
 		
 		for(let i = 0; i <= numberOfLoops; i++){
 			

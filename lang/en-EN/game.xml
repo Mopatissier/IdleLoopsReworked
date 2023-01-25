@@ -615,7 +615,7 @@
         </scombat>
         <tcombat>
             <label>Team Combat</label>
-            <desc>Team Combat = (Self Combat / 200) * (200 ^ Team Members) * ( 1 + Team Work / 10)</desc>
+            <desc>Team Combat = (Self Combat / 200) * (200 ^ Team Members) * ( 1 + Teamwork / 10)</desc>
         </tcombat>
         <combat>
             <label>Combat</label>
@@ -658,11 +658,11 @@
             <desc>It feels like a more archaic way to make potions. Nonetheless, it still works.</desc>
         </brewing>
 		<teamwork>
-            <label>Team Work</label>
-            <desc>The greater your team work, the happier your companions!</desc>
+            <label>Teamwork</label>
+            <desc>The greater your teamwork, the happier your companions!</desc>
 			<desc2><![CDATA[
-					As you get more efficient at team work, your companion will allow you to take more loot.<br>
-					Gives +1% soulstone per level of team work in the large dungeon.<br>
+					As you get more efficient at teamwork, your companion will allow you to take more loot.<br>
+					Gives +1% soulstone per level of teamwork in the large dungeon.<br>
 					Currently, with your teammates, you will gain <div id='skillTeamWorkNumber'>10</div> soulstones out of 10 per large dungeon floor.
 					]]>
 			</desc2>
@@ -2842,9 +2842,9 @@
 		<training_facility>
             <label>Training Facility</label>
 			<tooltip><![CDATA[
-			This place is perfect to train with other people! Let's see how good you are at team work.<br>
+			This place is perfect to train with other people! Let's see how good you are at teamwork.<br>
 			It's even better if you bring your own teammates, but then it'll cost a fee.<hr class='divider'>
-			• Gives 40 team work exp as a base.<br>
+			• Gives 40 t exp as a base.<br>
 			• The exp is multiplied by your adventurer guild multiplier.<br>
 			• Bringing teammates makes this action costs 25 gold, but multiplies the exp by (1+teammates).<br>
 			• You need to be an adventurer to have access to this action.<br>
@@ -2873,8 +2873,8 @@
 			• Requires at least 1 team member.<br>
 			• Gives  Team Combat * (1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
 			• Gives 10 soulstone per floor, but they are shared equally between all members of your team.<br>
-			• After which, the skill Team Work will allow you to get more soulstones.<br>
-			• Every floor cleared gives you 100 Team Work exp.<br>
+			• After which, the skill teamwork will allow you to get more soulstones.<br>
+			• Every floor cleared gives you 100 teamwork exp.<br>
 			• Unlocked at 40% Rumors Heard.<hr class='divider'>
         ]]></tooltip>
             <completed_tooltip><![CDATA[
@@ -2913,7 +2913,7 @@
 			This year, they are celebrating by doing huge mock battles, with a lot of prizes.<br>
 			Among them, there's one that catches your eyes : climbing gears. Perfect for Mt. Olympus!<br>
 			You'll need to assume the role of a general in the mock battle to get this one.<hr class='divider'>
-			• Gives Team Work * sqrt(1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
+			• Gives teamwork * sqrt(1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
 			• Can only be done once per loop.<br>
 			• Each win will give you climbing gears of better quality, up to 3 times.<br>
 			• You need to be an adventurer to have access to this action.<br>

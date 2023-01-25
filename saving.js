@@ -289,8 +289,11 @@ function setOption(option, value) {
 }
 
 function loadOption(option, value) {
-    if (option === "updateRate") document.getElementById(`${option}Input`).value = value;
-    else document.getElementById(`${option}Input`).checked = value;
+	
+	if(document.getElementById(`${option}Input`) !== null){
+		if (option === "updateRate") document.getElementById(`${option}Input`).value = value;
+		else document.getElementById(`${option}Input`).checked = value;
+	}
 }
 
 function closeTutorial() {
