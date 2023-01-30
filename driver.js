@@ -760,3 +760,13 @@ function updateYinYanBuff(){
 	}	
 	
 }
+
+function upgradeAction(actionToUpgrade, actionUpgraded) {
+	
+	//Transfers the squirrel level.	
+	squirrelLevel[camelize(translateClassNames(actionUpgraded.name).varName)] =  squirrelLevel[camelize(translateClassNames(actionToUpgrade.name).varName)];
+	view.updateSquirrelTooltip(actionToUpgrade);
+	
+	//Remove action 1 in the action list and replace it by action 2
+	view.updateNextActions(actionToUpgrade, actionUpgraded);
+}

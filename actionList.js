@@ -103,7 +103,11 @@ defineLazyGetter(Action.prototype, "tooltip2", function() {
     return _text(`actions>${getXMLName(this.name)}>tooltip2`);
 });
 defineLazyGetter(Action.prototype, "label", function() {
-    return _text(`actions>${getXMLName(this.name)}>label`);
+	if(this.heritage === undefined || this.heritage.Label === false){
+		return _text(`actions>${getXMLName(this.name)}>label`);
+	} else {
+		return _text(`actions>${getXMLName(this.heritage.Label)}>label`);
+	}
 });
 defineLazyGetter(Action.prototype, "labelDone", function() {
     return _text(`actions>${getXMLName(this.name)}>label_done`);
@@ -659,7 +663,7 @@ Action.ImbueSoulstones = new Action("Imbue Soulstones", {
 		
 		for(let i = 0; i <= getBuffLevel("ImbueSoulstones"); i++){
 			
-			soulstonesNeeded += (Math.floor(i/10) + 1);
+			soulstonesNeeded += (Math.floor(i/5) + 1);
 		}
 	
         return soulstonesNeeded;
@@ -750,7 +754,7 @@ Action.BalanceSoulstones = new Action("Balance Soulstones", {
 		return squirrelRequirements;
     },
 	allowed() {
-		return Math.pow(3, getBuffLevel("SpiritBlessing") - 4);
+		return Math.pow(3, getBuffLevel("SpiritBlessing") - 4) * 2;
 	},
 	// Gold cost here represent the number of times you can do this action.
 	goldCost() { 
@@ -2951,6 +2955,11 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
         Luck: 0.1,
 		Soul: 0.2,
     },
+	heritage: {
+		Label: false,
+		Story: "Training Dummy",
+		Squirrel: "Training Dummy"
+	},
 	skills: {
         Combat: 75,
 		Magic: 75
@@ -3012,7 +3021,10 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		switch(getLevelSquirrelAction("Magic Fighter")){
 				
 			case 0: shouldLevelUp = true;
-				break;		
+				break;	
+
+			case 1: shouldLevelUp = true
+				break;	
 
 		}
 		
@@ -3033,6 +3045,8 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		switch(getLevelSquirrelAction("Magic Fighter")){
 					
 			case 1: break;
+			
+			case 2: break;
 				
 		}
 		
@@ -4403,7 +4417,7 @@ Action.PracticeYang = new Action("Practice Yang", {
         return towns[FORESTPATH].getLevel("Hermit") >= 1;
     },
     unlocked() {
-        return towns[FORESTPATH].getLevel("Hermit") >= 20 && getSkillLevel("Magic") >= 50;
+        return towns[FORESTPATH].getLevel("Hermit") >= 20 && getSkillLevel("Magic") >= 60;
     },
     finish() {
 		
@@ -4516,7 +4530,7 @@ Action.LearnAlchemy = new Action("Learn Alchemy", {
         return towns[FORESTPATH].getLevel("Hermit") >= 15;
     },
     unlocked() {
-        return towns[FORESTPATH].getLevel("Hermit") >= 40 && getSkillLevel("Magic") >= 60;
+        return towns[FORESTPATH].getLevel("Hermit") >= 40 && getSkillLevel("Magic") >= 80;
     },
     finish() {
 		
@@ -4579,11 +4593,7 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
     storyReqs(storyNum) {
         switch (storyNum) {
             case 1:
-                return storyReqs.potionBrewed;
-            case 2:
-                return storyReqs.failedBrewPotions;
-            case 3:
-                return storyReqs.failedBrewPotionsNegativeRep;
+                return 1;
         }
         return false;
     },
@@ -5484,7 +5494,7 @@ Action.PracticeYin = new Action("Practice Yin", {
 		return towns[FORESTPATH].getLevel("Witch") >= 1;
     },
     unlocked() {
-		return towns[FORESTPATH].getLevel("Witch") >= 20 && getSkillLevel("Magic") >= 60;
+		return towns[FORESTPATH].getLevel("Witch") >= 20 && getSkillLevel("Magic") >= 70;
     },
     finish() {
 		
@@ -5591,7 +5601,7 @@ Action.LearnBrewing = new Action("Learn Brewing", {
 		return towns[FORESTPATH].getLevel("Witch") >= 15;
 	},
     unlocked() {
-		return towns[FORESTPATH].getLevel("Witch") >= 40 && getSkillLevel("Magic") >= 70;
+		return towns[FORESTPATH].getLevel("Witch") >= 40 && getSkillLevel("Magic") >= 90;
     },
     finish() {
 		
@@ -5937,8 +5947,10 @@ Action.ExploreCity = new Action("Explore City", {
         return true;
     },
     finish() {
-        towns[MERCHANTON].finishProgress(this.varName, 50 * (resources.glasses ? 4 : 1));
-		// 50 * guild mult * ?4:1
+		
+		const guildMult = getAdvGuildRank().bonus * getCraftGuildRank().bonus;
+        towns[MERCHANTON].finishProgress(this.varName, 50 * (resources.glasses ? 4 : 1) * guildMult);
+		
     },
 });
 
@@ -6002,8 +6014,7 @@ Action.GetDrunk = new Action("Get Drunk", {
         return towns[MERCHANTON].getLevel("City") >= 20;
     },
     finish() {
-        towns[MERCHANTON].finishProgress(this.varName, 80);
-		// * guild mult
+        towns[MERCHANTON].finishProgress(this.varName, 80 * getAdvGuildRank().bonus);
     },
 });
 
@@ -6041,8 +6052,7 @@ Action.HelpSlums = new Action("Help Slums", {
         return towns[MERCHANTON].getLevel("Drunk") >= 20;
     },
     finish() {
-        towns[MERCHANTON].finishProgress(this.varName, 80);
-		// * guild mult
+        towns[MERCHANTON].finishProgress(this.varName, 80 * getCraftGuildRank().bonus);
     },
 });
 
@@ -6118,7 +6128,6 @@ Action.Gamble = new Action("Gamble", {
 		
 		if((goodGambles + 1 == towns[MERCHANTON].goodGamble) || (goodGamblesLeft - 1 == towns[MERCHANTON].goodTempGamble)){
 			this.gambleWon = true;
-			console.log("You won!");
 		}
 		
     },
@@ -6147,9 +6156,9 @@ Action.SlaveAuction = new Action("Slave Auction", {
     cost() {
         
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
-		let costPerSlave = Math.max(70 + resources.reputation, 0);
+		let costPerSlave = Math.max(60 + Math.ceil(resources.reputation/2), 10);
 		
-		let affordableMaxSlaves = (costPerSlave === 0 ? totalSlaves : Math.floor(resources.gold/costPerSlave));
+		let affordableMaxSlaves = Math.floor(resources.gold/costPerSlave);
 		let costs = (Math.min(affordableMaxSlaves * costPerSlave, totalSlaves * costPerSlave)) * (-1);
 		
 		resetResource("reputation");
@@ -6174,10 +6183,10 @@ Action.SlaveAuction = new Action("Slave Auction", {
 		if(towns[MERCHANTON].goodSlaveAuction != towns[MERCHANTON].goodTempSlaveAuction) return 0;
 		
 		let bounty = 60;
-		let costPerSlave = Math.max(70 + resources.reputation, 0);
+		let costPerSlave = Math.max(60 + Math.ceil(resources.reputation/2), 10);
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
 		
-		let affordableMaxSlaves = (costPerSlave === 0 ? totalSlaves : Math.floor(resources.gold/costPerSlave));
+		let affordableMaxSlaves = Math.floor(resources.gold/costPerSlave);
 		let numberSlavesToBuy = Math.min(affordableMaxSlaves, totalSlaves);
 		
 		if(numberSlavesToBuy <= towns[MERCHANTON].goodSlaveAuction){
@@ -6203,10 +6212,10 @@ Action.SlaveAuction = new Action("Slave Auction", {
     finish() {
 		
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
-		let costPerSlave = Math.max(70 + resources.reputation, 0);
+		let costPerSlave = Math.max(60 + Math.ceil(resources.reputation/2), 10);
 		let bounty = 60;
 		
-		let affordableMaxSlaves = (costPerSlave === 0 ? totalSlaves : Math.floor(resources.gold/costPerSlave));
+		let affordableMaxSlaves = Math.floor(resources.gold/costPerSlave);
 		let numberOfLoops = Math.min(affordableMaxSlaves, totalSlaves);
 		
 		for(let i = 0; i <= numberOfLoops; i++){
@@ -6476,11 +6485,12 @@ Action.MockBattle = new MultipartAction("Mock Battle", {
         return 1;
     },
 	canStart() {
-		return guild === "Adventure";
+		const curWins = Math.floor((ttowns[this.townNum].MockLoopCounter) / 5 + 0.0000001);
+		return guild === "Adventure" && curWins < 4;
     },
     loopCost(segment) {
 		const numberLoops = towns[this.townNum].MockLoopCounter / 5;
-        return Math.floor(Math.pow(10, numberLoops)+ 0.0000001) * 150000;
+        return Math.floor(Math.pow(20, numberLoops)+ 0.0000001) * 170000;
     },
     tickProgress(offset) {
         return (getSkillLevel("TeamWork")) * Math.sqrt(1 + getLevel(this.loopStats[(towns[this.townNum].MockLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[this.townNum].totalMock / 100);
@@ -6826,7 +6836,7 @@ Action.Architect = new Action("Architect", {
     },
 });
 
-Action.DeliveryAddressZero = new Action("Delivery Address Zero", {
+Action.DeliveryAddress = new Action("Delivery Address", {
     type: "normal",
     expMult: 1,
     townNum: 2,
@@ -6857,6 +6867,7 @@ Action.DeliveryAddressZero = new Action("Delivery Address Zero", {
     },
     finish() {
        magicFighterStrenght = 0;
+	   upgradeAction(Action.DeliveryAddress, Action.DeliveryAddressOne);
     },
 });
 
@@ -6876,6 +6887,11 @@ Action.DeliveryAddressOne = new Action("Delivery Address One", {
         Con: 0.3,
 		Cha: 0.3
     },
+	heritage: {
+		Label: "Delivery Address",
+		Story: false,
+		Squirrel: false
+	},
 	allowed() {
 		return 1;
 	},
@@ -6889,8 +6905,13 @@ Action.DeliveryAddressOne = new Action("Delivery Address One", {
         return magicFighterStrenght === 0;
     },
     finish() {
-		if(magicFight && magicFighterStrenght === 0) magicFighterStrenght = 1;
-		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+		if(magicFight && magicFighterStrenght === 0) {
+			magicFighterStrenght = 1;
+			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			upgradeAction(Action.TrainingDummy, Action.MagicFighter);
+			if(getLevelSquirrelAction("Magic Fighter") === 1) levelUpSquirrelAction("Magic Fighter");
+			upgradeAction(Action.DeliveryAddressOne, Action.DeliveryAddressTwo);
+		}
     },
 });
 
@@ -6910,6 +6931,11 @@ Action.DeliveryAddressTwo = new Action("Delivery Address Two", {
         Con: 0.3,
 		Cha: 0.3
     },
+	heritage: {
+		Label: "Delivery Address",
+		Story: false,
+		Squirrel: false
+	},
 	allowed() {
 		return 1;
 	},
@@ -6923,8 +6949,11 @@ Action.DeliveryAddressTwo = new Action("Delivery Address Two", {
         return magicFighterStrenght === 1;
     },
     finish() {
-		if(magicFight && magicFighterStrenght === 1) magicFighterStrenght = 2;
-		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+		if(magicFight && magicFighterStrenght === 1) {
+			magicFighterStrenght = 2;
+			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			upgradeAction(Action.DeliveryAddressTwo, Action.DeliveryAddressThree);
+		}
     },
 });
 
@@ -6944,6 +6973,11 @@ Action.DeliveryAddressThree = new Action("Delivery Address Three", {
         Con: 0.3,
 		Cha: 0.3
     },
+	heritage: {
+		Label: "Delivery Address",
+		Story: false,
+		Squirrel: false
+	},
 	allowed() {
 		return 1;
 	},
@@ -6957,8 +6991,11 @@ Action.DeliveryAddressThree = new Action("Delivery Address Three", {
         return magicFighterStrenght === 2;
     },
     finish() {
-		if(magicFight && magicFighterStrenght === 2) magicFighterStrenght = 3;
-		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+		if(magicFight && magicFighterStrenght === 2) {
+			magicFighterStrenght = 3;
+			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			upgradeAction(Action.DeliveryAddressThree, Action.DeliveryAddressFour);
+		}
     },
 });
 
@@ -6978,6 +7015,11 @@ Action.DeliveryAddressFour = new Action("Delivery Address Four", {
         Con: 0.3,
 		Cha: 0.3
     },
+	heritage: {
+		Label: "Delivery Address",
+		Story: false,
+		Squirrel: false
+	},
 	allowed() {
 		return 1;
 	},
@@ -6991,8 +7033,11 @@ Action.DeliveryAddressFour = new Action("Delivery Address Four", {
         return magicFighterStrenght === 3;
     },
     finish() {
-		if(magicFight && magicFighterStrenght === 3) magicFighterStrenght = 4;
-		view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+		if(magicFight && magicFighterStrenght === 3) {
+			magicFighterStrenght = 4;
+			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			upgradeAction(Action.DeliveryAddressFour, Action.DeliveryAddressFive);
+		}
     },
 });
 
@@ -7012,6 +7057,11 @@ Action.DeliveryAddressFive = new Action("Delivery Address Five", {
         Con: 0.3,
 		Cha: 0.3
     },
+	heritage: {
+		Label: "Delivery Address",
+		Story: false,
+		Squirrel: false
+	},
 	allowed() {
 		return 1;
 	},

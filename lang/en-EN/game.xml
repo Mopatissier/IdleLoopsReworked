@@ -10,6 +10,15 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.5"><![CDATA[
+            <b> January 30th, 2023 </b>
+			This is a little rebalance patch + preparations behind the scene for the next update!<br>
+			• Reworked the slave auction action. Now it costs more, but it gives more money back. You'll need some dark potions!<br>
+			• The magic requirements for the actions in the forest have been raised.<br>
+			• Soulstones actions in the sanctuary have been slightly tweaked.<br>
+			• Fixed a bunch of glitches, especially one that could corrupt your save!<br>
+			• Implemented a new way for actions to be upgraded! The delivery address actions should be smoother to upgrade now.<br>
+            ]]></version>
 			<version verNum="0.3.4"><![CDATA[
             <b> January 24th, 2023 </b>
 			The Adventure Guild has opened its doors! Finally you'll be able to go into the large dungeon!<br>
@@ -1222,7 +1231,8 @@
             <tooltip2><![CDATA[
             soulstones in each stat for this action to work.<br>
 			• Every level of Spirit Blessing beyond 3 will increase the Soulstones Imbued buff cap by 10.<br>
-			• The soulstone price of this action gets bigger by 1 for the first 10 times, then 2 for the next 10, then 3,...<hr class='divider'>
+			• The soulstone price of this action gets bigger by 1 for the first 5 times, then 2 for the next 5, then 3,...<br>
+			• You keep your soulstones as you imbue them : you do not spend them.<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
 			The squirrel tries its best to hold the soulstones in its paws, but can't do it!<br>
@@ -1292,6 +1302,26 @@
 			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
 		</mysterious_voice>
         <!--town 1-->
+		<test_upgrade>
+			<label>No L. Upgrade</label>
+            <label_version1>Test Upgrade 1</label_version1>
+            <label_version2>Test Upgrade 2</label_version2>
+			<tooltip><![CDATA[
+            Currently no upgrade.<hr class='divider'>
+			]]></tooltip>
+			<squirrel_1><![CDATA[
+			Squirrel 1<hr class='divider'>
+			]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Squirrel 2.<hr class='divider'>
+			]]></squirrel_2>
+            <story_1><![CDATA[
+			<b>Done nothing:</b>⮀ No upgrade.
+			]]></story_1>
+			<story_2><![CDATA[
+			<b>Upgraded:</b>⮀ Upgrade 1.
+			]]></story_2>
+        </test_upgrade>
         <wander>
             <label>Wander</label>
             <label_done>Explored</label_done>
@@ -1915,8 +1945,14 @@
 			<squirrel_1><![CDATA[
 			Despite all the biting the squirrel does, the magical dummy doesn't move.<br>
 			It probably set to only fight humans! Well, now you have one disappointed squirrel...<hr class='divider'>
-			<b>Effect: </b>None.<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>Prove your worth.<hr class='divider'>
 			]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			The magic fighter looks at you with incredulity. Did you just ask him to fight a squirrel?<br>
+			Seeing how he ignores you for the rest of the loop, you think he didn't take it well.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+			]]></squirrel_2>
 			<story_1><![CDATA[<b>Not fought:</b>⮀ Placeholder.]]></story_1>
         </training_dummy>
 		<magic_fighter>
@@ -1953,12 +1989,6 @@
 				<name>Waiting for an opening</name>
 				<name>Striking with all might</name>
 			</segment_names>
-			<squirrel_1><![CDATA[
-			The magic fighter looks at you with incredulity. Did you just ask him to fight a squirrel?<br>
-			Seeing how he ignores you for the rest of the loop, you think he didn't take it well.<hr class='divider'>
-			<b>Effect: </b>None.<hr class='divider'>
-			]]></squirrel_1>
-			<story_1><![CDATA[<b>Not fought:</b>⮀ Placeholder.]]></story_1>
 			<!--><story_1><![CDATA[<b>Attempted to fight:</b>⮀ The magic fighter sighs and asks you try your best. It looks like this isn't the first time someone asked him this. Before you take your first step, you're already on the ground, defeated. This isn't going to be easy...]]></story_1><!-->
         </magic_fighter>
         <small_dungeon>
@@ -2338,7 +2368,7 @@
 			It looks like being alone for so long made the hermit practice some kind of weird but useful magic.<br>
 			It's like pulling teeth getting this knowledge from him, though!<hr class='divider'>
 			• Gives 25 more yang exp per reputation you have.<br>
-			• Unlocked with both 20% Hermit Knowledge and 50 magic.<hr class='divider'>
+			• Unlocked with both 20% Hermit Knowledge and 60 magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			Before starting practicing Yang, the hermit asks you to hand over the squirrel.<br>
@@ -2367,7 +2397,7 @@
 			• You provide the ingredients; costs 10 herbs.<br>
 			• Use what you learned from brewing to make this action more efficient.<br>
 			• Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
-			• Unlocked with both 40% Hermit Knowledge and 60 Magic.<hr class='divider'>
+			• Unlocked with both 40% Hermit Knowledge and 80 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			Despite how much the squirrel is willing to learn... It's still a squirrel.<br>
@@ -2396,9 +2426,7 @@
 			• Every potions distilled gives as much exp as the Learn Alchemy action.<br>
 			• Unlocked with 10 Alchemy.<hr class='divider'>
         ]]></tooltip>
-            <story_1><![CDATA[<b>Potion brewed:</b>⮀ The old man happily lets you use his apparatus to brew your own potions after much haranguing about your technique and the fact that you're not buying ingredients off him, he leaves you to it. His workstations are old, well used and obviously well looked after. The only fault you can lay at their feet is that the measuring system used is older than dirt. Fits you suppose.]]></story_1>
-            <story_2><![CDATA[<b>Action failed with low reputation:</b>⮀ The hermit refuses to allow you near his workstations and potion brewing equipment no matter how much you ask and offer to pay. He tells you that you don't have a good enough karma for him to even be willing to risk you using his workstations and potion benches.]]></story_2>
-            <story_3><![CDATA[<b>Action failed with negative reputation:</b>⮀ The hermit shoos you away from his clearing when you even make a mention of using his potion supplies, something about not wanting you to taint his equipment with your karma.]]></story_3>
+			<story_1><![CDATA[<b>No potion distilled:</b>⮀ Placeholder.]]></story_1>
 			<squirrel_1><![CDATA[
 			You have to admit, it's quite funny looking at the squirrel trying to grab flasks!<br>
 			Without any opposible thumbs, it's quite hard to grab anything.<br>
@@ -2632,7 +2660,7 @@
             <tooltip><![CDATA[
 			Embrace the dark arts and practice the Yin Magic the Witch created!<hr class='divider'>
 			• Gives 25 more yin exp per negative reputation you have.<br>
-			• Unlocked with both 20% Witch Knowledge and 60 Magic.<hr class='divider'>
+			• Unlocked with both 20% Witch Knowledge and 70 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			As you are about to start practicing Yin, the witch makes you an offer.<br>
@@ -2661,7 +2689,7 @@
 			• Doing this action costs 10 dark essences.<br>
 			• Use what you learned from alchemy to make this action more efficient.<br>
 			• Gain 10 more exp per Alchemy level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
-			• Unlocked with both 40% Witch Knowledge and 70 Magic.<hr class='divider'>
+			• Unlocked with both 40% Witch Knowledge and 90 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			You want to see your squirrel acting like a little squirrel witch!<br>
@@ -2814,7 +2842,8 @@
 			Buy the cheapest kidnapped slaves, release them to their family, rack in the cash and their gratefulness.<br>
 			Sure, with all that money you gave to the slavers they will probably kidnap more people, but... erm.<br>
 			Also, it looks like the more infamous you are, the more they're willing to drop the price. Neat!<hr class='divider'>
-			• Slaves cost 70+reputation gold, and give back 60 gold if they have a bounty.<br>
+			• Slaves base cost is 60 gold, and give back 75 gold if they have a bounty.<br>
+			• Slave price gets reduced by reputation/2 (rounded down), down to a minimum of 10 gold.<br>
 			• Can only be done once : get all the slaves you can afford, the unchecked one included.<br>
 			• Currently would give
 			]]></tooltip>
@@ -2900,6 +2929,7 @@
 				<name_1>General Of A Small Squad</name_1>
 				<name_2>General Of An Army</name_2>
 				<name_3>General Of Half Of The Guild</name_3>
+				<name_4>Won Every Mock Battle</name_4>
 			</part_names>
 			<segment_names>
 				<name>Psyching yourself up</name>
@@ -2988,7 +3018,7 @@
 			<story_6><![CDATA[<b>80% Projects Planned:</b>⮀ These days you win as often as not, and you rarely place beneath top three. Part of it is that you're already familiar with all of the active competitions, but you wouldn't be winning if you weren't making good designs.]]></story_6>
 			<story_7><![CDATA[<b>100% Projects Planned:</b>⮀ With this victory, you've won every design competition in Merchanton at least once. However, there are countless ways to design a house, so you aren't done designing and maybe never will be.]]></story_7>
         </architect>
-		<delivery_address_zero>
+		<delivery_address>
 			<label>Delivery Address</label>
 			<tooltip><![CDATA[
 			Wait, you just remembered the package with the loop potion was supposed to be delivered in Merchanton!<br>
@@ -3000,7 +3030,7 @@
 			• Unlocked at 100% City Explored.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>Didn't do anything:</b>⮀ Placeholder.]]></story_1>
-		</delivery_address_zero>
+		</delivery_address>
 		<delivery_address_one>
 			<label>Delivery Address</label>
 			<tooltip><![CDATA[

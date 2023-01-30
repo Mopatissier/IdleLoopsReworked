@@ -248,7 +248,6 @@ function initializeSquirrelLevels() {
 
 }
 
-
 function addSquirrelLevel(action) {
 	squirrelLevel[camelize(action.varName)] = 0;
 }

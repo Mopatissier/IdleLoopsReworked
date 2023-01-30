@@ -146,8 +146,9 @@ function Town(index) {
         if (this.varNames.indexOf(varName) === -1) {
             this.varNames.push(varName);
         }
+		
     };
-
+	
     this.createProgressVars = function(varName) {
         if (this[`exp${varName}`] === undefined) {
             this[`exp${varName}`] = 0;

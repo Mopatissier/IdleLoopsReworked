@@ -415,7 +415,7 @@ function View() {
 		
         //"rgba(103, 58, 183, 0.2)"
     ];
-    this.updateNextActions = function() {
+    this.updateNextActions = function(actionToUpgrade, actionUpgraded) {
         let count = 0;
         while (nextActionsDiv.firstChild) {
             if (document.getElementById(`capButton${count}`)) {
@@ -453,7 +453,17 @@ function View() {
         let totalDivText = "";
 
         for (let i = 0; i < actions.next.length; i++) {
-            const action = actions.next[i];
+            let action = actions.next[i];
+			
+			if(actionToUpgrade !== undefined && actionUpgraded !== undefined && action.name === actionToUpgrade.name){
+				actionUpgraded.loops = action.loops;
+				actionUpgraded.squirrelAction = action.squirrelAction;
+				actionUpgraded.disabled = action.disabled;
+				actionUpgraded.collapsed = action.collapsed;
+				action = actionUpgraded;
+				actions.next[i] = action;
+			}
+			
             const translatedAction = translateClassNames(action.name);
             let capButton = "";
             const townNum = translatedAction.townNum;
@@ -769,7 +779,14 @@ function View() {
                 if (init || document.getElementById(divName).innerHTML.includes("???")) {
                     let storyTooltipText = "";
                     let lastInBranch = false;
-                    const name = action.name.toLowerCase().replace(/ /gu, "_");
+					
+					let name = ""
+					if(action.heritage === undefined || action.heritage.Story === false){
+						name = action.name.toLowerCase().replace(/ /gu, "_");
+					} else {
+						name = action.heritage.Story.toLowerCase().replace(/ /gu, "_");
+					}
+						
                     const storyAmt = _text(`actions>${name}`, "fallback").split("⮀").length - 1;
                     let storiesUnlocked = 0;
                     for (let i = 1; i <= storyAmt; i++) {
@@ -1102,13 +1119,20 @@ function View() {
 			let newActionTooltip = "";
 			const divName = `storyContainer${action.varName}`;
 			
+			let name = ""
+			if(action.heritage === undefined || action.heritage.Squirrel === false){
+				name = action.name;
+			} else {
+				name = action.heritage.Squirrel;
+			}
+			
 			if(squirrelMode){
 
 				const tooltipLevel = squirrelLevel[camelize(action.varName)]
 				if(tooltipLevel === undefined || tooltipLevel === 0){	
 					newActionTooltip =  _text("actions>squirrel_default"); 
 				} else {
-					newActionTooltip =  _text("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
+					newActionTooltip =  _text("actions>"+getXMLName(name)+">squirrel_"+tooltipLevel); 
 				}
 					
 				if(action.storyReqs !== undefined){
@@ -1125,9 +1149,9 @@ function View() {
 					} else {
 						for(let i= 1; i <= tooltipLevel; i++){
 							newStoryTooltip += ("<b>Effect n°"+i+" : </b>");
-							if(i !== tooltipLevel) newStoryTooltip += 	(( _text("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "<br>");
-							else newStoryTooltip += 					(( _text("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "");
-							if(!(_text("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
+							if(i !== tooltipLevel) newStoryTooltip += 	(( _text("actions>"+getXMLName(name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "<br>");
+							else newStoryTooltip += 					(( _text("actions>"+getXMLName(name)+">squirrel_"+i)+"<br>").replace("<hr class='divider'>", "<br>")).replace("<hr class='divider'>", "");
+							if(!(_text("actions>"+getXMLName(name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
 						}
 					}			
 
@@ -1166,11 +1190,18 @@ function View() {
 		let newActionTooltip = "";
 		const divName = `storyContainer${action.varName}`;
 		
+		let name = ""
+		if(action.heritage === undefined || action.heritage.Squirrel === false){
+			name = action.name;
+		} else {
+			name = action.heritage.Squirrel;
+		}
+		
 		const tooltipLevel = squirrelLevel[camelize(action.varName)]
 		if(tooltipLevel === undefined || tooltipLevel === 0){	
 			newActionTooltip =  _text("actions>squirrel_default"); 
 		} else {
-			newActionTooltip =  _text("actions>"+getXMLName(action.name)+">squirrel_"+tooltipLevel); 
+			newActionTooltip =  _text("actions>"+getXMLName(name)+">squirrel_"+tooltipLevel); 
 		}
 		
 		document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
@@ -1186,7 +1217,7 @@ function View() {
 			} else {
 				for(let i= 1; i <= tooltipLevel; i++){
 					newStoryTooltip += ("<b>Effect n°"+i+" : </b>");
-					newStoryTooltip += ( _text("actions>"+getXMLName(action.name)+">squirrel_"+i)+"<br>");
+					newStoryTooltip += ( _text("actions>"+getXMLName(name)+">squirrel_"+i)+"<br>");
 					if(i !== tooltipLevel) newStoryTooltip += "<br>";
 					if(!(_text("actions>"+getXMLName(action.name)+">squirrel_"+i).includes(">="))) document.getElementById(divName).classList.add("storyContainerCompleted");
 				}
