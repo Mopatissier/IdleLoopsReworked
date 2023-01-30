@@ -6182,7 +6182,7 @@ Action.SlaveAuction = new Action("Slave Auction", {
 		if(resources.reputation >= 0) return 0;
 		if(towns[MERCHANTON].goodSlaveAuction != towns[MERCHANTON].goodTempSlaveAuction) return 0;
 		
-		let bounty = 60;
+		let bounty = 75;
 		let costPerSlave = Math.max(60 + Math.ceil(resources.reputation/2), 10);
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
 		
@@ -6213,7 +6213,7 @@ Action.SlaveAuction = new Action("Slave Auction", {
 		
 		let totalSlaves = towns[MERCHANTON].goodSlaveAuction + (towns[MERCHANTON].totalSlaveAuction - towns[MERCHANTON].checkedSlaveAuction);
 		let costPerSlave = Math.max(60 + Math.ceil(resources.reputation/2), 10);
-		let bounty = 60;
+		let bounty = 75;
 		
 		let affordableMaxSlaves = Math.floor(resources.gold/costPerSlave);
 		let numberOfLoops = Math.min(affordableMaxSlaves, totalSlaves);
@@ -6485,7 +6485,7 @@ Action.MockBattle = new MultipartAction("Mock Battle", {
         return 1;
     },
 	canStart() {
-		const curWins = Math.floor((ttowns[this.townNum].MockLoopCounter) / 5 + 0.0000001);
+		const curWins = Math.floor((towns[this.townNum].MockLoopCounter) / 5 + 0.0000001);
 		return guild === "Adventure" && curWins < 4;
     },
     loopCost(segment) {
