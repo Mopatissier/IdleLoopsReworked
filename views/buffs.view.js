@@ -30,7 +30,7 @@ Views.registerView("buffsContainer", {
                     </div>
                     <div class="buffNumContainer">
                         <div id="buff${buff}Level">0/</div>
-                        <input type="number" id="buff${buff}Cap" class="buffmaxinput" value="${buffHardCaps[buff]}" onchange="view.updateBuffCaps()">
+                        <input type="number" id="buff${buff}Cap" class="buffmaxinput" value="${buffHardCaps[buff]}" onchange="view.updateBuffCaps()" disabled>
                     </div>
                 </div>`;
         }

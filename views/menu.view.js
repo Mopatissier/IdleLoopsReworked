@@ -95,6 +95,12 @@ Views.registerView("menu", {
 				<input id='ferretModeInput' type='checkbox' onchange='setOption("ferretMode", this.checked)'/>
                 <label for='ferretModeInput'>${_text("menu>options>ferret_mode")}</label>
                 <br>
+				<input id='hideBarsInput' type='checkbox' onchange='setOption("hideBars", this.checked)'/>
+                <label for='hideBarsInput'>${_text("menu>options>hide_bars")}</label>
+                <br>
+				<input id='mergeModesInput' type='checkbox' onchange='setOption("mergeModes", this.checked)'/>
+                <label for='mergeModesInput'>${_text("menu>options>merge_modes")}</label>
+                <br>
                 <input id='hotkeysInput' type='checkbox' onchange='setOption("hotkeys", this.checked)'/>
                 <label class='showthat' for='hotkeysInput'>${_text("menu>options>hotkeys")}
                     <div class='showthis'>${_text("menu>options>hotkeys_tooltip")}</div>

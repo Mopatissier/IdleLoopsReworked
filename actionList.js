@@ -48,6 +48,23 @@ const trainingActions = [
     "Oracle",
     "Charm School"
 ];
+
+const expPerSegmentActions = [
+	"Fight Monsters",
+	"Training Dummy",
+	"Magic Fighter"
+];
+
+const expPerCompletionActions = [
+	"Heal The Sick",
+	"Training Dummy",
+	"Magic Fighter",
+	"Small Dungeon",
+	"Distill Potions",
+	"Concoct Potions",
+	"Large Dungeon"	
+];
+
 function hasLimit(name) {
     return limitedActions.includes(name);
 }
@@ -399,14 +416,15 @@ Action.LookAround = new Action("Look Around", {
 		if(shouldLevelUp) levelUpSquirrelAction("Look Around");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Look Around")){
+		switch(additionalLevel + getLevelSquirrelAction("Look Around")){
 						
 				case 1: break;
 										
@@ -499,13 +517,14 @@ Action.AbsorbMana = new Action("Absorb Mana", {
 		if(shouldLevelUp) levelUpSquirrelAction("Absorb Mana");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Absorb Mana")){
+		switch(additionalLevel + getLevelSquirrelAction("Absorb Mana")){
 						
 				case 1: break;
 										
@@ -592,13 +611,14 @@ Action.ImbueSquirrel = new Action("Imbue Squirrel", {
 		if(shouldLevelUp) levelUpSquirrelAction("Imbue Squirrel");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Imbue Squirrel")){
+		switch(additionalLevel + getLevelSquirrelAction("Imbue Squirrel")){
 						
 			case 1: actionEffect = () => {
 						handleSkillSquirrelExp(this.skillsSquirrel);
@@ -700,13 +720,14 @@ Action.ImbueSoulstones = new Action("Imbue Soulstones", {
 		if(shouldLevelUp) levelUpSquirrelAction("Imbue Soulstones");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Imbue Soulstones")){
+		switch(additionalLevel + getLevelSquirrelAction("Imbue Soulstones")){
 						
 			case 1: break;
 									
@@ -800,13 +821,14 @@ Action.BalanceSoulstones = new Action("Balance Soulstones", {
 		if(shouldLevelUp) levelUpSquirrelAction("Balance Soulstones");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Balance Soulstones")){
+		switch(additionalLevel + getLevelSquirrelAction("Balance Soulstones")){
 						
 			case 1: break;
 									
@@ -897,13 +919,14 @@ Action.MysteriousVoice = new Action("Mysterious Voice", {
 		if(shouldLevelUp) levelUpSquirrelAction("Mysterious Voice");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Mysterious Voice")){
+		switch(additionalLevel + getLevelSquirrelAction("Mysterious Voice")){
 						
 			case 1: actionEffect = () => {
 						if(getBuffLevel("SpiritBlessing") == 1) {
@@ -1025,13 +1048,14 @@ Action.Wander = new Action("Wander", {
 		if(shouldLevelUp) levelUpSquirrelAction("Wander");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Wander")){
+		switch(additionalLevel + getLevelSquirrelAction("Wander")){
 						
 			case 1: loseSquirrel = true;
 					break;
@@ -1153,13 +1177,14 @@ Action.SmashPots = new Action("Smash Pots", {
 		if(shouldLevelUp) levelUpSquirrelAction("Smash Pots");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Smash Pots")){
+		switch(additionalLevel + getLevelSquirrelAction("Smash Pots")){
 						
 				case 1: break;
 						
@@ -1275,13 +1300,14 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
 		if(shouldLevelUp) levelUpSquirrelAction("Pet Squirrel");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Pet Squirrel")){
+		switch(additionalLevel + getLevelSquirrelAction("Pet Squirrel")){
 						
 				case 1: break;
 						
@@ -1389,13 +1415,14 @@ Action.PickLocks = new Action("Pick Locks", {
 		if(shouldLevelUp) levelUpSquirrelAction("Pick Locks");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Pick Locks")){
+		switch(additionalLevel + getLevelSquirrelAction("Pick Locks")){
 						
 			case 1: loseSquirrel = true;
 				break;
@@ -1448,6 +1475,9 @@ Action.TakeGlasses = new Action("Take Glasses", {
     manaCost() {
         return 100;
     },
+	allowed() {
+        return 1;
+    },
 	canStart() {
 		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
 		return squirrelRequirements && resources.stolenGoods >= 1;
@@ -1482,13 +1512,14 @@ Action.TakeGlasses = new Action("Take Glasses", {
 		if(shouldLevelUp) levelUpSquirrelAction("Take Glasses");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Take Glasses")){
+		switch(additionalLevel + getLevelSquirrelAction("Take Glasses")){
 						
 			case 1: break;
 												
@@ -1610,13 +1641,14 @@ Action.BuyManaZ1 = new Action("Buy Mana Z1", {
 		if(shouldLevelUp) levelUpSquirrelAction("Buy Mana Z1");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Buy Mana Z1")){
+		switch(additionalLevel + getLevelSquirrelAction("Buy Mana Z1")){
 						
 			case 1: actionEffect = () => {
 						addResource("gold", resources.stolenGoods * this.stolenGoodsValue());
@@ -1733,13 +1765,14 @@ Action.MeetPeople = new Action("Meet People", {
 		if(shouldLevelUp) levelUpSquirrelAction("Meet People");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Meet People")){
+		switch(additionalLevel + getLevelSquirrelAction("Meet People")){
 						
 			case 1: break;
 					
@@ -1823,13 +1856,14 @@ Action.TrainStrength = new Action("Train Strength", {
 		if(shouldLevelUp) levelUpSquirrelAction("Train Strength");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Train Strength")){
+		switch(additionalLevel + getLevelSquirrelAction("Train Strength")){
 						
 				case 1: break;				
 			}
@@ -1921,13 +1955,14 @@ Action.ShortQuest = new Action("Short Quest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Short Quest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Short Quest")){
+		switch(additionalLevel + getLevelSquirrelAction("Short Quest")){
 						
 			case 1: break;		
 
@@ -2036,13 +2071,14 @@ Action.Investigate = new Action("Investigate", {
 		if(shouldLevelUp) levelUpSquirrelAction("Investigate");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Investigate")){
+		switch(additionalLevel + getLevelSquirrelAction("Investigate")){
 						
 			case 1: break;		
 
@@ -2146,13 +2182,14 @@ Action.LongQuest = new Action("Long Quest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Long Quest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Long Quest")){
+		switch(additionalLevel + getLevelSquirrelAction("Long Quest")){
 						
 			case 1: break;		
 
@@ -2254,13 +2291,14 @@ Action.ThrowParty = new Action("Throw Party", {
 		if(shouldLevelUp) levelUpSquirrelAction("Throw Party");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Throw Party")){
+		switch(additionalLevel + getLevelSquirrelAction("Throw Party")){
 						
 			case 1: actionEffect = () => {
 						towns[BEGINNERSVILLE].finishProgress("Met", 2700);
@@ -2362,13 +2400,14 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 		if(shouldLevelUp) levelUpSquirrelAction("Warrior Lessons");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Warrior Lessons")){
+		switch(additionalLevel + getLevelSquirrelAction("Warrior Lessons")){
 						
 			case 1:  break;		
 
@@ -2476,13 +2515,14 @@ Action.MageLessons = new Action("Mage Lessons", {
 		if(shouldLevelUp) levelUpSquirrelAction("Mage Lessons");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Mage Lessons")){
+		switch(additionalLevel + getLevelSquirrelAction("Mage Lessons")){
 						
 			case 1:  break;		
 
@@ -2618,13 +2658,14 @@ Action.HealTheSick = new MultipartAction("Heal The Sick", {
 		if(shouldLevelUp) levelUpSquirrelAction("Heal The Sick");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Heal The Sick")){
+		switch(additionalLevel + getLevelSquirrelAction("Heal The Sick")){
 						
 			case 1:  break;
 			
@@ -2763,13 +2804,14 @@ Action.FightMonsters = new MultipartAction("Fight Monsters", {
 		if(shouldLevelUp) levelUpSquirrelAction("Fight Monsters");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Fight Monsters")){
+		switch(additionalLevel + getLevelSquirrelAction("Fight Monsters")){
 						
 			case 1: loseSquirrel = true;
 				break;
@@ -2904,13 +2946,14 @@ Action.TrainingDummy = new MultipartAction("Training Dummy", {
 		if(shouldLevelUp) levelUpSquirrelAction("Training Dummy");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Training Dummy")){
+		switch(additionalLevel + getLevelSquirrelAction("Training Dummy")){
 					
 			case 1: break;
 				
@@ -2978,7 +3021,7 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		return squirrelRequirements && resources.reputation >= 2 && curPowerLevel < magicFighterStrenght;
     },
     loopCost(segment) {
-        return precision3((Math.floor(Math.pow(5, towns[BEGINNERSVILLE].MagFgtLoopCounter/this.segments)+ 0.0000001)) * 500000);
+        return precision3((Math.floor(Math.pow(5, towns[BEGINNERSVILLE].MagFgtLoopCounter/this.segments)+ 0.0000001)) * 275000);
 		
     },
     tickProgress(offset) {
@@ -3036,13 +3079,14 @@ Action.MagicFighter = new MultipartAction("Magic Fighter", {
 		if(shouldLevelUp) levelUpSquirrelAction("Magic Fighter");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Magic Fighter")){
+		switch(additionalLevel + getLevelSquirrelAction("Magic Fighter")){
 					
 			case 1: break;
 			
@@ -3175,13 +3219,14 @@ Action.SmallDungeon = new DungeonAction("Small Dungeon", 0, {
 		if(shouldLevelUp) levelUpSquirrelAction("Small Dungeon");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Small Dungeon")){
+		switch(additionalLevel + getLevelSquirrelAction("Small Dungeon")){
 						
 			case 1: break;
 			
@@ -3302,13 +3347,14 @@ Action.BuySupplies = new Action("Buy Supplies", {
 		if(shouldLevelUp) levelUpSquirrelAction("Buy Supplies");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Buy Supplies")){
+		switch(additionalLevel + getLevelSquirrelAction("Buy Supplies")){
 						
 			case 1: actionEffect = () => {
 						addResource("gold", towns[BEGINNERSVILLE].suppliesCost);
@@ -3402,13 +3448,14 @@ Action.Haggle = new Action("Haggle", {
 		if(shouldLevelUp) levelUpSquirrelAction("Haggle");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Haggle")){
+		switch(additionalLevel + getLevelSquirrelAction("Haggle")){
 						
 			case 1: break;
 			
@@ -3502,13 +3549,14 @@ Action.StartJourney = new Action("Start Journey", {
 		if(shouldLevelUp) levelUpSquirrelAction("Start Journey");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Start Journey")){
+		switch(additionalLevel + getLevelSquirrelAction("Start Journey")){
 						
 				case 1: break;
 				
@@ -3675,13 +3723,14 @@ Action.ExploreForest = new Action("Explore Forest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Explore Forest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Explore Forest")){
+		switch(additionalLevel + getLevelSquirrelAction("Explore Forest")){
 						
 			case 1: loseSquirrel = true;
 				break;
@@ -3800,13 +3849,14 @@ Action.WildMana = new Action("Wild Mana", {
 		if(shouldLevelUp) levelUpSquirrelAction("Wild Mana");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Wild Mana")){
+		switch(additionalLevel + getLevelSquirrelAction("Wild Mana")){
 						
 			case 1: actionEffect = () => {
 						towns[FORESTPATH].finishRegular(this.varName, 10, () => {
@@ -3916,13 +3966,14 @@ Action.GatherHerbs = new Action("Gather Herbs", {
 		if(shouldLevelUp) levelUpSquirrelAction("Gather Herbs");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Gather Herbs")){
+		switch(additionalLevel + getLevelSquirrelAction("Gather Herbs")){
 						
 			case 1:	break;
 				
@@ -4027,13 +4078,14 @@ Action.Hunt = new Action("Hunt", {
 		if(shouldLevelUp) levelUpSquirrelAction("Hunt");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Hunt")){
+		switch(additionalLevel + getLevelSquirrelAction("Hunt")){
 						
 			case 1:	loseSquirrel = true;
 					break;
@@ -4119,13 +4171,14 @@ Action.SitByWaterfall = new Action("Sit By Waterfall", {
 		if(shouldLevelUp) levelUpSquirrelAction("Sit By Waterfall");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Sit By Waterfall")){
+		switch(additionalLevel + getLevelSquirrelAction("Sit By Waterfall")){
 						
 			case 1:	loseSquirrel = true;
 					break;								
@@ -4221,13 +4274,14 @@ Action.OldShortcut = new Action("Old Shortcut", {
 		if(shouldLevelUp) levelUpSquirrelAction("Old Shortcut");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Old Shortcut")){
+		switch(additionalLevel + getLevelSquirrelAction("Old Shortcut")){
 						
 			case 1:	loseSquirrel = true;
 					break;
@@ -4338,13 +4392,14 @@ Action.TalkToHermit = new Action("Talk To Hermit", {
 		if(shouldLevelUp) levelUpSquirrelAction("Talk To Hermit");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Talk To Hermit")){
+		switch(additionalLevel + getLevelSquirrelAction("Talk To Hermit")){
 						
 			case 1:	loseSquirrel = true;
 					break;
@@ -4445,13 +4500,14 @@ Action.PracticeYang = new Action("Practice Yang", {
 		if(shouldLevelUp) levelUpSquirrelAction("Practice Yang");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Practice Yang")){
+		switch(additionalLevel + getLevelSquirrelAction("Practice Yang")){
 						
 			case 1:	break;
 
@@ -4501,19 +4557,7 @@ Action.LearnAlchemy = new Action("Learn Alchemy", {
     },
     skills: {
         Alchemy() {
-			let brewingLevel = getSkillLevel("Brewing");
-			let brewingMultiplier = 0;
-			
-			for(let levelsNeededForBoost = 1; brewingLevel > 0; levelsNeededForBoost++) {
-				for (let i = 0; i < 10 && brewingLevel > 0; i++){
-				
-					brewingMultiplier += 1;
-					brewingLevel -= levelsNeededForBoost;
-				
-				}
-			}
-			
-			return 100 + brewingMultiplier * 10;
+			return 10 + 10 * getSkillLevel("Brewing");
 		}
     },
 	canStart() {
@@ -4557,13 +4601,14 @@ Action.LearnAlchemy = new Action("Learn Alchemy", {
 		if(shouldLevelUp) levelUpSquirrelAction("Learn Alchemy");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Learn Alchemy")){
+		switch(additionalLevel + getLevelSquirrelAction("Learn Alchemy")){
 						
 			case 1:	break;
 
@@ -4604,19 +4649,7 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
     },
 	skills: {
         Alchemy() {
-			let brewingLevel = getSkillLevel("Brewing");
-			let brewingMultiplier = 0;
-			
-			for(let levelsNeededForBoost = 1; brewingLevel > 0; levelsNeededForBoost++) {
-				for (let i = 0; i < 10 && brewingLevel > 0; i++){
-				
-					brewingMultiplier += 1;
-					brewingLevel -= levelsNeededForBoost;
-				
-				}
-			}
-			
-			return 100 + brewingMultiplier * 10;
+			return 10 + 10 * getSkillLevel("Brewing");
 		}
     },
 	loopStats: ["Int", "Dex", "Luck"],
@@ -4629,7 +4662,7 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
     },
     loopCost(segment) {
 		const numberLoops = towns[FORESTPATH].DistillLoopCounter / 3;
-        return Math.floor(Math.pow(1.6, numberLoops)+ 0.0000001) * 40000;
+        return Math.floor(Math.pow(1.3, numberLoops)+ 0.0000001) * 20000;
     },
     tickProgress(offset) {
 		if(this.squirrelAction) return 0;
@@ -4672,13 +4705,14 @@ Action.DistillPotions = new MultipartAction("Distill Potions", {
 		if(shouldLevelUp) levelUpSquirrelAction("Distill Potions");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Distill Potions")){
+		switch(additionalLevel + getLevelSquirrelAction("Distill Potions")){
 						
 			case 1:	break;
 
@@ -4763,13 +4797,14 @@ Action.TrainSquirrel = new Action("Train Squirrel", {
 		if(shouldLevelUp) levelUpSquirrelAction("Train Squirrel");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Train Squirrel")){
+		switch(additionalLevel + getLevelSquirrelAction("Train Squirrel")){
 						
 			case 1:	loseSquirrel = true;
 				break;
@@ -4864,13 +4899,14 @@ Action.FeedAnimals = new Action("Feed Animals", {
 		if(shouldLevelUp) levelUpSquirrelAction("Feed Animals");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Feed Animals")){
+		switch(additionalLevel + getLevelSquirrelAction("Feed Animals")){
 						
 			case 1:	loseSquirrel = true;
 				break;
@@ -4979,13 +5015,14 @@ Action.PotFairy = new Action("Pot Fairy", {
 		if(shouldLevelUp) levelUpSquirrelAction("Pot Fairy");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Pot Fairy")){
+		switch(additionalLevel + getLevelSquirrelAction("Pot Fairy")){
 						
 			case 1:	break;
 			
@@ -5079,7 +5116,7 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
         return (resources.herbs + squirrelHelp) *  Math.sqrt((1 + getLevel(this.loopStats[(towns[FORESTPATH].BurnLoopCounter + offset) % this.loopStats.length]) / 1000));
     },
     loopsFinished() {
-		addMana(3500);
+		addMana(4500);
         addResource("darkEssences", Math.floor(towns[FORESTPATH].getLevel("DarkForest")/10 + 0.000001));
 		addResource("herbs", -10);
 		if(towns[FORESTPATH].BurnLoopCounter%4 === 0) addResource("reputation", -1);
@@ -5117,13 +5154,14 @@ Action.BurnForest = new MultipartAction("Burn Forest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Burn Forest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Burn Forest")){
+		switch(additionalLevel + getLevelSquirrelAction("Burn Forest")){
 						
 			case 1:	actionEffect = () => {/*Has an effect*/};
 					loseSquirrel = true;
@@ -5204,13 +5242,14 @@ Action.BirdWatching = new Action("Bird Watching", {
 		if(shouldLevelUp) levelUpSquirrelAction("Bird Watching");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Bird Watching")){
+		switch(additionalLevel + getLevelSquirrelAction("Bird Watching")){
 						
 			case 1:	actionEffect = () => {
 						unlockStory("birdsWatched")
@@ -5299,13 +5338,14 @@ Action.DarkForest = new Action("Dark Forest", {
 		if(shouldLevelUp) levelUpSquirrelAction("Dark Forest");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Dark Forest")){
+		switch(additionalLevel + getLevelSquirrelAction("Dark Forest")){
 						
 			case 1:	loseSquirrel = true;
 				break;
@@ -5417,13 +5457,14 @@ Action.TalkToWitch = new Action("Talk To Witch", {
 		if(shouldLevelUp) levelUpSquirrelAction("Talk To Witch");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Talk To Witch")){
+		switch(additionalLevel + getLevelSquirrelAction("Talk To Witch")){
 						
 			case 1:	loseSquirrel = true;
 				break;
@@ -5522,13 +5563,14 @@ Action.PracticeYin = new Action("Practice Yin", {
 		if(shouldLevelUp) levelUpSquirrelAction("Practice Yin");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Practice Yin")){
+		switch(additionalLevel + getLevelSquirrelAction("Practice Yin")){
 						
 			case 1:	break;
 			
@@ -5575,19 +5617,7 @@ Action.LearnBrewing = new Action("Learn Brewing", {
     },
 	skills: {
 		Brewing() {
-			let alchemyLevel = getSkillLevel("Alchemy");
-			let alchemyMultiplier = 0;
-			
-			for(let levelsNeededForBoost = 1; alchemyLevel > 0; levelsNeededForBoost++) {
-				for (let i = 0; i < 10 && alchemyLevel > 0; i++){
-				
-					alchemyMultiplier += 1;
-					alchemyLevel -= levelsNeededForBoost;
-				
-				}
-			}
-			
-			return 100 + alchemyMultiplier * 10;
+			return 10 + 10 * getSkillLevel("Alchemy");
 		}
 	},
     manaCost() {
@@ -5628,7 +5658,7 @@ Action.LearnBrewing = new Action("Learn Brewing", {
 		if(shouldLevelUp) levelUpSquirrelAction("Learn Brewing");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
@@ -5674,19 +5704,7 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
     },
 	skills: {
 		Brewing() {
-			let alchemyLevel = getSkillLevel("Alchemy");
-			let alchemyMultiplier = 0;
-			
-			for(let levelsNeededForBoost = 1; alchemyLevel > 0; levelsNeededForBoost++) {
-				for (let i = 0; i < 10 && alchemyLevel > 0; i++){
-				
-					alchemyMultiplier += 1;
-					alchemyLevel -= levelsNeededForBoost;
-				
-				}
-			}
-			
-			return 100 + alchemyMultiplier * 10;
+			return 10 + 10 * getSkillLevel("Alchemy");
 		}
 	},
 	loopStats: ["Soul", "Per", "Str"],
@@ -5699,7 +5717,7 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
     },
     loopCost(segment) {
 		const numberLoops = towns[FORESTPATH].ConcoctLoopCounter / 3;
-        return Math.floor(Math.pow(1.6, numberLoops)+ 0.0000001) * 50000;
+        return Math.floor(Math.pow(1.3, numberLoops)+ 0.0000001) * 25000;
     },
     tickProgress(offset) {
 		if(this.squirrelAction) return 0;
@@ -5742,13 +5760,14 @@ Action.ConcoctPotions = new MultipartAction("Concoct Potions", {
 		if(shouldLevelUp) levelUpSquirrelAction("Concoct Potions");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Concoct Potions")){
+		switch(additionalLevel + getLevelSquirrelAction("Concoct Potions")){
 						
 			case 1:	break;
 				
@@ -5866,13 +5885,14 @@ Action.ContinueOn = new Action("Continue On", {
 		if(shouldLevelUp) levelUpSquirrelAction("Continue On");
 		
 	},
-	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel) {
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
 		
 		let actionEffect = () => {};
 		let loseSquirrel = false;
 		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
 		
-		switch(getLevelSquirrelAction("Continue On")){
+		switch(additionalLevel + getLevelSquirrelAction("Continue On")){
 						
 			case 1:	break;
 			
@@ -6099,6 +6119,10 @@ Action.Gamble = new Action("Gamble", {
 		
 		let reputationLost = Math.floor((gamblesInARow+5)/10);
         addResource("reputation", reputationLost * (-1));
+		if(resources.reputation < 0){
+			resources.reputation = 1;
+			addResource("reputation", -1);
+		}
 		
 		view.adjustGoldCost("Gamble", Action.Gamble.goldCost());
 		
@@ -6259,12 +6283,12 @@ Action.AdventureGuild = new MultipartAction("Adventure Guild", {
         return guild === "";
     },
     loopCost(segment) {
-        return precision3(Math.pow(1.65, towns[MERCHANTON][`${this.varName}LoopCounter`] + segment)) * 230000;
+        return precision3(Math.pow(1.65, towns[MERCHANTON][`${this.varName}LoopCounter`] + segment)) * 175000;
     },
     tickProgress(offset) {
         return (getSkillLevel("Magic") / 2 + getSelfCombat("Combat") / 2) *
                 Math.sqrt((1 + getLevel(this.loopStats[(towns[MERCHANTON][`${this.varName}LoopCounter`] + offset) % this.loopStats.length]) / 100)) *
-                Math.sqrt(1 + towns[MERCHANTON][`total${this.varName}`]);
+                Math.sqrt(1 + towns[MERCHANTON][`total${this.varName}`]/2);
     },
     loopsFinished() {
 		gotERankAdv = true;
@@ -6304,7 +6328,7 @@ function getAdvGuildRank(offset) {
             name += ["-", "", "+"][offset % 3];
         }
     } else {
-        name = "Corrupted the whole guild";
+        name = "Corrupted Everyone";
         bonus = 10;
     }
     name += `, Mult x${bonus}`;
@@ -6329,7 +6353,7 @@ Action.TrainingFacility = new Action("Training Facility", {
     },
 	skills: {
         TeamWork() {
-			let exp = 40;
+			let exp = 20;
 			exp = exp * getAdvGuildRank().bonus;
 			exp = exp * ( 1 + resources.teamMembers);
 			return exp;
@@ -6420,7 +6444,7 @@ Action.LargeDungeon = new DungeonAction("Large Dungeon", 1, {
         Luck: 0.1
     },
     skills: {
-        TeamWork: 100
+        TeamWork: 200
     },
     loopStats: ["Cha", "Spd", "Str", "Cha", "Dex", "Dex", "Str"],
     affectedBy: ["Gather Team"],
@@ -6486,11 +6510,11 @@ Action.MockBattle = new MultipartAction("Mock Battle", {
     },
 	canStart() {
 		const curWins = Math.floor((towns[this.townNum].MockLoopCounter) / 5 + 0.0000001);
-		return guild === "Adventure" && curWins < 4;
+		return guild === "Adventure" && curWins < 3;
     },
     loopCost(segment) {
 		const numberLoops = towns[this.townNum].MockLoopCounter / 5;
-        return Math.floor(Math.pow(20, numberLoops)+ 0.0000001) * 170000;
+        return Math.floor(Math.pow(20, numberLoops)+ 0.0000001) * 200000;
     },
     tickProgress(offset) {
         return (getSkillLevel("TeamWork")) * Math.sqrt(1 + getLevel(this.loopStats[(towns[this.townNum].MockLoopCounter + offset) % this.loopStats.length]) / 100) * Math.sqrt(1 + towns[this.townNum].totalMock / 100);
@@ -6899,6 +6923,10 @@ Action.DeliveryAddressOne = new Action("Delivery Address One", {
         return 5000;
     },
     visible() {
+		if(magicFighterStrenght === 0 && towns[MERCHANTON].getLevel("City") < 100){
+			magicFighterStrenght = -1;
+			return false;
+		}
         return magicFighterStrenght === 0;
     },
     unlocked() {
@@ -6907,7 +6935,7 @@ Action.DeliveryAddressOne = new Action("Delivery Address One", {
     finish() {
 		if(magicFight && magicFighterStrenght === 0) {
 			magicFighterStrenght = 1;
-			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			view.adjustGoldCost("MagFgt", Action.MagicFighter.goldCost());
 			upgradeAction(Action.TrainingDummy, Action.MagicFighter);
 			if(getLevelSquirrelAction("Magic Fighter") === 1) levelUpSquirrelAction("Magic Fighter");
 			upgradeAction(Action.DeliveryAddressOne, Action.DeliveryAddressTwo);
@@ -6951,7 +6979,7 @@ Action.DeliveryAddressTwo = new Action("Delivery Address Two", {
     finish() {
 		if(magicFight && magicFighterStrenght === 1) {
 			magicFighterStrenght = 2;
-			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			view.adjustGoldCost("MagFgt", magicFighterStrenght);
 			upgradeAction(Action.DeliveryAddressTwo, Action.DeliveryAddressThree);
 		}
     },
@@ -6993,7 +7021,7 @@ Action.DeliveryAddressThree = new Action("Delivery Address Three", {
     finish() {
 		if(magicFight && magicFighterStrenght === 2) {
 			magicFighterStrenght = 3;
-			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			view.adjustGoldCost("MagFgt", magicFighterStrenght);
 			upgradeAction(Action.DeliveryAddressThree, Action.DeliveryAddressFour);
 		}
     },
@@ -7035,7 +7063,7 @@ Action.DeliveryAddressFour = new Action("Delivery Address Four", {
     finish() {
 		if(magicFight && magicFighterStrenght === 3) {
 			magicFighterStrenght = 4;
-			view.adjustGoldCost("MagicFighter", magicFighterStrenght);
+			view.adjustGoldCost("MagFgt", magicFighterStrenght);
 			upgradeAction(Action.DeliveryAddressFour, Action.DeliveryAddressFive);
 		}
     },
@@ -7143,12 +7171,12 @@ Action.SellPotions = new Action("Sell Potions", {
     },
     finish() {
 		if(resources.potions > 0){
-			addResource("gold", resources.potions * 200);
+			addResource("gold", resources.potions * 100);
 			resetResource("potions");
 		}
 		
 		if(resources.darkPotions > 0){
-			addResource("gold", resources.darkPotions * 200);
+			addResource("gold", resources.darkPotions * 100);
 			resetResource("darkPotions");
 		}
     },
@@ -7183,7 +7211,7 @@ Action.ReadBooks = new Action("Read Books", {
         return towns[MERCHANTON].getLevel("City") >= 20;
     },
     unlocked() {
-        return towns[MERCHANTON].getLevel("City") >= 80;
+        return towns[MERCHANTON].getLevel("City") >= 60;
     },
     finish() {
         unlockStory("booksRead");
@@ -7232,8 +7260,10 @@ Action.TailJudges = new Action("Tail Judges", {
     finish() {
 		if(guild === "Adventure"){
 			towns[MERCHANTON]["totalAdvGuild"] = towns[MERCHANTON]["totalAdvGuild"] + Math.floor(Math.pow(10, Math.floor(getAdvGuildRank().bonus - 1)));
+			view.requestUpdate("updateMultiPart", Action.AdventureGuild);
 		} else if(guild === "Crafting"){
 			towns[MERCHANTON]["totalCraftGuild"] = towns[MERCHANTON]["totalCraftGuild"] + Math.floor(Math.pow(10, Math.floor(getCraftGuildRank().bonus - 1)));
+			view.requestUpdate("updateMultiPart", Action.CraftingGuild);
 		} else {
 			//addResource("climbingGears", 1);
 			//add boat

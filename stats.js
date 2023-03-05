@@ -150,7 +150,7 @@ function getYinYangBonus(skill){
 function getNumberSoulstonesLargeDungeon(){
 	let numberOfSoulstones = 10;
 	numberOfSoulstones = numberOfSoulstones / (1 +resources.teamMembers);
-	numberOfSoulstones = numberOfSoulstones * (1 + getSkillLevel("TeamWork")/100);
+	numberOfSoulstones = numberOfSoulstones * (1 + getSkillLevel("TeamWork")/200);
 	numberOfSoulstones = Math.min(10, Math.floor(numberOfSoulstones));
 	return numberOfSoulstones;
 }

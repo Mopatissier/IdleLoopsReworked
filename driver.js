@@ -19,7 +19,6 @@ let squirrelAlreadyPickedUp = false;
 let bonusMultString = "1x";
 
 let squirrelIcon = 'img/petSquirrel.svg';
-let squirrelNewAction = 'img/squirrelNewAction.svg';
 
 const fav = {
 	none: 0,
@@ -655,7 +654,9 @@ function addOffline(num) {
         totalOfflineMs += num;
         if (totalOfflineMs < 0) {
             totalOfflineMs = 0;
-        }
+        } else if(totalOfflineMs > 1000*60*60*24*5){
+			totalOfflineMs = 1000*60*60*24*5;
+		}
 		
         document.getElementById("bonusSeconds").textContent = convertMsToString(totalOfflineMs);
 		document.getElementById("bonusMult").textContent = bonusMultString;
@@ -740,6 +741,11 @@ function levelUpSquirrelAction(actionName) {
 	else squirrelLevel[camelize(action.varName)] ++;
 	
 	if(squirrelMode) view.updateSquirrelTooltip(action);
+	
+	view.requestUpdate("updateNextActions");
+	
+	alreadyLeveledUp[actionName] = true;
+	
 }
 
 function checkSquirrelMode() {
@@ -763,9 +769,11 @@ function updateYinYanBuff(){
 
 function upgradeAction(actionToUpgrade, actionUpgraded) {
 	
-	//Transfers the squirrel level.	
+	//Transfers the squirrel level.
+	console.log("Before sql level : " + squirrelLevel[camelize(translateClassNames(actionUpgraded.name).varName)]);	
 	squirrelLevel[camelize(translateClassNames(actionUpgraded.name).varName)] =  squirrelLevel[camelize(translateClassNames(actionToUpgrade.name).varName)];
-	view.updateSquirrelTooltip(actionToUpgrade);
+	console.log("After sql level : " + squirrelLevel[camelize(translateClassNames(actionUpgraded.name).varName)]);
+	view.updateSquirrelTooltip(actionUpgraded);
 	
 	//Remove action 1 in the action list and replace it by action 2
 	view.updateNextActions(actionToUpgrade, actionUpgraded);

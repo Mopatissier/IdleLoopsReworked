@@ -248,7 +248,7 @@ function View() {
         const levelPrc = getPrcToNextSkillLevel(skill);
         document.getElementById(`skill${skill}Level`).textContent = (getSkillLevel(skill) > 9999) ? toSuffix(getSkillLevel(skill)) : formatNumber(getSkillLevel(skill));
         document.getElementById(`skill${skill}LevelBar`).style.width = `${levelPrc}%`;
-
+		
         if (skillShowing === skill) {
             const expOfLevel = getExpOfSkillLevel(getSkillLevel(skill));
             document.getElementById(`skill${skill}LevelExp`).textContent = intToString(skills[skill].exp - expOfLevel, 1);
@@ -514,9 +514,11 @@ function View() {
 			let squirrelModeIcon = `<img id='modeIcon${i}' src='img/human.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 			if(action.squirrelAction){
 				const actionTemplate = Action[action.name.replace(/ /g,'')];
-								
-				if(actionTemplate.hasOwnProperty('squirrelLevelUp') && actionTemplate.squirrelLevelUp(true)){
-					squirrelModeIcon = `<img id='modeIcon${i}' src='${squirrelNewAction}' class='modeIcon' onclick='changeMode(${i})'>`;
+				
+				if(actionTemplate.hasOwnProperty('squirrelLevelUp') && actionTemplate.squirrelLevelUp(true) && actionTemplate.squirrelActionEffect(true, false, true)){		
+					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelLevelUpLose.svg' class='modeIcon' onclick='changeMode(${i})'>`;
+				} else if(actionTemplate.hasOwnProperty('squirrelLevelUp') && actionTemplate.squirrelLevelUp(true)){
+					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelLevelUp.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				} else if(actionTemplate.hasOwnProperty('squirrelActionEffect') && actionTemplate.squirrelActionEffect(true)) {
 					squirrelModeIcon = `<img id='modeIcon${i}' src='img/squirrelLose.svg' class='modeIcon' onclick='changeMode(${i})'>`;
 				} else if(actionTemplate.hasOwnProperty('squirrelActionEffect') && actionTemplate.squirrelActionEffect(false, true)) {
@@ -700,6 +702,13 @@ function View() {
     this.updateProgressAction = function(varName, town) {
         const level = town.getLevel(varName);
         const levelPrc = `${town.getPrcToNext(varName)}%`;
+		
+		if(options.hideBars === true && level === 100){
+			document.getElementById(`infoContainer${varName}`).style.display = "none";
+		} else {
+			document.getElementById(`infoContainer${varName}`).style.display = "block";
+		}
+		
         document.getElementById(`prc${varName}`).textContent = level;
         document.getElementById(`expBar${varName}`).style.width = levelPrc;
         document.getElementById(`progress${varName}`).textContent = intToString(levelPrc, 2);
@@ -916,6 +925,9 @@ function View() {
 
         document.getElementById("actionsTitle").textContent = _text(`actions>title${(stories) ? "_stories" : ""}`);
         document.getElementById("squirrelModeTitle").textContent = _text(`actions>squirrel_mode_name`);
+        document.getElementById("squirrelModeTooltip").innerHTML = _text(`actions>tooltip_squirrel_mode`);
+        document.getElementById("squirrelSkillsTitle").textContent = _text(`skillsSquirrel>title`);
+        document.getElementById("squirrelSkillsTooltip").innerHTML = _text(`skillsSquirrel>tooltip>no_reset_on_restart`);
         actionStoriesShowing = stories;
     };
 
@@ -982,7 +994,7 @@ function View() {
         </div>`;
         const progressDiv = document.createElement("div");
         progressDiv.id = `infoContainer${action.varName}`;
-        progressDiv.style.display = "block";
+		progressDiv.style.display = "block";
 		progressDiv.style.height = "38px";
         progressDiv.innerHTML = totalDivText;
         townInfos[action.townNum].appendChild(progressDiv);
@@ -1006,8 +1018,24 @@ function View() {
             for (let i = 0; i < l; i++) {
                 for (const skill of skillKeyNames) {
                     if (skillList[i] === skill) {
+						
+						let extraDescription = "";
+						if(expPerSegmentActions.includes(action.name)) {
+							extraDescription = "actions>tooltip>exp_segment";
+							if(expPerCompletionActions.includes(action.name)){
+								extraDescription = "actions>tooltip>exp_segment_completion";
+							}		
+						} else if(expPerCompletionActions.includes(action.name)){
+							extraDescription = "actions>tooltip>exp_completion";
+						}
+						
                         const skillLabel = `${_text(`skills>${getXMLName(skill)}>label`)} ${_text("stats>tooltip>exp")}`;
-                        actionSkills += `<div class='bold'>${skillLabel}:</div><span id='expGain${action.varName}${skill}'></span><br>`;
+                        actionSkills += `<div class='bold'>${skillLabel}:</div><span id='expGain${action.varName}${skill}'></span>`;
+						if(extraDescription !== ""){
+							actionSkills += `<div>&nbsp;${_text(extraDescription)}</div><br>`;
+						} else{
+							actionSkills += `<br>`;
+						}
                     }
                 }
             }
@@ -1037,6 +1065,22 @@ function View() {
 		let actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage}`;
 		if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='superLargeIcon' draggable='false'>${extraImage}`;
 
+		let name = ""
+		if(action.heritage === undefined || action.heritage.Squirrel === false){
+			name = action.name;
+		} else {
+			name = action.heritage.Squirrel;
+		}
+		let actionTooltip = action.tooltip+`<span id='goldCost`+action.varName+`'></span>`+((action.goldCost === undefined) ? "" : action.tooltip2);
+		if(options.mergeModes){
+				const tooltipLevel = squirrelLevel[camelize(action.varName)]
+				if(tooltipLevel === undefined || tooltipLevel === 0){	
+					actionTooltip +=  _text("actions>squirrel_default"); 
+				} else {
+					actionTooltip +=  _text("actions>"+getXMLName(name)+">squirrel_"+tooltipLevel); 
+				}
+		}
+		
         const isTravel = getTravelNum(action.name) > 0;
         const divClass = isTravel ? "travelContainer showthat" : "actionContainer showthat";
         const totalDivText =
@@ -1057,8 +1101,7 @@ function View() {
                 </div>
                 <div class='showthis' draggable='false'>
 					<span id="actionTooltipMode${action.varName}">
-                    ${action.tooltip}<span id='goldCost${action.varName}'></span>
-                    ${(action.goldCost === undefined) ? "" : action.tooltip2}
+                    ${actionTooltip}
 					</span>
                     ${actionSkills}
                     ${actionStats}
@@ -1125,7 +1168,7 @@ function View() {
 			} else {
 				name = action.heritage.Squirrel;
 			}
-			
+						
 			if(squirrelMode){
 
 				const tooltipLevel = squirrelLevel[camelize(action.varName)]
@@ -1173,6 +1216,16 @@ function View() {
                         }
 				}					
 				
+			}
+			
+			if(options.mergeModes){
+				newActionTooltip = action.tooltip+`<span id='goldCost`+action.varName+`'></span>`+((action.goldCost === undefined) ? "" : action.tooltip2);
+				const tooltipLevel = squirrelLevel[camelize(action.varName)]
+				if(tooltipLevel === undefined || tooltipLevel === 0){	
+					newActionTooltip +=  _text("actions>squirrel_default"); 
+				} else {
+					newActionTooltip +=  _text("actions>"+getXMLName(name)+">squirrel_"+tooltipLevel); 
+				}
 			}
 						
 			document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
@@ -1307,7 +1360,7 @@ function View() {
         else if (varName === "LDungeon") mouseOver = "onmouseover='view.showDungeon(1)' onmouseout='view.showDungeon(undefined)'";
         else if (varName === "TheSpire") mouseOver = "onmouseover='view.showDungeon(2)' onmouseout='view.showDungeon(undefined)'";
         const totalDivText =
-            `<div class='townStatContainer' style='text-align:center' id='infoContainer${varName}'>
+            `<div class='townStatContainer' style='text-align:center' id='infoContainer${varName}' >
                 <div class='bold townLabel' style='float:left' id='multiPartName${varName}'></div>
                 <div class='completedInfo showthat' ${mouseOver}>
                     <div class='bold'>${action.labelDone}</div>

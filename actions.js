@@ -125,7 +125,10 @@ function Actions() {
             view.updateCurrentActionBar(this.currentPos);
             return undefined;
         }
-        while ((curAction.canStart && !curAction.canStart() && curAction.townNum === curTown) || curAction.townNum !== curTown) {
+        while ((curAction.canStart && !curAction.canStart() && curAction.townNum === curTown)
+				|| curAction.townNum !== curTown
+				|| (curAction.squirrelAction && alreadyLeveledUp[curAction.name] !== undefined && curAction.squirrelLevelUp(true) === true)
+				|| curAction.unlocked() === false) {
 			actionIsValid = false;
             curAction.errorMessage = this.getErrorMessage(curAction);
             view.updateCurrentActionBar(this.currentPos);
@@ -141,6 +144,9 @@ function Actions() {
     };
 
     this.getErrorMessage = function(action) {
+		if(action.unlocked() === false){
+			return "This action isn't unlocked.";
+		}
         if (action.townNum !== curTown) {
 			
 			const curTownNumber = zoneOrder.findIndex(arr => arr.includes(curTown));
@@ -151,6 +157,9 @@ function Actions() {
         if (action.canStart && !action.canStart()) {
             return "You could not make the cost for this action.";
         }
+		if(action.squirrelAction){
+			return "You can't level up this action twice in the same loop.";
+		}
         return "??";
     };
 
@@ -162,6 +171,7 @@ function Actions() {
 		alreadyHealed = false;
 		alreadyFought = false;
 		alreadySDungeon = false;
+		alreadyLeveledUp = {};
         curTown = 0;
         towns[BEGINNERSVILLE].suppliesCost = 450;
 		view.adjustGoldCost("BuySupplies", towns[BEGINNERSVILLE].suppliesCost);

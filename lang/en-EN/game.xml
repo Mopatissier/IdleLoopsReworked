@@ -2,7 +2,7 @@
 <body>
     <menu>
 		<game_name>
-			<full_name><![CDATA[Idle Loops : Squirrel Edition]]></full_name>
+			<full_name><![CDATA[Idle Loops: Squirrel Edition]]></full_name>
 			<pause_name><![CDATA[*PAUSED* Squirrel Loops]]></pause_name>
 		</game_name>
         <changelog>
@@ -10,6 +10,43 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.6"><![CDATA[
+            <b> March 5th, 2023 </b><br>
+			Okay, this is substantial update, I'll have to make categories for this one!<br><br>
+			<b>Game balance: </b><br>
+			• The magic figther have been weakened : unlocking it shouldn't give less skill exp now.<br>
+			• Burning the forest now gives a looooot more mana.<br>
+			• Potion skills exp gain is completely different, making them weaker at first, stronger later.<br>
+			• The cost for making potions is now massively reduced.<br>
+			• They now sell for only 100 gold now.<br>
+			• The adventurer guild exam now uses a different formula.<br>
+			• Teamwork training and its effects have been reworked.<br>
+			• The large dungeon now gives more teamwork exp.<br>
+			• The mock battles need different values to win.<br>
+			• The offline bonus time is now capped off after 5 days. Hopefully that one won't make everyone hate me!<br><br>
+			<b>New options: </b><br>
+			• A new option have added so that progress bars can be removed once they get to 100%.<br>
+			• Another new option that merges the tooltips of human and squirrel modes so you don't need to switch modes to view both.<br>
+			<b>Squirrel: </b><br>
+			• The squirrel can now only level up the same action once per loop.<br>
+			• A new icon has been added to show it will level up an action but die as a result (the skull medal).<br>
+			• Changed the icons that shows "this had no effect" and "this will level up the action".<br><br>
+			<b>Quality of life: </b><br>
+			• Tooltips now show when you gain exp from completing a segment of a multibar action.<br>
+			• Actions now show what ressources you gain from doing it (wandering gives pots, for exemple).<br>
+			• Buff caps have been temporarily deactivated. No more confusion from their lack of use!<br><br>
+			<b>Glitches and fixes: </b><br>
+			• Fixed a looooot of typos.<br>
+			• The delivery adress action now stops skipping the first step.<br>
+			• Tail judges and squirrel leveling now shows their effect without needing to start a new loop.<br>
+			• Actions that are locked can no longer be used in your loops.<br>
+			• Ferret mode now displays ferret instead of squirrel everywhere correctly.<br>
+			• Read books are now rightly unlocked at its tooltip value.<br>
+			• You can't get multiple pairs of glasses at the same time. Sorry about that, please don't kill me for it!<br><br>
+			<b>And most importantly: </b><br>
+			... I made a bet that I would display the first logo attempt I get in the game and I won't back down so here you go:<br>
+			<img src ="help.png" height= "500px">
+            ]]></version>
 			<version verNum="0.3.5"><![CDATA[
             <b> January 30th, 2023 </b>
 			This is a little rebalance patch + preparations behind the scene for the next update!<br>
@@ -41,7 +78,7 @@
 			• Fixed a few tooltips.<br>
 			• Fixed a small visual glitch in the action list.<br>
 			• Made slight changes months ago and forgot what they were about. Oops, sorry!<br>
-			• Nerfed the potion making actions : they're slightly harder to make but are now useful.<br>
+			• Nerfed the potion making actions: they're slightly harder to make but are now useful.<br>
 			• Added/Reworked 7 actions in Merchanton.<br>
             ]]></version>
 			<version verNum="0.3.1"><![CDATA[
@@ -51,17 +88,17 @@
 			<version verNum="0.3.0"><![CDATA[
             <b> September 1st, 2022</b>
 			The gates for the third zone are open! It is untouched as of right now, so expect tooltips to be glitchy. But it's open, at least? Don't forget to back up your save before trying it.<br>
-			• Added the possibility to favorite the human/squirrel mode for every action : adding an action will then always be done in your favorite mode.<br>
+			• Added the possibility to favorite the human/squirrel mode for every action: adding an action will then always be done in your favorite mode.<br>
 			• Fixed some glitches and typos.<br>
             ]]></version>
 			<version verNum="0.2.9"><![CDATA[
             <b> August 28th, 2022</b>
-			• A new checkbox have been added : Pause on exploration complete. It pauses your game when you fill an exploration bar to 100%. No more wasted bonus time!<br>
+			• A new checkbox have been added: Pause on exploration complete. It pauses your game when you fill an exploration bar to 100%. No more wasted bonus time!<br>
 			• Added a new squirrel icon! It shows when doing a squirrel action won't have any effect.<br>
             ]]></version>
 			<version verNum="0.2.8"><![CDATA[
             <b> August 27th, 2022</b>
-			• The game's name have been changed! It is now Idle Loops : Squirrel Edition, Squirrel Loops for short. The tab icon has changed to reflect this.<br>
+			• The game's name have been changed! It is now Idle Loops: Squirrel Edition, Squirrel Loops for short. The tab icon has changed to reflect this.<br>
             • The squirrel icons in the list of action now reflect if you'll lose your squirrel or gain a new squirrel level!<br>
             • The Practice Yin/Yang icons have been changed to make it easier to differenciate.<br>
             • The exploration bars for Beginnersville are now slightly slower to fill.<br>
@@ -91,8 +128,8 @@
             ]]></version>
 			<version verNum="0.2.4"><![CDATA[
             <b> August 16th, 2022</b>
-            • Added a new zone! Like the forest, it lacks squirrel actions and story bits for now. Wait, which zone? Well... That's up to you to discover. Just one hint : it's not after the forest.<br>
-            • Changed the way travelling works : now, there can be alternative zones.<br>
+            • Added a new zone! Like the forest, it lacks squirrel actions and story bits for now. Wait, which zone? Well... That's up to you to discover. Just one hint: it's not after the forest.<br>
+            • Changed the way travelling works: now, there can be alternative zones.<br>
             • Fixed a ton of glitches and typos.<br>
             • Reworked the yin yang magic tooltip.
             ]]></version>
@@ -146,7 +183,7 @@
             • Fixed some glitch found by the alpha testers. Thank you!<br>
             • Fixed a lot of typos.<br>
 			• From now on, once you lose your squirrel, you can't pet it anymore in that same loop.<br>
-			• Added an hotkey for squirrel mode : shift + space toggles it on and off.
+			• Added an hotkey for squirrel mode: shift + space toggles it on and off.
             ]]></version>
 			<version verNum="0.1.5"><![CDATA[
             <b> July 28th, 2022</b>
@@ -170,11 +207,11 @@
             • Added the squirrel mode! Right now, only "Wander" is compatible with it, but the rest will be added soon.<br>
 			• Various little fixes, included some from more recent version of Lloyd's Idle Loops.<br>
 			• Added the zone quick acces menu from Lloyd's latest version.<br>
-			• Slightly changed the changelog : it didn't like having version names too long.
+			• Slightly changed the changelog: it didn't like having version names too long.
             ]]></version>
 			<version verNum="0.1.1"><![CDATA[
             <b> July 19th, 2022</b>
-            • The value of mana has been reworked : now 1 second is worth 100 mana, not 50.<br>
+            • The value of mana has been reworked: now 1 second is worth 100 mana, not 50.<br>
 			• The offline bonus system has been completely reworked.<br>
 			• Various little fixes.
             ]]></version>
@@ -183,7 +220,7 @@
             • Temporarily deactivated unlocking z2. Once z1 finished, it'll be reactivated.<br>
 			• Added a litte useless companion.<br>
 			• Reworked picking locks and investigations to make them both more interesting.<br>
-			• Added a magic fighter : he's too powerful for now, though.
+			• Added a magic fighter: he's too powerful for now, though.
             ]]></version>
 			<version verNum="0.0.0"><![CDATA[
             <b> July 17th, 2022</b>
@@ -275,6 +312,8 @@
             <pause_audio_cue>Ping on pause</pause_audio_cue>
             <auto_max_training>Max All Training Actions on Training cap increase</auto_max_training>
             <ferret_mode>Click here if you hate squirrels. (Must save and reload for it to have the complete effect.)</ferret_mode>
+			<hide_bars>Hide progress bars once they hit 100%.</hide_bars>
+			<merge_modes>Merge the human and squirrel mode tooltips.</merge_modes>
             <hotkeys>Hotkeys</hotkeys>
             <hotkeys_tooltip><![CDATA[
                 Spacebar: Pause/play<br>
@@ -301,15 +340,15 @@
 	  You are stuck in a time loop.<br>
 	  You have 500 mana until the loop restarts.<br>
 	  1 second = 100 mana.<br>
-	  Wander around to find pots : some will have mana inside.<br>
+	  Wander around to find pots: some will have mana inside.<br>
 	  Your character will remember which one have mana and which one don't, but you'll have to check them first.<br>
 	  Try to complete the town first!<br>
-	  And remember : read all the tooltips!<br><br>
+	  And remember: read all the tooltips!<br><br>
 	  
 	  This game is a total rework of the original game Idle Loops.<br>
 	  Starting as a balance patch, it became an entirely new game in itself.<br>
 	  To play the latest version of the original game, check <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
-	  This is one of several versions of the game : for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
+	  This is one of several versions of the game: for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
 	  Thanks for playing, and have fun!<br><br>
       ]]></tutorial>
     <tracked_resources>
@@ -524,7 +563,7 @@
             <title>Bonus Seconds</title>
 			<main_text><![CDATA[
 				Activate to use bonus time to speed up the game.<br>
-				Accrue 1 bonus second per second when paused or offline. (capped at 1 month per offline period)<br>
+				Accrue 1 bonus second per second when paused or offline, capping at 5 days.<br>
 				Every half day stored makes the bonus time faster, from 2x to 5x.<br>
 				Bonus is
 			]]></main_text>
@@ -671,7 +710,7 @@
             <desc>The greater your teamwork, the happier your companions!</desc>
 			<desc2><![CDATA[
 					As you get more efficient at teamwork, your companion will allow you to take more loot.<br>
-					Gives +1% soulstone per level of teamwork in the large dungeon.<br>
+					Gives +0.5% soulstone per level of teamwork in the large dungeon.<br>
 					Currently, with your teammates, you will gain <div id='skillTeamWorkNumber'>10</div> soulstones out of 10 per large dungeon floor.
 					]]>
 			</desc2>
@@ -900,7 +939,7 @@
         </town8>
 		<town9>
 			<name>Squirrel Sanctuary</name>
-			<desc>What is this place? You can't really describe what is happening here, except that time and space feel distorded. You might be the first human to ever set foot here...</desc>
+			<desc>What is this place? You can't really describe what is happening here, except that time and space feel distorted. You might be the first human to ever set foot here...</desc>
 		</town9>
 		<town10>
 			<name>Chronos' Lair</name>
@@ -920,6 +959,9 @@
           Stat/Talent exp is gained every tick.<br>
           Skill exp is gained upon action completion unless otherwise specified.<br>
           Actions will target unchecked objects before known lootable objects.]]></desc>
+			<exp_segment> / Segment</exp_segment>
+			<exp_completion> / Completion</exp_completion>
+			<exp_segment_completion> / Segment and Completion</exp_segment_completion>
             <mana_cost>Mana Cost</mana_cost>
             <exp_multiplier>Exp Multiplier</exp_multiplier>
             <mana_used>Mana Used</mana_used>
@@ -954,7 +996,7 @@
             <list_explanation><![CDATA[
       Drag and drop the actions to re-arrange them.<br>
       The next list becomes the current list every restart.<br>
-      One second = 50 mana.<br>
+      One second = 100 mana.<br>
       Minimum 1 tick per action.<br>
       Restarts automatically upon no actions left.]]></list_explanation>
         </tooltip>
@@ -1159,10 +1201,10 @@
 			<label_done>Looked at</label_done>
 			<tooltip><![CDATA[
 			It's quite confusing. This place is very small at first, but every time you look around, it becomes bigger.<br>
-			It's not just space that feels weird, time too : your body feels frozen in time, despite being capable of moving.<hr class='divider'>
+			It's not just space that feels weird, time does too: your body feels frozen in time, despite being capable of moving.<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
 			• Every % looked at doubles the mana cost of this action.<br>
-			• For every level of Spirit Blessing, divide the mana cost by 6.<br>
+			• Every level of Spirit Blessing divides the mana cost by 6.<br>
 			• You need glasses for this action.<br>
 			• <b>Be careful, you can't gain any exp for the rest of the loop once you set foot in the Squirrel Sanctuary!</b><hr class='divider'>
 		]]></tooltip>
@@ -1181,13 +1223,13 @@
             <info_text2>Mana spots with mana total</info_text2>
             <info_text3>Mana spots to check if you can absorb them</info_text3>
             <tooltip><![CDATA[
-			As soon as you get the permission to absorb mana, glowing spots appear around you.<br>
+			As soon as you get permission from the mysterious voice to absorb mana, glowing spots appear around you.<br>
 			You just have to stand in them and you'll absorb an incredible amount of mana. Neat!<br>
 			You're quite stunned by how much mana there is. Is this place actually made of mana?<hr class='divider'>
 			• Only 1 in 10 mana spots can be safely absorbed.<br>
 			• Every mana spot absorbed gives <div id='manaSpotBonus'></div>x more mana than the last.<br>
 			• This multiplication gets bigger by +0.02 for each level of Spirit Blessing.<br>
-			• If you absorb a mana spot right now, it'd give			
+			• If you absorbed a mana spot right now, it would give			
         ]]></tooltip>
             <tooltip2><![CDATA[
             mana.<hr class='divider'>
@@ -1198,7 +1240,7 @@
 			Really?!<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 		]]></squirrel_1>
-            <story_1><![CDATA[<b>Didn't even absorbed a mana spot :</b>⮀ Placeholder.]]></story_1>
+            <story_1><![CDATA[<b>Didn't even absorbed a mana spot: </b>⮀ Placeholder.]]></story_1>
 		</absorb_mana>
 		<imbue_squirrel>
 			<label>Imbue Squirrel</label>
@@ -1214,12 +1256,12 @@
 			• It will also make this action give 4x more magic exp. <hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
-			You wonder what would happen if the squirrel imbue itself without your help.<br>
+			You wonder what would happen if the squirrel imbues itself without your help.<br>
 			Turns out, it has an harder time doing it! Not that much of a surprise, honestly.<br>
 			Though as it absorbs mana in smaller chunks, this might actually come in handy...<hr class='divider'>
-			<b>Effect: </b>Act as if you have one less Spirit Blessing : mana cost / 3 and exp / 4.<hr class='divider'>
+			<b>Effect: </b>Act as if you have one less Spirit Blessing: mana cost / 3 and exp / 4.<hr class='divider'>
 		]]></squirrel_1>
-			<story_1><![CDATA[<b>Didn't even made the squirrel imbue anything :</b>⮀ Placeholder.]]></story_1>
+			<story_1><![CDATA[<b>Didn't even made the squirrel imbue anything: </b>⮀ Placeholder.]]></story_1>
 		</imbue_squirrel>
 		<imbue_soulstones>
 			<label>Imbue Stones</label>
@@ -1231,8 +1273,8 @@
             <tooltip2><![CDATA[
             soulstones in each stat for this action to work.<br>
 			• Every level of Spirit Blessing beyond 3 will increase the Soulstones Imbued buff cap by 10.<br>
-			• The soulstone price of this action gets bigger by 1 for the first 5 times, then 2 for the next 5, then 3,...<br>
-			• You keep your soulstones as you imbue them : you do not spend them.<hr class='divider'>
+			• The soulstone requirement of this action gets bigger by 1 for the first 5 times, then 2 for the next 5, then 3,...<br>
+			• You keep your soulstones as you imbue them - you do not spend them.<hr class='divider'>
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
 			The squirrel tries its best to hold the soulstones in its paws, but can't do it!<br>
@@ -1240,14 +1282,14 @@
 			Awww, it looks disappointed. Don't worry, little buddy!<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 		]]></squirrel_1>
-		<story_1><![CDATA[<b>You know this is a placeholder, right? :</b>⮀ Placeholder.]]></story_1>
+		<story_1><![CDATA[<b>You know this is a placeholder, right?: </b>⮀ Placeholder.]]></story_1>
 		</imbue_soulstones>
 		<balance_soulstones>
 			<label>Balance Stones</label>
 			<tooltip><![CDATA[
 			It can be annoying to get too many soulstones in one stat, and none in another.<br>
 			So let's rebalance this!<hr class='divider'>
-			• Takes one soulstone from the stat with the most soulstones and converts it to the stat with the less.<br>
+			• Takes one soulstone from the stat with the most soulstones and converts it to the stat with the least.<br>
 			• You can do this action  
         ]]></tooltip>
             <tooltip2><![CDATA[
@@ -1255,12 +1297,12 @@
 			• Every level of Spirit Blessing will multiply that limit by 3, starting at Spirit Blessing level 5.<hr class='divider'>
         ]]></tooltip2>
 		<squirrel_1><![CDATA[
-			Uh oh. This action also asks you to hold soulstones.<br>
+			Uh oh. This action asks you to hold soulstones.<br>
 			The squirrel looks frustrated and doesn't even try it.<br>
-			You make a mental note to give him some extra nuts next loop to better its mood.<hr class='divider'>
+			You make a mental note to give it some extra nuts next loop to better its mood.<hr class='divider'>
 			<b>Effect: </b>None.<hr class='divider'>
 		]]></squirrel_1>
-		<story_1><![CDATA[<b>Are you even reading this? :</b>⮀ Placeholder.]]></story_1>
+		<story_1><![CDATA[<b>Are you even reading this?: </b>⮀ Placeholder.]]></story_1>
 		</balance_soulstones>
 		<mysterious_voice>
 			<label>Mysterious Voice</label>
@@ -1277,7 +1319,7 @@
 			• Each time you do this action, the requirement to complete it changes.<br>
 			• <div id='mysteriousVoiceNextRequirement'></div><br>
 			• Each Spirit Blessing level will accelerate time in the Squirrel Sanctuary by x4, unlock a new action, and strengthen unlocked actions.<br>
-			• Unlocked at 1% looked around.</b><hr class='divider'>
+			• Unlocked at 1% Looked Around.</b><hr class='divider'>
 			]]></tooltip>
 			<squirrel_1><![CDATA[
 			It looks like the squirrel and the mysterious voice are having a heated debate.<br>
@@ -1328,7 +1370,9 @@
 			<tooltip><![CDATA[
             Explore the town, look for hidden areas and treasures.<hr class='divider'>
 			• Gives 200 exp worth of progress as a base.<br>
-			• 4x progress with glasses.<hr class='divider'>
+			• 4x progress with glasses.<br>
+			• Gives pots to smash.<br>
+			• Gives locks to pick.<hr class='divider'>
 			]]></tooltip>
 			<squirrel_1><![CDATA[
 			You told the squirrel to wander around for you!<br>
@@ -1396,7 +1440,7 @@
 			]]></squirrel_3>
 			<squirrel_4><![CDATA[
 			The squirrel isn't even subtle anymore.<br>
-			Instead of going in the pots to eat the crystal, it straight up headbutt them.<br>
+			Instead of going in the pots to eat the crystal, it straight up headbutts them.<br>
 			That's enough to make a hole for it to eat them. And it's faster too.<br>
 			You can't help but be a bit worried, but you've trained it enough to know it won't hurt it!<hr class='divider'>
 			<b>Effect: </b>Smashing pots in squirrel mode takes 35% less mana. <hr class='divider'>			
@@ -1408,7 +1452,7 @@
             <tooltip><![CDATA[
             Wait, you recognize this squirrel! It's the one you tripped on while carrying the loop potion.<br>Looks like a drop of the looping potion fell on it. It's stuck with you in the time loop, the poor little thing...<hr class='divider'>
 			• Spend some time with it to increase its trust by 100 exp.<br>
-			• Doing so recruits the squirrel, it'll fit snuggly in your inventory.<br>
+			• Doing so recruits the squirrel, it'll fit snugly in your inventory.<br>
 			• Every level of trust the squirrel has increases the mana cost of this action by 100.<br>
 			• Unlocked at 5% explored.<br>
 			• <b>Try petting the squirrel to get it by your side, then doing the squirrel mode version of this action in the same loop to test its trust, it will eventually be worth it!<br>
@@ -1453,7 +1497,7 @@
         ]]></tooltip2>
 			<squirrel_1><![CDATA[
 			You just thought of a master plan! The squirrel can go in the houses through open windows instead of you needing to pick a lock!<br>
-			The squirrel follows your direction : after throwing it in an open windows, it put small jewelry in the little bag you gave it.<br>
+			The squirrel follows your direction: after throwing it in an open windows, it put small jewelry in the little bag you gave it.<br>
 			However, it can't find a way out of the house. Oops. Maybe that wasn't such a master plan...<hr class='divider'>
 			<b>Effect: </b>Lose the squirrel.<br>
 			<b>Next: </b>trust >= 7 <hr class='divider'>
@@ -1523,7 +1567,7 @@
 			She begrudgingly gives you a lot more mana this time! You and the squirrel both feel proud.<hr class='divider'>
 			<b>Effect: </b>Gain 1500 extra mana and lose the squirrel.<hr class='divider'>
 			]]></squirrel_3>
-            <story_1><![CDATA[<b>Bought Z1 Mana :</b>⮀ Looks like there is a stand selling mana potions. How convenient! It just opened right now. Like, right at the exact time the loop started. You can't help but feel a little uneasy when you think about it...]]></story_1>
+            <story_1><![CDATA[<b>Bought Z1 Mana: </b>⮀ Looks like there is a stand selling mana potions. How convenient! It just opened right now. Like, right at the exact time the loop started. You can't help but feel a little uneasy when you think about it...]]></story_1>
         </buy_mana_z1>
         <meet_people>
             <label>Meet People</label>
@@ -1531,6 +1575,7 @@
             <tooltip><![CDATA[
             They won't let you get away with a simple chat.<hr class='divider'>
 			• Gives 150 exp worth of progress as a base.<br>
+			• Gives short quests to accomplish.<br>
 			• Unlocked at 22% Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -1547,7 +1592,7 @@
             <story_1><![CDATA[<b>1% People Met:</b>⮀ You stand there, a little stumped at the situation you’ve gotten yourself into, when a young lass asks you about your day so far.]]></story_1>
             <story_2><![CDATA[<b>20% People Met:</b>⮀ The people here are generally nice enough, if a bit brusque at times. Some people have small tasks that they're happy to pay for.]]></story_2>
             <story_3><![CDATA[<b>40% People Met:</b>⮀ There are a surprising amount of people in the village. You didn’t catch that when you were looking around.]]></story_3>
-            <story_4><![CDATA[<b>60% People Met:</b>⮀ It almost seems that most people have something they want done, the real problem is figuring out whats worth your time.]]></story_4>
+            <story_4><![CDATA[<b>60% People Met:</b>⮀ It almost seems that most people have something they want done, the real problem is figuring out what's worth your time.]]></story_4>
             <story_5><![CDATA[<b>80% People Met:</b>⮀ Having met such a large portion of the people in this village, you almost feel guilty about stealing from them. Almost.]]></story_5>
             <story_6><![CDATA[<b>100% People Met:</b>⮀ You've spoken to everyone. Every child, adult, teen, animal and plant in this village. Everyone, and everything.]]></story_6>
         </meet_people>
@@ -1608,11 +1653,12 @@
             <tooltip><![CDATA[
             You've been hearing some rumors...<hr class='divider'>
 			• Gives 300 exp worth of progress as a base.<br>
-			• Your stolen valuable might have clues. Adds 20% efficiency for each one you have.<br>
+			• Your stolen valuable might have clues. +20% progress exp for each one you have.<br>
+			• Gives long quests to accomplish.<br>
 			• Unlocked at 25% People Met.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel goes out and try asking questions to everyone it meets.<br>
+			The squirrel goes out and tries asking questions to everyone it meets.<br>
 			Sadly, nobody can understand it... Well, it was worth a try.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>trust >= 17 <hr class='divider'>
@@ -1620,7 +1666,7 @@
 			<squirrel_2><![CDATA[
 			With its small size, the squirrel is able to search more efficiently what you want in the piles of valuables you borrowed.<br
 			>It makes it slightly faster to investigate them!<hr class='divider'>
-			<b>Effect: </b>Valuables give +25% efficiency instead of +20%.<hr class='divider'>
+			<b>Effect: </b>Valuables give +25% progress exp instead of +20%.<hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>20% Investigated:</b>⮀ You catch some snippets of truly interesting gossip. Apparently a Mage and Warrior duo had stopped in and were sticking around for a little while.]]></story_1>
             <story_2><![CDATA[<b>40% Investigated:</b>⮀ People are really helpful when you help them, you're almost starting to get a reputation as a busybody around here, but it's offset in that you actually do help people.]]></story_2>
@@ -1667,7 +1713,7 @@
             <label>Throw Party</label>
             <tooltip><![CDATA[
             Take a break and socialize.<hr class='divider'>
-			• Gives people met progress equivalent to 14 Meet People actions : 2100 exp worth of progress in total.<br>
+			• Gives people met progress equivalent to 14 Meet People actions: 2100 exp worth of progress in total.<br>
 			• Costs 2 reputation.<br>
 			• Unlocked at 30% Investigated.<hr class='divider'>
         ]]></tooltip>
@@ -1761,8 +1807,8 @@
 			• Unlocked at 12 Magic skill.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
-			The squirrel wants to heal people too! He tries and... looks completely at a loss over what to do.<br>
-			At least he tried, right?<hr class='divider'>
+			The squirrel wants to heal people too! It tries and... looks completely at a loss over what to do.<br>
+			At least it tried, right?<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>squirrel magic >= 12 <hr class='divider'>
 			]]></squirrel_1>
@@ -1880,14 +1926,14 @@
                 <segment_modifier>A bunch of</segment_modifier>
             </segment_modifiers>
 			<squirrel_1><![CDATA[
-			The squirrel looks ready to fight! So you throw it on a monster.<br>
+			The squirrel looks ready to fight! So you throw it at a monster.<br>
 			... Maybe it's better to not describe what happens next.<hr class='divider'>
 			<b>Effect: </b>Lose the squirrel.<br>
 			<b>Next: </b>squirrel combat >= 10 <hr class='divider'>
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Now that it has the same combat skill level as you when you started hunting monsters, it should be fine, right?<br>
-			So you take the squirrel and throw it on a monster.<br>
+			So you take the squirrel and throw it at a monster.<br>
 			... The result is too gory to describe.<br>
 			You feel bad for that poor monster.<br>
 			The squirrel is now satisfied and doesn't feel like fighting anymore for this loop.<br>
@@ -1897,7 +1943,7 @@
 			]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			The squirrel looks like it's craving fighting even more than before.<br>
-			You do a silent prayer for the monster and throw it on them.<br>
+			You do a silent prayer for the monster and throw it at them.<br>
 			After shredding two of them, it comes back, satisfied.<br>
 			You can't help but wonder if you created a monster...<hr class='divider'>
 			<b>Effect: </b>Kill two monsters' worth of damage. Can only be done once every loop.<hr class='divider'>
@@ -1926,10 +1972,10 @@
 			• Unlocked at a combined Combat and Magic skill of 25.<hr class='divider'>
         ]]></tooltip>
 			<part_names>
-				<name_1>Training Dummy : Easy Difficulty</name_1>
-				<name_2>Training Dummy : Medium Difficulty</name_2>
-				<name_3>Training Dummy : Hard Difficulty</name_3>
-				<name_4>Training Dummy : Defeated</name_4>
+				<name_1>Training Dummy: Easy Difficulty</name_1>
+				<name_2>Training Dummy: Medium Difficulty</name_2>
+				<name_3>Training Dummy: Hard Difficulty</name_3>
+				<name_4>Training Dummy: Defeated</name_4>
 			</part_names>
 			<segment_names>
 				<name>Resisting intimidation</name>
@@ -1972,11 +2018,11 @@
 			• Requires a reputation of 2 or above.<hr class='divider'>
 		]]></tooltip2>
 			<part_names>
-				<name_1>Magic Fighter : Barely Moving A Muscle</name_1>
-				<name_2>Magic Fighter : Going Easy</name_2>
-				<name_3>Magic Fighter : Fighting Normally</name_3>
-				<name_4>Magic Fighter : Surpassing Himself</name_4>
-				<name_5>Magic Fighter : Defeated</name_5>
+				<name_1>Magic Fighter: Barely Moving A Muscle</name_1>
+				<name_2>Magic Fighter: Going Easy</name_2>
+				<name_3>Magic Fighter: Fighting Normally</name_3>
+				<name_4>Magic Fighter: Surpassing Himself</name_4>
+				<name_5>Magic Fighter: Defeated</name_5>
 			</part_names>
 			<segment_names>
 				<name>Resisting intimidation</name>
@@ -2022,7 +2068,7 @@
             </segment_names>
 			<squirrel_1><![CDATA[
 			You don't think it's a good idea, but the squirrel seems to want to go the dungeon.<br>
-			Ah, wait, no, he just wanted the nuts that were in front of the door. Nevermind, then.<hr class='divider'>
+			Ah, wait, no, it just wanted the nuts that were in front of the door. Nevermind, then.<hr class='divider'>
 			<b>Effect: </b>None.<br>
 			<b>Next: </b>squirrel combat + squirrel magic >= 35 <hr class='divider'>
 			]]></squirrel_1>
@@ -2093,7 +2139,7 @@
 			• Doing this action the first time will unlock the next zone's actions. <br>
 			• After that, doing this action will allow you to do the actions of the next zone.<br>
 			• Unlocked at a combined Combat and Magic skill of 35.<br>
-			• <b>Warning : the next zone is finished, and in beta! Please try it, and give your thoughts and your savefile once tne zone finished so that it can be correctly rebalanced for a better experience!</b><hr class='divider'>
+			• <b>Warning: the next zone is finished, and in beta! Please try it, and give your thoughts and your savefile once tne zone finished so that it can be correctly rebalanced for a better experience!</b><hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
 			The squirrel asks you to follow it, then stops. It looks extremely torn. Looks like it doesn't trust you enough yet for it to reveal where it wanted to go...<br>
@@ -2104,7 +2150,7 @@
 			<squirrel_2><![CDATA[
 			The squirrel asks you to follow it. It's leading you out of the village, in the opposite direction from the forest.<br>
 			Just where is it leading you?<br>
-			<b>Note : The new zone is finished but in beta. Look at the warning in human mode to know what to do!</b><hr class='divider'>
+			<b>Note: The new zone is finished but in beta. Look at the warning in human mode to know what to do!</b><hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>Traveled to the second zone:</b>⮀ You leave town, heading towards the forest that stood between the village and Merchanton. You had exhausted every option in Beginnersville and there was nothing here that would stop the loops, it was time to look for other areas and solutions.]]></story_1>
@@ -2130,7 +2176,10 @@
             <tooltip><![CDATA[
             What a pleasant area.<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
-			• 4x progress with glasses.<hr class='divider'>
+			• 4x progress with glasses.<br>
+			• Gives mana sources to tap.<br>
+			• Gives funny plants to uproot.<br>
+			• Reveals animals to hunt.<hr class='divider'>
         ]]></tooltip>
             <story_1><![CDATA[<b>1% Forest explored:</b>⮀ You look at the side of the path from your little campsite, and are struck with a sense of wanderlust. You leave your camp to explore. Not too far from your campsite you find a tiny glade practically overflowing with mana.]]></story_1>
             <story_2><![CDATA[<b>10% Forest explored:</b>⮀ The sense of wanderlust hasn't faded but you've definitely discovered the darker side of this forest. You continue to find tiny glades filled with mana throughout the forest.]]></story_2>
@@ -2160,7 +2209,7 @@
 			The squirrel found a lot of herbs last time, so you have high hope this time!<br>
 			After a while, seeing how it hasn't found anything, you can't help but feel disappointed...<br>
 			The squirrel, seeing your disappointed looks, goes into overdrive and starts furrowing the ground everywhere.<br>
-			After a while, he comes back to you with a smug look, pointing at some mana spots he dug out.<br>
+			After a while, it comes back to you with a smug look, pointing at some mana spots it dug out.<br>
 			This is the best friend you could ever ask for!<hr class='divider'>
 			<b>Effect: </b>Gain 100 more mana spots. This effect can only be done once.<hr class='divider'>
 		]]></squirrel_3>
@@ -2214,7 +2263,7 @@
 			<squirrel_1><![CDATA[
 			If those herbs really have magic inside, eating them will probably give you some mana...<br>
 			So you ask the squirrel to eat them instead of picking them up.<br>
-			It looks at you with doubtful eyes. Then shakes its head. Maybe he thinks they are poisonous to squirrels?<br>
+			It looks at you with doubtful eyes. Then shakes its head. Maybe it thinks they are poisonous to squirrels?<br>
 			You think they aren't, but you can't really convey that to the squirrel.<br>
 			Well, it looks like it won't eat it until it trusts you enough for that, in any case.<hr class='divider'>
 			<b>Effect: </b>None.<br>
@@ -2261,7 +2310,7 @@
 			And it works! It goes attacking the same pack of animals and completely decimates them.<br>
 			It's too violent for your tastes, but it works...<br>
 			In the end, the squirrel performed better than you at hunting animals!<br>
-			You feel proud : training it for all this time was very worth it!<hr class='divider'>	
+			You feel proud: training it for all this time was very worth it!<hr class='divider'>	
 			<b>Effect: </b>Hunting with the squirrel takes 20% less mana.<hr class='divider'>	
 		]]></squirrel_2>
             <story_1><![CDATA[<b>Animal checked for hide:</b>⮀ You manage to track down a relatively harmless animal, but in the time it took you to bring the critter down you had ruined its pelt beyond all use. You needed practice.]]></story_1>
@@ -2291,8 +2340,8 @@
             <tooltip><![CDATA[
             No one has come down this way in quite some time.<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
-			• Gives some additional herbs.<br>
-			• Old men are a pain unless you know something they care about : Talk to Hermit gives 3% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>
+			• Old men are a pain unless you know something they care about: Talk to Hermit gives 3% more Hermit Knowledge Learned per 1% Shortcut Explored.<br>
+			• Gives herbs to uproot.<br>
 			• Unlocked at 20% Forest Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -2304,15 +2353,15 @@
 			<squirrel_2><![CDATA[
 			Using its new magic skills, the squirrel manages to not get lost this time!<br>
 			Apparently, something about these shortcuts radiates a small amount of magic.<br>
-			The hermit talked about this magic : its knowledge should be quite helpful for the squirrel.<hr class='divider'>	
-			<b>Effect: </b>Talk to Hermit gives a 4% bonus to this action instead of 3%.<br>
+			The hermit talked about this magic: its knowledge should be quite helpful for the squirrel.<hr class='divider'>	
+			<b>Effect: </b>Talk to Hermit gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel magic >= 25 <hr class='divider'>	
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
-			Now that the squirrel has a better handle on his magic skills, he is even better at exploring shortcuts!<br>
+			Now that the squirrel has a better handle on his magic skills, it is even better at exploring shortcuts!<br>
 			Who knew having a magic squirrel could be so handy?<br>
 			You can't help but reward it with a nut. It makes a little happy dance!<hr class='divider'>	
-			<b>Effect: </b>Talk to Hermit gives a 5% bonus to this action instead of 3%.<hr class='divider'>	
+			<b>Effect: </b>Talk to Hermit gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>	
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Shortcut explored:</b>⮀ You continued on with your trip and discovered a small and worn path leading off the main thoroughfare. You wondered what it was and decided to explore.]]></story_1>
             <story_2><![CDATA[<b>10% Shortcut explored:</b>⮀ You're mildly surprised to discover a seemingly sprawling network of interconnected paths that seem to get almost everywhere within the forest.]]></story_2>
@@ -2329,7 +2378,7 @@
             This old man is happy to have a listening ear, surely he has some useful knowledge. You hope. He's initially confrontational, but opens up once you start talking about the road.<hr class='divider'>
 			• Gives 50 exp worth of progress as a base.<br>
 			• Reduces mana cost of Gather Herbs, Practice Yang, and Learn Alchemy by 0.5% per 1% of Hermit Knowledge.<br>
-			• His knowledge about shortcuts also gives 3% more Old Shortcut speed per 1% Hermit Knowledge Learned.<br>
+			• His knowledge about shortcuts also gives 3% more Shortcut Explored per 1% Hermit Knowledge Learned.<br>
 			• Unlocked with both 20% Shortcut Explored and 40 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -2345,14 +2394,14 @@
 			You decide to try again at charming the hermit with the squirrel.<br>
 			The moment you turn your back, you hear the hermit screaming "OW!".<br>
 			Oh, he has a little bite mark on his hand now. Weird!<br><hr class='divider'>	
-			<b>Effect: </b>Old Shortcut gives a 4% bonus to this action instead of 3%.<br>
+			<b>Effect: </b>Old Shortcut gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel combat >= 30 <hr class='divider'>	
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			This time, the hermit screams louder and has multiple bite marks on his hand.<br>
 			He really is on his guard about something, which helps lowering it guard against you.<br>
-			You don't really understand whats happening, but now he's easier to talk to, so yay!<hr class='divider'>	
-			<b>Effect: </b>Old Shortcut gives a 5% bonus to this action instead of 3%.<hr class='divider'>	
+			You don't really understand what's happening, but now he's easier to talk to, so yay!<hr class='divider'>	
+			<b>Effect: </b>Old Shortcut gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>	
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Hermit knowledge learned:</b>⮀ The Hermit is old, scraggly and surprisingly, not bald. Looks old as dirt. He doesn't know the name of the surrounding provinces, but knows the names of the provinces before the current ones.]]></story_1>
             <story_2><![CDATA[<b>10% Hermit knowledge learned:</b>⮀ The old hermit is an absolute genius at using magic to speed things up and just in general make things quicker and easier. You have much information to wring from him. He doesn't tell you his name and insists you call him 'Old man', or 'Hermit'.]]></story_2>
@@ -2396,7 +2445,7 @@
 			You're starting to think the potion that caused you to loop time was a complex one...<hr class='divider'>
 			• You provide the ingredients; costs 10 herbs.<br>
 			• Use what you learned from brewing to make this action more efficient.<br>
-			• Gain 10 more exp per Brewing level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
+			• Gives 10 + (10 * Brewing level) Alchemy exp.<br>
 			• Unlocked with both 40% Hermit Knowledge and 80 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -2452,7 +2501,7 @@
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			Alright, now that the squirrel have learn its lesson, it decides to go against an animal of around the same strenght as itself.<br>
-			This time, he manages to beat it! What a strong squirrel!<br>
+			This time, it manages to beat it! What a strong squirrel!<br>
 			Instead of stopping there, it goes against another... And then against another...<br>
 			Until it fails. Well, at least it learned a lot from this!<hr class='divider'>
 			<b>Effect: </b>Gain Squirrel Combat Level x 10 combat exp, but lose the squirrel.<hr class='divider'>
@@ -2463,12 +2512,14 @@
             <label>Feed Animals</label>
 			<label_done>Animals Fed</label_done>
             <tooltip><![CDATA[
-            Feed wild animals and they will show you ressources scattered around the forest. They sure do like magical herbs!<hr class='divider'>
+            Feed wild animals and they will show you resources scattered around the forest. They sure do like magical herbs!<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
-			• Gives additional herbs and wild mana.<br>
-			• The more herbs you have, the easier they will approach you : every herb you have gives a +2% efficiency.<br>
+			• The more herbs you have, the easier they will approach you: every herb you have gives a +2% efficiency.<br>
 			• If you don't have the squirrel at the start of each loop yet, now it will join you.<br>
 			• Consumes 10 herbs per action.<br>
+			• Gives mana sources to tap.<br>
+			• Gives herbs to uproot.<br>
+			• Reveals animals to hunt.<br>
 			• Unlocked at 40% Forest Explored.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -2539,7 +2590,7 @@
             It's good to let loose, sometimes! Don't worry, only a small part of the forest will be set aflame. So it's fine, right?<hr class='divider'>
 			• Requires negative reputation.<br>
 			• Gives herbs * (1 + sqrt(main stat / 1000)) progress points per mana.<br>
-			• Every acre burnt uses up 10 magical herbs in fuel, releasing 3500 mana for you to absorb.<br>
+			• Every acre burnt uses up 10 magical herbs in fuel, releasing 4500 mana for you to absorb.<br>
 			• For every 10% of the dark side of the forest explored, you will also gain 1 dark essence per acre burnt.<br>
 			• For some reason, burning 2 acres of forest will reduce your reputation by 1.<br>
 			• Unlocked at 20% Animals Fed.<hr class='divider'>
@@ -2583,10 +2634,10 @@
             <tooltip><![CDATA[
             There's a lot of useful paths in here. You have avoided them for too long.<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
-			• Gives some additional herbs.<br>
 			• Requires negative reputation.<br>
 			• The witch loves this place, knowing about it will help talking to her.<br>
-			Talk to Witch gives 3% more Witch Knowledge Learned per 1% Dark Forest Explored.<br>
+			• Talk to Witch gives 3% more Witch Knowledge Learned per 1% Dark Forest Explored.<br>
+			• Gives herbs to uproot.<br>
 			• Unlocked at 30% Animals Fed.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -2600,14 +2651,14 @@
 			Tree roots are apparently hunting squirrels here, and your companion was caught?!<br>
 			Thankfully, it can now fight them off now!<br>
 			The witch must know about all of this, let's ask her about this next time.<hr class='divider'>
-			<b>Effect: </b>Talk to Witch gives a 4% bonus to this action instead of 3%.<br>
+			<b>Effect: </b>Talk to Witch gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel combat >= 35 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			What you've learned from the witch about this forest is quite useful!<br>
 			This place is dangerous for a squirrel, but now it has no issue fighting off the roots.<br>
 			Perfect! The sooner this place is explored, the sooner you can stop exploring it!<hr class='divider'>
-			<b>Effect: </b>Talk to Witch gives a 5% bonus to this action instead of 3%.<hr class='divider'>
+			<b>Effect: </b>Talk to Witch gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>Dark forested:</b>⮀ Placeholder.]]></story_1>
         </dark_forest>
@@ -2636,7 +2687,7 @@
 			It looks like there's faint traces of magic around it... Did it use a spell?<br>
 			The witch looks like she's about to laugh and opens up to you.<br>
 			You're not sure why, but that's great!<hr class='divider'>
-			<b>Effect: </b>Dark Forest gives a 4% bonus to this action instead of 3%.<br>
+			<b>Effect: </b>Dark Forest gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel magic >= 30 <hr class='divider'>
 		]]></squirrel_2>
 		<squirrel_3><![CDATA[
@@ -2644,7 +2695,7 @@
 			It looks like the witch now has light wounds on her, and your squirrel emits a lot more mana.<br>
 			Well, if she was about to laugh before, now she's laughing very audibly!<br>
 			You've never seen her so friendly toward you before. Excellent!<hr class='divider'>
-			<b>Effect: </b>Dark Forest gives a 5% bonus to this action instead of 3%.<hr class='divider'>
+			<b>Effect: </b>Dark Forest gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Witch knowledge learned:</b>⮀ You stumble across a small crooked hut and as you approach the boundary, a small slip of a woman step outs. She's stunning and you're immediately on guard. The area pulses with a heady hum of magic that sends shivers down your spine. She introduces herself as Evis.]]></story_1>
             <story_2><![CDATA[<b>10% Witch knowledge learned:</b>⮀ The Witch as you taken to referring to her as, seeing as she changes her name every time she introduces herself to you, is a veritable font of magical knowledge, of how to dominate the mana itself and make more from less.]]></story_2>
@@ -2674,7 +2725,7 @@
 			The witch does the usual offer about handing over your squirrel.<br>
 			Except this time, it goes by itself to the witch.<br>
 			It looks like it's ready to sacrifice itself for your own good...<br>
-			You know he will be back next loop, but still...!<br>
+			You know it will be back next loop, but still...!<br>
 			With a heavy heart, you accept. Thank you, squirrel friend, you will be remembered!<br>
 			You expect the squirrel to be traumatized at the start of the next loop, but it looks pretty happy.<br>
 			Wait... What happened, then?!<hr class='divider'>
@@ -2688,7 +2739,7 @@
 			The witch has interesting ideas about how to make some pretty evil potions. You feel the need to learn about it.<hr class='divider'>
 			• Doing this action costs 10 dark essences.<br>
 			• Use what you learned from alchemy to make this action more efficient.<br>
-			• Gain 10 more exp per Alchemy level, up to 10 times, then gain 10 exp every 2 levels, then every 3 levels,...<br>
+			• Gives 10 + (10 * Alchemy level) Brewing exp.<br>
 			• Unlocked with both 40% Witch Knowledge and 90 Magic.<hr class='divider'>
         ]]></tooltip>
 			<squirrel_1><![CDATA[
@@ -2729,7 +2780,7 @@
             Keep walking to the next town, Merchanton.<hr class='divider'>
 			• Mana cost reduced by 600 per Old Shortcut % for the first 50%, and 60 for the next 50%.<br>
 			• Mana cost also reduced by 600 per Dark Forest % for the first 50%, and 60 for the next 50%.<br>
-			• <b>Warning : the next zone is in alpha : you won't have access to all actions, they are prone to change, and there's no squirrel action.<br>
+			• <b>Warning: the next zone is in alpha: you won't have access to all actions, they are prone to change, and there's no squirrel action.<br>
 			Always back up your save before going further! You never know what might happen that's out of hand.<br>
 			To see how far in development the next zone, you can look at the changelog. And don't hesitate to give your thoughts on the Discord server!</b><hr class='divider'>
         ]]></tooltip>
@@ -2742,7 +2793,7 @@
 		]]></squirrel_1>
 			<squirrel_2><![CDATA[
 			The squirrel looks confident this time.<br>
-			It asks you to follow it : it leads you towards Merchanton.<br>
+			It asks you to follow it: it leads you towards Merchanton.<br>
 			... And suddenly, you find yourself in the Squirrel Sanctuary.<br>
 			How did this happen?!<hr class='divider'>
 			<b>Effect: </b>Go to a new zone.<br><hr class='divider'>
@@ -2758,7 +2809,9 @@
 			If you find some help, it'll probably be easier to find good places to explore.<hr class='divider'>
 			• Gives 50 exp worth of progress as a base.<br>
 			• 4x progress with glasses.<br>
-			• Your guild multiplier impacts this action .<hr class='divider'>
+			• Your guild multiplier impacts this action .<br>
+			• Reveals suckers to swindle.<br>
+			• Reveals slaves to check for their bounties.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>1% City Explored:</b>⮀ This is a relatively big city, and as busy as you've ever seen. You have no idea where anything is and nobody seems inclined to spare enough time to talk to you.]]></story_1>
 			<story_2><![CDATA[<b>10% City Explored:</b>⮀ You've found a jovial man willing to chat with you on his way to the casino, where he invited you in for a game of poker. You declined, but it might be a good idea to come here on your own sometime.]]></story_2>
@@ -2774,12 +2827,13 @@
             <label>Get Drunk</label>
             <label_done>Rumors Heard</label_done>
 			<tooltip><![CDATA[
-			Let's see how much drinks you can put on your tab before being thrown out!<br>
+			Let's see how many drinks you can put on your tab before being thrown out!<br>
 			Adventurers seem to be gold mine for rumors, but sadly they refuse to talk to anyone other than people of the same rank.<hr class='divider'>
 			• Gives 80 exp worth of progress as a base.<br>
 			• Your adventurer guild multiplier impacts this action .<br>
 			• Require a reputation strictly above 0.<br>
 			• Costs 1 reputation.<br>
+			• Reveals suckers to swindle.<br>
 			• Unlocked at 20% City Explored.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>1% Rumors Heard:</b>⮀ A mug of beer and a cheerful environment, it's equal parts relaxing and enjoyable. You leave without paying, but it's okay if you're not welcome there anymore, since they won't remember next loop.]]></story_1>
@@ -2795,12 +2849,13 @@
 			<label>Help Slums</label>
 			<label_done>Slumdwellers Helped</label_done>
 			<tooltip><![CDATA[
-			It's crazy the number of people being kidnapped here! It's probably a bad idea to be around if you haven't made people fear you first.<br>
+			The number of people being kidnapped here is crazy! It's probably a bad idea to be around if you haven't made people fear you first.<br>
 			Making shelters for the slumdwellers is the easiest way to make them talk, and they've seen quite a lot.<hr class='divider'>
 			• Gives 80 exp worth of progress as a base.<br>
-			• Your cratfing guild multiplier impacts this action .<br>
+			• Your crafting guild multiplier impacts this action .<br>
 			• Require a negative reputation.<br>
 			• Gives 1 reputation.<br>
+			• Reveals slaves to check for their bounties.<br>
 			• Unlocked at 20% Rumors Heard.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>Helped no one:</b>⮀ Placeholder.]]></story_1>
@@ -2813,10 +2868,10 @@
             <info_text3>People to check if they're suckers</info_text3>
 			<tooltip><![CDATA[
 			You found a great game that won't make the casino too wary of you for winning a lot in a row!<br>
-			It says : "Bet your previous winnings to gain more or stop and rack in the cash! 4 players, only 1 person can lose every game!".<br>
+			It says: "Bet your previous winnings to gain more or stop and rack in the cash! 4 players, only 1 person can lose every game!".<br>
 			Now to find suckers to take the losses for you...<hr class='divider'>
 			• Bet 20 gold and all the money you won doing this action.<br>
-			• Get more gold each win : 2, 4, 6, 8,...<br>
+			• Get more gold each win: 2, 4, 6, 8,...<br>
 			• Currently would give 
 			]]></tooltip>
 			<tooltip2> <![CDATA[
@@ -2844,7 +2899,7 @@
 			Also, it looks like the more infamous you are, the more they're willing to drop the price. Neat!<hr class='divider'>
 			• Slaves base cost is 60 gold, and give back 75 gold if they have a bounty.<br>
 			• Slave price gets reduced by reputation/2 (rounded down), down to a minimum of 10 gold.<br>
-			• Can only be done once : get all the slaves you can afford, the unchecked one included.<br>
+			• Can only be done once: get all the slaves you can afford, the unchecked one included.<br>
 			• Currently would give
 			]]></tooltip>
 			<tooltip2> <![CDATA[
@@ -2863,7 +2918,7 @@
 			One little test, and you'll have access to all adventurer only facilities!<br>
 			The jury does look a little corruptible here, maybe that'll come in handy...<hr class='divider'>
 			• You can only join 1 guild at a time, and only try once.<br>
-			• Gives ((magic skill + self combat)/2) * sqrt(1 + main stat / 100) * sqrt(1 + times completed) progress points per mana.<br>
+			• Gives ((magic skill + self combat)/2) * sqrt(1 + main stat / 100) * sqrt(1 + times completed / 2) progress points per mana.<br>
 			• Unlocked at 10% Rumors Heard.<hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>No test taken:</b>⮀ Placeholder.]]></story_1>
@@ -2873,7 +2928,7 @@
 			<tooltip><![CDATA[
 			This place is perfect to train with other people! Let's see how good you are at teamwork.<br>
 			It's even better if you bring your own teammates, but then it'll cost a fee.<hr class='divider'>
-			• Gives 40 t exp as a base.<br>
+			• Gives 20 teamwork exp as a base.<br>
 			• The exp is multiplied by your adventurer guild multiplier.<br>
 			• Bringing teammates makes this action costs 25 gold, but multiplies the exp by (1+teammates).<br>
 			• You need to be an adventurer to have access to this action.<br>
@@ -2884,7 +2939,7 @@
         <gather_team>
             <label>Gather Team</label>
 			<tooltip><![CDATA[
-			Figthing in a team is extremely efficient! Too bad your teammates keep asking for compensation...<hr class='divider'>
+			Fighting in a team is extremely efficient! Too bad your teammates keep asking for compensation...<hr class='divider'>
 			• You can recruit team members up to (adventurer guild multiplier / 2), rounded down.<br>
 			• Soulstones looted will be shared equally between all members of your team.<br>
 			• Each member multiplies your Team Combat by 200.<br>
@@ -2898,12 +2953,12 @@
             <label_complete>Completed</label_complete>
             <label_part>Large Dungeon</label_part>
 			<tooltip><![CDATA[
-			The gards won't let you pass without having any teammate... It's time to form a party.<hr class='divider'>
+			The guards won't let you pass without having any teammates... It's time to form a party.<hr class='divider'>
 			• Requires at least 1 team member.<br>
 			• Gives  Team Combat * (1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
 			• Gives 10 soulstone per floor, but they are shared equally between all members of your team.<br>
 			• After which, the skill teamwork will allow you to get more soulstones.<br>
-			• Every floor cleared gives you 100 teamwork exp.<br>
+			• Every floor cleared gives you 200 teamwork exp.<br>
 			• Unlocked at 40% Rumors Heard.<hr class='divider'>
         ]]></tooltip>
             <completed_tooltip><![CDATA[
@@ -2941,7 +2996,7 @@
             <tooltip><![CDATA[
 			How lucky! This week is the week of the anniversary of the creation of the guild!<br>
 			This year, they are celebrating by doing huge mock battles, with a lot of prizes.<br>
-			Among them, there's one that catches your eyes : climbing gears. Perfect for Mt. Olympus!<br>
+			Among them, there's one that catches your eyes: climbing gears. Perfect for Mt. Olympus!<br>
 			You'll need to assume the role of a general in the mock battle to get this one.<hr class='divider'>
 			• Gives teamwork * sqrt(1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
 			• Can only be done once per loop.<br>
@@ -3051,7 +3106,7 @@
 			<tooltip><![CDATA[
 			Hopefully, he won't ignore you this time.<br>
 			And he doesn't! Well, he still looks at you like you're a bug to crush, but that's better.<br>
-			As you explain your situation, he cuts you :<br>
+			As you explain your situation, he cuts you: <br>
 			"Sure. Go back in time and tell me you want to fight a "magic fighter", then."<br>
 			Then slams the door on your face.<br>
 			What? Well, uh... Let's do that, then. Maybe then he'll listen to you then.<hr class='divider'>
@@ -3065,7 +3120,7 @@
 			<tooltip><![CDATA[
 			Why is he so strong? How is he so strong?! At least you managed to scratch him!<br>
 			This time, he listens to your explanation until the end... Phew.<br>
-			But he still looks unimpressed :<br>
+			But he still looks unimpressed: <br>
 			"Okay. Tell me that you want to prove your worth in Beginnersville, and then we'll see."<br>
 			Then slams the door. Again. Did he even listen to you?!<br>
 			Ah well, you know what to do...<hr class='divider'>
@@ -3078,7 +3133,7 @@
 			<label>Delivery Address</label>
 			<tooltip><![CDATA[
 			You thought he was strong. You were wrong. He was *insanely* strong.<br>
-			As he opens the door, he exclaims :<br>
+			As he opens the door, he exclaims: <br>
 			"Oh, you're that fighter from before, what do you want?"<br>
 			No more disdain on his face! Finally he should listen to you. Maybe.<br>
 			"A looping potion? A time loop? A package? To me? Sorry, I have no idea what you're talking about.<br>
@@ -3129,15 +3184,15 @@
             <label>Sell Potions</label>
 			<tooltip><![CDATA[
 			There seems to be a market for potions here. Useful!<hr class='divider'>
-			• Sells every potion and dark potion for 200 gold.<hr class='divider'>
+			• Sells every potion and dark potion for 100 gold.<hr class='divider'>
 		]]></tooltip>
 			<story_1><![CDATA[<b>No potion sold:</b>⮀ Placeholder.]]></story_1>
         </sell_potions>
         <read_books>
             <label>Read Books</label>
 			<tooltip><![CDATA[
-			A library! You always loved reading, and you were starting to fear you'd forget how to read them.<br>
-			Discover new worlds and perspectives, get ideas from fictionnal characters, and empathize with the desire to be stronger.<hr class='divider'>
+			A library! You always loved reading, and you were starting to fear you'd forget how to read books.<br>
+			Discover new worlds and perspectives, get ideas from fictional characters, and empathize with the desire to be stronger.<hr class='divider'>
 			• Requires glasses.<br>
 			• Has 4x exp/talent gain, and can only be done 10 times per reset .<br>
 			• Unlocked at 60% City Explored.<hr class='divider'>
@@ -3156,11 +3211,11 @@
         ]]></tooltip>
 			<tooltip2><![CDATA[ completions to the guild you're in.<br>
 			• Can only be done once per loop (too dangerous to do it twice).<br>
-			• If you got both transitive items to quality 3 in previous loops, unlock the next effect :<br>
+			• If you got both transitive items to quality 3 in previous loops, unlock the next effect: <br>
 			• Having no guild will give you both transitive items at quality 1.<br>
 			• If done so, doesn't allow you to get into Merchanton's guilds (they're angry at you).<br>
 			• Unlocked once E rank has been reached in both guilds in previous loops.<br>
-			• <b>Note : Until the crafting guild opens its door, only E rank in the adventurer guild is required to unlock this action!</b><hr class='divider'>
+			• <b>Note: Until the crafting guild opens its door, only E rank in the adventurer guild is required to unlock this action!</b><hr class='divider'>
         ]]></tooltip2>
 			<story_1><![CDATA[<b>Didn't tail anyone:</b>⮀ Placeholder.]]></story_1>
 		</tail_judges>
@@ -3188,9 +3243,9 @@
             <label>Start Trek</label>
 			<tooltip><![CDATA[
 			Begin your trek to the top of Mt. Olympus as long as you have the equipment for it.<br>
-			This sacred moutain might hold lost magic, it's probably worth exploring.<hr class='divider'>
+			This sacred mountain might hold lost magic, it's probably worth exploring.<hr class='divider'>
 			• Requires climbing gear.<br>
-			• <b>Warning : Content for Mt. Olymps hasn't been made yet, so this action has no effect yet.</b><hr class='divider'>
+			• <b>Warning: Content for Mt. Olymps hasn't been made yet, so this action has no effect yet.</b><hr class='divider'>
         ]]></tooltip>
 			<story_1><![CDATA[<b>Didn't tail anyone:</b>⮀ Placeholder.]]></story_1>
         </start_trek>

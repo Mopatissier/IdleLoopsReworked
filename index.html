@@ -470,8 +470,8 @@
 			</div>
 			<div id="skillSquirrelList" style="width:100%;display:none; justify-content: center; align-items: center; padding-top:0.5rem;">
                 <div class="showthat">
-                    <div class="large bold localized" data-lockey="skillsSquirrel>title"></div>
-                    <div class="showthis localized" data-lockey="skillsSquirrel>tooltip>no_reset_on_restart"></div>
+                    <div class="large bold" id="squirrelSkillsTitle"></div>
+                    <div class="showthis" id="squirrelSkillsTooltip"></div>
                 </div><br>
 				
 				<div id="skillsSquirrelListContainer" style="width:100%; position: relative; display: flex;padding-top:0.5rem; padding-left:4%; padding-right:4%;">
@@ -677,7 +677,7 @@
 		<div class="showthat" style="display:block;margin:5px auto 5px auto;text-align:center;" onclick = "checkSquirrelMode()">
 			<img src='img/human.svg' class='smallIcon' draggable='false' style="float:left;margin-left:150px" id="iconSquirrelMode">
             <span class='large bold' id="squirrelModeTitle"></span>
-			<div class='showthis localized' data-lockey="actions>tooltip_squirrel_mode"></div>
+			<div class='showthis' id ="squirrelModeTooltip"></div>
 			<input style="float:right;margin-right:150px;margin-top:-1px" type="checkbox" id="squirrelModeCheck" >
         </div>
 		

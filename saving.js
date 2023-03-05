@@ -133,6 +133,7 @@ const skillList = ["Combat", "Magic", "Yang", "Yin", "Alchemy", "Brewing", "Team
 const skillSquirrelList = ["Trust", "Magic", "Combat", "Craftiness"];
 const skills = {};
 const skillsSquirrel = {};
+let alreadyLeveledUp = {};
 const buffList = ["SpiritBlessing", "ImbueSoulstones", "YinYang", "Imbuement", "Imbuement2", "Feast", "Aspirant", "Heroism", "Imbuement3"];
 const dungeonFloors = [6, 12, 20];
 const trialFloors = [50, 100, 7, 1000, 25];
@@ -276,7 +277,9 @@ const options = {
 	pauseOnExplorationComplete : false,
     pingOnPause: false,
     autoMaxTraining: false,
-	ferretMode:false,
+	ferretMode: false,
+	hideBars: false,
+	mergeModes: false,
     hotkeys: true,
     updateRate: 50
 };
@@ -286,6 +289,8 @@ let stopOnExplorationComplete = false;
 function setOption(option, value) {
     options[option] = value;
     if (option === "updateRate") recalcInterval(options.updateRate);
+    if (option === "hideBars") view.updateProgressActions();
+    if (option === "mergeModes") view.updateSquirrelMode();
 }
 
 function loadOption(option, value) {
@@ -425,7 +430,7 @@ function load() {
     }
     actionTownNum = toLoad.actionTownNum === undefined ? 0 : toLoad.actionTownNum;
     trainingLimits = 10 + getBuffLevel("Imbuement");
-	magicFighterStrenght = toLoad.magicFighterStrenght === undefined ? 0 : toLoad.magicFighterStrenght;
+	magicFighterStrenght = toLoad.magicFighterStrenght === undefined ? -1 : toLoad.magicFighterStrenght;
 	gotERankAdv = toLoad.gotERankAdv === undefined ? false : toLoad.gotERankAdv;
 	gotERankCra = toLoad.gotERankCra === undefined ? false : toLoad.gotERankCra;
     goldInvested = toLoad.goldInvested === undefined ? 0 : toLoad.goldInvested;
@@ -537,7 +542,9 @@ function load() {
         options.repeatLastAction = toLoad.repeatLast;
         options.pingOnPause = toLoad.pingOnPause === undefined ? false : toLoad.pingOnPause;
         options.autoMaxTraining = toLoad.autoMaxTraining === undefined ? true : toLoad.autoMaxTraining;
-		options.ferretMode = toLoad.pingOnPause === undefined ? false : toLoad.ferretMode;
+		options.ferretMode = toLoad.ferretMode === undefined ? false : toLoad.ferretMode;
+		options.hideBars = toLoad.hideBars === undefined ? false : toLoad.hideBars;
+		options.mergeModes = toLoad.mergeModes === undefined ? false : toLoad.mergeModes;
         options.hotkeys = toLoad.hotkeys === undefined ? true : toLoad.hotkeys;
         options.updateRate = toLoad.updateRate === undefined ? 50 : toLoad.updateRate;
     } else {
@@ -548,7 +555,6 @@ function load() {
 	
 	if(options.ferretMode){
 		squirrelIcon = 'img/ferret.png';
-		squirrelNewAction = 'img/ferretNewAction.svg';
 		document.getElementById("favIcon16x16").href = "faviconFerret-16x16.png";
 		document.getElementById("favIcon32x32").href = "faviconFerret-32x32.png";
 		document.getElementById("resourceSquirrel").src = squirrelIcon;
