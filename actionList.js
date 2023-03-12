@@ -2311,10 +2311,10 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 		return squirrelRequirements && resources.reputation >= 2;
     },
     skills: {
-		Combat(squirrelTooltip) {
+		Combat(squirrelMode) {
 			let exp = 100;
-			if((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Warrior Lessons") == 2) exp = 300;
-			if((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Warrior Lessons") >= 3) exp = 1000;
+			if(squirrelMode && getLevelSquirrelAction("Warrior Lessons") == 2) exp = 300;
+			if(squirrelMode && getLevelSquirrelAction("Warrior Lessons") >= 3) exp = 1000;
             return exp;
         }
     },
@@ -2368,13 +2368,13 @@ Action.WarriorLessons = new Action("Warrior Lessons", {
 			case 1:  break;		
 
 			case 2: actionEffect = () => {
-						handleSkillExp(this.skills);
+						handleSkillExp(this.skills, true);
 					};
 					loseSquirrel = true;
 					break;
 				
 			case 3: actionEffect = () => {
-						handleSkillExp(this.skills);
+						handleSkillExp(this.skills, true);
 					};
 					loseSquirrel = true;
 					break;
@@ -2436,10 +2436,10 @@ Action.MageLessons = new Action("Mage Lessons", {
         Magic: 100
     },
 	skills: {
-		Magic(squirrelTooltip) {
+		Magic(squirrelMode) {
 			let exp = 100;
-			if((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Mage Lessons") == 2) exp = 300;
-			if((this.squirrelAction || squirrelTooltip) && getLevelSquirrelAction("Mage Lessons") >= 3) exp = 1000;
+			if(squirrelMode && getLevelSquirrelAction("Mage Lessons") == 2) exp = 300;
+			if(squirrelMode && getLevelSquirrelAction("Mage Lessons") >= 3) exp = 1000;
             return exp;
         }
     },
@@ -2490,13 +2490,13 @@ Action.MageLessons = new Action("Mage Lessons", {
 			case 1:  break;		
 
 			case 2: actionEffect = () => {
-						handleSkillExp(this.skills);
+						handleSkillExp(this.skills, true);
 					};
 					loseSquirrel = true;
 				break;
 				
 			case 3: actionEffect = () => {
-						handleSkillExp(this.skills);
+						handleSkillExp(this.skills, true);
 					};
 					loseSquirrel = true;
 				break;

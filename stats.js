@@ -226,10 +226,10 @@ function addSkillSquirrelExp(name, amount) {
     view.requestUpdate("updateSkillSquirrel", name);
 }
 
-function handleSkillExp(list) {
+function handleSkillExp(list, squirrelMode) {
     for (const skill in list) {
         if (Number.isInteger(list[skill])) addSkillExp(skill, list[skill]);
-        else addSkillExp(skill, list[skill]());
+        else addSkillExp(skill, list[skill](squirrelMode));
 		
 		for(const action of totalActionList){
 			if(action.tooltipRefresh && action.tooltipRefresh.includes(skill)){
