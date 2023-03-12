@@ -230,6 +230,12 @@ function handleSkillExp(list) {
     for (const skill in list) {
         if (Number.isInteger(list[skill])) addSkillExp(skill, list[skill]);
         else addSkillExp(skill, list[skill]());
+		
+		for(const action of totalActionList){
+			if(action.tooltipRefresh && action.tooltipRefresh.includes(skill)){
+				view.adjustTooltip(action);
+			}
+		}
     }
 }
 

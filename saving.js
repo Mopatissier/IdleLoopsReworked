@@ -54,8 +54,6 @@ function cheatSoulstone(stat, targetSS)
     view.updateSoulstones();
 }
 
-let cheatBonusSpeed = 1;
-
 let mainTickLoop;
 const saveName = "idleLoops1";
 
@@ -125,6 +123,8 @@ let squirrelHaggle = false;
 let portalUsed = false;
 let gamblesInARow = 0;
 let stoneLoc = 0;
+let overclock = false;
+let choiceBonusSpeed = 5;
 let curLoadout = 0;
 let loadouts;
 let loadoutnames;
@@ -250,6 +250,9 @@ const favMode = {};
 
 const curDate = new Date();
 let totalOfflineMs = 0;
+let totalFatigueMs = 0;
+let timeBeforePauseMs = 0;
+let offlineCalculated = false;
 // eslint-disable-next-line prefer-const
 let bonusSpeed = 1;
 const offlineRatio = 1;
@@ -560,6 +563,15 @@ function load() {
 		document.getElementById("resourceSquirrel").src = squirrelIcon;
 		
 	}
+	
+	if(toLoad.overclock !== undefined){
+		overclock = toLoad.overclock;
+	}
+	toggleOverclock(overclock);
+	
+	if(toLoad.choiceBonusSpeed !== undefined){
+		choiceBonusSpeed = toLoad.choiceBonusSpeed;
+	}
 
     for (const town of towns) {
         for (const action of town.totalActionList) {
@@ -602,6 +614,7 @@ function load() {
     storyMax = toLoad.storyMax === undefined ? 0 : toLoad.storyMax;
 
     totalOfflineMs = toLoad.totalOfflineMs === undefined ? 0 : toLoad.totalOfflineMs;
+    totalFatigueMs = toLoad.totalFatigueMs === undefined ? 0 : toLoad.totalFatigueMs;
     // capped at 1 month of gain
     addOffline(Math.min(Math.floor((new Date() - new Date(toLoad.date)) * offlineRatio), 2678400000));
 
@@ -674,6 +687,8 @@ function save() {
     toSave.loadouts = loadouts;
     toSave.loadoutnames = loadoutnames;
     toSave.options = options;
+	toSave.overclock = overclock;
+	toSave.choiceBonusSpeed = choiceBonusSpeed;
     toSave.storyShowing = storyShowing;
     toSave.storyMax = storyMax;
     toSave.storyReqs = storyReqs;
@@ -683,6 +698,7 @@ function save() {
 
     toSave.date = new Date();
     toSave.totalOfflineMs = totalOfflineMs;
+    toSave.totalFatigueMs = totalFatigueMs;
 
     window.localStorage[saveName] = JSON.stringify(toSave);
 }

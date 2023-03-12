@@ -133,6 +133,7 @@ function stopGame() {
     view.updateCurrentActionBar(actions.currentPos);
     document.title =_text(`game_name>pause_name`);
     document.getElementById("pausePlay").textContent = _text("time_controls>play_button");
+	timeBeforePauseMs = 0;
 }
 
 function pauseGame(ping) {
@@ -151,6 +152,7 @@ function pauseGame(ping) {
         beep(250);
         setTimeout(() => beep(250), 500);
     }
+	timeBeforePauseMs = 0;
 }
 
 function prepareRestart() {
@@ -244,22 +246,21 @@ function addResource(resource, amount) {
     view.updateResource(resource);
 	
 	if(resource === "reputation"){
-		view.adjustExpGain(Action.PracticeYin);
-		view.adjustExpGain(Action.PracticeYang);
 		
 		view.updateSkill("Yin");		
 		view.updateSkill("Yang");
 
 		view.updateBuff("YinYang");
 		
-		view.adjustGoldCost("SlaveAuction", Action.SlaveAuction.goldCost());
 	}
 	
-	if(resource === "gold") {
-		view.adjustGoldCost("SlaveAuction", Action.SlaveAuction.goldCost());
-	}
-
     if (resource === "teamMembers" || resource === "armor" || resource === "zombie") view.updateTeamCombat();
+	
+	for(const action of totalActionList){
+		if(action.tooltipRefresh && action.tooltipRefresh.includes(resource)){
+			view.adjustTooltip(action);
+		}
+	}
 }
 
 function resetResource(resource) {
@@ -648,18 +649,59 @@ function setFavMode(actionName, modeIsSquirrel){
 
 function addOffline(num) {
     if (num) {
-        if (totalOfflineMs + num < 0 && bonusSpeed > 1) {
-            toggleOffline();
-        }
-        totalOfflineMs += num;
-        if (totalOfflineMs < 0) {
-            totalOfflineMs = 0;
-        } else if(totalOfflineMs > 1000*60*60*24*5){
-			totalOfflineMs = 1000*60*60*24*5;
+		
+		if(!offlineCalculated){
+			offlineCalculated = true;
+			if(overclock && num >= 1000*60*60*16){
+				num -=  1000*60*60*16;
+				totalFatigueMs = 0;
+				toggleOverclock(false);
+			}
+		}
+		
+		if(overclock){
+			
+			if(num > 0){
+				totalFatigueMs -= num;
+				if (totalFatigueMs < 0) {
+					totalFatigueMs = 0;
+				}
+			} else {
+				totalFatigueMs -= num;
+				if(totalFatigueMs > 1000*60*60*16){
+					totalFatigueMs = 1000*60*60*16;
+					timeBeforePauseMs -= num/2;
+					if(timeBeforePauseMs >= 1000*60*60){
+						pauseGame();
+					}
+				}
+			}
+			
+		} else {
+			
+			if(num < 0 || totalFatigueMs === 0){
+				if (totalOfflineMs + num < 0 && bonusSpeed > 1) {
+					toggleOffline();
+				}
+				totalOfflineMs += num;
+				if (totalOfflineMs < 0) {
+					totalOfflineMs = 0;
+				}
+			} else {
+				totalFatigueMs -= num/2;
+				if (totalFatigueMs < 0) {
+					totalFatigueMs = 0;
+				}
+			}
+			
 		}
 		
         document.getElementById("bonusSeconds").textContent = convertMsToString(totalOfflineMs);
+        document.getElementById("bonusSecondsOverclock").textContent = convertMsToString(totalOfflineMs);
 		document.getElementById("bonusMult").textContent = bonusMultString;
+		document.getElementById("bonusMultOverclock").textContent = bonusMultString;
+		document.getElementById("fatigue").textContent = convertMsToString(totalFatigueMs);
+		document.getElementById("fatigueOverclock").textContent = convertMsToString(totalFatigueMs);
     }
 }
 
@@ -693,23 +735,40 @@ function toggleOffline() {
 	setActivatedBonusSpeed();
 }
 
-function setActivatedBonusSpeed() {
-	
-	const numberHalfDayOffline = Math.floor(totalOfflineMs/halfDayMs);
-	
-	if(cheatBonusSpeed === 1){
-		bonusSpeed = numberHalfDayOffline * 0.5 + 2;
+function setActivatedBonusSpeed(newSpeed) {
+		
+	if(overclock === false) {
+		if(newSpeed !== undefined){
+			choiceBonusSpeed = newSpeed;
+		}
+		
+		bonusSpeed = choiceBonusSpeed;
+			
+		if (document.getElementById("isBonusOn").textContent == _text("time_controls>bonus_seconds>state>off")) {
+			bonusSpeed = 1;
+		}
 	} else {
-		bonusSpeed = cheatBonusSpeed;
-	}
-	if(bonusSpeed > 5 && cheatBonusSpeed === 1){
-		bonusSpeed = 5;
-	}
-	if (document.getElementById("isBonusOn").textContent == _text("time_controls>bonus_seconds>state>off")) {
-		bonusSpeed = 1;
+		bonusSpeed = 3;
 	}
 	bonusMultString = (bonusSpeed+"x");
 	document.getElementById("bonusMult").textContent = bonusMultString;
+	
+}
+
+function toggleOverclock(modeSet) {
+		
+	if(modeSet === true){
+		document.getElementById("overclockOffMenu").style.display = "none";
+		document.getElementById("overclockOnMenu").style.display = "inline-block";
+		overclock = true;
+		setActivatedBonusSpeed();
+		
+	} else {
+		document.getElementById("overclockOffMenu").style.display = "inline-block";
+		document.getElementById("overclockOnMenu").style.display = "none";
+		overclock = false;
+		setActivatedBonusSpeed();
+	}
 	
 }
 
@@ -740,7 +799,7 @@ function levelUpSquirrelAction(actionName) {
 	if(level === undefined) squirrelLevel[camelize(action.varName)] = 1;
 	else squirrelLevel[camelize(action.varName)] ++;
 	
-	if(squirrelMode) view.updateSquirrelTooltip(action);
+	if(squirrelMode || options.mergeModes) view.updateSquirrelTooltip(action);
 	
 	view.requestUpdate("updateNextActions");
 	

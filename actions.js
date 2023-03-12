@@ -191,6 +191,11 @@ function Actions() {
                 }
             }
         }
+		for(const action of totalActionList){
+			if(action.tooltipRefresh && action.tooltipRefresh.some(r => resources.hasOwnProperty(r))){
+				view.adjustTooltip(action);
+			}
+		}
         guild = "";
 		magicFight = false;
 		squirrelHaggle = false;

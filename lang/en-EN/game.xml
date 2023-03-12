@@ -10,6 +10,28 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.7"><![CDATA[
+            <b> March 12th, 2023 </b><br>
+			I liked how I structured the last changelog, so I'll do the same this time again!<br>
+			Oh, by the way, the tooltip refresh system has been reworked, though it shouldn't do change much for you.<br>
+			<b>Offline system: </b><br>
+			• Totally reworked!<br>
+			• There's no longer any max offline time cap. You can get as much as you want.<br>
+			• You can choose between 3 speeds of offline time consumption.<br>
+			• A new Overclock mode has been added!<br>
+			• It allows you to run the game at a constant x3 speed.<br>
+			• But removes the gain of offline bonus time.<br>
+			• If you're the type of player to leave the game open all day in a browser tab, this will avoid the issue where bonus time runs out and you're stuck at x1 for the rest of the day.<br><br>
+			<b>Quality of life: </b><br>
+			• The changelog menu has been reworked : you should now be able to see all of the last changelog content.<br>
+			• The actions of zone 1 have been moved around to keep them better organized.<br>
+			• Actions used to explore now display a checkmark once you get 100% for their exploration.<br>
+			• Tooltips now show your total exploration exp gain.<br>
+			• Action tooltips can no longer get out of bound if the game screen is too small.<br><br>
+			<b>Glitches and fixes: </b><br>
+			• Combining human and squirrel tooltips no longer erase the action stories. They also now update correctly.<br>			
+			• Changed the description of reputation.<br>			
+            ]]></version>
 			<version verNum="0.3.6"><![CDATA[
             <b> March 5th, 2023 </b><br>
 			Okay, this is substantial update, I'll have to make categories for this one!<br><br>
@@ -377,7 +399,7 @@
         <resource initially_hidden="true">
             <title>Reputation:</title>
             <id>reputation</id>
-            <desc>The influence you have over the people in town.</desc>
+            <desc>What other people (and squirrels?) think of you. Follows you around.</desc>
         </resource>
         <resource initially_hidden="true">
             <title>Herbs:</title>
@@ -561,18 +583,56 @@
         </stories>
         <bonus_seconds>
             <title>Bonus Seconds</title>
-			<main_text><![CDATA[
+			<main_text_idle><![CDATA[
 				Activate to use bonus time to speed up the game.<br>
-				Accrue 1 bonus second per second when paused or offline, capping at 5 days.<br>
-				Every half day stored makes the bonus time faster, from 2x to 5x.<br>
-				Bonus is
-			]]></main_text>
+				Gain 1 bonus second or recover half a second of fatigue per second spent paused or offline.<br>
+				Can only get bonus time once fatigue is at 0.<br>
+				You can choose the rate at which it multiplies game speed:<br>
+			]]></main_text_idle>
+			<state_introduction><![CDATA[
+				Bonus is currently 
+			]]></state_introduction>
+			
             <state>
                 <on>ON</on>
                 <off>OFF</off>
             </state>
+			<main_text_active><![CDATA[
+				Gain a permanent x3 speed multiplier, but can't get bonus time.<br>
+				Instead, get fatigue:<br>
+				• Get 2 seconds of fatigue every second spent in loops.<br>
+				• Recover 1 second per second when paused or offline.<br>
+				• Caps at 16 hours.<br>
+				When offline for 16 hours, automatically switches off overclock to gather bonus time.<br>
+				If a loop is active for 1 hour straight while fatigue is capped, the squirrel will urge you to take a break by pausing the game.<br>
+			]]></main_text_active>
 			<bonus_mult>Current Bonus Mult</bonus_mult>
             <counter_text>Total Bonus Time</counter_text>
+            <fatigue_text>Fatigue Left</fatigue_text>
+            <overclock_button_on>Turn Overclock On</overclock_button_on>
+            <overclock_button_off>Turn Overckock Off</overclock_button_off>
+			<x5_tooltip><![CDATA[
+				Recommended if playing this game 5 hours a day sounds like a lot.<br>
+				This is the default setting: high speed and a lot of time to play each day.
+			]]></x5_tooltip>
+			<x10_tooltip><![CDATA[
+				Recommended if you like playing short burst of time every day.<br>
+				Very high speed, limited time but still able to play for at least 2 hours a day.
+			]]></x10_tooltip>
+			<x20_tooltip><![CDATA[
+				Recommended if you have extra stored time left or like to play 1 intense hour per day.<br>
+				Turns this game into a puzzle game, the waiting time is minimized.
+			]]></x20_tooltip>
+			<overclock_on_tooltip><![CDATA[
+				Recommended if you like leaving the game open all day.<br>
+				No bonus time: your speed multiplier will never drop down to x1 .<br>
+				Efficiency will be dependent on how much time you're willing to play every day.
+			]]></overclock_on_tooltip>
+			<overclock_off_tooltip><![CDATA[
+				Recommended if you like playing a few hours a day, not stressing yourself.<br>
+				Higher time speed multipliers available, no second is ever wasted.<br>
+				You won't ever lose efficiency no matter how much time you play a day.
+			]]></overclock_off_tooltip>
         </bonus_seconds>
     </time_controls>
     <stats>
@@ -959,9 +1019,10 @@
           Stat/Talent exp is gained every tick.<br>
           Skill exp is gained upon action completion unless otherwise specified.<br>
           Actions will target unchecked objects before known lootable objects.]]></desc>
-			<exp_segment> / Segment</exp_segment>
-			<exp_completion> / Completion</exp_completion>
-			<exp_segment_completion> / Segment and Completion</exp_segment_completion>
+			<exp_progress>Progress Exp</exp_progress>
+			<exp_segment>per Segment</exp_segment>
+			<exp_completion>per Bar Completion</exp_completion>
+			<exp_segment_completion>per Segment and Bar Completion</exp_segment_completion>
             <mana_cost>Mana Cost</mana_cost>
             <exp_multiplier>Exp Multiplier</exp_multiplier>
             <mana_used>Mana Used</mana_used>
@@ -1666,7 +1727,7 @@
 			<squirrel_2><![CDATA[
 			With its small size, the squirrel is able to search more efficiently what you want in the piles of valuables you borrowed.<br
 			>It makes it slightly faster to investigate them!<hr class='divider'>
-			<b>Effect: </b>Valuables give +25% progress exp instead of +20%.<hr class='divider'>
+			<b>Effect: </b>Valuables give +25% progress exp instead of +20%. Base progress exp is raised to 400.<hr class='divider'>
 			]]></squirrel_2>
             <story_1><![CDATA[<b>20% Investigated:</b>⮀ You catch some snippets of truly interesting gossip. Apparently a Mage and Warrior duo had stopped in and were sticking around for a little while.]]></story_1>
             <story_2><![CDATA[<b>40% Investigated:</b>⮀ People are really helpful when you help them, you're almost starting to get a reputation as a busybody around here, but it's offset in that you actually do help people.]]></story_2>
@@ -3212,8 +3273,8 @@
 			<tooltip2><![CDATA[ completions to the guild you're in.<br>
 			• Can only be done once per loop (too dangerous to do it twice).<br>
 			• If you got both transitive items to quality 3 in previous loops, unlock the next effect: <br>
-			• Having no guild will give you both transitive items at quality 1.<br>
-			• If done so, doesn't allow you to get into Merchanton's guilds (they're angry at you).<br>
+			Having no guild will give you both transitive items at quality 1.<br>
+			If done so, doesn't allow you to get into Merchanton's guilds (they're angry at you).<br>
 			• Unlocked once E rank has been reached in both guilds in previous loops.<br>
 			• <b>Note: Until the crafting guild opens its door, only E rank in the adventurer guild is required to unlock this action!</b><hr class='divider'>
         ]]></tooltip2>

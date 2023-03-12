@@ -27,6 +27,7 @@ function View() {
         this.changeTheme(true);
 		this.createTravelMenu();
         this.adjustGoldCosts();
+		this.adjustExpProgressGains();
         this.adjustExpGains();
         this.updateTeamCombat();
         this.updateLoadoutNames();
@@ -169,6 +170,7 @@ function View() {
     };
 	
 	this.adjustTooltipPosition = function(tooltipDiv) {
+				
         let parent = tooltipDiv.parentNode;
         let y = parent.getBoundingClientRect().y;
         let windowHeight = window.innerHeight;
@@ -179,6 +181,17 @@ function View() {
         } else {
             tooltipDiv.classList.remove("showthisOver");
         }
+		
+		const x = parent.getBoundingClientRect().x;
+		const widthTooltip = tooltipDiv.getBoundingClientRect().width;
+		const windowWidth = window.innerWidth;
+		const distanceToBorder = windowWidth - (x+widthTooltip+15);		
+		if(distanceToBorder < 0) {
+			tooltipDiv.style.marginLeft = `${distanceToBorder - 20}px`;
+		} else {
+			tooltipDiv.style.marginLeft = "0px";
+		}
+		
     }
 	
 	this.adjustStoryTooltipPosition = function(tooltipDiv) {
@@ -192,6 +205,16 @@ function View() {
         } else {
             tooltipDiv.classList.remove("showthisOverStory");
         }
+		
+		const x = parent.getBoundingClientRect().x;
+		const widthTooltip = tooltipDiv.getBoundingClientRect().width;
+		const windowWidth = window.innerWidth;
+		const distanceToBorder = windowWidth - (x+widthTooltip+15);		
+		if(distanceToBorder < 0) {
+			tooltipDiv.style.marginLeft = `${distanceToBorder - 20}px`;
+		} else {
+			tooltipDiv.style.marginLeft = "0px";
+		}
     }
 
     this.updateStatGraphNeeded = false;
@@ -1002,6 +1025,7 @@ function View() {
 
     this.createTownAction = function(action) {
         let actionStats = "";
+		let actionProgress = "";
         let actionSkills = "";
         const statKeyNames = Object.keys(action.stats);
         for (let i = 0; i < 10; i++) {
@@ -1012,6 +1036,9 @@ function View() {
                 }
             }
         }
+		if(action.progressExp){
+			actionProgress =`<div class='bold'>${_text("actions>tooltip>exp_progress")}:</div><span id='expProgressGain${action.varName}'></span><br>`;
+		}
         if (action.skills !== undefined) {
             const skillKeyNames = Object.keys(action.skills); 
             const l = skillList.length;
@@ -1042,7 +1069,7 @@ function View() {
         }
 		
         let extraImage = "";
-        const extraImagePositions = ["margin-top:17px;margin-left:5px;", "margin-top:17px;margin-left:-55px;", "margin-top:0px;margin-left:-55px;"];
+        const extraImagePositions = ["margin-top:17px;margin-left:5px;", "margin-top:17px;margin-left:-55px;", ""];
         if (action.affectedBy) {
             for (let i = 0; i < action.affectedBy.length; i++) {
                 extraImage += `<img src='img/${camelize(action.affectedBy[i])}.svg' class='smallIcon' draggable='false' style='position:absolute;${extraImagePositions[i]}'>`;
@@ -1062,8 +1089,16 @@ function View() {
 			extraImage += `<img id= "favMode${action.name}" src='${favModeImage}' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:5px;visibility: visible;'>`
 		}
 		
-		let actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage}`;
-		if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='superLargeIcon' draggable='false'>${extraImage}`;
+		let progressCompleteCheckMark = "";
+		if((action.type === "progress" && towns[action.townNum][`exp${action.varName}`] >= 505000)
+		   || (action.name === "Throw Party" && towns[action.townNum].expMet >= 505000)){
+			progressCompleteCheckMark = `<img id= "progressComplete${action.varName}" src='img/checkMark.svg' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:-55px;visibility: visible;'>`;
+		} else {
+			progressCompleteCheckMark = `<img id= "progressComplete${action.varName}" src='img/checkMark.svg' class='smallIcon' draggable='false' style='position:absolute;margin-top:0px;margin-left:-55px;visibility: hidden;'>`;
+		}
+		
+		let actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
+		if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
 
 		let name = ""
 		if(action.heritage === undefined || action.heritage.Squirrel === false){
@@ -1099,10 +1134,11 @@ function View() {
                 <div style='position:relative'>
 					${actionImage}
                 </div>
-                <div class='showthis' draggable='false'>
+                <div class='showthis' draggable='false' >
 					<span id="actionTooltipMode${action.varName}">
                     ${actionTooltip}
 					</span>
+					${actionProgress}
                     ${actionSkills}
                     ${actionStats}
                     <div class='bold'>${_text("actions>tooltip>mana_cost")}:</div> <div id='manaCost${action.varName}'>${formatNumber(action.manaCost())}</div><br>
@@ -1204,9 +1240,15 @@ function View() {
 
 					
 			} else {	
+				
 				newActionTooltip = action.tooltip+`<span id='goldCost`+action.varName+`'></span>`+((action.goldCost === undefined) ? "" : action.tooltip2)	
 
 				if(action.storyReqs !== undefined){
+					
+					storeTextStories[action.varName] = document.getElementById(divName).children[2].innerHTML;
+					storeCompletedStories[action.varName] = document.getElementById(divName).classList.value.includes("storyContainerCompleted");
+					
+					document.getElementById(divName).classList.remove("storyContainerCompleted");
 					document.getElementById(divName).children[2].innerHTML = storeTextStories[action.varName];
 					
 					if (storeCompletedStories[action.varName]) {
@@ -1214,6 +1256,7 @@ function View() {
                         } else {
                             document.getElementById(divName).classList.remove("storyContainerCompleted");
                         }
+						
 				}					
 				
 			}
@@ -1229,11 +1272,15 @@ function View() {
 			}
 						
 			document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
-			this.adjustManaCost(action.name, squirrelMode);
-			this.updateTrainingLimits();
+			
+			//this.updateTrainingLimits();
+			
+			if(action.tooltipRefresh && action.tooltipRefresh.includes("squirrelMode")){
+				this.adjustTooltip(action);
+			}
 			
         }
-		this.updateResources();
+		//this.updateResources();
 		this.adjustGoldCosts();
 		
 	};
@@ -1250,13 +1297,17 @@ function View() {
 			name = action.heritage.Squirrel;
 		}
 		
-		const tooltipLevel = squirrelLevel[camelize(action.varName)]
-		if(tooltipLevel === undefined || tooltipLevel === 0){	
-			newActionTooltip =  _text("actions>squirrel_default"); 
-		} else {
-			newActionTooltip =  _text("actions>"+getXMLName(name)+">squirrel_"+tooltipLevel); 
+		if(options.mergeModes){
+			newActionTooltip = action.tooltip+`<span id='goldCost`+action.varName+`'></span>`+((action.goldCost === undefined) ? "" : action.tooltip2);
 		}
 		
+		const tooltipLevel = squirrelLevel[camelize(action.varName)]
+		if(tooltipLevel === undefined || tooltipLevel === 0){	
+			newActionTooltip +=  _text("actions>squirrel_default"); 
+		} else {
+			newActionTooltip +=  _text("actions>"+getXMLName(name)+">squirrel_"+tooltipLevel); 
+		}
+				
 		document.getElementById("actionTooltipMode"+action.varName).innerHTML = newActionTooltip;
 		
 		if(action.storyReqs !== undefined){
@@ -1309,10 +1360,29 @@ function View() {
             this.adjustGoldCost(action.varName, action.goldCost());
         }
     };
+	this.adjustExpProgressGain = function(action){
+		const expGain = action.progressExp(squirrelMode);
+		let progressLevel = getLevelFromExp(towns[action.townNum][`exp${action.varName}`]);
+		
+		if(action.name == "Throw Party") progressLevel = getLevelFromExp(towns[action.townNum][`expMet`]);
+		
+		const expToLevelUp = getExpOfLevel(progressLevel+1) - getExpOfLevel(progressLevel);
+		const percentLevelUp = (expGain / expToLevelUp) * 100;
+		if(percentLevelUp <= 100){
+			document.getElementById(`expProgressGain${action.varName}`).textContent = ` ${expGain.toFixed(0)} (${percentLevelUp.toFixed(1)}%)`;
+		} else {
+			document.getElementById(`expProgressGain${action.varName}`).textContent = ` ${expGain.toFixed(0)} (100+%)`;
+		}
+	};
+	this.adjustExpProgressGains = function(action){
+		for (const action of totalActionList) {
+            if (action.progressExp) this.adjustExpProgressGain(action);
+        }
+	};
     this.adjustExpGain = function(action) {
         for (const skill in action.skills) {
             if (Number.isInteger(action.skills[skill])) document.getElementById(`expGain${action.varName}${skill}`).textContent = ` ${action.skills[skill].toFixed(0)}`;
-            else document.getElementById(`expGain${action.varName}${skill}`).textContent = ` ${action.skills[skill]().toFixed(0)}`;
+            else document.getElementById(`expGain${action.varName}${skill}`).textContent = ` ${action.skills[skill](squirrelMode).toFixed(0)}`;
         }
     };
     this.adjustExpGains = function() {
@@ -1320,6 +1390,13 @@ function View() {
             if (action.skills) this.adjustExpGain(action);
         }
     };
+
+	this.adjustTooltip = function(action) {
+		this.adjustManaCost(action.name, squirrelMode);
+		if(action.goldCost) this.adjustGoldCost(action.varName, action.goldCost());
+		if(action.progressExp) this.adjustExpProgressGain(action);
+		if(action.skills) this.adjustExpGain(action);
+	};
 
     this.createTownInfo = function(action) {
         const totalInfoText =
@@ -1631,6 +1708,12 @@ function View() {
 				
 		document.getElementById(`favMode${actionName}`).src = favModeImage;
 		document.getElementById(`favMode${actionName}`).style.visibility = favVisible;
+		
+	}
+	
+	this.updateCompletedProgress = function(varName) {
+		
+		document.getElementById(`progressComplete${varName}`).style.visibility = "visible";
 		
 	}
 }

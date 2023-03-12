@@ -641,7 +641,7 @@
         <div id="townWindow" style="width:100%;text-align:center;">
 			<div id= "lineTop" style="width:100%;text-align:center;">
 				<div class="showthat">
-					<div class="large bold"><div class="bold" id="townName"></div></div>
+					<div class="large bold"><div class="bold" id="townName" onMouseOver="view.adjustTooltipPosition(document.getElementById(`townDesc`))"></div></div>
 					<div id='townDesc' class='showthis'></div>
 				</div>
 				<div style="float:left;margin-left:150px;" class="actionIcon fa fa-arrow-left" id="townViewLeft" onclick="view.showTown(townShowing, arrow.left)"></div>
@@ -677,7 +677,7 @@
 		<div class="showthat" style="display:block;margin:5px auto 5px auto;text-align:center;" onclick = "checkSquirrelMode()">
 			<img src='img/human.svg' class='smallIcon' draggable='false' style="float:left;margin-left:150px" id="iconSquirrelMode">
             <span class='large bold' id="squirrelModeTitle"></span>
-			<div class='showthis' id ="squirrelModeTooltip"></div>
+			<div class='showthis' id ="squirrelModeTooltip" style="width: 550px"></div>
 			<input style="float:right;margin-right:150px;margin-top:-1px" type="checkbox" id="squirrelModeCheck" >
         </div>
 		

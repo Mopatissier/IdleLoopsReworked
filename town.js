@@ -90,6 +90,17 @@ function Town(index) {
             }
         }
         view.updateProgressAction(varName, towns[curTown]);
+		
+		for(const action of totalActionList){
+			if(action.tooltipRefresh && action.tooltipRefresh.includes(varName)){
+				view.adjustTooltip(action);
+			}
+		}
+		
+		if(this[`exp${varName}`] >= 505000){
+			view.updateCompletedProgress(varName);
+			if(varName === "Met") view.updateCompletedProgress("ThrowParty");
+		}
     };
 
     this.getPrcToNext = function(varName) {
@@ -125,6 +136,7 @@ function Town(index) {
             this[`lootFrom${varName}`] += rewardFunc();
         }
         view.updateRegular(varName, this.index);
+		
     };
 
     this.createVars = function(varName) {
