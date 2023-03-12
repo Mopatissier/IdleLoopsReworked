@@ -3349,7 +3349,7 @@ Action.Haggle = new Action("Haggle", {
     },
 	canStart() {
 		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
-		return squirrelRequirements && resources.reputation >= 1; 
+		return squirrelRequirements && (resources.reputation >= 1 || (this.squirrelAction && getLevelSquirrelAction("Haggle") >= 2)); 
     },
     cost() {
         addResource("reputation", -1);
@@ -4937,7 +4937,7 @@ Action.FeedAnimals = new Action("Feed Animals", {
     },
     finish() {
 		
-		towns[FORESTPATH].finishProgress(this.varName, this.progress);
+		towns[FORESTPATH].finishProgress(this.varName, this.progressExp());
    
 		if(getLevelSquirrelAction("Pet Squirrel") === 0) levelUpSquirrelAction("Pet Squirrel");
 		if(getLevelSquirrelAction("Pet Squirrel") === 1) levelUpSquirrelAction("Pet Squirrel");
@@ -6131,7 +6131,7 @@ Action.GetDrunk = new Action("Get Drunk", {
         return towns[MERCHANTON].getLevel("City") >= 20;
     },
     finish() {
-        towns[MERCHANTON].finishProgress(this.varName,this.progress());
+        towns[MERCHANTON].finishProgress(this.varName,this.progressExp());
     },
 });
 

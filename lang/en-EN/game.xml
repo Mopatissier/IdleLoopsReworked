@@ -953,7 +953,7 @@
         </imbue_soul>
         <tooltip>
             <level>Level</level>
-            <no_reset_on_restart><![CDATA[Buffs last through resets.<br>You can click on the right hand number to edit it and adjust the cap for that buff.<br>(Buff actions will automatically fail and not spend soulstones past your set cap)]]></no_reset_on_restart>
+            <no_reset_on_restart><![CDATA[Buffs last through resets.]]></no_reset_on_restart>
         </tooltip>
     </buffs>
     <towns>
