@@ -1,5 +1,7 @@
 "use strict";
 
+const TUTORIALIS = 12;
+
 const BEGINNERSVILLE = 0;
 const FORESTPATH = 1;
 const MERCHANTON = 2;
@@ -24,17 +26,17 @@ const arrow = {
 };
 
 const zoneOrder = [
-	[9],
-	[0],
-	[1],
-	[2],
-	[3],
-	[4],
-	[5],
-	[6],
-	[7],
-	[8],
-	[10]
+	[SANCTUARY],
+	[BEGINNERSVILLE],
+	[FORESTPATH],
+	[MERCHANTON],
+	[MTOLYMPUS, CURSEDOCEAN],
+	[VALHALLA],
+	[STARTINGTOWN],
+	[JUNGLEPATH],
+	[COMMERCEVILLE],
+	[VLOLYMPUS],
+	[CHRONOSLAIR]
 ];
 
 function Town(index) {

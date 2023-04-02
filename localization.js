@@ -104,11 +104,13 @@ window._txtsObj = Localization.txtsObj;
 function _text(txt){
 	let textToGet = _txt(txt);
 	
-	if(options.ferretMode){
-		textToGet = textToGet.replaceAll("squirrel", "ferret");
-		textToGet = textToGet.replaceAll("Squirrel", "Ferret");
-		textToGet = textToGet.replaceAll("nut", "bone");
-	}
+	//if(options.ferretMode){
+		const name = _txt(`animals>${animals[randomAnimal]}>name`);
+		const food = _txt(`animals>${animals[randomAnimal]}>food`);
+		textToGet = textToGet.replaceAll("squirrel", name);
+		textToGet = textToGet.replaceAll("Squirrel", capFirstLetter(name));
+		textToGet = textToGet.replaceAll("nut", food);
+	//}
 	
 	return textToGet;
 }

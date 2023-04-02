@@ -5,7 +5,7 @@ let storeTextStories = [];
 let storeCompletedStories = [];
 
 function View() {
-    this.initalize = function() {
+    this.initalize = function() { //this.setTutorial
         this.createStats();
         this.updateStats();
         this.updateSkills();
@@ -20,7 +20,7 @@ function View() {
         this.updateProgressActions();
         this.updateLockedHidden();
         this.updateSoulstones();
-        this.showTown(0, arrow.none);
+        this.showTown(BEGINNERSVILLE, arrow.none);
         this.showActions(false);
         this.updateTrainingLimits();
         this.changeStatView();
@@ -41,6 +41,7 @@ function View() {
         this.updateActionTooltips();
 		this.updateBuffCaps(true);
 		this.updateStartingMana();
+		this.updateTutorialStage(tutorialLevel);
     };
 
     this.statLocs = [
@@ -170,7 +171,7 @@ function View() {
     };
 	
 	this.adjustTooltipPosition = function(tooltipDiv) {
-				
+								
         let parent = tooltipDiv.parentNode;
         let y = parent.getBoundingClientRect().y;
         let windowHeight = window.innerHeight;
@@ -190,7 +191,7 @@ function View() {
 			tooltipDiv.style.marginLeft = `${distanceToBorder - 20}px`;
 		} else {
 			tooltipDiv.style.marginLeft = "0px";
-		}
+		}	
 		
     }
 	
@@ -557,7 +558,7 @@ function View() {
 			}
 			
 			let actionImage = `<img src='img/${camelize(action.name)}.svg' class='smallIcon imageDragFix'>`;
-			if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='smallIcon imageDragFix'>`;
+			if(/*options.ferretMode &&*/ action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='smallIcon imageDragFix'>`;
 			
             totalDivText +=(
                 `<div
@@ -608,7 +609,7 @@ function View() {
 			if(action.squirrelAction) squirrelModeIcon = `<img src='${squirrelIcon}' class='smallIcon imageDragFix' style='margin-left:4px'>`;
 			
 			let actionImage = `<img src='img/${camelize(action.name)}.svg' class='smallIcon'>`;
-			if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='smallIcon'>`;
+			if(/*options.ferretMode && */action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='smallIcon'>`;
 				
             totalDivText +=
                 `<div class='curActionContainer small' onmouseover='view.mouseoverAction(${i}, true)' onmouseleave='view.mouseoverAction(${i}, false)'>
@@ -851,15 +852,18 @@ function View() {
 
     this.showTown = function(townNum, arrowDirection) {
 						
-		//Just as a reminder :
+		// Just as a reminder:
 		// console.log("Zone n°4 has " + zoneOrder[4]);
 		// console.log("Cursed ocean is in zone n°" + zoneOrder.findIndex(arr => arr.includes(CURSEDOCEAN)));
 		// console.log("In zone 4, Mt Olympus is in place n°" + zoneOrder[4].indexOf(MTOLYMPUS));
 		
+		if(tutorialLevel < 6) townNum = TUTORIALIS;
+		
 		let townTarget;
 		const currentZone = zoneOrder.findIndex(arr => arr.includes(townNum));
-		const altZone = (zoneOrder[currentZone].indexOf(townNum) === 0 ? 1 : 0);
-								
+		let altZone = 1;
+		if(zoneOrder[currentZone] !== undefined) altZone = (zoneOrder[currentZone].indexOf(townNum) === 0 ? 1 : 0);
+		
 		switch(arrowDirection){
 		
 			case arrow.none: townTarget = townNum;
@@ -880,7 +884,7 @@ function View() {
 							 townTarget = zoneOrder[currentZone][altZone];
 							break;
 		}
-		if(!towns[townTarget].unlocked()) return;
+		if(!towns[townTarget].unlocked() && townNum !== TUTORIALIS) return;
 		
 		const newZone = zoneOrder.findIndex(arr => arr.includes(townTarget));
 				
@@ -908,7 +912,7 @@ function View() {
 			document.getElementById("townViewLeftAlt").style.visibility = "hidden";
 		}
 		
-		if(zoneOrder[newZone][altZone] !== undefined && towns[zoneOrder[newZone][altZone]].unlocked()){
+		if(zoneOrder[newZone] !== undefined && zoneOrder[newZone][altZone] !== undefined && towns[zoneOrder[newZone][altZone]].unlocked()){
 			document.getElementById("townViewAlt").style.visibility = "visible";
 		} else {
 			document.getElementById("townViewAlt").style.visibility = "hidden";
@@ -924,9 +928,10 @@ function View() {
 		else actionOptionsTown[townTarget].style.display = "block";
 		
 		townInfos[townTarget].style.display = "block";
-        document.getElementById("townName").textContent = _text(`towns>town${townTarget}>name`);
-        document.getElementById("townDesc").textContent = _text(`towns>town${townTarget}>desc`);
         townShowing = townTarget;
+		
+		document.getElementById("townName").textContent = _text(`towns>town${townTarget}>name`);
+		document.getElementById("townDesc").textContent = _text(`towns>town${townTarget}>desc`);
 						
     };
 
@@ -1098,7 +1103,7 @@ function View() {
 		}
 		
 		let actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
-		if(options.ferretMode && action.name === "Pet Squirrel") actionImage = `<img src='img/ferret.png' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
+		if(/*options.ferretMode && */action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
 
 		let name = ""
 		if(action.heritage === undefined || action.heritage.Squirrel === false){
@@ -1170,12 +1175,16 @@ function View() {
                 }
                 storyTooltipText += "<br>";
             }
-    	
+			    	
+			actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>`;
+			if(/*options.ferretMode && */action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='superLargeIcon' draggable='false'>`;
+
+		
             const storyDivText =
                 `<div id='storyContainer${action.varName}' class='storyContainer showthat' draggable='false' onmouseover='hideNotification("storyContainer${action.varName}"), view.updateActionStory("${action.varName}")'>${action.label}
                     <br>
                     <div style='position:relative'>
-                        <img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>
+                        ${actionImage}
                         <div id='storyContainer${action.varName}Notification' class='notification storyNotification'></div>
                     </div>
                     <div class='showthisstory' draggable='false'>
@@ -1244,12 +1253,10 @@ function View() {
 				newActionTooltip = action.tooltip+`<span id='goldCost`+action.varName+`'></span>`+((action.goldCost === undefined) ? "" : action.tooltip2)	
 
 				if(action.storyReqs !== undefined){
-					
-					storeTextStories[action.varName] = document.getElementById(divName).children[2].innerHTML;
-					storeCompletedStories[action.varName] = document.getElementById(divName).classList.value.includes("storyContainerCompleted");
-					
+															
 					document.getElementById(divName).classList.remove("storyContainerCompleted");
 					document.getElementById(divName).children[2].innerHTML = storeTextStories[action.varName];
+					
 					
 					if (storeCompletedStories[action.varName]) {
                             document.getElementById(divName).classList.add("storyContainerCompleted");
@@ -1432,10 +1439,10 @@ function View() {
                     </div>`;
         }
         const completedTooltip = action.completedTooltip ? action.completedTooltip() : "";
-        let mouseOver = "";
-        if (varName === "SDungeon") mouseOver = "onmouseover='view.showDungeon(0)' onmouseout='view.showDungeon(undefined)'";
-        else if (varName === "LDungeon") mouseOver = "onmouseover='view.showDungeon(1)' onmouseout='view.showDungeon(undefined)'";
-        else if (varName === "TheSpire") mouseOver = "onmouseover='view.showDungeon(2)' onmouseout='view.showDungeon(undefined)'";
+        let mouseOver = ""; 
+        if (varName === "SDungeon") mouseOver = "onmouseover='view.showDungeon(0); view.adjustTooltipPosition(completedContainerSDungeon)' onmouseout='view.showDungeon(undefined)'";
+        else if (varName === "LDungeon") mouseOver = "onmouseover='view.showDungeon(1); view.adjustTooltipPosition(completedContainerLDungeon)' onmouseout='view.showDungeon(undefined)'";
+        else if (varName === "TheSpire") mouseOver = "onmouseover='view.showDungeon(2); view.adjustTooltipPosition(completedContainerTheSpire)' onmouseout='view.showDungeon(undefined)'";
         const totalDivText =
             `<div class='townStatContainer' style='text-align:center' id='infoContainer${varName}' >
                 <div class='bold townLabel' style='float:left' id='multiPartName${varName}'></div>
@@ -1640,6 +1647,7 @@ function View() {
 	
 	
 	this.createTravelMenu = function() {
+		
 		let travelMenu = document.getElementById("travelMenu");
 		travelMenu.innerHTML = "";
 		
@@ -1716,6 +1724,45 @@ function View() {
 		document.getElementById(`progressComplete${varName}`).style.visibility = "visible";
 		
 	}
+	
+	this.updateTutorialStage = function(level){
+				
+		if(level < 6){
+			document.getElementById("actionsViewRight").style.visibility = "hidden";
+			document.getElementById("storyContainer").style.display = "none";
+			document.getElementById("travelMenuArrow").style.visibility = "hidden";
+		} else {
+			document.getElementById("actionsViewRight").style.visibility = "visible";
+			document.getElementById("storyContainer").style.display = "inline-block";
+			document.getElementById("travelMenuArrow").style.visibility = "visible";
+		}
+		
+		if(level < 5){
+			document.getElementById("squirrelModeContainer").style.display = "none";
+		} else {
+			document.getElementById("squirrelModeContainer").style.display = "block";
+		}
+		
+		if(level < 2){
+			document.getElementById("statsColumn").style.visibility = "hidden";
+		} else {
+			document.getElementById("statsColumn").style.visibility = "inline-block";
+		}
+		
+		if(level < 1){
+			document.getElementById("actionsColumn").style.visibility = "hidden";
+		} else {
+			document.getElementById("actionsColumn").style.visibility = "inline-block";
+		}
+		
+		document.getElementById("tutorial").style.display = "visible";
+		document.getElementById("tutorialText").innerHTML = (_text(`tutorial${level}`));
+		
+	}
+	
+	this.closeTutorial = function() {
+		document.getElementById("tutorial").style.display = "none";
+	}
 }
 
 function unlockGlobalStory(num) {
@@ -1734,7 +1781,7 @@ const nextActionsDiv = document.getElementById("nextActionsList");
 const actionOptionsTown = [];
 const actionStoriesTown = [];
 const townInfos = [];
-for (let i = 0; i <= 10; i++) {
+for (let i = 0; i <= 12; i++) {
     actionOptionsTown[i] = document.getElementById(`actionOptionsTown${i}`);
     actionStoriesTown[i] = document.getElementById(`actionStoriesTown${i}`);
     townInfos[i] = document.getElementById(`townInfo${i}`);

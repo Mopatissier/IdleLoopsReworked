@@ -357,6 +357,96 @@ Action.HaulZ5 = new Action("HaulZ5", HaulAction(5));
 Action.HaulZ6 = new Action("HaulZ6", HaulAction(6));
 
 //====================================================================================================
+//Zone tutorial - Tutorialis
+//====================================================================================================
+
+Action.DeliverPotionOne = new Action("Deliver Potion One", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Per: 0.2,
+        Con: 0.3,
+        Spd: 0.5,
+    },
+    manaCost() {
+        return 500;
+    },
+	allowed() {
+		return 1;
+	},
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return true;
+    },
+    unlocked() {
+        return true;
+    },
+    finish() {
+		
+		console.log("Delivery done!");
+
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Deliver Potion One")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Deliver Potion One");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Deliver Potion One")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+//====================================================================================================
 //Zone 0 - Squirrel Sanctuary
 //====================================================================================================
 
@@ -5493,7 +5583,7 @@ Action.TalkToWitch = new Action("Talk To Witch", {
 		let divider = 100/3;
 		if(getLevelSquirrelAction("DarkForest") === 1 && (this.squirrelAction || squirrelTooltip)) divider = 25;
 		if(getLevelSquirrelAction("DarkForest") >= 2 && (this.squirrelAction || squirrelTooltip)) divider = 20;
-		return  50 * (1 + towns[FORESTPATH].getLevel("Witch") / divider);
+		return  50 * (1 + towns[FORESTPATH].getLevel("DarkForest") / divider);
 	},
     manaCost() {
         return 3000;

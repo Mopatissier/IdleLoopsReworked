@@ -165,6 +165,7 @@ let stonesUsed;
 // eslint-disable-next-line prefer-const
 let townShowing = 0;
 // eslint-disable-next-line prefer-const
+let tutorialLevel = 6;
 let actionStoriesShowing = false;
 let squirrelMode = false;
 let townsUnlocked = [];
@@ -248,6 +249,60 @@ const storyReqs = {
 const squirrelLevel = {};
 const favMode = {};
 
+const animals = [
+	"squirrel",
+	"ferret",
+	"tapir",
+	"turtle",
+	"flamingo",
+	"kangaroo",
+	"penguin",
+	"snake",
+	"snail",
+	"scorpion",
+	"crab",
+	"raven",
+	"leech",
+	"bee",
+	"pangolin",
+	"axolotl",
+	"chicken",
+	"dog",
+	"horse",
+	"squid",
+	"sheep",
+	"duck",
+	"octopus",
+	"frog",
+	"cat",
+	"spider",
+	"elephant",
+	"bat",
+	"armadillo",
+	"fox",
+	"beaver",
+	"hedgehog",
+	"porcupine",
+	"anteater",
+	"bear",
+	"rat",
+	"koala",
+	"rabbit",
+	"raccoon",
+	"pig",
+	"sloth",
+	"swan",
+	"goblin",
+	"rhinoceros",
+	"toucan",
+	"donkey",
+	"goat",
+	"triceratops",
+	"wyvern",
+	"gecko"
+];
+let randomAnimal = 0;
+
 const curDate = new Date();
 let totalOfflineMs = 0;
 let totalFatigueMs = 0;
@@ -304,10 +359,6 @@ function loadOption(option, value) {
 	}
 }
 
-function closeTutorial() {
-    document.getElementById("tutorial").style.display = "none";
-}
-
 function clearSave() {
     window.localStorage[saveName] = "";
 }
@@ -343,7 +394,7 @@ function load() {
     let toLoad = {};
     // has a save file
     if (window.localStorage[saveName] && window.localStorage[saveName] !== "null") {
-        closeTutorial();
+        //closeTutorial();
         toLoad = JSON.parse(window.localStorage[saveName]);
     }
 
@@ -428,7 +479,7 @@ function load() {
     } else {
         townsUnlocked = toLoad.townsUnlocked === undefined ? [0] : toLoad.townsUnlocked;
     }
-    for (let i = 0; i <= 10; i++) {
+    for (let i = 0; i <= 12; i++) {
         towns[i] = new Town(i);
     }
     actionTownNum = toLoad.actionTownNum === undefined ? 0 : toLoad.actionTownNum;
@@ -556,13 +607,18 @@ function load() {
         }
     }
 	
-	if(options.ferretMode){
-		squirrelIcon = 'img/ferret.png';
-		document.getElementById("favIcon16x16").href = "faviconFerret-16x16.png";
-		document.getElementById("favIcon32x32").href = "faviconFerret-32x32.png";
+	//if(options.ferretMode){
+		randomAnimal = Math.floor(Math.random() * animals.length);
+		//randomAnimal = 2;
+		
+		if(randomAnimal == 1) squirrelIcon = 'animals/ferret.png';
+		else squirrelIcon = `animals/${animals[randomAnimal]}.svg`;
+				
+		document.getElementById("favIcon16x16").href = `animals/favicon${capFirstLetter(animals[randomAnimal])}-16x16.png`;
+		document.getElementById("favIcon32x32").href = `animals/favicon${capFirstLetter(animals[randomAnimal])}-32x32.png`;
 		document.getElementById("resourceSquirrel").src = squirrelIcon;
 		
-	}
+	//}
 	
 	if(toLoad.overclock !== undefined){
 		overclock = toLoad.overclock;
@@ -592,6 +648,14 @@ function load() {
             }
         }
     }
+	
+	/*if(toLoad.tutorialLevel !== undefined){
+		tutorialLevel = toLoad.tutorialLevel;
+	}
+	if(tutorialLevel === 0 && towns[0].expWander > 0){
+		tutorialLevel = 6;
+	}
+	tutorialLevel = 3;*/
     
     view.initalize();
 

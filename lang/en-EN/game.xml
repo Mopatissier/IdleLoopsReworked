@@ -10,6 +10,19 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.8"><![CDATA[
+            <b> April 1st, 2023 </b><br>
+			This is just a small maintenance update, nothing big is happening. Wait, what do you mean, "squirrel"? There has never been any squirrel in this game? There's only a [SSSSHHHRRRR], and it always has been this way.<br><br>
+			<b>Quality of life: </b><br>
+			• The dungeon tooltips now always fit in the windows, like with the action tooltip with the previous update.<br><br>
+			<b>Glitches and fixes: </b><br>
+			• The witch squirrel action ignored the dark forest explored percentage.<br>			
+			• Changed a few tooltips to make the shortcut/hermit and dark forest/witch relation more clear.<br>	
+			• Action stories now stop being stuck in squirrel mode.<br>	
+			• The pet squirrel action in ferret mode didn't change its icon for the action stories.<br>	
+			• Fixed a glitch in the space-time continuum.<br>
+			It's possible that it brings some weird glitches like changing the squirrel identity into a [SSSSHHHRRRR], so be careful!<br>	
+            ]]></version>
 			<version verNum="0.3.7"><![CDATA[
             <b> March 12th, 2023 </b><br>
 			I liked how I structured the last changelog, so I'll do the same this time again!<br>
@@ -356,23 +369,113 @@
             <update_rate>Updates per second:</update_rate>
         </options>
     </menu>
-    <tutorial><![CDATA[
-      TUTORIAL:<br>
+    <tutorial0><![CDATA[
+	  CONGRATULATION!<br><br>
 	  
-	  You are stuck in a time loop.<br>
-	  You have 500 mana until the loop restarts.<br>
-	  1 second = 100 mana.<br>
-	  Wander around to find pots: some will have mana inside.<br>
-	  Your character will remember which one have mana and which one don't, but you'll have to check them first.<br>
-	  Try to complete the town first!<br>
-	  And remember: read all the tooltips!<br><br>
+	  You have been selected to be a potion courier for an alchemist guild.<br>
+	  That's what you've always dreamed of!<br>
+	  But how does it all work, again?<br>
+	  Well, there are 2 things to keep in mind. They are both at the top of the screen:<br>
+	  <img src ="img/tutorial_0.png"><br>
+	  <b>1:</b> Every potion starts with 500 mana. Every second, they lose mana: once they get to 0, the potion becomes useless and you have to start over.<br>
+	  One second = 100 mana. So you have 5 seconds to deliver them.<br>
+	  <b>2:</b> You can get items to help you for your potion delivery business. Once a delivery is finished, you have to place them back where you got them.<br>
+	  Sadly you can't keep them between deliveries... That would have been really helpful!<br><br>
+	  
+	  Now that you know the essentials, it's time to get to your first day of work!<br>
+	  <b>Surely everything will go according to plan and you won't have any shenanigans involving a time loop, right?!</b><br><br>
+	  
+	  <b>All of these tutorial pop-ups will be avaible in the FAQ tab so you can skip them and read them later if you want!</b><br><br>
 	  
 	  This game is a total rework of the original game Idle Loops.<br>
-	  Starting as a balance patch, it became an entirely new game in itself.<br>
+	  Starting as a balance patch, it became an entirely new game centered about a squirrel.<br>
 	  To play the latest version of the original game, check <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
-	  This is one of several versions of the game: for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
+	  This is one of several versions of the original game: for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
 	  Thanks for playing, and have fun!<br><br>
-      ]]></tutorial>
+      ]]></tutorial0>
+	  <tutorial1><![CDATA[
+	  <b>ACTION LIST:</b><br><br>
+	  
+	  Congrats! That was a first successful delivery! You're fit for this stuff!<br>
+	  But it won't be that easy every time. Thankfully you're a master at planning your day, so here's a new tool:<br>
+	  <img src ="img/tutorial_1.png"><br>
+	  <b>1:</b>The right part shows every action you'll do for each delivery.<br>
+	  <b>2:</b>The left part shows your current delivery progression.<br>
+	  <b>3:</b>This is a stack of actions: to add it, click (and drag) the actions from the action options to place them in the list.<br>
+	  <b>4:</b>There's a bunch of signs, here's a small description (ignore the star and human/squirrel icons for now!):<br>
+	  <i class='actionIcon far fa-circle'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Cap the number of actions to its max value.<br>
+	  <i class='actionIcon fas fa-plus'></i>/<i class='actionIcon fas fa-minus'></i> &nbsp;&nbsp;: Add/Substract one action.<br>
+	  <i class='actionIcon fas fa-arrows-alt-h'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Split the stack of actions in two.<br>
+	  <i class='actionIcon fas fa-sort-up'></i>/<i class='actionIcon fas fa-sort-down'></i></i> &nbsp;&nbsp;: Move up/down the stack.<br>
+	  <i class='actionIcon far fa-check-circle'></i><span style="margin-left: -2px;"> /</span><i class='actionIcon far fa-times-circle'></i> &nbsp;: Enable/disable a stack of actions.<br>
+	  <i class='actionIcon fas fa-times'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Remove the stack of actions.<br><br>
+	  
+	  Well, that said, the best way to understand is to try it yourself. There's a few more options left for you to try.<br>
+	  <b>So don't hestitate to try everything to understand it! If you need a refresher, you can always look at the FAQ.</b><br><br>
+      ]]></tutorial1>
+	  <tutorial2><![CDATA[
+	  <b>STATS:</b><br><br>
+	  
+	  Wow, you're really good at following your plans down to a T!<br>
+	  But how good-good at it are you really? That's where the next tool comes in handy:<br>
+	  <img src ="img/tutorial_2_0.png"><br>
+	  <b>1:</b> Your stat level show how fast you can complete actions. The higher, the less mana you spend for actions.<br>
+	  Your stats reset back to 0 after each delivery.<br>
+	  <b>2:</b> As you gain some stat exp, you also gain some talent exp: talent levels multiply stat exp gain.<br>
+	  They don't reset between deliveries!<br>
+	  <b>3:</b>This shows how many soulstones you have. Like talents, they multiply stat exp gain.<br>
+	  But as they're hidden deep in dungeons, you probably won't ever come to contact with one, right?<br><br>
+	  
+	  Well, that's all good and well, but how do you get them? Well:<br>
+	  <img src ="img/tutorial_2_1.png"><br>
+	  <b>1:</b> You convert mana into experience: 50% Spd means 50% of the base mana cost is gained as speed exp.<br>
+	  It also means 50% of the acceleration bonus gained from your stats comes from your speed stat.<br>
+	  <b>2:</b> Sometimes, actions can multiply how much stat exp you gain from doing them.<br><br>
+	  
+	 You're still wondering why your stats go back to 0 after each delivery...<br>
+	 Maybe this has something to do with all those delicious experimental potions you keep drinking?<br><br>
+      ]]></tutorial2>
+	  <tutorial3><![CDATA[
+	  <b>EXPLORATION RESSOURCES:</b><br><br>
+
+	  -> Sadly there's a lot left to explore. A new type of action will be available for it. There's good and bad gained ressources.
+	  
+	  -> Image with exploration 
+	  
+	  1-> as you fill it, you unlock more ressources
+	  2-> this shows how much ressources you have unlocked. Though only a portion of it will work.
+	  3-> This is how many helpful ressources you have found.
+	  4-> this is how many of them are left for this delivery.
+	  
+	  It looks like having to discover everything yourself is a rite of passage around here...
+      ]]></tutorial3>
+	  <tutorial4><![CDATA[
+	  <b>SKILLS AND BAR ACTIONS:</b><br><br>
+
+	  -> This next potion will be a difficult one. You'll need to train to be able to do it.
+	  
+	  -> Image with skills.
+	  1-> This is your skill. You gain 1 level at 100 skill exp, then 200, then 300, etc.
+	  
+	  -> But what are they used for? A lot of things but also:
+	  
+	  -> Image with bar actions.
+	  1 -> This is a bar action: as you do their corresponding action, it will empty out.
+	  2 -> This is how many times you have emptied a bar.
+	  
+	  -> For every mana spent, you generally complete this bar by (skill)*(stat)*(completed)
+	  -> (Bold) Though every bar action is different so always check the formula in its tooltip!
+	  
+	  It looks like having to discover everything yourself is a rite of passage around here...
+      ]]></tutorial4>
+	  <tutorial5><![CDATA[
+	  <b>SQUIRREL MODE:</b><br><br>
+
+      ]]></tutorial5>
+	  <tutorial6><![CDATA[
+	  
+
+      ]]></tutorial6>
     <tracked_resources>
         <reset_on_restart_txt>Resets when the loop restarts.</reset_on_restart_txt>
         <!--countable items with names and counts on the top bar-->
@@ -635,6 +738,208 @@
 			]]></overclock_off_tooltip>
         </bonus_seconds>
     </time_controls>
+	<animals>
+		<squirrel>
+			<name>squirrel</name>
+			<food>nut</food>
+		</squirrel>
+		<ferret>
+			<name>ferret</name>
+			<food>bone</food>
+		</ferret>
+		<tapir>
+			<name>tapir</name>
+			<food>banana</food>
+		</tapir>
+		<turtle>
+			<name>turtle</name>
+			<food>pizza</food>
+		</turtle>
+		<flamingo>
+			<name>flamingo</name>
+			<food>shrimp</food>
+		</flamingo>
+		<kangaroo>
+			<name>kangaroo</name>
+			<food>corn</food>
+		</kangaroo>
+		<penguin>
+			<name>penguin</name>
+			<food>fish</food>
+		</penguin>
+		<snake>
+			<name>snake</name>
+			<food>rat</food>
+		</snake>
+		<snail>
+			<name>snail</name>
+			<food>plant</food>
+		</snail>
+		<scorpion>
+			<name>scorpion</name>
+			<food>insect</food>
+		</scorpion>
+		<crab>
+			<name>crab</name>
+			<food>snail</food>
+		</crab>
+		<raven>
+			<name>raven</name>
+			<food>nut</food>
+		</raven>
+		<leech>
+			<name>leech</name>
+			<food>blood</food>
+		</leech>
+		<bee>
+			<name>bee</name>
+			<food>honey</food>
+		</bee>
+		<pangolin>
+			<name>pangolin</name>
+			<food>ant</food>
+		</pangolin>
+		<axolotl>
+			<name>axolotl</name>
+			<food>tadpole</food>
+		</axolotl>
+		<chicken>
+			<name>chicken</name>
+			<food>worm</food>
+		</chicken>
+		<dog>
+			<name>dog</name>
+			<food>treat</food>
+		</dog>
+		<horse>
+			<name>horse</name>
+			<food>apple</food>
+		</horse>
+		<squid>
+			<name>squid</name>
+			<food>fish</food>
+		</squid>
+		<sheep>
+			<name>sheep</name>
+			<food>weed</food>
+		</sheep>
+		<duck>
+			<name>duck</name>
+			<food>bread</food>
+		</duck>
+		<octopus>
+			<name>octopus</name>
+			<food>sea slug</food>
+		</octopus>
+		<frog>
+			<name>frog</name>
+			<food>mosquito</food>
+		</frog>
+		<cat>
+			<name>cat</name>
+			<food>milk bottle</food>
+		</cat>
+		<spider>
+			<name>spider</name>
+			<food>moth</food>
+		</spider>
+		<elephant>
+			<name>elephant</name>
+			<food>peanut</food>
+		</elephant>
+		<bat>
+			<name>bat</name>
+			<food>grape</food>
+		</bat>
+		<armadillo>
+			<name>armadillo</name>
+			<food>mushroom</food>
+		</armadillo>
+		<fox>
+			<name>fox</name>
+			<food>chicken</food>
+		</fox>
+		<beaver>
+			<name>beaver</name>
+			<food>wood</food>
+		</beaver>
+		<hedgehog>
+			<name>hedgehog</name>
+			<food>ring</food>
+		</hedgehog>
+		<porcupine>
+			<name>porcupine</name>
+			<food>clover</food>
+		</porcupine>
+		<anteater>
+			<name>anteater</name>
+			<food>ant</food>
+		</anteater>
+		<bear>
+			<name>bear</name>
+			<food>honey</food>
+		</bear>
+		<rat>
+			<name>rat</name>
+			<food>cheese</food>
+		</rat>
+		<koala>
+			<name>koala</name>
+			<food>eucalypus portion</food>
+		</koala>
+		<rabbit>
+			<name>rabbit</name>
+			<food>carrot</food>
+		</rabbit>
+		<raccoon>
+			<name>raccoon</name>
+			<food>trash</food>
+		</raccoon>
+		<pig>
+			<name>pig</name>
+			<food>truffle</food>
+		</pig>
+		<sloth>
+			<name>sloth</name>
+			<food>kale</food>
+		</sloth>
+		<swan>
+			<name>swan</name>
+			<food>frog</food>
+		</swan>
+		<goblin>
+			<name>goblin</name>
+			<food>human steak</food>
+		</goblin>
+		<rhinoceros>
+			<name>rhinoceros</name>
+			<food>bark</food>
+		</rhinoceros>
+		<toucan>
+			<name>toucan</name>
+			<food>lizard</food>
+		</toucan>
+		<donkey>
+			<name>donkey</name>
+			<food>turnip</food>
+		</donkey>
+		<goat>
+			<name>goat</name>
+			<food>weed</food>
+		</goat>
+		<triceratops>
+			<name>triceratops</name>
+			<food>twig</food>
+		</triceratops>
+		<wyvern>
+			<name>wyvern</name>
+			<food>horse</food>
+		</wyvern>
+		<gecko>
+			<name>gecko</name>
+			<food>cricket</food>
+		</gecko>
+	</animals>
     <stats>
         <title>Stats</title>
         <dex>
@@ -1005,6 +1310,10 @@
 			<name>Chronos' Lair</name>
 			<desc>Finally, you found the lair of the deity of time! Clear their trials, and they will break the time loop for you.</desc>
 		</town10>
+		<town12>
+			<name>Tutorialis</name>
+			<desc>This is your hometown. It's a cozy place to be. You know every corner of this place: you'll probably never get to know any other place better than this one.</desc>
+		</town12>
     </towns>
     <actions>
         <title>Action Options</title>
@@ -1256,6 +1565,27 @@
             One in every thousand Stones is temporal.
         ]]></tooltip>
         </haulZ6>
+		<!--town tutorial-->
+		<deliver_potion_one>
+			<label>Deliver Potion 1</label>
+			<tooltip><![CDATA[
+			Finally. You got your job dream: being a potion courier!<br>
+			It is time to deliver your very first potion.<br>
+			Your superior picked the easiest one for your first delivery.<br>
+			This is the beginning of your dream!<hr class='divider'>
+			• Can only be done once per delivery.<br>			
+			• You can redo this delivery later if you want, but this will only confuse people.<br>			
+			• The potions you deliver will naturally run out of mana and become useless after that.<br>	
+			If you fail, you can retry as much as you want.<br>
+			(Most potion deliveries end up in failure after all, this is a tricky business.)<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			Clearly there is no need to ask for help for this delivery.<br>
+			You could still send a message, but you really don't want to deal with people possibly mocking you.<br>
+			Think of the consequences!<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</deliver_potion_one>
 		<!--town 0-->
 		<look_around>
 			<label>Look Around</label>
@@ -1405,26 +1735,6 @@
 			<story_1><![CDATA[<b>Didn't even listend to:</b>⮀ Placeholder.]]></story_1>
 		</mysterious_voice>
         <!--town 1-->
-		<test_upgrade>
-			<label>No L. Upgrade</label>
-            <label_version1>Test Upgrade 1</label_version1>
-            <label_version2>Test Upgrade 2</label_version2>
-			<tooltip><![CDATA[
-            Currently no upgrade.<hr class='divider'>
-			]]></tooltip>
-			<squirrel_1><![CDATA[
-			Squirrel 1<hr class='divider'>
-			]]></squirrel_1>
-			<squirrel_2><![CDATA[
-			Squirrel 2.<hr class='divider'>
-			]]></squirrel_2>
-            <story_1><![CDATA[
-			<b>Done nothing:</b>⮀ No upgrade.
-			]]></story_1>
-			<story_2><![CDATA[
-			<b>Upgraded:</b>⮀ Upgrade 1.
-			]]></story_2>
-        </test_upgrade>
         <wander>
             <label>Wander</label>
             <label_done>Explored</label_done>
@@ -2415,14 +2725,14 @@
 			Using its new magic skills, the squirrel manages to not get lost this time!<br>
 			Apparently, something about these shortcuts radiates a small amount of magic.<br>
 			The hermit talked about this magic: its knowledge should be quite helpful for the squirrel.<hr class='divider'>	
-			<b>Effect: </b>Talk to Hermit gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
+			<b>Effect: </b>Hermit Knowledge gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel magic >= 25 <hr class='divider'>	
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			Now that the squirrel has a better handle on his magic skills, it is even better at exploring shortcuts!<br>
 			Who knew having a magic squirrel could be so handy?<br>
 			You can't help but reward it with a nut. It makes a little happy dance!<hr class='divider'>	
-			<b>Effect: </b>Talk to Hermit gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>	
+			<b>Effect: </b>Hermit Knowledge gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>	
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Shortcut explored:</b>⮀ You continued on with your trip and discovered a small and worn path leading off the main thoroughfare. You wondered what it was and decided to explore.]]></story_1>
             <story_2><![CDATA[<b>10% Shortcut explored:</b>⮀ You're mildly surprised to discover a seemingly sprawling network of interconnected paths that seem to get almost everywhere within the forest.]]></story_2>
@@ -2455,14 +2765,14 @@
 			You decide to try again at charming the hermit with the squirrel.<br>
 			The moment you turn your back, you hear the hermit screaming "OW!".<br>
 			Oh, he has a little bite mark on his hand now. Weird!<br><hr class='divider'>	
-			<b>Effect: </b>Old Shortcut gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
+			<b>Effect: </b>Shortcut Explored gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel combat >= 30 <hr class='divider'>	
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			This time, the hermit screams louder and has multiple bite marks on his hand.<br>
 			He really is on his guard about something, which helps lowering it guard against you.<br>
 			You don't really understand what's happening, but now he's easier to talk to, so yay!<hr class='divider'>	
-			<b>Effect: </b>Old Shortcut gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>	
+			<b>Effect: </b>Shortcut Explored gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>	
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Hermit knowledge learned:</b>⮀ The Hermit is old, scraggly and surprisingly, not bald. Looks old as dirt. He doesn't know the name of the surrounding provinces, but knows the names of the provinces before the current ones.]]></story_1>
             <story_2><![CDATA[<b>10% Hermit knowledge learned:</b>⮀ The old hermit is an absolute genius at using magic to speed things up and just in general make things quicker and easier. You have much information to wring from him. He doesn't tell you his name and insists you call him 'Old man', or 'Hermit'.]]></story_2>
@@ -2712,14 +3022,14 @@
 			Tree roots are apparently hunting squirrels here, and your companion was caught?!<br>
 			Thankfully, it can now fight them off now!<br>
 			The witch must know about all of this, let's ask her about this next time.<hr class='divider'>
-			<b>Effect: </b>Talk to Witch gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
+			<b>Effect: </b>Witch Knowledge gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel combat >= 35 <hr class='divider'>
 		]]></squirrel_2>
 			<squirrel_3><![CDATA[
 			What you've learned from the witch about this forest is quite useful!<br>
 			This place is dangerous for a squirrel, but now it has no issue fighting off the roots.<br>
 			Perfect! The sooner this place is explored, the sooner you can stop exploring it!<hr class='divider'>
-			<b>Effect: </b>Talk to Witch gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>
+			<b>Effect: </b>Witch Knowledge gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>Dark forested:</b>⮀ Placeholder.]]></story_1>
         </dark_forest>
@@ -2748,7 +3058,7 @@
 			It looks like there's faint traces of magic around it... Did it use a spell?<br>
 			The witch looks like she's about to laugh and opens up to you.<br>
 			You're not sure why, but that's great!<hr class='divider'>
-			<b>Effect: </b>Dark Forest gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
+			<b>Effect: </b>Dark Forest Explored gives a 4% bonus to this action instead of 3% in squirrel mode.<br>
 			<b>Next: </b>squirrel magic >= 30 <hr class='divider'>
 		]]></squirrel_2>
 		<squirrel_3><![CDATA[
@@ -2756,7 +3066,7 @@
 			It looks like the witch now has light wounds on her, and your squirrel emits a lot more mana.<br>
 			Well, if she was about to laugh before, now she's laughing very audibly!<br>
 			You've never seen her so friendly toward you before. Excellent!<hr class='divider'>
-			<b>Effect: </b>Dark Forest gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>
+			<b>Effect: </b>Dark Forest Explored gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Witch knowledge learned:</b>⮀ You stumble across a small crooked hut and as you approach the boundary, a small slip of a woman step outs. She's stunning and you're immediately on guard. The area pulses with a heady hum of magic that sends shivers down your spine. She introduces herself as Evis.]]></story_1>
             <story_2><![CDATA[<b>10% Witch knowledge learned:</b>⮀ The Witch as you taken to referring to her as, seeing as she changes her name every time she introduces herself to you, is a veritable font of magical knowledge, of how to dominate the mana itself and make more from less.]]></story_2>

@@ -505,3 +505,7 @@ function defineLazyGetter(object, name, getter) {
         configurable: true,
     });
 }
+
+function capFirstLetter(string) {
+    return string[0].toUpperCase() + string.slice(1);
+}

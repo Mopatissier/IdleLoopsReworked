@@ -53,7 +53,7 @@ Views.registerView("timeControls", {
         ${OverclockOff}
         ${OverclockOn}
         <div idOverclockOffModetalentTreeBtn' style='display: none;' onclick='view.showTalents()'' class='button control'>${_text("time_controls>talents_button")}</div>
-        <div class='showthatO control'>
+        <div class='showthatO control' id= "storyContainer">
             <div class='showthatO' onmouseover='view.updateStory(storyShowing)' style='height:30px;'>
                 <div class='large bold'>${_text("time_controls>story_title")}</div>
                 <div id='newStory' style='color:red;display:none;'>(!)</div>

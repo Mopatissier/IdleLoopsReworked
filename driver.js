@@ -837,3 +837,13 @@ function upgradeAction(actionToUpgrade, actionUpgraded) {
 	//Remove action 1 in the action list and replace it by action 2
 	view.updateNextActions(actionToUpgrade, actionUpgraded);
 }
+
+function advanceTutorial(level) {
+	
+	if(tutorialLevel+1 !== level) return;
+	
+	//view.showTutorialPopup(level);
+	view.updateTutorialStageupdateTutorialStage(level);
+	tutorialLevel = level;
+
+}

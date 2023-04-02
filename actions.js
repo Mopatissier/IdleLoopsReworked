@@ -172,7 +172,8 @@ function Actions() {
 		alreadyFought = false;
 		alreadySDungeon = false;
 		alreadyLeveledUp = {};
-        curTown = 0;
+        if(tutorialLevel >= 6)curTown = 0;
+		else curTown = TUTORIALIS;
         towns[BEGINNERSVILLE].suppliesCost = 450;
 		view.adjustGoldCost("BuySupplies", towns[BEGINNERSVILLE].suppliesCost);
         view.updateResource("supplies");
