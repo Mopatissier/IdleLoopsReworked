@@ -15,15 +15,7 @@ function translateClassNames(name) {
 }
 
 const limitedActions = [
-    "SurveyZ0",
-    "SurveyZ1",
-    "SurveyZ2",
-    "SurveyZ3",
-    "SurveyZ4",
-    "SurveyZ5",
-    "SurveyZ6",
-    "SurveyZ7",
-    "SurveyZ8",
+    "Add Reagents",
 	"Absorb Mana",
     "Smash Pots",
     "Pick Locks",
@@ -71,7 +63,7 @@ function hasLimit(name) {
 function getTravelNum(name) {
     if (name === "Face Judgement" && resources.reputation <= 50) return 2;
     if (name === "Face Judgement" && resources.reputation >= 50) return 1;
-    if (name === "Start Journey" || name === "Continue On" || name === "Start Trek" || name === "Fall From Grace" || name === "Journey Forth" || name === "Escape" || name === "Leave City" || name === "Guru") return 1;
+    if (name === "Start Journey" || name === "Continue On" || name === "Start Trek" || name === "Fall From Grace" || name === "Journey Forth" || name === "Escape" || name === "Leave City" || name === "Guru" || name === "Deliver Potion Six") return 1;
     if (name === "Hitch Ride") return 2;
     if (name === "Underworld") return 5;
     if (name === "Open Portal") return -5;
@@ -360,6 +352,1196 @@ Action.HaulZ6 = new Action("HaulZ6", HaulAction(6));
 //Zone tutorial - Tutorialis
 //====================================================================================================
 
+Action.SearchAround = new Action("Search Around", {
+    type: "progress",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Dex: 0.1,
+        Per: 0.4,
+        Luck: 0.5,
+    },
+	tooltipRefresh: [
+		"squirrelMode"
+	],
+	progressExp(squirrelTooltip) {
+		let baseExp = 30;
+		if(getLevelSquirrelAction("Search Around") === 2 && (this.squirrelAction || squirrelTooltip)) baseExp = 100;
+		if(getLevelSquirrelAction("Search Around") >= 3 && (this.squirrelAction || squirrelTooltip)) baseExp = 600;
+		return baseExp;
+	},
+    manaCost() {
+        return 100;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 3;
+    },
+    unlocked() {
+        return tutorialLevel >= 3;
+    },
+    finish() {
+		
+		towns[TUTORIALIS].finishProgress(this.varName, this.progressExp());
+
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Search Around")){
+								
+			case 0: shouldLevelUp = true;
+				break;
+				
+			case 1: if(getSkillSquirrelLevel("Squeakiness") >= 10) shouldLevelUp = true;
+				break;
+				
+			case 2: if(getSkillSquirrelLevel("Squeakiness") >= 20) shouldLevelUp = true;
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Search Around");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Search Around")){
+						
+				case 1: break;
+									
+				case 2: actionEffect = () => {
+							towns[TUTORIALIS].finishProgress(this.varName, this.progressExp());
+						};
+					break;
+			
+				case 3: actionEffect = () => {
+							towns[TUTORIALIS].finishProgress(this.varName, this.progressExp());
+						};
+					break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+function adjustReagents() {
+    let town = towns[TUTORIALIS];
+    town.totalReagents = town.getLevel("SearchAround")*2;
+}
+
+Action.AddReagents = new Action("Add Reagents", {
+    type: "limited",
+    expMult: 1,
+    townNum: 12,
+	varName: "Reagents",
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+        }
+        return false;
+    },
+    stats: {
+        Dex: 0.5,
+        Per: 0.4,
+        Int: 0.1,
+    },
+    manaCost() {
+		return 50;
+    },
+	goldCost() {
+        return 100;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 3;
+    },
+    unlocked() {
+        return tutorialLevel >= 3;
+    },
+    finish() {
+        	
+		towns[TUTORIALIS].finishRegular(this.varName, 2, () => {
+			const manaGain = this.goldCost();
+			addMana(manaGain);
+			return manaGain;
+		});
+		
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Add Reagents")){
+								
+			case 0: shouldLevelUp = true;
+				break;
+				
+			case 1: if(getSkillSquirrelLevel("Squeakiness") >= 15) shouldLevelUp = true;
+				break;
+								
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Add Reagents");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Add Reagents")){
+						
+				case 1: break;
+									
+				case 2: actionEffect = () => {
+							towns[TUTORIALIS].finishRegular(this.varName, 2, () => {
+								const manaGain = this.goldCost();
+								addMana(manaGain);
+								return manaGain;
+							});
+							towns[TUTORIALIS].finishRegular(this.varName, 2, () => {
+								const manaGain = this.goldCost();
+								addMana(manaGain);
+								return manaGain;
+							});
+						};
+					break;
+													
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.DissolveMana = new Action("Dissolve Mana", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Dex: 0.5,
+        Per: 0.4,
+        Int: 0.1,
+    },
+    manaCost() {
+        return 100;
+    },
+	allowed() {
+		return 1;
+	},
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 1;
+    },
+    unlocked() {
+        return tutorialLevel >= 1;
+    },
+    finish() {
+		
+		addMana(1100);
+
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Dissolve Mana")){
+				
+			case 0: shouldLevelUp = true;
+				break;
+				
+			case 1: if(getSkillSquirrelLevel("Squeakiness") >= 8) shouldLevelUp = true;
+				break;
+				
+			case 2: if(getSkillSquirrelLevel("Squeakiness") >= 18) shouldLevelUp = true;
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Dissolve Mana");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Dissolve Mana")){
+						
+				case 1: break;
+									
+				case 2: actionEffect = () => {
+							addMana(1600);
+						};
+						loseSquirrel = true;
+					break;
+			
+				case 3: actionEffect = () => {
+							addMana(1600);
+						};
+					break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.SpareChange = new Action("Spare Change", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Per: 0.2,
+        Cha: 0.5,
+		Luck: 0.3,
+    },
+    manaCost() {
+        return 500;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 1;
+    },
+    unlocked() {
+        return tutorialLevel >= 1;
+    },
+    finish() {
+		addResource("gold", 10);
+		if(resources.gold >= 270) actionUnlocks.unlockReplicatorAction = true;
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Spare Change")){
+				
+			case 0: shouldLevelUp = true;
+				break;
+				
+			case 1: if(getSkillSquirrelLevel("Squeakiness") >= 25) shouldLevelUp = true;
+				break;
+								
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Spare Change");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Spare Change")){
+															
+				case 1: loseSquirrel = true;
+					break;
+			
+				case 2: actionEffect = () => {
+							addResource("gold", 15);
+							if(resources.gold >= 270) actionUnlocks.unlockReplicatorAction = true;
+						};
+					break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.PsychUp = new Action("Psych Up", {
+    type: "normal",
+    expMult: 1000000,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Soul: 1.0
+    },
+    manaCost() {
+        return 1000;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 2;
+    },
+    unlocked() {
+        return tutorialLevel >= 2;
+    },
+    finish() {
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Psych Up")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Psych Up");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Psych Up")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.PetAnimals = new Action("Pet Animals", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Dex: 0.3,
+		Str: 0.2,
+		Cha: 0.5
+    },
+	skills: {
+        Handling: 100
+    },
+    manaCost() {
+        return 100;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 4;
+    },
+    unlocked() {
+        return tutorialLevel >= 4;
+    },
+    finish() {
+		handleSkillExp(this.skills);
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Pet Animals")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Pet Animals");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Pet Animals")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.GetSquirrel = new Action("Get Squirrel", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Dex: 0.3,
+		Per: 0.2,
+		Cha: 0.5
+    },
+    manaCost() {
+        return 100;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && !(squirrelAlreadyPickedUp === true && !resources.squirrel);
+    },
+    visible() {
+        return tutorialLevel >= 5;
+    },
+    unlocked() {
+        return tutorialLevel >= 5;
+    },
+    finish() {
+		addResource("squirrel", true);
+		squirrelAlreadyPickedUp = true;
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Get Squirrel")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Get Squirrel");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Get Squirrel")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.TrainPresence = new Action("Train Presence", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Str: 0.4,
+		Con: 0.5,
+		Cha: 0.1
+    },
+	skillsSquirrel: {
+		Squeakiness(squirrelMode) {
+			let expGain = 100;
+			if(squirrelMode && getLevelSquirrelAction("Train Presence") >= 2) expGain = 100 * (getSkillSquirrelLevel("Squeakiness") + 1);
+			return expGain;
+		}
+	},
+    manaCost() {
+        return 100;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.squirrel;
+    },
+    visible() {
+        return tutorialLevel >= 5;
+    },
+    unlocked() {
+        return tutorialLevel >= 5;
+    },
+    finish() {
+		handleSkillSquirrelExp(this.skillsSquirrel);
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Train Presence")){
+				
+			case 0: shouldLevelUp = true;
+				break;
+				
+			case 1: if(getSkillSquirrelLevel("Squeakiness") >= 30) shouldLevelUp = true;
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Train Presence");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Train Presence")){
+						
+				case 1: break;
+									
+				case 2: actionEffect = () => {
+							handleSkillSquirrelExp(this.skillsSquirrel, true);
+						};
+					break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.PickUpPackage = new Action("Pick Up Package", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Dex: 0.2,
+		Str: 0.5,
+		Con: 0.3
+    },
+    manaCost() {
+        return 1000;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.squirrel;
+    },
+	allowed() {
+		return 1;
+	},
+    visible() {
+        return tutorialLevel >= 5;
+    },
+    unlocked() {
+        return tutorialLevel >= 5;
+    },
+    finish() {
+		addResource("loopPotion", true);
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Pick Up Package")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Pick Up Package");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Pick Up Package")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.WorkOnYourself = new Action("Work On Yourself", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Str: 0.1,
+		Dex: 0.8,
+		Con: 0.1
+    },
+	tooltipRefresh: [
+		"squirrelMode"
+	],
+	skills: {
+        Clumsiness(squirrelMode) {
+			let baseExp = 100;
+			if(squirrelMode && getLevelSquirrelAction("Work On Yourself") >= 2) baseExp -= getSkillSquirrelLevel("Squeakiness");
+			return baseExp;
+		}
+    },
+    manaCost() {
+        return 100;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return skills["Clumsiness"].exp >= 1;
+    },
+    unlocked() {
+        return skills["Clumsiness"].exp >= 1;
+    },
+    finish() {
+		handleSkillExp(this.skills);
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Work On Yourself")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+			case 1: if(getSkillSquirrelLevel("Squeakiness") >= 100)shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Work On Yourself");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Work On Yourself")){
+						
+				case 1: break;
+				
+				case 2: actionEffect = () => {
+							handleSkillExp(this.skills, true);
+						};
+					break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.PotionReplicator = new Action("Potion Replicator", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Dex: 0.4,
+		Int: 0.5,
+		Luck: 0.1
+    },
+    manaCost() {
+        return 400;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.gold >= 240 && resources.loopPotion === true;
+    },
+	allowed() {
+		return 1;
+	},
+    visible() {
+        return actionUnlocks.unlockReplicatorAction === true;
+    },
+    unlocked() {
+        return actionUnlocks.unlockReplicatorAction === true;
+    },
+    finish() {
+		actionUnlocks.replicatorUnlocked = true;
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Potion Replicator")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Potion Replicator");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Potion Replicator")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.TreasureBox = new Action("Treasure Box", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Per: 0.6,
+		Int: 0.3,
+		Luck: 0.1
+    },
+    manaCost() {
+        return 1000;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+	allowed() {
+		return 1;
+	},
+    visible() {
+        return actionUnlocks.unlockTreasureBoxAction === true;
+    },
+    unlocked() {
+        return actionUnlocks.unlockTreasureBoxAction === true;
+    },
+    finish() {
+		addResource("chronosPotion", true);
+		actionUnlocks.unlockTreasureBoxAction = false;
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Treasure Box")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Treasure Box");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Treasure Box")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.TimeTraveler = new Action("Time Traveler", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Cha: 0.7,
+		Luck: 0.3
+    },
+    manaCost() {
+        return 1000;
+    },
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.loopPotion;
+    },
+	allowed() {
+		return 1;
+	},
+    visible() {
+        return actionUnlocks.TimeTravelerUnlocked === true;
+    },
+    unlocked() {
+        return actionUnlocks.TimeTravelerUnlocked === true;
+    },
+    finish() {
+		view.showPopup("endingANormalLife", "endingANormalLifeEndCard");
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Time Traveler")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Time Traveler");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Time Traveler")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
 Action.DeliverPotionOne = new Action("Deliver Potion One", {
     type: "normal",
     expMult: 1,
@@ -394,7 +1576,7 @@ Action.DeliverPotionOne = new Action("Deliver Potion One", {
     },
     finish() {
 		
-		console.log("Delivery done!");
+		advanceTutorial(1);
 
     },
 	squirrelLevelUp(onlyGetState) 
@@ -446,6 +1628,468 @@ Action.DeliverPotionOne = new Action("Deliver Potion One", {
 	}
 });
 
+Action.DeliverPotionTwo = new Action("Deliver Potion Two", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Dex: 0.1,
+		Cha: 0.5,
+        Spd: 0.4,
+    },
+    manaCost() {
+        return 1000;
+    },
+	allowed() {
+		return 1;
+	},
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.gold >= 10;
+    },
+    visible() {
+        return tutorialLevel >= 1;
+    },
+    unlocked() {
+        return tutorialLevel >= 1;
+    },
+    finish() {
+		
+		advanceTutorial(2);
+
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Deliver Potion Two")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Deliver Potion Two");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Deliver Potion Two")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.DeliverPotionThree = new Action("Deliver Potion Three", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Soul: 1.0
+    },
+    manaCost() {
+        return 8000;
+    },
+	allowed() {
+		return 1;
+	},
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 2;
+    },
+    unlocked() {
+        return tutorialLevel >= 2;
+    },
+    finish() {
+		
+		advanceTutorial(3);
+
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Deliver Potion Three")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Deliver Potion Three");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Deliver Potion Three")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.DeliverPotionFour = new Action("Deliver Potion Four", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Per: 0.3,
+		Cha: 0.5,
+        Spd: 0.2,
+    },
+    manaCost() {
+        return 2000;
+    },
+	allowed() {
+		return 1;
+	},
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements;
+    },
+    visible() {
+        return tutorialLevel >= 3;
+    },
+    unlocked() {
+        return tutorialLevel >= 3;
+    },
+    finish() {
+		
+		advanceTutorial(4);
+
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Deliver Potion Four")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Deliver Potion Four");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Deliver Potion Four")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.DeliverPotionFive = new MultipartAction("Deliver Potion Five", {
+    type: "multipart",
+    expMult: 1,
+    townNum: 12,
+	varName: "PotionFive",
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Dex: 0.3,
+		Str: 0.3,
+        Spd: 0.3,
+		Cha: 0.1
+    },
+	loopStats: ["Dex", "Spd", "Str", "Cha"],
+    manaCost() {
+        return 1000;
+    },
+	allowed() {
+		return 1;
+	},
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		const curDeliveryPart = Math.floor((towns[TUTORIALIS].PotionFiveLoopCounter) / 4 + 0.0000001);
+		
+		return squirrelRequirements && curDeliveryPart < 1;
+    },
+    loopCost(segment) {
+        return 4000;
+    },
+    tickProgress(offset) {
+        return getSkillLevel("Handling") * (1 + getLevel(this.loopStats[(towns[TUTORIALIS].PotionFiveLoopCounter + offset) % this.loopStats.length])/100) * (1 + towns[TUTORIALIS].totalPotionFive);
+    },
+    loopsFinished() {
+        advanceTutorial(5);
+    },
+    getPartName() {
+		return `${_text(`actions>${getXMLName(this.name)}>label_part`)}`;
+    },
+	getSegmentName(segment) {
+		return this.segmentNames[segment%4];
+	},
+    visible() {
+        return tutorialLevel >= 4;
+    },
+    unlocked() {
+        return tutorialLevel >= 4;
+    },
+    finish() {
+		
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Deliver Potion Five")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Deliver Potion Five");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Deliver Potion Five")){
+						
+				case 1: break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
+
+Action.DeliverPotionSix = new Action("Deliver Potion Six", {
+    type: "normal",
+    expMult: 1,
+    townNum: 12,
+    storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+		Con: 0.4,
+		Spd: 0.5,
+        Cha: 0.1,
+    },
+    manaCost() {
+        return 4500;
+    },
+	allowed() {
+		return 1;
+	},
+	canStart() {
+		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.squirrel && resources.loopPotion;
+    },
+    visible() {
+        return tutorialLevel >= 5;
+    },
+    unlocked() {
+        return tutorialLevel >= 5;
+    },
+    finish() {
+		
+		advanceTutorial(6);
+
+    },
+	squirrelLevelUp(onlyGetState) 
+	{
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Deliver Potion Six")){
+				
+			case 0: shouldLevelUp = true;			
+				break;
+			
+			case 1: if(getSkillLevel("Clumsiness") === 0)shouldLevelUp = true;			
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Deliver Potion Six");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Deliver Potion Six")){
+						
+				case 1: actionEffect = () => {
+							if(skills["Clumsiness"].exp === 0) {
+								let skill = {
+									Clumsiness: 505000
+								}
+								handleSkillExp(skill);
+							}
+						};
+						nothingHappens = true;
+					break;
+									
+				case 2: actionEffect = () => {
+							view.showPopup("tutorialEnd", "endingNotTripping", "endingNotTrippingEndCard");
+						};
+					break;
+										
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+});
 //====================================================================================================
 //Zone 0 - Squirrel Sanctuary
 //====================================================================================================
@@ -655,8 +2299,9 @@ Action.ImbueSquirrel = new Action("Imbue Squirrel", {
 		Soul: 0.5
     },
 	skillsSquirrel: {
-        Magic() {
-			const squirrelMod = ((this.squirrelAction && getLevelSquirrelAction("Imbue Squirrel") >= 1) ? 1 : 0);
+        Magic(squirrelMode) {
+			const squirrelMod = ((squirrelMode && getLevelSquirrelAction("Imbue Squirrel") >= 1) ? 1 : 0);
+			console.log("Squirrel exp = " +  Math.pow(4, getBuffLevel("SpiritBlessing") - squirrelMod));
 			return Math.pow(4, getBuffLevel("SpiritBlessing") - squirrelMod);
 		}
     },
@@ -711,7 +2356,7 @@ Action.ImbueSquirrel = new Action("Imbue Squirrel", {
 		switch(additionalLevel + getLevelSquirrelAction("Imbue Squirrel")){
 						
 			case 1: actionEffect = () => {
-						handleSkillSquirrelExp(this.skillsSquirrel);
+						handleSkillSquirrelExp(this.skillsSquirrel, true);
 						view.adjustManaCost("Imbue Squirrel", squirrelMode);
 					};
 				break;
@@ -1413,6 +3058,7 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
 				case 1: break;
 						
 				case 2: //get the squirrel with you from the start of every loop : managed somewhere else.
+						unlockOffline();
 						break;
 				
 				case 3: actionEffect = () => {
@@ -1421,6 +3067,92 @@ Action.PetSquirrel = new Action("Pet Squirrel", {
 							view.adjustManaCost("Pet Squirrel", squirrelMode);
 						};
 						break;
+				
+		}
+		
+		if(onlyGetLoseSquirrel){
+			if(loseSquirrel) return true;
+			return false;
+		}
+		
+		if(onlyGetEmptySquirrel){
+			if(String(actionEffect) === "() => {}" || nothingHappens === true) return true;
+			return false;
+		}
+		
+		if(loseSquirrel) addResource("squirrel", false);
+		
+		actionEffect();
+	}
+	
+});
+
+Action.ChronosPotion = new Action("Chronos Potion", {
+    type: "normal",
+    expMult: 1,
+    townNum: 0,
+	storyReqs(storyNum) {
+        switch (storyNum) {
+            case 1:
+                return true
+        }
+        return false;
+    },
+    stats: {
+        Dex: 0.2,
+        Str: 0.1,
+        Con: 0.1,
+		Soul: 0.6
+    },
+    manaCost() {
+        return 1000;
+    },
+	canStart() {
+        const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
+		return squirrelRequirements && resources.chronosPotion === true;
+    },
+	cost() {
+        if(!this.squirrelAction) addResource("chronosPotion", false);
+    },
+    visible() {
+        return resources.chronosPotion === true;
+    },
+    unlocked() {
+        return resources.chronosPotion === true;
+    },
+    finish() {	
+		actionUnlocks.TimeTravelerUnlocked = true;
+		actionUnlocks.unlockTreasureBoxAction = false;
+		view.showPopup("drinkChronosPotion");
+    },
+	squirrelLevelUp(onlyGetState) {
+		let shouldLevelUp = false;
+		
+		switch(getLevelSquirrelAction("Chronos Potion")){
+				
+			case 0: shouldLevelUp = true;
+				break;
+				
+		}
+		
+		if(onlyGetState){
+			if(shouldLevelUp) return true;
+			return false;
+		}
+		
+		if(shouldLevelUp) levelUpSquirrelAction("Chronos Potion");
+		
+	},
+	squirrelActionEffect(onlyGetLoseSquirrel, onlyGetEmptySquirrel, checkNextLevel) {
+		
+		let actionEffect = () => {};
+		let loseSquirrel = false;
+		let nothingHappens = false;
+		const additionalLevel = (checkNextLevel === true ? 1 : 0);
+		
+		switch(additionalLevel + getLevelSquirrelAction("Chronos Potion")){
+						
+				case 1: break;
 				
 		}
 		
@@ -2521,9 +4253,6 @@ Action.MageLessons = new Action("Mage Lessons", {
 	canStart() {
 		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
 		return squirrelRequirements && resources.reputation >= 2;
-    },
-    skills: {
-        Magic: 100
     },
 	skills: {
 		Magic(squirrelMode) {
@@ -5031,7 +6760,8 @@ Action.FeedAnimals = new Action("Feed Animals", {
    
 		if(getLevelSquirrelAction("Pet Squirrel") === 0) levelUpSquirrelAction("Pet Squirrel");
 		if(getLevelSquirrelAction("Pet Squirrel") === 1) levelUpSquirrelAction("Pet Squirrel");
-
+		
+		unlockOffline();
 	   
     },
 	squirrelLevelUp(onlyGetState) {
@@ -10601,7 +12331,7 @@ Action.BreakLoop = new Action("Break Loop", {
         return 1000;
     },
     canStart() {
-        return resources.loopPotion;
+        return resources.loopPotion || resources.loopPotionCopy;
     },
     visible() {
         return true;
@@ -10610,6 +12340,6 @@ Action.BreakLoop = new Action("Break Loop", {
         return true;
     },
     finish() {
-		
+		view.showPopup("endingTrickedChronos", "endingTrickedChronosEndCard");
     },
 });

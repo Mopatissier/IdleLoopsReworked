@@ -10,6 +10,27 @@
                 <title>Changelog</title>
                 <version_prefix>Version</version_prefix>
             </meta>
+			<version verNum="0.3.9"><![CDATA[
+            <b> May 1st, 2023 </b><br>
+			Okay, I managed to finally the glitches in the space-time continuum, the squirrel should be a squirrel again! Also, this update is mostly about the new tutorial: it was a lot of work!<br><br>
+			<b>Tutorial: </b><br>
+			• The tutorial has been added! It will appear when you start a new savefile.<br>
+			• Added a new zone that contains 18 actions for the tutorial, named Tutorialis.<br>
+			• Sadly, once yout of the tutorial, you can't get back to that zone anymore.<br>
+			• Multiple skills have been added, though they reset back to 0 once the tutorial is finished.<br>
+			• Three big secrets have been added to that zone: their (non-gameplay) rewards stay between saves. I encourage you to back-up your save and chase them down!<br>
+			• I can't stress enough how much work it was. It was supposed to be a small thing, it ended up way bigger than wanted!<br><br>
+			<b>Offline system: </b><br>
+			• The offline system now has to be unlocked by recruiting the squirrel.<br>
+			• A new line has been added to show how much time is left before fatigue pauses your game, but only when fatigue has been capped.<br><br>
+			<b>Quality of life: </b><br>
+			• The April event is finished, and has been relegated to an option in the option menu. I blame this problem on the dark gods!<br>
+			• The FAQ has been reworked and now shows the new tutorial pop-ups instead.<br>
+			• An ending system has been added... Wait, what?<br><br>
+			<b>Glitches and fixes: </b><br>
+			• The squirrel version of Imbue Squirrel used to give 3x the exp it was supposed to.<br>
+			• Some tooltips referencing potions have been rewritten, as the potion system has been changed in lore.<br>
+            ]]></version>
 			<version verNum="0.3.8"><![CDATA[
             <b> April 1st, 2023 </b><br>
 			This is just a small maintenance update, nothing big is happening. Wait, what do you mean, "squirrel"? There has never been any squirrel in this game? There's only a [SSSSHHHRRRR], and it always has been this way.<br><br>
@@ -68,7 +89,7 @@
 			• Changed the icons that shows "this had no effect" and "this will level up the action".<br><br>
 			<b>Quality of life: </b><br>
 			• Tooltips now show when you gain exp from completing a segment of a multibar action.<br>
-			• Actions now show what ressources you gain from doing it (wandering gives pots, for exemple).<br>
+			• Actions now show what resources you gain from doing it (wandering gives pots, for exemple).<br>
 			• Buff caps have been temporarily deactivated. No more confusion from their lack of use!<br><br>
 			<b>Glitches and fixes: </b><br>
 			• Fixed a looooot of typos.<br>
@@ -291,36 +312,45 @@
                 <q_prefix><![CDATA[<b>Q:</b>]]></q_prefix>
                 <a_prefix><![CDATA[<b>A:</b>]]></a_prefix>
             </meta>
-            <q_a>
-                <q>What do stats do?</q>
-                <a>Hover over "Stats" for how they work. What stats are important depend on what actions you need that
-                    uses them.
-                </a>
-            </q_a>
-            <q_a>
-                <q>Short runs seem better.</q>
-                <a>Short runs are better for the early game, but as your runs get longer and you accrue
-                    talent and soulstones, longer runs become more useful.
-                </a>
-            </q_a>
-            <q_a>
-                <q>What should my first goal be?</q>
-                <a>Start with wandering until you have ways of getting mana back. Then try to find how to get some
-                    warrior lessions to give yourself a permanent boost, and then try fighting monsters!
-                </a>
-            </q_a>
-            <q_a>
-                <q>How do skill increases / reductions work?</q>
-                <a>Increases multiply a reward by (1 + level / 60) ^ .25, so you'll see diminishing returns at higher levels.
-                Reductions multiply a cost by 1 / (1 + level / 100), so you'll never be able to bring a cost completely to zero.
-                </a>
-            </q_a>
-            <q_a>
-                <q>When should I use Dark Ritual?</q>
-                <a>Many people recommend performing another ritual when the cost is less than 5% of your soulstones.
-                Of course, the choice is up to you and there may be cases where it's better to perform it sooner or later.
-                </a>
-            </q_a>
+			<buttons>
+				<intro><![CDATA[Tutorial pop-ups:<br><br>]]></intro>
+				<tuto0><![CDATA[BASICS]]></tuto0>
+				<tuto1><![CDATA[ACTION LIST]]></tuto1>
+				<tuto2><![CDATA[STATS]]></tuto2>
+				<tuto3><![CDATA[EXPLORATION/RESOURCES]]></tuto3>
+				<tuto4><![CDATA[SKILLS/BAR ACTIONS]]></tuto4>
+				<tuto5><![CDATA[SQUIRREL MODE]]></tuto5>
+			</buttons>
+            <!-- <q_a> -->
+                <!-- <q>What do stats do?</q> -->
+                <!-- <a>Hover over "Stats" for how they work. What stats are important depend on what actions you need that -->
+                    <!-- uses them. -->
+                <!-- </a> -->
+            <!-- </q_a> -->
+            <!-- <q_a> -->
+                <!-- <q>Short runs seem better.</q> -->
+                <!-- <a>Short runs are better for the early game, but as your runs get longer and you accrue -->
+                    <!-- talent and soulstones, longer runs become more useful. -->
+                <!-- </a> -->
+            <!-- </q_a> -->
+            <!-- <q_a> -->
+                <!-- <q>What should my first goal be?</q> -->
+                <!-- <a>Start with wandering until you have ways of getting mana back. Then try to find how to get some -->
+                    <!-- warrior lessions to give yourself a permanent boost, and then try fighting monsters! -->
+                <!-- </a> -->
+            <!-- </q_a> -->
+            <!-- <q_a> -->
+                <!-- <q>How do skill increases / reductions work?</q> -->
+                <!-- <a>Increases multiply a reward by (1 + level / 60) ^ .25, so you'll see diminishing returns at higher levels. -->
+                <!-- Reductions multiply a cost by 1 / (1 + level / 100), so you'll never be able to bring a cost completely to zero. -->
+                <!-- </a> -->
+            <!-- </q_a> -->
+            <!-- <q_a> -->
+                <!-- <q>When should I use Dark Ritual?</q> -->
+                <!-- <a>Many people recommend performing another ritual when the cost is less than 5% of your soulstones. -->
+                <!-- Of course, the choice is up to you and there may be cases where it's better to perform it sooner or later. -->
+                <!-- </a> -->
+            <!-- </q_a> -->
         </faq>
         <options>
             <meta>
@@ -346,7 +376,7 @@
             </adblock_warning>
             <pause_audio_cue>Ping on pause</pause_audio_cue>
             <auto_max_training>Max All Training Actions on Training cap increase</auto_max_training>
-            <ferret_mode>Click here if you hate squirrels. (Must save and reload for it to have the complete effect.)</ferret_mode>
+            <chaos_mode>Clicking here will destabilize time and space. (Must save and reload for it to have the complete effect, no actual gameplay effect.)</chaos_mode>
 			<hide_bars>Hide progress bars once they hit 100%.</hide_bars>
 			<merge_modes>Merge the human and squirrel mode tooltips.</merge_modes>
             <hotkeys>Hotkeys</hotkeys>
@@ -369,113 +399,441 @@
             <update_rate>Updates per second:</update_rate>
         </options>
     </menu>
-    <tutorial0><![CDATA[
-	  CONGRATULATION!<br><br>
-	  
-	  You have been selected to be a potion courier for an alchemist guild.<br>
-	  That's what you've always dreamed of!<br>
-	  But how does it all work, again?<br>
-	  Well, there are 2 things to keep in mind. They are both at the top of the screen:<br>
-	  <img src ="img/tutorial_0.png"><br>
-	  <b>1:</b> Every potion starts with 500 mana. Every second, they lose mana: once they get to 0, the potion becomes useless and you have to start over.<br>
-	  One second = 100 mana. So you have 5 seconds to deliver them.<br>
-	  <b>2:</b> You can get items to help you for your potion delivery business. Once a delivery is finished, you have to place them back where you got them.<br>
-	  Sadly you can't keep them between deliveries... That would have been really helpful!<br><br>
-	  
-	  Now that you know the essentials, it's time to get to your first day of work!<br>
-	  <b>Surely everything will go according to plan and you won't have any shenanigans involving a time loop, right?!</b><br><br>
-	  
-	  <b>All of these tutorial pop-ups will be avaible in the FAQ tab so you can skip them and read them later if you want!</b><br><br>
-	  
-	  This game is a total rework of the original game Idle Loops.<br>
-	  Starting as a balance patch, it became an entirely new game centered about a squirrel.<br>
-	  To play the latest version of the original game, check <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
-	  This is one of several versions of the original game: for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
-	  Thanks for playing, and have fun!<br><br>
-      ]]></tutorial0>
-	  <tutorial1><![CDATA[
-	  <b>ACTION LIST:</b><br><br>
-	  
-	  Congrats! That was a first successful delivery! You're fit for this stuff!<br>
-	  But it won't be that easy every time. Thankfully you're a master at planning your day, so here's a new tool:<br>
-	  <img src ="img/tutorial_1.png"><br>
-	  <b>1:</b>The right part shows every action you'll do for each delivery.<br>
-	  <b>2:</b>The left part shows your current delivery progression.<br>
-	  <b>3:</b>This is a stack of actions: to add it, click (and drag) the actions from the action options to place them in the list.<br>
-	  <b>4:</b>There's a bunch of signs, here's a small description (ignore the star and human/squirrel icons for now!):<br>
-	  <i class='actionIcon far fa-circle'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Cap the number of actions to its max value.<br>
-	  <i class='actionIcon fas fa-plus'></i>/<i class='actionIcon fas fa-minus'></i> &nbsp;&nbsp;: Add/Substract one action.<br>
-	  <i class='actionIcon fas fa-arrows-alt-h'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Split the stack of actions in two.<br>
-	  <i class='actionIcon fas fa-sort-up'></i>/<i class='actionIcon fas fa-sort-down'></i></i> &nbsp;&nbsp;: Move up/down the stack.<br>
-	  <i class='actionIcon far fa-check-circle'></i><span style="margin-left: -2px;"> /</span><i class='actionIcon far fa-times-circle'></i> &nbsp;: Enable/disable a stack of actions.<br>
-	  <i class='actionIcon fas fa-times'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Remove the stack of actions.<br><br>
-	  
-	  Well, that said, the best way to understand is to try it yourself. There's a few more options left for you to try.<br>
-	  <b>So don't hestitate to try everything to understand it! If you need a refresher, you can always look at the FAQ.</b><br><br>
-      ]]></tutorial1>
-	  <tutorial2><![CDATA[
-	  <b>STATS:</b><br><br>
-	  
-	  Wow, you're really good at following your plans down to a T!<br>
-	  But how good-good at it are you really? That's where the next tool comes in handy:<br>
-	  <img src ="img/tutorial_2_0.png"><br>
-	  <b>1:</b> Your stat level show how fast you can complete actions. The higher, the less mana you spend for actions.<br>
-	  Your stats reset back to 0 after each delivery.<br>
-	  <b>2:</b> As you gain some stat exp, you also gain some talent exp: talent levels multiply stat exp gain.<br>
-	  They don't reset between deliveries!<br>
-	  <b>3:</b>This shows how many soulstones you have. Like talents, they multiply stat exp gain.<br>
-	  But as they're hidden deep in dungeons, you probably won't ever come to contact with one, right?<br><br>
-	  
-	  Well, that's all good and well, but how do you get them? Well:<br>
-	  <img src ="img/tutorial_2_1.png"><br>
-	  <b>1:</b> You convert mana into experience: 50% Spd means 50% of the base mana cost is gained as speed exp.<br>
-	  It also means 50% of the acceleration bonus gained from your stats comes from your speed stat.<br>
-	  <b>2:</b> Sometimes, actions can multiply how much stat exp you gain from doing them.<br><br>
-	  
-	 You're still wondering why your stats go back to 0 after each delivery...<br>
-	 Maybe this has something to do with all those delicious experimental potions you keep drinking?<br><br>
-      ]]></tutorial2>
-	  <tutorial3><![CDATA[
-	  <b>EXPLORATION RESSOURCES:</b><br><br>
+	<popup>
+		<tutorial0>
+			<text><![CDATA[
+				<b>CONGRATULATION!</b><br><br>
+				  
+				You have been selected to be a potion courier for an alchemist guild.<br>
+				That's what you've always dreamed of!<br>
+				But how does it all work, again?<br>
+				Well, there are 2 things to keep in mind. They are both at the top of the screen:<br><br>
+				  
+				<img src ="img/tutorial_0.png"><br><br>
+				  
+				<b>1:</b> Every potion starts with 500 mana. Every second, they lose mana: once they get to 0, the potion becomes useless and you have to start over.<br>
+				One second = 100 mana. So you have 5 seconds to deliver them.<br>
+				<b>2:</b> You can get items to help you for your potion delivery business. Once a delivery is finished, you have to place them back where you got them.<br>
+				Sadly you can't keep them between deliveries... That would have been really helpful!<br><br>
+				  
+				Now that you know the essentials, it's time to get to your first day of work!<br>
+				<b>Surely everything will go according to plan and you won't have any shenanigans involving a time loop, right?!</b><br><br>
+				  
+				<b>All of these tutorial pop-ups will be avaible in the FAQ tab so you can skip them and read them later if you want!</b><br><br>
+				
+				This game is a remake of the original game Idle Loops.<br>
+				Starting as a balance patch, it became an entirely new game centered about a squirrel.<br>
+				To play the latest version of the original game, check <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
+				This is one of several versions of the original game: for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
+				Thanks for playing, and have fun!<br><br>
+			]]></text>
+			<button>LET'S START THE TUTORIAL</button>
+		</tutorial0>
+		<tutorial1>
+			<text><![CDATA[
+			<b>ACTION LIST:</b><br><br>
+			  
+			Congrats! That was a first successful delivery! You're fit for this stuff!<br>
+			But it won't be that easy every time. Thankfully you're a master at planning your day, so here's a new tool:<br>
+			<img src ="img/tutorial_1.png"><br>
+			<b>1:</b>The right part shows every action you'll do for each delivery.<br>
+			<b>2:</b>The left part shows your current delivery progression.<br>
+			<b>3:</b>This is a stack of actions: to add it, click (and drag) the actions from the action options to place them in the list.<br>
+			<b>4:</b>There's a bunch of signs, here's a small description (ignore the star and human/squirrel icons for now!):<br>
+			<i class='actionIcon far fa-circle'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Cap the number of actions to its max value.<br>
+			<i class='actionIcon fas fa-plus'></i>/<i class='actionIcon fas fa-minus'></i> &nbsp;&nbsp;: Add/Substract one action.<br>
+			<i class='actionIcon fas fa-arrows-alt-h'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Split the stack of actions in two.<br>
+			<i class='actionIcon fas fa-sort-up'></i>/<i class='actionIcon fas fa-sort-down'></i></i> &nbsp;&nbsp;: Move up/down the stack.<br>
+			<i class='actionIcon far fa-check-circle'></i><span style="margin-left: -2px;"> /</span><i class='actionIcon far fa-times-circle'></i> &nbsp;: Enable/disable a stack of actions.<br>
+			<i class='actionIcon fas fa-times'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Remove the stack of actions.<br><br>
+			  
+			Well, that said, the best way to understand is to try it yourself. There's a few more options left for you to try.<br>
+			<b>So don't hestitate to try everything to understand it! If you need a refresher, you can always look at the FAQ.</b><br><br>
+		]]></text>
+			<button>OK</button>
+		</tutorial1>
+		<tutorial2>
+			<text><![CDATA[
+				<b>STATS:</b><br><br>
+				  
+				Wow, you're really good at following your plans down to a T!<br>
+				But how good-good at it are you really? That's where the next tool comes in handy:<br>
+				<img src ="img/tutorial_2_0.png"><br>
+				<b>1:</b> Your stat level show how fast you can complete actions. The higher, the less mana you spend for actions.<br>
+				Your stats reset back to 0 after each delivery.<br>
+				<b>2:</b> As you gain some stat exp, you also gain some talent exp: talent levels multiply stat exp gain.<br>
+				They don't reset between deliveries!<br>
+				<b>3:</b>This shows how many soulstones you have. Like talents, they multiply stat exp gain.<br>
+				But as they're hidden deep in dungeons, you probably won't ever come to contact with one, right?<br><br>
+				  
+				Well, that's all good and well, but how do you get them? Well:<br>
+				<img src ="img/tutorial_2_1.png"><br>
+				<b>1:</b> You convert mana into experience: 50% Spd means 50% of the base mana cost is gained as speed exp.<br>
+				It also means 50% of the acceleration bonus gained from your stats comes from your speed stat.<br>
+				<b>2:</b> Sometimes, actions can multiply how much stat exp you gain from doing them.<br><br>
+				  
+				You're still wondering why your stats go back to 0 after each delivery...<br>
+				Maybe this has something to do with all those delicious experimental potions you keep drinking?<br><br>
+			]]></text>
+			<button>OK</button>
+		</tutorial2>
+		<tutorial3>
+			<text><![CDATA[
+				<b>EXPLORATION AND RESOURCES:</b><br><br>
 
-	  -> Sadly there's a lot left to explore. A new type of action will be available for it. There's good and bad gained ressources.
-	  
-	  -> Image with exploration 
-	  
-	  1-> as you fill it, you unlock more ressources
-	  2-> this shows how much ressources you have unlocked. Though only a portion of it will work.
-	  3-> This is how many helpful ressources you have found.
-	  4-> this is how many of them are left for this delivery.
-	  
-	  It looks like having to discover everything yourself is a rite of passage around here...
-      ]]></tutorial3>
-	  <tutorial4><![CDATA[
-	  <b>SKILLS AND BAR ACTIONS:</b><br><br>
+				You might know this town like the back of your own hand, but the alchemy guild's quarters? That's a new one.<br>
+				You'll need to explore this place if you want to find reagents to make your potions last longer.<br>
+				Sadly, most of them are not compatible with the potions you have to deliver...<br><br>
+				  
+				<img src ="img/tutorial_3.png"><br>
+				<b>1:</b> As you fill the exploration bar, you will find more resources.<br>
+				<b>2:</b> Those are the resources you have found, but the majority of them are useless.<br>
+				<b>You'll have to try them one by one to sort them!</b><br>
+				<b>3:</b> This is how many resources you have found that are actually <b>useful</b> to you in total.<br>
+				<b>4:</b> This is how many useful resources are left available for this delivery.<br><br>
+				  
+				You really wish someone would guide you instead of having to try them all one by one...<br>
+				Sadly, they keep saying it's a rite of passage around here!<br>
+				Looks like you'll need to deliver more potions before getting some help.<br><br>
+			]]></text>
+			<button>OK</button>
+		</tutorial3>
+		<tutorial4>
+			<text><![CDATA[
+				<b>SKILLS AND BAR ACTIONS:</b><br><br>
+				  
+				Did you know there's more than stats? Well, now you know:<br><br>
+				<img src ="img/tutorial_4_0.png"><br><br>
+				  
+				This is a skill. You'll need 100 exp to get the first level up, then 200, 300, etc.<br>
+				Neat thing: <b>you keep them between deliveries!</b><br>
+				They are useful for many thing, for exemple, bar actions:<br><br>
+				<img src ="img/tutorial_4_1.png"><br><br>
+				  
+				Every bar action will have a different utility. You'll have to read its tooltip to know its use!<br>	  
+				Every mana spent on this action will fill out the bar by a certain number.<br>
+				That number is decided by a formula: it usually looks like (skills)*(stats)*(number of time completed).<br>
+				The formula is also unique to each action: <b>it is very important to check the formula to fully understand what you need!</b><br><br>
+				  
+				Well, speaking of, that next potion delivery action is a bar action!<br>
+				What a coincidence! Who would have seen that coming???<br><br>
+			]]></text>
+			<button>OK</button>
+		</tutorial4>
+		<tutorial5>
+			<text><![CDATA[
+				<b>SQUIRREL MODE:</b><br><br>
+				  
+				Oh, the messenger squirrel's vacation has ended, deliveries should be easier now!<br><br>
+				  
+				When you do an action in squirrel mode, it will have a different effect:<br>
+				You'll have to check the tooltip of the action in squirrel mode to see what it does:<br>
+				<img src ="img/tutorial_5_0.png"><br>
+				As you see, you can level up the squirrel version of the action by fulfilling some conditions!<br>
+				But remember: <b>you can only level up the same action once per delivery!</b><br><br>
+				  
+				But how do you do an action in squirrel mode? It's simple, just add an action in squirrel mode or click on this icon:<br>
+				<img src ="img/tutorial_5_1.png"><br>
+				The human mode icon will be replaced by one of those icons:<br>
+				<img src ="img/petSquirrel.svg" style="width:20px;margin-bottom:-3px"> : This action will happen as normal.<br>
+				<img src ="img/squirrelLose.svg" style="width:20px;margin-bottom:-3px"> : Doing this action will make you lose the squirrel, so be careful!<br>
+				<img src ="img/squirrelSleep.svg" style="width:20px;margin-bottom:-3px"> : This action will have no effect.<br>
+				<img src ="img/squirrelLevelUp.svg" style="width:20px;margin-bottom:-3px"> : This will level up the action!<br>
+				<img src ="img/squirrelLevelUpLose.svg" style="width:20px;margin-bottom:-3px"> : It will level up the action, but make you lose the squirrel, according to your gut feelings.<br><br>
+				  
+				Oh, and here's a little trick. Remember this icon?<br>
+				<img src ="img/tutorial_5_2.png"><br>
+				Clicking it will favorite human mode or squirrel mode for the action!<br>
+				In other word : <b>this action will always be added in the list in the mode you favored.</b><br>
+				This is pretty useful if an action is just objectively better in squirrel mode!<br><br>
+				 
+				With this, nothing will be able to stop you!<br>
+				Just in time, too: it looks like the higher up decided to give you your first big mission.<br><br>
+			]]></text>
+			<button>OK</button>
+		</tutorial5>
+		<tutorialEnd>
+			<text><![CDATA[
+				<b>TRAVEL JOURNAL:</b><br><br>
+			
+				Bag full of supplies? <i>Check.</i><br>
+				Potion to deliver on the way? <i>Check.</i><br>
+				Squirrel? <i>Check.</i><br>
+				Loop potion? <i>Check.</i><br>
+				Being mentally prepared for that endless walk? <i>Double check!</i><br>
+				That experimental potion you've been given that smells super tasty and surely won't reset your skills and talents? <i>Triple check!</i><br>
+				Goodbye Tutorialis, you'll be missed!<br><br>
+								
+				<b>[...]</b><br><br>
+				
+				You can't wait! Seeing the world, how amazing it sounds! You've never got out of your hometown before.<br>
+				Being a potion courier is the best! No way you'll ever do something else of your life!<br><br>
+								
+				<b>[...]</b><br><br>
+				
+				There we go, regular potion delivered!<br>
+				Good news: you no longer have to worry about having to turn around because of the potion being drained of mana.<br>
+				Bad news: the squirrel has to go home...<br>
+				Goodbye squirrel, you'll be missed!<br><br>
+								
+				<b>[...]</b><br><br>
+				
+				Sigh... You really wish you had a personal pet. That squirrel was good, but you couldn't really tame it how you want.<br>
+				It's decided! When you get back, you'll adopt a new one! Maybe you should just catch a wild one...<br><br>
+								
+				<b>[...]</b><br><br>
+				
+				Okay, you were prepared for this to last a long time, but not THAT long!<br>
+				Come on, all that's left now is a small village and some huge forest. Then, you'll be there!<br>
+				... Next time, you gotta remember to bring more supplies, though. You don't have anything left on you.<br><br>				
+			]]></text>
+			<button>BEGINNERSVILLE, HERE I COME!</button>
+		</tutorialEnd>
+		<gameStart>
+			<text><![CDATA[
+				<b>THE BEGINNING TO ALL OF YOUR PROBLEMS:</b><br><br>
+				
+				What a charming place! You wouldn't mind staying here for a bit.<br>
+				Especially since you need to earn some money to buy new supplies. Hopefully, it won't be too hard.<br><br>
 
-	  -> This next potion will be a difficult one. You'll need to train to be able to do it.
-	  
-	  -> Image with skills.
-	  1-> This is your skill. You gain 1 level at 100 skill exp, then 200, then 300, etc.
-	  
-	  -> But what are they used for? A lot of things but also:
-	  
-	  -> Image with bar actions.
-	  1 -> This is a bar action: as you do their corresponding action, it will empty out.
-	  2 -> This is how many times you have emptied a bar.
-	  
-	  -> For every mana spent, you generally complete this bar by (skill)*(stat)*(completed)
-	  -> (Bold) Though every bar action is different so always check the formula in its tooltip!
-	  
-	  It looks like having to discover everything yourself is a rite of passage around here...
-      ]]></tutorial4>
-	  <tutorial5><![CDATA[
-	  <b>SQUIRREL MODE:</b><br><br>
+				Oh hey, a squirrel just under your feet! Wait, wh<b>WAIT NO, THE PACKA-</b><br><br>
+				
+				Before realizing what's happening, you feel a sharp pain, hear a breaking sound, and feel something wet on you.<br>
+				<b><i>D... Did you just accidentally trip on the potion and got it spilled on you?!</b></i><br>
+				And you even broke your glasses...<br><br>
+				
+				Let's try staying calm about this: what SHOULD <b>YOU DO <i>NOW?!</i></b><br>
+				As you start to panic, you suddenly feel weird. Something seems to pull you back...<br><br>
+				
+				<b>As you blink, you find yourself back on the ground, where you tripped.</b><br>
+				<i>This time, confusion takes over your mind.</i> What just happened? Your first thoughts direct you to the potion.<br>
+				Yes! Yes... You can feel a familiar sensation... Mana leaking, but coming out of yourself instead of a potion.<br><br>
 
-      ]]></tutorial5>
-	  <tutorial6><![CDATA[
-	  
+				<b>As you blink, you find yourself back on the ground, where you tripped.</b><br>
+				<i>This time, fear takes over your mind.</i> So, this just happened when you felt you had no mana left.<br>
+				It feels like you were right about this. But why would the loop poti-<i>Oooooooooooh...</i><br><br>
+				
+				<b>As you blink, you find yourself back on the ground, where you tripped.</b><br>
+				<i>This time, resignation takes over your mind.</i> Are you stuck in a time loop? Can you do anything about it?<br>
+				Surely there's a way to at least make the loop longer? Maybe if you get more mana...<br><br>
+				
+				<b>As you blink, you find yourself back on the ground, where you tripped.</b><br>
+				<i>This time, determination takes over your mind.</i> You've seen it during your travel: pots around here contain mana.<br>
+				Why? You're not sure. But what you're sure of is what you need to do next.<br><br>
+				
+				<b>Let's get out of this time loop!</b><br><br>
+			]]></text>
+					
+			<button>LET'S START FOR REAL THIS TIME</button>
+		</gameStart>
+		<offlineUnlock>
+			<text><![CDATA[
+				<b>UNLOCKING A NEW POWER:</b><br><br>
+				
+				As soon as the squirrel decides to join you for real across all loops, you feel a weird sensation...<br>
+				You feel whole. As if reuniting everything affected by the loop potion unlocked something.<br>
+				And it fact, it did!<b> You just unlocked a new ability!</b><br><br>
+				
+				You realize some time ago that you gained the power to stop time for a while.<br>
+				That was super useful for planning the next loops, but... It still felt like a waste of time.<br><br>
+				
+				<b><i><u>Bonus time:</u></b></i><br><br>
+				
+				Well, good news: from now on, <b>time spent in that paused state is accumulated to be spent later!</b><br>
+				Let's call this accumulated time "Bonus time". <b>By spending bonus time, you can accelerate the flow of time!</b><br>
+				You also have the unexplained feeling that you can also accumulate "time spent offline", whatever that means...<br><br>
+				
+				While you're getting excited about this new power, you feel the squirrel getting agitated.<br>
+				Apparently it felt a new, different power from the one you just got?<br><br>
+				
+				<b><i><u>Overclock:</u></b></i><br><br>
+				
+				According to it, you can reject that previous power by pushing your limits. Let's call this "Overclock".<br>
+				Doing so will <b>accelerate the flow of time by 3 forever!</b> However, it has drawbacks...<br>
+				First, <b>you won't be able to gain any bonus time in that state.</b><br>
+				Second, <b>you will accumulate fatigue</b>, which will force you to take a pause after a while.<br><br>
+				
+				Alternatively, you could always switch between those 2 powers, there's no need to commit.<br>
+				Though be careful in that case: <b>fatigue will prevent you from gaining bonus time.</b><br><br>
+				
+				<i><b>If you like interacting with the game all day, Overclock is for you. Otherwise, it's best to not activate it.</b></i><br><br>
+				
+			]]></text>
+			<button>SWEET!</button>
+		</offlineUnlock>
+		<endingNotTripping>
+			<text><![CDATA[
+				<b>THE BEGINNING TO ALL OF YOUR PROBLEMS...?</b><br><br>
+				
+				What a charming place! You wouldn't mind staying here for a bit.<br>
+				Especially since you need to earn some money to buy new supplies. Hopefully, it won't be too hard.<br><br>
+				
+				Oh, a squirrel! You were about to trip on it, but good thing you worked on your clumsiness!<br>
+				Nothing bad would have probably happened from it, but still... What a cute squirrel that was! Cuter than yours.<br>
+				Well, time to continue your adventure!<br><br>
+				
+				<b>[...]</b><br><br>
+				
+				You finally find yourself in front of the door you have to deliver this package to.<br>
+				As you ring the bell, the customer immediatly opens the door, takes the package, and closes the door.<br>
+				... Not a single word uttered. He didn't even look at you. What was that about?!<br>
+				Well, now that's it's done, you should fin-<b>SMASH!</b><br><br>
+				
+				<b>Wow, was that the sound of glass breaking? Let's hope that guy didn't drop your potion!</b><br>
+				Well, that's not your problem anymore.<br>
+				Let's find a way to go home, now!<br><br>
+								
+				<b>Wow, was that the sound of glass breaking? Let's hope that guy didn't drop your potion!</b><br>
+				You suddenly hear someone shouting very, very loudly.<br>
+				What was that?!<br><br>
+				
+				<b>Wow, was that the sound of glass breaking? Let's hope that guy didn't drop your potion!</b><br>
+				The door suddenly bursts open, the customer looking agitated.<br>
+				He asks you a barrage of questions on the potion, for which you don't have any answers.<br>
+				What did you just deliver, exactly?<br><br>
+				
+				
+				<b>Wow, was that the sound of glass breaking? Let's hope that guy didn't drop your potion!</b><br>
+				The door suddenly bursts open, the customer running towards you with a sword in hand.<br>
+				You don't have the time to react as he stabs you.<br>
+				W... Why...?<br>
+				...<br><br>
+				
+				<b>Wow, was that the sound of glass breaking? Let's hope that guy didn't drop your potion!</b><br>
+				The door suddenly bursts open, the customer running outside at top speed.<br>
+				That was weird... Probably the weirdest customer you've seen for now.<br>
+				Anyway, let's find a way to go home, now!<br><br>
 
-      ]]></tutorial6>
+			]]></text>
+			<button>WOW, WAS THAT THE SOUND OF GLASS BREAKING?</button>
+		</endingNotTripping>
+		<endingNotTrippingEndCard>
+			<text><![CDATA[
+				<br>
+				<div style="font-size:3vw;text-align:center;width:100%"><b>THE END...?</b></div><br><br>
+				
+				You got the ending: <b>Not tripped</b>.<br><br>
+				
+				<i>But what would have happened if you did trip?</i><br><br>
+
+			]]></text>
+			<button>LET'S SEE WHAT WOULD HAVE HAPPENED</button>
+		</endingNotTrippingEndCard>
+		<drinkChronosPotion>
+			<text><![CDATA[
+				<b>DRINKING THE CHRONOS POTION:</b><br><br>
+				
+				Oooooh no, you're not dealing with all this time loop nonense!<br>
+				You're pretty happy you already got a way out. Cheers!<br><br>
+				
+				<b>[...]</b><br><br>
+				
+				It should happen any time soon!<br><br>
+				
+				<b>[...]</b><br><br>
+				
+				At any time, now...<br><br>
+				
+				<b>[...]</b><br><br>
+				
+				Okay, why is nothing happening? Was that potion fake?!<br><br>
+				
+				Still, you have that weird feeling, like something changed in the past forever...?<br>
+				Did something change in Tutoralis? But you can't get there anymore!<br>
+				If only there was a way to come back...<br><br>
+				
+				And why does the word "meta" keep coming into your mind?<br><br>
+			]]></text>
+			<button>OK</button>
+		</drinkChronosPotion>
+		<endingANormalLife>
+			<text><![CDATA[
+				<b>THE END TO ALL OF YOUR PROBLEMS:</b><br><br>
+				
+				You hesitantly give the loop potion to the shadowy figure and its squirrel.<br>
+				As soon as it comes into contact with you, both the potion and the figure disappear.<br>
+				You start to feel a sharp pain in your head...<br><br>
+				
+				You were... somewhere else? Something about time? But-<b>SLAPS</b><br>
+				Hey! Why did the squirrel slap you?! You thought you were best buddy with... it...<br>
+				Wait, you remember <b>EVERYTHING</b> now!<br><br>
+
+				The time loop, the squirrel, Beginnersville, what came after, everything!<br>
+				And you're back in Tutoralis! Before it all happened! The Chronos Potion worked!!!<br><br>
+				
+				You feel new knowledge pour into your head. A message from Chronos?<br>
+				<b>"I created this timeline branch just for this version of you.<br>
+				You are freed from your destiny here."</b><br><br>
+				
+				You're not sure what it means, but you don't care this much.<br>
+				Right now, it's party time!<br><br>
+				
+				<b>You're finally free!</b><br><br>
+			]]></text>
+			<button>ALL IS WELL THAT ENDS WELL</button>
+		</endingANormalLife>
+		<endingANormalLifeEndCard>
+			<text><![CDATA[
+				<br>
+				<div style="font-size:3vw;text-align:center;width:100%"><b>THE END!</b></div><br><br>
+				
+				You got the ending: <b>A normal life</b>.<br><br>
+				
+				<i>How much time do you give yourself before you do something really bad out of habits?</i><br><br>
+			]]></text>
+			<button> NOW LET'S SEE WHAT IS YOUR TRUE DESTINY</button>
+		</endingANormalLifeEndCard>
+		<endingTrickedChronos>
+			<text><![CDATA[
+				<b>TAKING THE EASY PATH:</b><br><br>
+				
+				You're thankful for that potion replicator you bought at Tutorialis.<br>
+				Wait, did you actually do that...? You can't remember well...<br><br>
+				
+				Anyway, why make the effort of crafting the loop potion when you already have a copy of it?<br>
+				So let's end this time loop disaster right now!<br><br>
+				
+				You give to Chronos the loop potion.<br>
+				They look pretty please with it:<br><br>
+				
+				"SO YOU HAVE CLEARED ALL MY TRIALS. I AM PROUD OF YOU.<br>
+				YOU HAVE NOW MATURED ENOUGH FOR YOU TO... WAIT...<br>
+				HAVE YOU NOT? HOW DID YOU GET THAT LOOP POTION THEN?"<br><br>
+				
+				You suddenly hear a sinister laughing around you.<br>
+				It seems to come from everywhere at the same time?<br><br>
+				
+				"THE DARK GODS? DID THEY TRICK YOU WITH THIS POTION?<br>
+				YOU FOOL, THAT ISN'T A LOOP POTION! AND NOW THAT I HAVE STARTED THE RITUAL, IT WILL..."<br><br>
+				
+				The ground starts to shake.<br>
+				This doesn't look good...<br><br>
+				
+				"NO! TIME GOT DAMAGED! THAT SHOULDN'T HAVE HAPPENED!<br>
+				WHY HAVE YOU-"<br><br>
+				
+				Chronos suddenly disappears.<br>
+				Actually, everything around starts disappearing as well...<br><br>
+				
+				Scared, you look at your squirrel.<br>
+				It looks transparent... And so is your hand. You feel yourself slowly disappearing...<br><br>
+				
+				<b>Something tells you that you made a mistake.</b><br><br>
+			]]></text>
+			<button>UH OH</button>
+		</endingTrickedChronos>
+		<endingTrickedChronosEndCard>
+			<text><![CDATA[
+				<br>
+				<div style="font-size:3vw;text-align:center;width:100%"><b>THE END...</b></div><br><br>
+				
+				You got the ending: <b>Tricked Chronos</b>.<br><br>
+				
+				<i>Thankfully the fabric of time is resilient. Next time, don't trust shady merchants.</i><br><br>
+			]]></text>
+			<button>LET'S SEE WHAT HAPPENS IN THE RESET TIMELINE</button>
+		</endingTrickedChronosEndCard>
+	</popup>
     <tracked_resources>
         <reset_on_restart_txt>Resets when the loop restarts.</reset_on_restart_txt>
         <!--countable items with names and counts on the top bar-->
@@ -522,12 +880,12 @@
         <resource initially_hidden="true">
             <title>Potions:</title>
             <id>potions</id>
-            <desc>Rare, but not complex. Worth some money.</desc>
+            <desc>State of the art potions that can't lose mana.</desc>
         </resource>
 		<resource initially_hidden="true">
             <title>Dark Potions:</title>
             <id>darkPotions</id>
-            <desc>More twisted than regular potions.</desc>
+            <desc>A twisted version of regular potions that doesn't have any mana in them.</desc>
         </resource>
         <resource initially_hidden="true">
             <title>Team Members:</title>
@@ -588,7 +946,7 @@
 		<resource initially_hidden="true" no_count="true">
             <title><![CDATA[<img src="img/petSquirrel.svg" class="smallIcon" id = "resourceSquirrel">]]></title>
             <id>squirrel</id>
-            <desc>Your partner in crime. Stuck in the time loop with you.</desc>
+            <desc>Your partner in crime. Stuck with you in this adventure.</desc>
         </resource>
         <resource initially_hidden="true" no_count="true">
             <title><![CDATA[<img src="img/takeGlasses.svg" class="smallIcon">]]></title>
@@ -633,7 +991,17 @@
 		<resource initially_hidden="true" no_count="true">
             <title><![CDATA[<img src="img/loopPotion.svg" class="smallIcon">]]></title>
             <id>loopPotion</id>
-            <desc>You made the same loop potion as the one that got you into this mess. You can finally break the loop with it!</desc>
+            <desc>What an incredible potion... You can feel raw power emanating from it.</desc>
+        </resource>
+		<resource initially_hidden="true" no_count="true">
+            <title><![CDATA[<img src="img/loopPotionCopy.svg" class="smallIcon">]]></title>
+            <id>loopPotionCopy</id>
+            <desc>You got a copy of the loop potion. But what can you do with it?</desc>
+        </resource>
+		<resource initially_hidden="true" no_count="true">
+            <title><![CDATA[<img src="img/chronosPotion.svg" class="smallIcon">]]></title>
+            <id>chronosPotion</id>
+            <desc>This legendary potion can apparently change the past.</desc>
         </resource>
     </tracked_resources>
     <time_controls>
@@ -712,8 +1080,9 @@
 			<bonus_mult>Current Bonus Mult</bonus_mult>
             <counter_text>Total Bonus Time</counter_text>
             <fatigue_text>Fatigue Left</fatigue_text>
+			<squirrel_pause>Time Left Before Pausing The Game</squirrel_pause>
             <overclock_button_on>Turn Overclock On</overclock_button_on>
-            <overclock_button_off>Turn Overckock Off</overclock_button_off>
+            <overclock_button_off>Turn Overclock Off</overclock_button_off>
 			<x5_tooltip><![CDATA[
 				Recommended if playing this game 5 hours a day sounds like a lot.<br>
 				This is the default setting: high speed and a lot of time to play each day.
@@ -1030,6 +1399,14 @@
             <label>Team Combat</label>
             <desc>Team Combat = (Self Combat / 200) * (200 ^ Team Members) * ( 1 + Teamwork / 10)</desc>
         </tcombat>
+		<handling>
+            <label>Animal Handling</label>
+            <desc>Live in harmony with animals. At least to the point they won't eat you.</desc>
+        </handling>
+		<clumsiness>
+            <label>Clumsiness</label>
+            <desc>Better work on it before an accident happens.</desc>
+        </clumsiness>
         <combat>
             <label>Combat</label>
             <desc>Fight for your lives.</desc>
@@ -1064,7 +1441,7 @@
 		</yin>
         <alchemy>
             <label>Alchemy</label>
-            <desc>Distilling potions is hard work! It's a good thing you found a teacher.</desc>
+            <desc>Funny how you went from delivering potions to making them!</desc>
         </alchemy>
         <brewing>
             <label>Brewing</label>
@@ -1165,9 +1542,13 @@
     </skills>
 	<skillsSquirrel>
         <title>Squirrel Skills</title>
+		<squeakiness>
+			<label>Squeakiness</label>
+			<desc>What adorable sounds! You really want a pet squirrel of your own.</desc>
+		</squeakiness>
 		<trust>
 			<label>Trust</label>
-			<desc>Shows the strength of the bond between you and the squirrel</desc>
+			<desc>Shows the strength of the bond between you and the squirrel.</desc>
 		</trust>
         <combat>
             <label>Combat</label>
@@ -1566,6 +1947,310 @@
         ]]></tooltip>
         </haulZ6>
 		<!--town tutorial-->
+		<search_around>
+			<label>Search Around</label>
+			<label_done>Alchemist Guild Explored</label_done>
+			<tooltip><![CDATA[
+			This is a stupid rite of passage. Did they really hide all the regeants you should have access to?!<br>
+			That's going to take a while to find them all, ack...<hr class='divider'>
+			• Gives 30 exp worth of progress as a base.<br>
+			• Reveals reagents to add to your potions.<br>
+			• This action will allow you to unlock new resources every new % explored.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			To heck with this dumb rite of passage! You've delivered enough potions, time to get some help.<br>
+			After a while, the squirrel comes back. Alone. with the message untouched.<br>
+			Did nobody seriously realize you were trying to contact them?!<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squeakiness >= 10 <hr class='divider'>
+		]]></squirrel_1>
+		    <squirrel_2><![CDATA[
+		    Okay, now that the squirrel can squeak pretty loudly, it should work!<br>
+		    And it does! Though only a few people came to help.<br>
+			There should be more people. Maybe with more squeakiness the results will be better?<hr class='divider'>
+			<b>Effect: </b>This action gives 100 progress exp in squirrel mode.<br>
+			<b>Next: </b>squeakiness >= 20 <hr class='divider'>
+		]]></squirrel_2>
+		    <squirrel_3><![CDATA[
+			This time, a whole 10 people came to your help!<br>
+			It seems like you got everyone who disliked having to go through the rite of passage themselves.<br>
+			You're happy to have so many amazing collegues!<hr class='divider'>
+			<b>Effect: </b>This action gives 600 progress exp in squirrel mode.<hr class='divider'>
+		]]></squirrel_3>
+		</search_around>
+		<add_reagents>
+			<label>Add Reagents</label>
+			<label_done>Reagents Added To Potions</label_done>
+            <info_text1>Useful reagents left</info_text1>
+            <info_text2>Useful reagents found</info_text2>
+            <info_text3>Reagents found but not tested yet</info_text3>
+			<tooltip><![CDATA[
+			This is a <b>really</b> stupid rite of passage. Most of the reagents you found are useless!<br>
+			Now you'll have to test them all out one by one to find if they work or not!<br>
+			At least the guild refills them once you finish a delivery...<hr class='divider'>
+			• Every useful reageant adds 
+		]]></tooltip>
+            <tooltip2><![CDATA[
+            mana to your potion.<br>
+			• Only half of the reagents you find are useful.<br>
+			• Doing this action will test the new reageants you found first.<br>
+			• Once you have tested all newly found ones, you will be left with all the ones you know are useful.<br>
+			• If you want to use the ones you know are useful first, check the "Lootable First" checkbox.<hr class='divider'>
+        ]]></tooltip2>
+			<squirrel_1><![CDATA[
+			You just realized something: you're not an alchemist and this place is full of them.<br>
+			You should probably ask for some help.<br>
+			Well, that is, once that squirrel can actually manage to deliver a letter successfully!<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squeakiness >= 15 <hr class='divider'>
+		]]></squirrel_1>
+		    <squirrel_2><![CDATA[
+		    Aaaah, finally, someone else saw your message!<br>
+			That alchemist seems like an expert: apparently they've been making potions for 30 years!<br>
+			And so they help by doing the amazing feat of... doing the exact same thing as you were doing.<br>
+			Well, it looks like some things can't be improved, after all. At least being two is helpful.<hr class='divider'>
+			<b>Effect: </b>Add 2 reagents to the potion instead of 1 in squirrel mode.<hr class='divider'>
+		]]></squirrel_2>
+		</add_reagents>
+		<dissolve_mana>
+			<label>Dissolve Mana</label>
+			<tooltip><![CDATA[
+			That's good and all, but having only 500 mana to deliver a potion?!<br>
+			You'll need to dissolve a mana crystal if you want to manage the next deliveries.<br>
+			Fun fact: if you add multiple crystals, it will blow up in your face. Probably better to not try it.<hr class='divider'>
+			• Gives 1100 mana.<br>			
+			• Can only be done once per delivery.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			You can vaguely remember hearing that there's larger mana crystals for this action...<br>
+			But you have no idea where to find them, so you leave a message on the squirrel.<br>
+			Hopefully it will reach someone who knows something about it while you work on your current potion!<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squeakiness >= 8 <hr class='divider'>
+		]]></squirrel_1>
+		   <squirrel_2><![CDATA[
+		    It looks like the squirrel found someone who knows where the crystals are!<br>
+			He came back with the squirrel in one hand and the crystal in the other.<br>
+			As you thank him, he goes away with the squirrel.<br>
+			How nice, that crystal will be useful... Wait, he went away with the squirrel?!<hr class='divider'>
+			<b>Effect: </b>Doing this action in squirrel mode gives 1600 mana, but lose the squirrel.<br>
+			<b>Next: </b>squeakiness >= 16 <hr class='divider'>
+		]]></squirrel_2>
+		   <squirrel_3><![CDATA[
+		   It looks like the squirrel found another colleague to help you this time.<br>
+		   You take the crystal while glaring at them... They look weirdly at you, then go away.<br>
+		   Nice! There were a total of 0 squirrel kidnapping this time!<hr class='divider'>
+			<b>Effect: </b>Doing this action in squirrel mode gives 1600 mana.<hr class='divider'>
+		]]></squirrel_3>
+		</dissolve_mana>
+		<spare_change>
+			<label>Spare Change</label>
+			<tooltip><![CDATA[
+			This could come in handy for some customers. Too bad it's not your money.<br>
+			If there were no consequences in life, you'd probably keep all that money for yourself, but alas...<hr class='divider'>
+			• Gives you 10 gold.<br>			
+			• Items like gold reset back to 0 after each delivery.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			Oh! You just got a funny idea! What if you let the squirrel take by itself?<br>
+			After all, it can transports all sort of items!<br>
+			... Is what you thought, but it seems like it isn't coming back any time soon.<hr class='divider'>
+			<b>Effect: </b>Lose the squirrel.<br>
+			<b>Next: </b>squeakiness >= 25 <hr class='divider'>
+		]]></squirrel_1>
+		    <squirrel_2><![CDATA[
+			Oh yeah... You feel dumb: you totally forgot that the person in charge of the money is deaf.<br>
+			No wonder the squirrel's squeaking couldn't attract his attention!<br>
+			At least he still got his 2 eyes: giving better directions to the squirrel seems to have done the trick.<br>
+			And it even came back with more money than usual!<hr class='divider'>
+			<b>Effect: </b>Doing in aciton in squirrel mode gives you 15 gold.<hr class='divider'>
+		]]></squirrel_2>
+		</spare_change>
+		<psych_up>
+			<label>Psych Up</label>
+			<tooltip><![CDATA[
+			Okay okay, don't panic. This going to be hard, but you'll manage it.<br>
+			This will probably be the hardest trial you'll ever face, time to psych yourself up!<hr class='divider'>
+			• This action will give you a lot of exp for the soul stat.<br>
+			• If you want to reduce the mana cost for a soul-dependant action, you'll need to do this action across multiple delivery tries.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			Let's to try psych up the squirrel, that's going to be funny and cute!<br>
+			But it sadly doesn't understand what you're trying to do... Come on, just this 1 time!<br>
+			Sigh... You really wish it could do anything other than delivering stuff...<br>
+			You'd probably need another smarter squirrel for that.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</psych_up>
+		<pet_animals>
+			<label>Pet Animals</label>
+			<tooltip><![CDATA[
+			These animals are dangerous. Let's try getting more familiar with them?<br>			
+			You might lose a hand or two in the process, but that's better than losing your life.<br>
+			Hopefully this yard won't be the end of you...<hr class='divider'>
+			• Doing this action will give you exp for the skill animal handling.<br>
+			• This skill will be useful for completing the fifth potion delivery.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			You know what? Screw this yard! If there's one animal you'd rather pet, it's the squirrel!<br>
+			At least with this one you know you'll still have 5 fingers left on your hand after petting it...<hr class='divider'>
+			<b>Effect: </b>None. (But the squirrel likes you a bit more.)<hr class='divider'>
+		]]></squirrel_1>
+		</pet_animals>
+		<get_squirrel>
+			<label>Messenger Pet</label>
+			<tooltip><![CDATA[
+			Finally, you can take the messenger squirrel with you!<br>
+			You always dreamed of taming a squirrel, but this one is just good for sending messages right and left...<br>
+			From now on, you will be able to send messages to ask for help. Useful!<hr class='divider'>
+			• Doing this action will give you the squirrel.<br>
+			• Having a squirrel with you will allow you to do a modified version of each action, in squirrel mode.<br>
+			• You can't do any action in squirrel mode if the squirrel isn't with you.<br>
+			• To check what the squirrel does, activate squirrel mode and look at the action tooltips.<br>
+			Alternatively, there's an option that allows you to combine all human and squirrel mode tooltips.<br>
+			• If you lose the squirrel, you'll have to wait for the next delivery to pick it back.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			You send away the squirrel to ask for help to recruit the squirrel!<br>
+			Wait, that doesn't sound right...<br>
+			Wait, it's coming back. With a new message? Where does it comes from? It reads:<br><i>
+			There are 3 secrets hidden in Tutorials. Getting them won't give any gameplay advantage.<br>
+			You are encouraged to back-up and restart the game whenever you want to search for them.<br>
+			Here's an hint for each of them:<br>
+			• Follow the numbers shown by the creature.<br>
+			• Money makes the world go round.<br>
+			• There's not only one way to end this.<br></i>
+			Uh. You have no idea what it's talking about. Must not be important.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</get_squirrel>
+		<train_presence>
+			<label>Train Presence</label>
+			<tooltip><![CDATA[
+			This squirrel might be amazing at finding the person you want to send a message to, but...<br>
+			When it comes to make itself seen, nothing. People keep missing your messages because of that.<br>
+			So training it to be loud is a necessity! ... It's absolutely not because you find this cute, not at all!<hr class='divider'>
+			• You need the squirrel to do this action.<br>
+			• This gives 100 exp for the Squeakiness squirrel skill.<br>
+			• Squirrel skills act like human skills, except they're only useful at upgrading squirrel mode actions.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			It feels like the squirrel will be able to train more efficiently with other squirrels.<br>
+			Too bad it's so bad at being percieved that other squirrels don't realize it's trying to talk to them too...<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squeakiness >= 30 <hr class='divider'>
+		]]></squirrel_1>
+		   <squirrel_2><![CDATA[
+		   Ah! Your squirrel finally managed to attract another squirrel!<br>
+		   It suddenly starts screaming at it. And the other squirrel does the same.<br>
+		   The 2 of them are just screaming at each other...<br>
+		   Is that a good thing? It doesn't feel like it's a good thing.<hr class='divider'>
+			<b>Effect: </b>Doing this action in squirrel mode will give enough exp to level up Squeakiness every time.<hr class='divider'>
+		]]></squirrel_2>
+		</train_presence>
+		<pick_up_package>
+			<label>Pick Up Package</label>
+			<tooltip><![CDATA[
+			There's a bunch of instruction on this package:<br>
+			"To be delivered in Merchanton"<br>
+			That's so far away it's not even in your country. This mission will take a while!<br>
+			"The wrapping prevents the potion to leak out mana until opened"<br>
+			Oh yeah, those are very expensive and used only for potions that have to be delivered far away.<br>
+			"VERY FRAGILE, DO NOT DROP!"<br>
+			Ah! As if that would happen!<hr class='divider'>
+			• Gives you the loop potion.<br>
+			• You need it in order to finish the tutorial.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			So you were wondering... How many squirrels does it take to carry a package?<br>
+			Well, turns out the answer is more than 1. Otherwise you get a squished squirrel.<br>
+			You alright there, buddy?<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</pick_up_package> 
+		<work_on_yourself>
+			<label>Work On Yourself</label>
+			<tooltip><![CDATA[
+			You know a few exercises that could help reduce your natural clumsiness!<br>
+			First you should... oops, you spilled your drink.<br>
+			Then you should... ah, you let your tool fall!<br>
+			And finally there's... OW! You just bumped your toe on a table!<br>
+			... Why does it feel like it's not working?<hr class='divider'>
+			• Gives you exp for the clumsiness skill.<br>
+			• There's no benefit in raising your clumsiness.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			You definitely need help with this one. But you don't really want people to see you being this vulnerable.<br>
+			Thankfully you have a squirrel! And it's pretty good at seeing when you're about to do something clumsy!<br>
+			... Too bad it's too discreet for you to realize when it wants to warn you.<hr class='divider'>
+			<b>Effect: </b>None.<br>
+			<b>Next: </b>squeakiness >= 100 <hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Now it works! The squirrel is finally loud enough to be of help!<br>
+			It is shockingly capable at helping you. Seems like you underestimated it.<br>
+			Still, you can't hear it most of the time. How did it manage to deliver letters in this state?<hr class='divider'>
+			<b>Effect: </b>Gives (100 - squeakiness level) exp for the clumsiness skill.<hr class='divider'>
+		]]></squirrel_2>
+		</work_on_yourself>
+		<potion_replicator>
+			<label>Potion Replicator</label>
+			<tooltip><![CDATA[
+			Attracted by the money you're carrying, a shady merchant appears...<br>
+			He is apparently selling a machine that can replicate potions.<br>
+			That actually seems useful, as a back-up if an accident ever happens to the loop potion you're carrying.<br>
+			That is, if it really works. It could be junk...<br>
+			... Just in case, let's use the money of the Alchemy Guild. Work expense and all!<hr class='divider'>
+			• This action costs 240 gold.<br>
+			• You need the loop potion to replicate.<br>
+			• And the squirrel to watch your back.<br>
+			• According to the manual doing this will have this effect:<br>
+			<i>Allows you to create a copy of the loop potion whenever you export your savefile.<br>
+			The effect will be unlocked forever. Erasing your save or loading another one will not affect it.</i><br>
+			You're not sure what it means...<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			... Nope, you can't replicate the squirrel.<br>
+			Well tried, though.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</potion_replicator>
+		<treasure_box>
+			<label>Treasure Box</label>
+			<tooltip><![CDATA[
+			You followed the hint, and it paid off: you just dig up a treasure box!<br>
+			Inside it is... A potion? What kind of potion is <b>NO WAY it can't be <i>that</i> potion?!</b><br>
+			Well, you just found the gosh darn rarest potion in existence.<br>
+			The Chronos Potion. Made by the deity itself. Can change your past. Doesn't even leak out mana.<br>
+			No way you'll give it to the guild, this is waaaaaay too precious! Nobody must know!<hr class='divider'>
+			• This gives you the Chronos potion.<br>
+			• It will stay in your inventory until consumed.<br>
+			• Now, what to do with it? Oh yes:<br>
+			<i>You better keep this potion until you screw up something BIG TIME in your life.<br>
+			Even better if it's a time-related accident!</i><br>
+			That said, where did that hint came from? To indicate something so precious, you can't help wondering...<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			No way you're gonna contact anyone about this via the squirrel!<br>
+			This secret will follow you to the grave!<br>
+			... You almost considered getting rid of the squirrel just to be sure, but you probably shouldn't. Probably.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</treasure_box>
+		<time_traveler>
+			<label>Time Traveler</label>
+			<tooltip><![CDATA[
+			Wait, this undefined shadowy figure and their pet squirrel look weirdly familiar?<br>
+			If feels like they shouldn't be here, somehow...<br>
+			You have the weird impulse to give them the package for the time loop.<br>
+			Should you follow it?<hr class='divider'>
+			• Requires the loop potion.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			The two squirrels give each other an high-five. Nice!<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</time_traveler>
 		<deliver_potion_one>
 			<label>Deliver Potion 1</label>
 			<tooltip><![CDATA[
@@ -1586,6 +2271,103 @@
 			<b>Effect: </b>None.<hr class='divider'>
 		]]></squirrel_1>
 		</deliver_potion_one>
+		<deliver_potion_two>
+			<label>Deliver Potion 2</label>
+			<tooltip><![CDATA[
+			The first delivery went well! This one should be be harder.<br>
+			The house is further away this time, and the customer is bothersome.<br>
+			They're known for still using the old form of money. You'll need some change to deal with it!<hr class='divider'>
+			• Requires 10 gold.<br>			
+			• You'll need a way to gain more mana to do this action.<br>
+			• Can only be done once per delivery.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			Well, you thought it'd be better to get through this delivery with a squirrel on your side.<br>
+			... Until you remembered that the old money uses nuts as a symbol engraved on the coins.<br>
+			Never again.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</deliver_potion_two>
+		<deliver_potion_three>
+			<label>Deliver Potion 3</label>
+			<tooltip><![CDATA[
+			Let's see, the next customer is... Oh no. No no no no no!!!<br>
+			You really, <i>really</i>, <i><b>really</b></i>, <b>really</b> don't want to see this person. Please, not them!<hr class='divider'>
+			• You'll need a very high soul stat to finish this delivery.<br>	
+			• Doing so will reduce the mana cost of this action to a more manageable number.<br>
+			• Can only be done once per delivery.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			Hahaha, no.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</deliver_potion_three>
+		<deliver_potion_four>
+			<label>Deliver Potion 4</label>
+			<tooltip><![CDATA[
+			This delivery has nothing particular to it, it's a classic one.<br>
+			It's just far away, so it looks like you'll have to do this annoying rite of passage...<br>
+			No more delaying it! This is going to be painful.<hr class='divider'>
+			• You'll need to explore the alchemist guild if you want to do this.<br>
+			• Exploring around 10% of it should be enough.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			You asked for help with the squirrel, and nobody felt like you needed help.<br>
+			You were expecting funny antics with the squirrel, but it didn't move from your pockets.<br>
+			You were hoping the customer to do something funny, but it didn't.<br>
+		    But what you didn't see coming was what that ostrich did to you.<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</deliver_potion_four>
+		<deliver_potion_five>
+			<label>Deliver Potion 5</label>
+			<label_done>Times Delivered</label_done>
+            <label_part>Dangerous Yard</label_part>
+			<segment_names>
+                <name>Dodging the cat swipes</name>
+                <name>Outrunning the dogs</name>
+                <name>Wrestling the alligators</name>
+                <name>Trying to not strangle the customer</name>
+            </segment_names>
+			<tooltip><![CDATA[
+			This next customer is infamous for their dangerous yard!<br>
+			Good luck trying to survive this delivery. Maybe trying to get to know their animals first would help?<hr class='divider'>
+			• Gives (animal handling) * (1 + main stat / 100) * (1 + times completed) progress points per mana.<br>
+			• You'll need to get a few levels of animal handling to manage it.<br>
+			• By getting higher stat levels, you will become more efficient with this task.<br>
+			• Repetition is key: finishing this task multiple times will make it easier next time.<hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			You have to admit, it was quite impressive to see how the squirrel managed to survive the yard.<br>
+			You do feel bad for the animals who had to face it, though...<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+		]]></squirrel_1>
+		</deliver_potion_five>
+		<deliver_potion_six>
+			<label>Deliver Potion 6</label>
+			<tooltip><![CDATA[
+			Time for your first big mission. This one will take a very long time to deliver, it's so far away!<br>
+			It's a good opportunity to deliver a regular potion on the way there.<br>
+			The squirrel will transport everything back to the guild while you'll continue travelling.<br>
+			Time for adventure!<hr class='divider'>
+			• You need the squirrel to do this action.<br>
+			• You need the loop potion too.<br>
+			• <b>THIS WILL END THE TUTORIAL! You won't be able to come back to this zone after doing this action!</b><br>
+			<b>Your talents, skills and squirrel skills with be reset back to 0, too!</b><hr class='divider'>
+		]]></tooltip>
+			<squirrel_1><![CDATA[
+			As you get ready to go deliver the loop potion, you accidentally drop the squirrel.<br>
+			... You know, maybe it's better to work on that clumsiness before going away.<br>
+			You wouldn't want to drop the package, would you?<hr class='divider'>
+			<b>Effect: </b>Unlocks an action and reveals an hidden stat.<br>
+			<b>Next: </b>clumsiness = 0<hr class='divider'>
+		]]></squirrel_1>
+			<squirrel_2><![CDATA[
+			Time to go deliver that package!<br>
+			Now that you've worked on yourself, nothing bad should happen!<hr class='divider'>
+			<b>Effect: </b>???<hr class='divider'>
+		]]></squirrel_2>
+		</deliver_potion_six>
 		<!--town 0-->
 		<look_around>
 			<label>Look Around</label>
@@ -1594,6 +2376,7 @@
 			It's quite confusing. This place is very small at first, but every time you look around, it becomes bigger.<br>
 			It's not just space that feels weird, time does too: your body feels frozen in time, despite being capable of moving.<hr class='divider'>
 			• Gives 100 exp worth of progress as a base.<br>
+			• Reveals mana spots to absorb.<br>
 			• Every % looked at doubles the mana cost of this action.<br>
 			• Every level of Spirit Blessing divides the mana cost by 6.<br>
 			• You need glasses for this action.<br>
@@ -1720,7 +2503,7 @@
 			The squirrel should easily surpass you once you get a few more Spirit Blessings.<br>
 			It's probably better to focus on it later.<br>
 			You're pretty sure the result won't be gaining any Spirit Blessing level, anyway...<hr class='divider'>
-			<b>Effect: </b>None.<br>
+			<b>Effect: </b>None. (Except if the mysterious voice asks you to show the squirrel.)<br>
 			<b>Next: </b>squirrel magic >= human magic <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
@@ -1851,6 +2634,20 @@
 			<story_1><![CDATA[<b>Pet the squirrel:</b>⮀ The squirrel hesitantly approaches you... It looks ready to bite you. It also looks all angry and confused. Probably from you tripping on it and the time rewinding every few minutes.]]></story_1>
 			<story_2><![CDATA[<b>50 trust:</b>⮀ That's it. You've done it. Now you and the squirrel are the best friends there have ever been. He's ready to sacrifice his life for you and vice-versa.]]></story_2>
         </pet_squirrel>
+		<chronos_potion>
+            <label>Chronos Potion</label>
+            <tooltip><![CDATA[
+			Well...There's no better time than now to drink that potion.<br>
+			It should help you getring out of this time loop... Should. Hopefully.<hr class='divider'>
+			• Doing this action will use up the chronos potion. It is the only way to use it.<hr class='divider'>
+        ]]></tooltip>
+			<squirrel_1><![CDATA[
+			This potion is your one chance to fix this mess of a time loop.<br>
+			... So letting the squirrel play with it like this is almost giving you an heart attack.<br>
+			For a second, you thought you'd need a second potion to undo this action!<hr class='divider'>
+			<b>Effect: </b>None.<hr class='divider'>
+			]]></squirrel_1>
+        </chronos_potion>
         <pick_locks>
             <label>Pick Locks</label>
             <label_done>Locks Picked</label_done>
@@ -2095,7 +2892,7 @@
 			<b>Next: </b>trust >= 27 <hr class='divider'>
 			]]></squirrel_1>
 			<squirrel_2><![CDATA[
-			Your squirrel finally trusts you enough to chase itself that wild squirrel that was causing problems at the parties without any hint of hesitation.<br>
+			Your squirrel finally trusts you enough to chase by itself that wild squirrel that was causing problems at the parties without any hint of hesitation.<br>
 			People seems relieved, and they start talking to you about their squirrel-related problems, and how they couldn't dare tell you about them because you had a pet one.<br>
 			You never knew you could learn about so many new quests at once!<hr class='divider'>
 			<b>Effect: </b>Gain 20 more short quests and 10 more long quests. This effect can only be done once. Still gives 18 Meet People action.<hr class='divider'>
@@ -2171,7 +2968,6 @@
             <label_part>Patient</label_part>
             <tooltip><![CDATA[
             You won't be able to heal them all, but they'll be thankful for doing what you can.<hr class='divider'>
-			• Healing is always 3 parts, each with a main stat - Diagnose (Per), Treat (Int), Inform (Cha).<br>
 			• Gives (magic skill) * (restoration skill / 50) * (1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
 			• Gives 3 reputation and 50 magic exp upon patient completion.<br>
 			• Requires a reputation of 1 or above.<br>
@@ -2214,7 +3010,6 @@
             <label_done>Killed</label_done>
             <tooltip><![CDATA[
             Slowly, you're figuring out their patterns.<hr class='divider'>
-			• Fighting rotates between 3 types of battles, each with a main stat - Quick (Spd), Defensive (Str), Aggressive (Con).<br>
 			• Gives (self combat) * (1 + main stat / 100) * sqrt(1 + times completed / 100) progress points per mana.<br>
 			• Gives 50 combat exp and 20 gold per fight segment completion.<br>
 			• Requires a reputation of 2 or above.<br>
@@ -2812,8 +3607,9 @@
         <learn_alchemy>
             <label>Learn Alchemy</label>
             <tooltip><![CDATA[
-            You can listen to him yammer while making light healing and remedy potions.<br>
-			You're starting to think the potion that caused you to loop time was a complex one...<hr class='divider'>
+			You can't believe it. That old coot managed to find a way to casually do the impossible.<br>
+			Making regular potions that can't leak out mana...<br>
+			You have to pry this knowledge out of him no matter the cost. No matter the cost!<hr class='divider'>
 			• You provide the ingredients; costs 10 herbs.<br>
 			• Use what you learned from brewing to make this action more efficient.<br>
 			• Gives 10 + (10 * Brewing level) Alchemy exp.<br>
@@ -2839,7 +3635,8 @@
 				<name>Waiting and hoping it doesn't explode</name>
 			</segment_names>
             <tooltip><![CDATA[
-            Bubbles and Flasks. Potions and Magic.<hr class='divider'>
+			This is making you nostalgic about the days you were delivering potions...<br>
+			It feels like so long ago.<hr class='divider'>
 			• Requires a reputation of 10 or above, or he won't let you near his stuff.<br>
 			• Gives (alchemy + brewing/2) * (1 + main stat / 100) * sqrt(1 + potions distilled / 100) progress points per mana.<br>
 			• Creates a potion from 10 herbs to sell at the next town.<br>
@@ -3065,7 +3862,7 @@
 			The now familiar loud sound happens again, but this time, things are a bit different.<br>
 			It looks like the witch now has light wounds on her, and your squirrel emits a lot more mana.<br>
 			Well, if she was about to laugh before, now she's laughing very audibly!<br>
-			You've never seen her so friendly toward you before. Excellent!<hr class='divider'>
+			You've never seen her so friendly towards you before. Excellent!<hr class='divider'>
 			<b>Effect: </b>Dark Forest Explored gives a 5% bonus to this action instead of 3% in squirrel mode.<hr class='divider'>
 		]]></squirrel_3>
             <story_1><![CDATA[<b>1% Witch knowledge learned:</b>⮀ You stumble across a small crooked hut and as you approach the boundary, a small slip of a woman step outs. She's stunning and you're immediately on guard. The area pulses with a heady hum of magic that sends shivers down your spine. She introduces herself as Evis.]]></story_1>
@@ -3107,7 +3904,9 @@
 		<learn_brewing>
             <label>Learn Brewing</label>
             <tooltip><![CDATA[
-			The witch has interesting ideas about how to make some pretty evil potions. You feel the need to learn about it.<hr class='divider'>
+			The witch has interesting ideas about how to make some pretty evil potions.<br>
+			Surprisingly, they use dark spirits as fuel instead of mana.<br>
+			That means they can't leak out mana. How interesting!<hr class='divider'>
 			• Doing this action costs 10 dark essences.<br>
 			• Use what you learned from alchemy to make this action more efficient.<br>
 			• Gives 10 + (10 * Alchemy level) Brewing exp.<br>
@@ -3130,7 +3929,7 @@
 				<name>Stiring the cauldron</name>
 			</segment_names>
             <tooltip><![CDATA[
-			That cauldron is brimming with dark energy! That's perfect to make some dark potions.<hr class='divider'>
+			That cauldron is brimming with evil energy. That's perfect to make some dark potions!<hr class='divider'>
 			• The cauldron's negative energy is so strong you have to have a reputation of -10 or below to even get close to it.<br>
 			• Gives (brewing + alchemy/2) * (1 + main stat / 100) * sqrt(1 + dark potions concocted / 100) progress points per mana.<br>
 			• Creates a potion from 10 dark essence to sell at the next town.<br>

@@ -45,6 +45,12 @@ function addNewBuff(name) {
     buffs[name].amt = 0;
 }
 
+function initializeTutorial() {
+	tutorialLevel = 0;
+	actionUnlocks.unlockReplicatorAction = false;
+	actionUnlocks.unlockTreasureBoxAction = false;
+}
+
 function getLevel(stat) {
     return getLevelFromExp(stats[stat].exp);
 }
@@ -217,6 +223,7 @@ function getPrcToNextSkillSquirrelLevel(skillSquirrel) {
 function addSkillExp(name, amount) {
     if (name === "Combat" || name === "Pyromancy" || name === "Restoration") amount *= 1 + getBuffLevel("Heroism") * 0.02;
     skills[name].exp += amount;
+	if(skills[name].exp <= 0) skills[name].exp = 1;
 	if(name === "Yin" || name === "Yang") updateYinYanBuff();
     view.requestUpdate("updateSkill", name);
 }
@@ -239,10 +246,10 @@ function handleSkillExp(list, squirrelMode) {
     }
 }
 
-function handleSkillSquirrelExp(list) {
+function handleSkillSquirrelExp(list, squirrelMode) {
     for (const skillSquirrel in list) {
         if (Number.isInteger(list[skillSquirrel])) addSkillSquirrelExp(skillSquirrel, list[skillSquirrel]);
-        else addSkillSquirrelExp(skillSquirrel, list[skillSquirrel]());
+        else addSkillSquirrelExp(skillSquirrel, list[skillSquirrel](squirrelMode));
     }
 }
 

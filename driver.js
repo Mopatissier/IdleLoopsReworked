@@ -169,14 +169,53 @@ function prepareRestart() {
         if (curAction) {
             actions.completedTicks += actions.getNextValidAction().ticks;
             view.updateTotalTicks();
-        }
+        } else {
+			treasureHunt();
+		}
         for (let i = 0; i < actions.current.length; i++) {
             view.updateCurrentActionBar(i);
         }
         stopGame();
     } else {
+		if(curAction === undefined){
+			treasureHunt();
+		}
         restart();
     }
+}
+
+function treasureHunt() {
+		
+	if(tutorialLevel === 5){
+		let treasureSteps = {
+			reagents30: false,
+			search10: false,
+			change2: false,
+			psych1: false,
+			pet5: false,
+			messenger3: false,
+			presence2: false,
+			package1: false,
+			failed: false
+		};
+		for(const action of actions.current){
+							
+			if(action.name === "Add Reagents" && action.loops === 30 && treasureSteps.reagents30 === false) treasureSteps.reagents30 = true;
+			else if(action.name === "Search Around" && action.loops === 10 && treasureSteps.search10 === false) treasureSteps.search10 = true;
+			else if(action.name === "Spare Change" && action.loops === 2 && treasureSteps.change2 === false) treasureSteps.change2 = true;
+			else if(action.name === "Psych Up" && action.loops === 1 && treasureSteps.psych1 === false) treasureSteps.psych1 = true;
+			else if(action.name === "Pet Animals" && action.loops === 5 && treasureSteps.pet5 === false) treasureSteps.pet5 = true;
+			else if(action.name === "Get Squirrel" && action.loops === 3 && treasureSteps.messenger3 === false) treasureSteps.messenger3 = true;
+			else if(action.name === "Train Presence" && action.loops === 2 && treasureSteps.presence2 === false) treasureSteps.presence2 = true;
+			else if(action.name === "Pick Up Package" && action.loops === 1 && treasureSteps.package1 === false) treasureSteps.package1 = true;
+			else treasureSteps.failed = true;
+		}
+		
+		if(treasureSteps.reagents30 && treasureSteps.search10 && treasureSteps.change2 && treasureSteps.psych1 && treasureSteps.pet5 && treasureSteps.messenger3 && treasureSteps.presence2 && treasureSteps.package1 && !treasureSteps.failed){
+			actionUnlocks.unlockTreasureBoxAction = true;
+		} 
+	}
+	
 }
 
 function restart() {
@@ -269,9 +308,13 @@ function resetResource(resource) {
 }
 
 function resetResources() {
+	
+	const keepChronosPotion = resources.chronosPotion;
     resources = copyObject(resourcesTemplate);
     if(getExploreProgress() >= 100) addResource("glasses", true);
 	if(getLevelSquirrelAction("Pet Squirrel") >= 2) addResource("squirrel", true);
+	if(keepChronosPotion)addResource("chronosPotion", true);
+	
     view.updateResources();
 }
 
@@ -375,6 +418,7 @@ function unlockTown(townNum) {
 }
 
 function adjustAll() {
+	adjustReagents();
 	adjustManaSpots();
     adjustPots();
     adjustLocks();
@@ -648,6 +692,9 @@ function setFavMode(actionName, modeIsSquirrel){
 }
 
 function addOffline(num) {
+	
+	if(!offlineUnlocked) return;
+	
     if (num) {
 		
 		if(!offlineCalculated){
@@ -660,7 +707,6 @@ function addOffline(num) {
 		}
 		
 		if(overclock){
-			
 			if(num > 0){
 				totalFatigueMs -= num;
 				if (totalFatigueMs < 0) {
@@ -675,8 +721,7 @@ function addOffline(num) {
 						pauseGame();
 					}
 				}
-			}
-			
+			}	
 		} else {
 			
 			if(num < 0 || totalFatigueMs === 0){
@@ -702,6 +747,13 @@ function addOffline(num) {
 		document.getElementById("bonusMultOverclock").textContent = bonusMultString;
 		document.getElementById("fatigue").textContent = convertMsToString(totalFatigueMs);
 		document.getElementById("fatigueOverclock").textContent = convertMsToString(totalFatigueMs);
+		document.getElementById("squirrel_pause_time").textContent = convertMsToString(1000*60*60 - timeBeforePauseMs);
+				
+		if(timeBeforePauseMs > 0){
+			document.getElementById("squirrel_pause_line").style.display = "inline-block";
+		} else {
+			document.getElementById("squirrel_pause_line").style.display = "none";
+		}
     }
 }
 
@@ -736,6 +788,8 @@ function toggleOffline() {
 }
 
 function setActivatedBonusSpeed(newSpeed) {
+		
+	if(!offlineUnlocked) return;
 		
 	if(overclock === false) {
 		if(newSpeed !== undefined){
@@ -829,9 +883,7 @@ function updateYinYanBuff(){
 function upgradeAction(actionToUpgrade, actionUpgraded) {
 	
 	//Transfers the squirrel level.
-	console.log("Before sql level : " + squirrelLevel[camelize(translateClassNames(actionUpgraded.name).varName)]);	
 	squirrelLevel[camelize(translateClassNames(actionUpgraded.name).varName)] =  squirrelLevel[camelize(translateClassNames(actionToUpgrade.name).varName)];
-	console.log("After sql level : " + squirrelLevel[camelize(translateClassNames(actionUpgraded.name).varName)]);
 	view.updateSquirrelTooltip(actionUpgraded);
 	
 	//Remove action 1 in the action list and replace it by action 2
@@ -842,8 +894,32 @@ function advanceTutorial(level) {
 	
 	if(tutorialLevel+1 !== level) return;
 	
-	//view.showTutorialPopup(level);
-	view.updateTutorialStageupdateTutorialStage(level);
+	view.updateTutorialStage(level);
 	tutorialLevel = level;
+	
+	if(level === 6){
+		unlockTown(0);
+		
+		initializeStats();
+		initializeSkills();
+		initializeSkillsSquirrel();		
+		
+		view.showPopup("tutorialEnd", "gameStart");
+	}
 
+}
+
+function unlockOffline() {
+	if(offlineUnlocked) return;
+	
+	offlineUnlocked = true;
+	view.showPopup("offlineUnlock");
+	view.updateOfflineUnlocked();
+}
+
+function findAction(varName) {
+	
+	for (const action of totalActionList){
+		if(action.varName === varName) return action;
+	}
 }

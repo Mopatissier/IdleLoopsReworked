@@ -111,9 +111,17 @@ let resources = {
     key: false,
     stone: false,
 	loopPotion: false,
+	loopPotionCopy: false,
+	chronosPotion: false,
 };
 const resourcesTemplate = copyObject(resources);
 // eslint-disable-next-line prefer-const
+const actionUnlocks = {
+	unlockReplicatorAction: false,
+	replicatorUnlocked: false,
+	unlockTreasureBoxAction: false,
+	TimeTravelerUnlocked: false,
+}
 let guild = "";
 let alreadyHealed = false;
 let alreadyFought = false;
@@ -123,14 +131,15 @@ let squirrelHaggle = false;
 let portalUsed = false;
 let gamblesInARow = 0;
 let stoneLoc = 0;
+let offlineUnlocked = false;
 let overclock = false;
 let choiceBonusSpeed = 5;
 let curLoadout = 0;
 let loadouts;
 let loadoutnames;
 //let loadoutnames = ["1", "2", "3", "4", "5"];
-const skillList = ["Combat", "Magic", "Yang", "Yin", "Alchemy", "Brewing", "TeamWork", "Crafting", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy", "Mercantilism", "Divine", "Commune", "Wunderkind", "Gluttony", "Thievery"];
-const skillSquirrelList = ["Trust", "Magic", "Combat", "Craftiness"];
+const skillList = ["Handling", "Clumsiness", "Combat", "Magic", "Yang", "Yin", "Alchemy", "Brewing", "TeamWork", "Crafting", "Chronomancy", "Pyromancy", "Restoration", "Spatiomancy", "Mercantilism", "Divine", "Commune", "Wunderkind", "Gluttony", "Thievery"];
+const skillSquirrelList = ["Squeakiness","Trust", "Magic", "Combat", "Craftiness"];
 const skills = {};
 const skillsSquirrel = {};
 let alreadyLeveledUp = {};
@@ -165,7 +174,7 @@ let stonesUsed;
 // eslint-disable-next-line prefer-const
 let townShowing = 0;
 // eslint-disable-next-line prefer-const
-let tutorialLevel = 6;
+let tutorialLevel = 0;
 let actionStoriesShowing = false;
 let squirrelMode = false;
 let townsUnlocked = [];
@@ -335,7 +344,7 @@ const options = {
 	pauseOnExplorationComplete : false,
     pingOnPause: false,
     autoMaxTraining: false,
-	ferretMode: false,
+	chaosMode: false,
 	hideBars: false,
 	mergeModes: false,
     hotkeys: true,
@@ -360,7 +369,9 @@ function loadOption(option, value) {
 }
 
 function clearSave() {
+	
     window.localStorage[saveName] = "";
+	
 }
 
 function loadDefaults() {
@@ -370,6 +381,7 @@ function loadDefaults() {
 	initializeSquirrelLevels();
 	initializeFavModes();
 	initializeBuffs();
+	initializeTutorial();
 }
 
 function loadUISettings() {
@@ -394,7 +406,6 @@ function load() {
     let toLoad = {};
     // has a save file
     if (window.localStorage[saveName] && window.localStorage[saveName] !== "null") {
-        //closeTutorial();
         toLoad = JSON.parse(window.localStorage[saveName]);
     }
 
@@ -443,6 +454,14 @@ function load() {
         }
     }
 	
+	if(toLoad.actionUnlocks !== undefined){
+		for (const property in toLoad.actionUnlocks) {
+            if (toLoad.actionUnlocks.hasOwnProperty(property)) {
+                actionUnlocks[property] = toLoad.actionUnlocks[property];
+            }
+        }
+	}
+		
 	if(toLoad.squirrelLevel !== undefined) {
 		for (const property in toLoad.squirrelLevel) {
 			if (toLoad.squirrelLevel.hasOwnProperty(property)) {
@@ -472,12 +491,12 @@ function load() {
     }
 
     if (toLoad.maxTown) {
-        townsUnlocked = [0];
-        for (let i = 1; i <= toLoad.maxTown; i++) {
+        townsUnlocked = [];
+        for (let i = 0; i <= toLoad.maxTown; i++) {
             townsUnlocked.push(i);
         }
     } else {
-        townsUnlocked = toLoad.townsUnlocked === undefined ? [0] : toLoad.townsUnlocked;
+        townsUnlocked = toLoad.townsUnlocked === undefined ? [] : toLoad.townsUnlocked;
     }
     for (let i = 0; i <= 12; i++) {
         towns[i] = new Town(i);
@@ -596,7 +615,7 @@ function load() {
         options.repeatLastAction = toLoad.repeatLast;
         options.pingOnPause = toLoad.pingOnPause === undefined ? false : toLoad.pingOnPause;
         options.autoMaxTraining = toLoad.autoMaxTraining === undefined ? true : toLoad.autoMaxTraining;
-		options.ferretMode = toLoad.ferretMode === undefined ? false : toLoad.ferretMode;
+		options.chaosMode = toLoad.chaosMode === undefined ? false : toLoad.chaosMode;
 		options.hideBars = toLoad.hideBars === undefined ? false : toLoad.hideBars;
 		options.mergeModes = toLoad.mergeModes === undefined ? false : toLoad.mergeModes;
         options.hotkeys = toLoad.hotkeys === undefined ? true : toLoad.hotkeys;
@@ -607,9 +626,8 @@ function load() {
         }
     }
 	
-	//if(options.ferretMode){
+	if(options.chaosMode){
 		randomAnimal = Math.floor(Math.random() * animals.length);
-		//randomAnimal = 2;
 		
 		if(randomAnimal == 1) squirrelIcon = 'animals/ferret.png';
 		else squirrelIcon = `animals/${animals[randomAnimal]}.svg`;
@@ -618,8 +636,13 @@ function load() {
 		document.getElementById("favIcon32x32").href = `animals/favicon${capFirstLetter(animals[randomAnimal])}-32x32.png`;
 		document.getElementById("resourceSquirrel").src = squirrelIcon;
 		
-	//}
+	}
 	
+	if(toLoad.offlineUnlocked !== undefined){
+		offlineUnlocked = toLoad.offlineUnlocked;
+	}
+	if(getLevelSquirrelAction("Pet Squirrel") >= 2) offlineUnlocked = true;
+		
 	if(toLoad.overclock !== undefined){
 		overclock = toLoad.overclock;
 	}
@@ -649,15 +672,17 @@ function load() {
         }
     }
 	
-	/*if(toLoad.tutorialLevel !== undefined){
+	if(toLoad.tutorialLevel !== undefined){
 		tutorialLevel = toLoad.tutorialLevel;
 	}
+		
 	if(tutorialLevel === 0 && towns[0].expWander > 0){
 		tutorialLevel = 6;
-	}
-	tutorialLevel = 3;*/
-    
+	} 
+		
     view.initalize();
+	
+	
 
     for (const town of towns) {
         for (const action of town.totalActionList) {
@@ -695,6 +720,7 @@ function load() {
 
     if(getExploreProgress() >= 100) addResource("glasses", true);
 	if(getLevelSquirrelAction("Pet Squirrel") >= 2) addResource("squirrel", true);
+	if(actionUnlocks.unlockTreasureBoxAction) addResource("chronosPotion", true);
 
     adjustAll();
 
@@ -716,7 +742,9 @@ function save() {
     toSave.trials = trials;
     toSave.townsUnlocked = townsUnlocked;
     toSave.actionTownNum = actionTownNum;
-
+	toSave.actionUnlocks = actionUnlocks;
+	toSave.tutorialLevel = tutorialLevel;
+		
     toSave.stats = stats;
     toSave.totalTalent = totalTalent;
     toSave.skills = skills;
@@ -751,6 +779,7 @@ function save() {
     toSave.loadouts = loadouts;
     toSave.loadoutnames = loadoutnames;
     toSave.options = options;
+	toSave.offlineUnlocked = offlineUnlocked;
 	toSave.overclock = overclock;
 	toSave.choiceBonusSpeed = choiceBonusSpeed;
     toSave.storyShowing = storyShowing;
@@ -773,10 +802,19 @@ function exportSave() {
     document.getElementById("exportImport").value = `ILSV01${LZString.compressToBase64(window.localStorage[saveName])}`;
     document.getElementById("exportImport").select();
     document.execCommand("copy");
+	if(actionUnlocks.replicatorUnlocked){
+		addResource("loopPotionCopy", true);
+	}
 }
 
 function importSave() {
+	
+	// A few variables get saved even if the savefile gets replaced/deleted.
+	const replicator = actionUnlocks.replicatorUnlocked;
+	const timeTraveler = actionUnlocks.TimeTravelerUnlocked;
+	
     const saveData = document.getElementById("exportImport").value;
+
     if (saveData === "") {
         if (confirm("Importing nothing will delete your save. Are you sure you want to delete your save?")) {
             clearSave();
@@ -784,6 +822,8 @@ function importSave() {
             return;
         }
     }
+	
+	
     // idle loops save version 01. patch v0.94, moved from old save system to lzstring base 64
     if (saveData.substr(0, 6) === "ILSV01") {
         window.localStorage[saveName] = LZString.decompressFromBase64(saveData.substr(6));
@@ -796,6 +836,10 @@ function importSave() {
     load();
     pauseGame();
     restart();
+	
+	actionUnlocks.replicatorUnlocked = replicator;
+	actionUnlocks.TimeTravelerUnlocked = timeTraveler;
+
 }
 
 function exportCurrentList() {

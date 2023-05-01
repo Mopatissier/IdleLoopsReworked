@@ -6,6 +6,7 @@ Views.registerView("menu", {
         html += Views.menu.htmlSaveMenu();
         html += Views.menu.htmlFAQMenu();
         html += Views.menu.htmlOptionsMenu();
+		
         return html;
     },
     versions() {
@@ -65,6 +66,11 @@ Views.registerView("menu", {
             ${_text("menu>faq>meta>a_prefix")} ${$(QA).find("a").html()}<br>
             <br>`;
         });
+		html += _text("menu>faq>buttons>intro");		
+		for(i=0; i<6; i++){
+			html += `<div class="button" id="FAQButton${i}" style="display:block" onclick="view.showPopup('tutorial${i}')">${_text(`menu>faq>buttons>tuto${i}`)}</div>`
+		}
+		
         return html;
     },
     htmlFAQMenu() {
@@ -92,8 +98,8 @@ Views.registerView("menu", {
                 <input id='autoMaxTrainingInput' type='checkbox' onchange='setOption("autoMaxTraining", this.checked)'/>
                 <label for='autoMaxTrainingInput'>${_text("menu>options>auto_max_training")}</label>
                 <br>
-				<input id='ferretModeInput' type='checkbox' onchange='setOption("ferretMode", this.checked)'/>
-                <label for='ferretModeInput'>${_text("menu>options>ferret_mode")}</label>
+				<input id='chaosModeInput' type='checkbox' onchange='setOption("chaosMode", this.checked)'/>
+                <label for='chaosModeInput'>${_text("menu>options>chaos_mode")}</label>
                 <br>
 				<input id='hideBarsInput' type='checkbox' onchange='setOption("hideBars", this.checked)'/>
                 <label for='hideBarsInput'>${_text("menu>options>hide_bars")}</label>

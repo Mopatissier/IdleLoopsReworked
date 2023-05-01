@@ -5,7 +5,7 @@ let storeTextStories = [];
 let storeCompletedStories = [];
 
 function View() {
-    this.initalize = function() { //this.setTutorial
+    this.initalize = function() {
         this.createStats();
         this.updateStats();
         this.updateSkills();
@@ -42,6 +42,7 @@ function View() {
 		this.updateBuffCaps(true);
 		this.updateStartingMana();
 		this.updateTutorialStage(tutorialLevel);
+		this.updateOfflineUnlocked();
     };
 
     this.statLocs = [
@@ -558,7 +559,7 @@ function View() {
 			}
 			
 			let actionImage = `<img src='img/${camelize(action.name)}.svg' class='smallIcon imageDragFix'>`;
-			if(/*options.ferretMode &&*/ action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='smallIcon imageDragFix'>`;
+			if(options.chaosMode && action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='smallIcon imageDragFix'>`;
 			
             totalDivText +=(
                 `<div
@@ -609,7 +610,7 @@ function View() {
 			if(action.squirrelAction) squirrelModeIcon = `<img src='${squirrelIcon}' class='smallIcon imageDragFix' style='margin-left:4px'>`;
 			
 			let actionImage = `<img src='img/${camelize(action.name)}.svg' class='smallIcon'>`;
-			if(/*options.ferretMode && */action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='smallIcon'>`;
+			if(options.chaosMode && action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='smallIcon'>`;
 				
             totalDivText +=
                 `<div class='curActionContainer small' onmouseover='view.mouseoverAction(${i}, true)' onmouseleave='view.mouseoverAction(${i}, false)'>
@@ -1103,7 +1104,7 @@ function View() {
 		}
 		
 		let actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
-		if(/*options.ferretMode && */action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
+		if(options.chaosMode && action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='superLargeIcon' draggable='false'>${extraImage} ${progressCompleteCheckMark}`;
 
 		let name = ""
 		if(action.heritage === undefined || action.heritage.Squirrel === false){
@@ -1177,7 +1178,7 @@ function View() {
             }
 			    	
 			actionImage = `<img src='img/${camelize(action.name)}.svg' class='superLargeIcon' draggable='false'>`;
-			if(/*options.ferretMode && */action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='superLargeIcon' draggable='false'>`;
+			if(options.chaosMode && action.name === "Pet Squirrel") actionImage = `<img src='${squirrelIcon}' class='superLargeIcon' draggable='false'>`;
 
 		
             const storyDivText =
@@ -1338,6 +1339,8 @@ function View() {
 			
 		}
 		
+		this.adjustTooltip(action);
+		
 	};
 
 	this.updateAction = function(action) {
@@ -1370,7 +1373,7 @@ function View() {
 	this.adjustExpProgressGain = function(action){
 		const expGain = action.progressExp(squirrelMode);
 		let progressLevel = getLevelFromExp(towns[action.townNum][`exp${action.varName}`]);
-		
+				
 		if(action.name == "Throw Party") progressLevel = getLevelFromExp(towns[action.townNum][`expMet`]);
 		
 		const expToLevelUp = getExpOfLevel(progressLevel+1) - getExpOfLevel(progressLevel);
@@ -1739,29 +1742,75 @@ function View() {
 		
 		if(level < 5){
 			document.getElementById("squirrelModeContainer").style.display = "none";
+			document.getElementById("FAQButton5").style.display = "none";
 		} else {
 			document.getElementById("squirrelModeContainer").style.display = "block";
+			document.getElementById("FAQButton5").style.display = "block";
+		}
+		
+		if(level < 4){
+			document.getElementById("FAQButton4").style.display = "none";
+		} else {
+			document.getElementById("FAQButton4").style.display = "block";
+		}
+		
+		if(level < 3){
+			document.getElementById("FAQButton3").style.display = "none";
+		} else {
+			document.getElementById("FAQButton3").style.display = "block";
 		}
 		
 		if(level < 2){
 			document.getElementById("statsColumn").style.visibility = "hidden";
+			document.getElementById("FAQButton2").style.display = "none";
 		} else {
-			document.getElementById("statsColumn").style.visibility = "inline-block";
+			document.getElementById("statsColumn").style.visibility = "visible";
+			document.getElementById("FAQButton2").style.display = "block";
 		}
 		
 		if(level < 1){
 			document.getElementById("actionsColumn").style.visibility = "hidden";
+			document.getElementById("FAQButton1").style.display = "none";
+			// Gets rid of a glitch where saving immediatly after resetting the game doesn't want to work.
+			save();
 		} else {
-			document.getElementById("actionsColumn").style.visibility = "inline-block";
+			document.getElementById("actionsColumn").style.visibility = "visible";
+			document.getElementById("FAQButton1").style.display = "block";
+			
 		}
 		
-		document.getElementById("tutorial").style.display = "visible";
-		document.getElementById("tutorialText").innerHTML = (_text(`tutorial${level}`));
+		
+		if(level < 6) this.showPopup(`tutorial${level}`);
 		
 	}
 	
-	this.closeTutorial = function() {
+	this.showPopup = function(popup1, popup2, popup3) {
+																
+		document.getElementById("tutorialText").innerHTML = (_text(`popup>${popup1}>text`));
+		document.getElementById("tutorial").style.display = "inline-block";
+		document.getElementById("tutorialButton").innerHTML = (_text(`popup>${popup1}>button`));
+		
+		if(popup2 === undefined || popup2 === 'undefined'){
+			document.getElementById("tutorialButton").setAttribute('onclick',  "view.closePopup()");
+		} else {
+			document.getElementById("tutorialButton").setAttribute('onclick', `view.showPopup('${popup2}', '${popup3}')`);
+		}
+						
+	}
+	
+	this.closePopup = function() {
 		document.getElementById("tutorial").style.display = "none";
+	}
+	
+	this.updateOfflineUnlocked = function() {
+	
+		if(offlineUnlocked ){
+			toggleOverclock(overclock);			
+		} else {
+			document.getElementById("overclockOffMenu").style.display = "none";
+			document.getElementById("overclockOnMenu").style.display = "none";
+		}
+	
 	}
 }
 

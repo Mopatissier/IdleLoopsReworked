@@ -27,7 +27,7 @@ Views.registerView("timeControls", {
 				<div class='bold' id='isBonusOn'>${_text("time_controls>bonus_seconds>state>off")}</div><br>
 				<div class='bold'>${_text("time_controls>bonus_seconds>bonus_mult")}</div> <div id='bonusMult'></div><br>
                 <div class='bold'>${_text("time_controls>bonus_seconds>counter_text")}</div> <div id='bonusSeconds'></div><br>
-                <div class='bold'>${_text("time_controls>bonus_seconds>fatigue_text")}</div> <div id='fatigue'v>0</div><br>
+                <div class='bold'>${_text("time_controls>bonus_seconds>fatigue_text")}</div> <div id='fatigue'v>0</div><br>			
 				<div class='button showthat control' style='margin-top:5px' onclick='toggleOverclock(true)'>${_text("time_controls>bonus_seconds>overclock_button_on")}
 				<div class='showthis' style='margin-left:-5px;'>${_text("time_controls>bonus_seconds>overclock_on_tooltip")}'</div></div>
             </div>
@@ -40,6 +40,7 @@ Views.registerView("timeControls", {
 				<div class='bold'>${_text("time_controls>bonus_seconds>bonus_mult")}</div> <div id='bonusMultOverclock'></div><br>
                 <div class='bold'>${_text("time_controls>bonus_seconds>counter_text")}</div> <div id='bonusSecondsOverclock'></div><br>
                 <div class='bold'>${_text("time_controls>bonus_seconds>fatigue_text")}</div> <div id='fatigueOverclock'>0</div><br>
+				<div style='display:none' id='squirrel_pause_line'> <div class='bold' '>${_text("time_controls>bonus_seconds>squirrel_pause")}</div> <div id='squirrel_pause_time'>0</div><br></div>
 				<div class='button showthatO control' style='margin-top:5px' onclick='toggleOverclock(false)'>${_text("time_controls>bonus_seconds>overclock_button_off")}
 				<div class='showthis' style='margin-left:-5px;'>${_text("time_controls>bonus_seconds>overclock_off_tooltip")}</div></div>
 			</div>

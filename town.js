@@ -85,6 +85,7 @@ function Town(index) {
         if (level !== prevLevel) {
             view.updateLockedHidden();
             adjustAll();
+			view.adjustTooltip(findAction(varName));
             for (const action of totalActionList) {
                 if (towns[action.townNum].varNames.indexOf(action.varName) !== -1) {
                     view.updateRegular(action.varName, action.townNum);

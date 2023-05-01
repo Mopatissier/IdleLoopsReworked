@@ -74,6 +74,48 @@
 										<span class="localized" data-lockey="skills>tcombat>desc"></span><br>
 								</div>
 						</div>
+						<div class="skillContainer showthat" id="skillHandlingContainer" onmouseover="view.showSkill('Handling')" onmouseout="view.showSkill(undefined)">
+							<div class="skillLabel small bold localized" data-lockey="skills>handling>label"></div>
+							<div class="skillNum medium">
+								<div id="skillHandlingLevel">0</div>
+							</div>
+							<div class="thinProgressBarUpper">
+								<div class="statBar skillExpBar townExpBar" id="skillHandlingLevelBar"></div>
+							</div>
+							<div class="showthis">
+								<span class="localized" data-lockey="skills>handling>desc"></span><br>
+								<div class="medium bold localized" data-lockey="skills>tooltip>level_exp"></div>
+								<div id="skillHandlingLevelExp"></div>
+								/
+								<div id="skillHandlingLevelExpNeeded"></div>
+								<div class="statTooltipPerc">(
+										<div id="skillHandlingLevelProgress"></div>
+															 %)
+								</div>
+								<br>
+							</div>
+						</div>
+						<div class="skillContainer showthat" id="skillClumsinessContainer" onmouseover="view.showSkill('Clumsiness')" onmouseout="view.showSkill(undefined)">
+							<div class="skillLabel small bold localized" data-lockey="skills>clumsiness>label"></div>
+							<div class="skillNum medium">
+								<div id="skillClumsinessLevel">0</div>
+							</div>
+							<div class="thinProgressBarUpper">
+								<div class="statBar skillExpBar townExpBar" id="skillClumsinessLevelBar"></div>
+							</div>
+							<div class="showthis">
+								<span class="localized" data-lockey="skills>clumsiness>desc"></span><br>
+								<div class="medium bold localized" data-lockey="skills>tooltip>level_exp"></div>
+								<div id="skillClumsinessLevelExp"></div>
+								/
+								<div id="skillClumsinessLevelExpNeeded"></div>
+								<div class="statTooltipPerc">(
+										<div id="skillClumsinessLevelProgress"></div>
+															 %)
+								</div>
+								<br>
+							</div>
+						</div>
 						<div class="skillContainer showthat" id="skillCombatContainer" onmouseover="view.showSkill('Combat')" onmouseout="view.showSkill(undefined)">
 							<div class="skillLabel small bold localized" data-lockey="skills>combat>label"></div>
 							<div class="skillNum medium">
@@ -475,7 +517,17 @@
                 </div><br>
 				
 				<div id="skillsSquirrelListContainer" style="width:100%; position: relative; display: flex;padding-top:0.5rem; padding-left:4%; padding-right:4%;">
-						<div id="combatSkillsSquirrelListContainer" style="width:100%; display: flex; gap: 4%; flex-wrap: wrap;margin-left: 10.5%;">
+						<div id="combatSkillsSquirrelListContainer" style="width:100%; display: flex; gap: 4%; flex-wrap: wrap;margin-left: 8%;">
+							<div class="skillSquirrelContainer showthat" id="skillSquirrelSqueakinessContainer" onmouseover="view.showSkillSquirrel('Squeakiness')" onmouseout="view.showSkillSquirrel(undefined)">
+								<div class="skillLabel small bold localized" data-lockey="skillsSquirrel>squeakiness>label"></div>
+								<div class="statNum medium"><div id="skillSquirrelSqueakinessLevel">0</div></div>
+								<div style="margin-top:18px;"></div>
+								<div class="thinProgressBarUpper"><div class="statBar skillExpBar townExpBar" id="skillSquirrelSqueakinessLevelBar"></div></div>
+								<div class="showthis" style="width:300px">
+									<span class="localized" data-lockey="skillsSquirrel>squeakiness>desc"></span><br>
+									<div class="medium bold localized" data-lockey="skillsSquirrel>tooltip>level_exp"></div> <div id="skillSquirrelSqueakinessLevelExp"></div>/<div id="skillSquirrelSqueakinessLevelExpNeeded"></div> <div class="statTooltipPerc">(<div id="skillSquirrelSqueakinessLevelProgress"></div>%)</div><br>
+								</div>
+							</div>
 							<div class="skillSquirrelContainer showthat" id="skillSquirrelTrustContainer" onmouseover="view.showSkillSquirrel('Trust')" onmouseout="view.showSkillSquirrel(undefined)">
 								<div class="skillLabel small bold localized" data-lockey="skillsSquirrel>trust>label"></div>
 								<div class="statNum medium"><div id="skillSquirrelTrustLevel">0</div></div>
@@ -485,7 +537,7 @@
 									<span class="localized" data-lockey="skillsSquirrel>trust>desc"></span><br>
 									<div class="medium bold localized" data-lockey="skillsSquirrel>tooltip>level_exp"></div> <div id="skillSquirrelTrustLevelExp"></div>/<div id="skillSquirrelTrustLevelExpNeeded"></div> <div class="statTooltipPerc">(<div id="skillSquirrelTrustLevelProgress"></div>%)</div><br>
 								</div>
-							</div>
+							</div> 
 							<div class="skillSquirrelContainer showthat" id="skillSquirrelCombatContainer" onmouseover="view.showSkillSquirrel('Combat')" onmouseout="view.showSkillSquirrel(undefined)">
 								<div class="skillLabel small bold localized" data-lockey="skillsSquirrel>combat>label"></div>
 								<div class="statNum medium"><div id="skillSquirrelCombatLevel">0</div></div>
@@ -715,7 +767,7 @@
         <div style="width:100%;height:100%;background-color:grey;position:relative;opacity:.5"></div>
         <div style="padding:20px;background-color:#e4ece5;border:1px solid black;position:absolute;text-align:left;left:50%;top:50%; transform: translate(-50%, -50%)">
             <span id="tutorialText"></span>
-            <div class="button" onclick="view.closeTutorial()">OK</div>
+            <div class="button" id ="tutorialButton" onclick="view.closePopup()">OK</div>
         </div>
     </div>
 
