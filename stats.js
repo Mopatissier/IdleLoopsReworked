@@ -49,6 +49,7 @@ function initializeTutorial() {
 	tutorialLevel = 0;
 	actionUnlocks.unlockReplicatorAction = false;
 	actionUnlocks.unlockTreasureBoxAction = false;
+	offlineUnlocked = false;
 }
 
 function getLevel(stat) {

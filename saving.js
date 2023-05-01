@@ -641,8 +641,9 @@ function load() {
 	if(toLoad.offlineUnlocked !== undefined){
 		offlineUnlocked = toLoad.offlineUnlocked;
 	}
+	
 	if(getLevelSquirrelAction("Pet Squirrel") >= 2) offlineUnlocked = true;
-		
+	
 	if(toLoad.overclock !== undefined){
 		overclock = toLoad.overclock;
 	}

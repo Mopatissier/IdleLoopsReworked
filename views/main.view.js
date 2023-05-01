@@ -888,6 +888,8 @@ function View() {
 		if(!towns[townTarget].unlocked() && townNum !== TUTORIALIS) return;
 		
 		const newZone = zoneOrder.findIndex(arr => arr.includes(townTarget));
+		
+		if(tutorialLevel < 6) townTarget = TUTORIALIS;
 				
 		if(zoneOrder[newZone+1] !== undefined && towns[zoneOrder[newZone+1][0]].unlocked()){
 			document.getElementById("townViewRight").style.visibility = "visible";

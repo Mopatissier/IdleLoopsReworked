@@ -403,7 +403,7 @@
 	<popup>
 		<tutorial0>
 			<text><![CDATA[
-				<b>CONGRATULATION!</b><br><br>
+				<b>CONGRATULATIONS!</b><br><br>
 				  
 				You have been selected to be a potion courier for an alchemist guild.<br>
 				That's what you've always dreamed of!<br>
@@ -425,24 +425,24 @@
 				This game is a remake of the original game Idle Loops.<br>
 				Starting as a balance patch, it became an entirely new game centered about a squirrel.<br>
 				To play the latest version of the original game, check <a href="https://lloyd-delacroix.github.io/omsi-loops/">here</a>.<br>
-				This is one of several versions of the original game: for other versions from the most complete to the less, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
+				This is one of several versions of the original game: for other versions from the most content to the least, check <a href="https://omsi6.github.io/loops/">here</a> and <a href="http://stopsign.github.io/idleLoops/">here</a>.<br>
 				Thanks for playing, and have fun!<br><br>
 			]]></text>
-			<button>LET'S START THE TUTORIAL</button>
+			<button>LET'S START THE TUTORIAL!</button>
 		</tutorial0>
 		<tutorial1>
 			<text><![CDATA[
 			<b>ACTION LIST:</b><br><br>
 			  
-			Congrats! That was a first successful delivery! You're fit for this stuff!<br>
+			Congrats! That was a successful first delivery! You're fit for this stuff!<br>
 			But it won't be that easy every time. Thankfully you're a master at planning your day, so here's a new tool:<br>
 			<img src ="img/tutorial_1.png"><br>
 			<b>1:</b>The right part shows every action you'll do for each delivery.<br>
 			<b>2:</b>The left part shows your current delivery progression.<br>
 			<b>3:</b>This is a stack of actions: to add it, click (and drag) the actions from the action options to place them in the list.<br>
 			<b>4:</b>There's a bunch of signs, here's a small description (ignore the star and human/squirrel icons for now!):<br>
-			<i class='actionIcon far fa-circle'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Cap the number of actions to its max value.<br>
-			<i class='actionIcon fas fa-plus'></i>/<i class='actionIcon fas fa-minus'></i> &nbsp;&nbsp;: Add/Substract one action.<br>
+			<i class='actionIcon far fa-circle'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Set the number of actions in the stack to the cap.<br>
+			<i class='actionIcon fas fa-plus'></i>/<i class='actionIcon fas fa-minus'></i> &nbsp;&nbsp;: Add/Subtract one action.<br>
 			<i class='actionIcon fas fa-arrows-alt-h'></i> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Split the stack of actions in two.<br>
 			<i class='actionIcon fas fa-sort-up'></i>/<i class='actionIcon fas fa-sort-down'></i></i> &nbsp;&nbsp;: Move up/down the stack.<br>
 			<i class='actionIcon far fa-check-circle'></i><span style="margin-left: -2px;"> /</span><i class='actionIcon far fa-times-circle'></i> &nbsp;: Enable/disable a stack of actions.<br>
@@ -465,9 +465,9 @@
 				<b>2:</b> As you gain some stat exp, you also gain some talent exp: talent levels multiply stat exp gain.<br>
 				They don't reset between deliveries!<br>
 				<b>3:</b>This shows how many soulstones you have. Like talents, they multiply stat exp gain.<br>
-				But as they're hidden deep in dungeons, you probably won't ever come to contact with one, right?<br><br>
+				But as they're hidden deep in dungeons, you probably won't ever come into contact with one, right?<br><br>
 				  
-				Well, that's all good and well, but how do you get them? Well:<br>
+				Well, that's all well and good, but how do you get them? Well:<br>
 				<img src ="img/tutorial_2_1.png"><br>
 				<b>1:</b> You convert mana into experience: 50% Spd means 50% of the base mana cost is gained as speed exp.<br>
 				It also means 50% of the acceleration bonus gained from your stats comes from your speed stat.<br>
@@ -2256,7 +2256,7 @@
 		<deliver_potion_one>
 			<label>Deliver Potion 1</label>
 			<tooltip><![CDATA[
-			Finally. You got your job dream: being a potion courier!<br>
+			Finally. You got your dream job: being a potion courier!<br>
 			It is time to deliver your very first potion.<br>
 			Your superior picked the easiest one for your first delivery.<br>
 			This is the beginning of your dream!<hr class='divider'>
@@ -2264,7 +2264,7 @@
 			• You can redo this delivery later if you want, but this will only confuse people.<br>			
 			• The potions you deliver will naturally run out of mana and become useless after that.<br>	
 			If you fail, you can retry as much as you want.<br>
-			(Most potion deliveries end up in failure after all, this is a tricky business.)<hr class='divider'>
+			(Most potion deliveries end in failure after all, this is a tricky business.)<hr class='divider'>
 		]]></tooltip>
 			<squirrel_1><![CDATA[
 			Clearly there is no need to ask for help for this delivery.<br>
