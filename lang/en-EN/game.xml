@@ -509,7 +509,7 @@
 				  
 				This is a skill. You'll need 100 exp to get the first level up, then 200, 300, etc.<br>
 				Neat thing: <b>you keep them between deliveries!</b><br>
-				They are useful for many thing, for exemple, bar actions:<br><br>
+				They are useful for many things, for example, bar actions:<br><br>
 				<img src ="img/tutorial_4_1.png"><br><br>
 				  
 				Every bar action will have a different utility. You'll have to read its tooltip to know its use!<br>	  
@@ -2036,7 +2036,7 @@
 			As you thank him, he goes away with the squirrel.<br>
 			How nice, that crystal will be useful... Wait, he went away with the squirrel?!<hr class='divider'>
 			<b>Effect: </b>Doing this action in squirrel mode gives 1600 mana, but lose the squirrel.<br>
-			<b>Next: </b>squeakiness >= 16 <hr class='divider'>
+			<b>Next: </b>squeakiness >= 18 <hr class='divider'>
 		]]></squirrel_2>
 		   <squirrel_3><![CDATA[
 		   It looks like the squirrel found another colleague to help you this time.<br>
