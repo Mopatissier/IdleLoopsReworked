@@ -432,11 +432,11 @@ function load() {
         if (toLoad.buffs.hasOwnProperty(property)) {
 			if(buffs[property] !== undefined){
 				// need the min for people with broken buff amts from pre 0.93
-				buffs[property].amt = Math.min(toLoad.buffs[property].amt, buffHardCaps[property]);
+				buffs[property].amt = toLoad.buffs[property].amt;
 			}
         }
     }
-
+	
     /*if (toLoad.buffCaps !== undefined) {
         for (const property in buffCaps) {
             if (toLoad.buffCaps.hasOwnProperty(property)) {

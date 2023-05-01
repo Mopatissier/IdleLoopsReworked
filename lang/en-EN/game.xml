@@ -320,6 +320,7 @@
 				<tuto3><![CDATA[EXPLORATION/RESOURCES]]></tuto3>
 				<tuto4><![CDATA[SKILLS/BAR ACTIONS]]></tuto4>
 				<tuto5><![CDATA[SQUIRREL MODE]]></tuto5>
+				<tuto6><![CDATA[OFFLINE BONUS]]></tuto6>
 			</buttons>
             <!-- <q_a> -->
                 <!-- <q>What do stats do?</q> -->
@@ -487,6 +488,7 @@
 				  
 				<img src ="img/tutorial_3.png"><br>
 				<b>1:</b> As you fill the exploration bar, you will find more resources.<br>
+				You need 100 exploration exp to fill the first percent, then 200, then 300,...<br>
 				<b>2:</b> Those are the resources you have found, but the majority of them are useless.<br>
 				<b>You'll have to try them one by one to sort them!</b><br>
 				<b>3:</b> This is how many resources you have found that are actually <b>useful</b> to you in total.<br>
@@ -943,7 +945,7 @@
             <desc>Powers of the gods.</desc>
         </resource>
         <!--singular items with img icons rather than counts-->
-		<resource initially_hidden="true" no_count="true">
+		<resource initially_hidden="true" no_count="true" no_reset_on_restart= "true">
             <title><![CDATA[<img src="img/petSquirrel.svg" class="smallIcon" id = "resourceSquirrel">]]></title>
             <id>squirrel</id>
             <desc>Your partner in crime. Stuck with you in this adventure.</desc>
@@ -998,7 +1000,7 @@
             <id>loopPotionCopy</id>
             <desc>You got a copy of the loop potion. But what can you do with it?</desc>
         </resource>
-		<resource initially_hidden="true" no_count="true">
+		<resource initially_hidden="true" no_count="true" no_reset_on_restart= "true">
             <title><![CDATA[<img src="img/chronosPotion.svg" class="smallIcon">]]></title>
             <id>chronosPotion</id>
             <desc>This legendary potion can apparently change the past.</desc>
@@ -2114,7 +2116,7 @@
 			You send away the squirrel to ask for help to recruit the squirrel!<br>
 			Wait, that doesn't sound right...<br>
 			Wait, it's coming back. With a new message? Where does it comes from? It reads:<br><i>
-			There are 3 secrets hidden in Tutorials. Getting them won't give any gameplay advantage.<br>
+			There are 3 secrets hidden in Tutorialis. Getting them won't give any gameplay advantage.<br>
 			You are encouraged to back-up and restart the game whenever you want to search for them.<br>
 			Here's an hint for each of them:<br>
 			• Follow the numbers shown by the creature.<br>

@@ -68,8 +68,9 @@ Views.registerView("menu", {
         });
 		html += _text("menu>faq>buttons>intro");		
 		for(i=0; i<6; i++){
-			html += `<div class="button" id="FAQButton${i}" style="display:block" onclick="view.showPopup('tutorial${i}')">${_text(`menu>faq>buttons>tuto${i}`)}</div>`
+			html += `<div class="button" id="FAQButton${i}" style="display:block" onclick="view.showPopup('tutorial${i}')">${_text(`menu>faq>buttons>tuto${i}`)}</div>`;
 		}
+		html += `<div class="button" id="FAQButtonOffline" style="display:block" onclick="view.showPopup('offlineUnlock')">${_text(`menu>faq>buttons>tuto6`)}</div>`;
 		
         return html;
     },

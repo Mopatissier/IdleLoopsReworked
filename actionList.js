@@ -706,7 +706,10 @@ Action.SpareChange = new Action("Spare Change", {
     },
     finish() {
 		addResource("gold", 10);
-		if(resources.gold >= 270) actionUnlocks.unlockReplicatorAction = true;
+		if(resources.gold >= 270){
+			actionUnlocks.unlockReplicatorAction = true;
+			save();
+		}
     },
 	squirrelLevelUp(onlyGetState) 
 	{
@@ -745,7 +748,10 @@ Action.SpareChange = new Action("Spare Change", {
 			
 				case 2: actionEffect = () => {
 							addResource("gold", 15);
-							if(resources.gold >= 270) actionUnlocks.unlockReplicatorAction = true;
+							if(resources.gold >= 270){
+								actionUnlocks.unlockReplicatorAction = true;
+								save();
+							}
 						};
 					break;
 										
@@ -1128,7 +1134,7 @@ Action.PickUpPackage = new Action("Pick Up Package", {
     },
 	canStart() {
 		const squirrelRequirements = (!this.squirrelAction || resources.squirrel);
-		return squirrelRequirements && resources.squirrel;
+		return squirrelRequirements;
     },
 	allowed() {
 		return 1;
@@ -1324,6 +1330,7 @@ Action.PotionReplicator = new Action("Potion Replicator", {
     },
     finish() {
 		actionUnlocks.replicatorUnlocked = true;
+		save();
     },
 	squirrelLevelUp(onlyGetState) 
 	{
@@ -1409,6 +1416,7 @@ Action.TreasureBox = new Action("Treasure Box", {
     finish() {
 		addResource("chronosPotion", true);
 		actionUnlocks.unlockTreasureBoxAction = false;
+		save();
     },
 	squirrelLevelUp(onlyGetState) 
 	{
@@ -3123,6 +3131,7 @@ Action.ChronosPotion = new Action("Chronos Potion", {
     finish() {	
 		actionUnlocks.TimeTravelerUnlocked = true;
 		actionUnlocks.unlockTreasureBoxAction = false;
+		save();
 		view.showPopup("drinkChronosPotion");
     },
 	squirrelLevelUp(onlyGetState) {

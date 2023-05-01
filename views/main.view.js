@@ -1805,10 +1805,12 @@ function View() {
 	this.updateOfflineUnlocked = function() {
 	
 		if(offlineUnlocked ){
-			toggleOverclock(overclock);			
+			toggleOverclock(overclock);		
+			document.getElementById("FAQButtonOffline").style.display = "block";			
 		} else {
 			document.getElementById("overclockOffMenu").style.display = "none";
 			document.getElementById("overclockOnMenu").style.display = "none";
+			document.getElementById("FAQButtonOffline").style.display = "none";
 		}
 	
 	}
