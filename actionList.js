@@ -1415,7 +1415,6 @@ Action.TreasureBox = new Action("Treasure Box", {
     },
     finish() {
 		addResource("chronosPotion", true);
-		actionUnlocks.unlockTreasureBoxAction = false;
 		save();
     },
 	squirrelLevelUp(onlyGetState) 
